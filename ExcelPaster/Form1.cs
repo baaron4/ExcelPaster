@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,17 +29,22 @@ namespace ExcelPaster
                 }
             }
         }
-        private void EnableButtons(string mode)
+        public enum ButtonState
+        {
+            READY = 0,
+            COPYING = 1
+        }
+        private void EnableButtons(ButtonState mode)
         {
             switch (mode)
             {
-                case "COPYING":
+                case ButtonState.COPYING:
                     btn_Cancel1.Enabled = true;
                     btn_SelectFile.Enabled = false;
                     btn_StartCopyDirect.Enabled = false;
                     btn_StartCopyFile.Enabled = false;
                     break;
-                case "READY":
+                case ButtonState.READY:
                     btn_Cancel1.Enabled = false;
                     btn_SelectFile.Enabled = true;
                     btn_StartCopyDirect.Enabled = true;
@@ -78,9 +85,6 @@ namespace ExcelPaster
         {
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                //System.IO.StreamReader sr = new
-                //   System.IO.StreamReader(openFileDialog1.FileName);
-                //MessageBox.Show(sr.ReadToEnd());
                 string result = openFileDialog1.FileName;
                 if ( !string.IsNullOrWhiteSpace(result))
                 {
@@ -95,26 +99,9 @@ namespace ExcelPaster
                         SetFileMostRecent(result);
                     }
                 }
-                //sr.Close();
             }
             
-            //using (var fbd = openFileDialog1)
-            //{
-            //    DialogResult result = fbd.ShowDialog();
-
-            //    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-            //    {
-            //        comboBox_FileLocation.Text = fbd.SelectedPath;
-            //        if (!Properties.Settings.Default.RecentFiles.Contains(fbd.SelectedPath))
-            //        {
-            //            Properties.Settings.Default.RecentFiles.Add(fbd.SelectedPath);
-            //        }
-            //        else
-            //        {
-            //            SetFileMostRecent(fbd.SelectedPath);
-            //        }
-            //    }
-            //}
+ 
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -122,6 +109,50 @@ namespace ExcelPaster
 
         }
 
-    
+        private void btn_StartCopyFile_Click(object sender, EventArgs e)
+        {
+            string CSVFile = comboBox_FileLocation.Text;
+            if (CSVFile.Count() > 0)
+            {
+                EnableButtons(ButtonState.COPYING);
+
+                if (!BgWorker.IsBusy)
+                {
+                    BgWorker.RunWorkerAsync(CSVFile);
+                }
+            }
+            else
+            {
+                label_Status.Text = "No File Selected";
+            }
+        }
+        private void BgWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bg = sender as BackgroundWorker;
+            string fileLoc = (string)e.Argument;
+            try
+            {
+                FileInfo fInfo = new FileInfo(fileLoc);
+                if (!fInfo.Exists)
+                {
+                   
+                    e.Cancel = true;
+                  
+                }
+                if (fInfo.Extension.Equals(".csv", StringComparison.OrdinalIgnoreCase))
+                {
+                    CSVReader reader = new CSVReader();
+                    reader.ParseCSV(fInfo.FullName);
+                    Typer typer = new Typer();
+                    Thread.Sleep(5000);
+                    typer.TypeCSVArray(reader.GetArrayStorage());
+                }
+            }
+         
+            finally
+            {
+                EnableButtons(ButtonState.READY);
+            }
+        }
     }
 }

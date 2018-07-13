@@ -44,6 +44,8 @@
             this.btn_StartCopyDirect = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayDirect = new System.Windows.Forms.TextBox();
             this.btn_Cancel1 = new System.Windows.Forms.Button();
+            this.BgWorker = new System.ComponentModel.BackgroundWorker();
+            this.label_Status = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -58,6 +60,7 @@
             this.btn_StartCopyFile.TabIndex = 0;
             this.btn_StartCopyFile.Text = "Start Copying File";
             this.btn_StartCopyFile.UseVisualStyleBackColor = true;
+            this.btn_StartCopyFile.Click += new System.EventHandler(this.btn_StartCopyFile_Click);
             // 
             // textBox_StartCopyDelayFile
             // 
@@ -122,6 +125,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label_Status);
             this.tabPage1.Controls.Add(this.btn_Cancel1);
             this.tabPage1.Controls.Add(this.comboBox_FileLocation);
             this.tabPage1.Controls.Add(this.label3);
@@ -216,12 +220,28 @@
             // btn_Cancel1
             // 
             this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Cancel1.Enabled = false;
             this.btn_Cancel1.Location = new System.Drawing.Point(457, 366);
             this.btn_Cancel1.Name = "btn_Cancel1";
             this.btn_Cancel1.Size = new System.Drawing.Size(142, 23);
             this.btn_Cancel1.TabIndex = 8;
             this.btn_Cancel1.Text = "Cancel (ESC)";
             this.btn_Cancel1.UseVisualStyleBackColor = true;
+            // 
+            // BgWorker
+            // 
+            this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
+            // 
+            // label_Status
+            // 
+            this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Status.AutoSize = true;
+            this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Status.Location = new System.Drawing.Point(148, 366);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(58, 22);
+            this.label_Status.TabIndex = 9;
+            this.label_Status.Text = "status";
             // 
             // MainForm
             // 
@@ -259,6 +279,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_StartCopyDirect;
         private System.Windows.Forms.TextBox textBox_StartCopyDelayDirect;
+        private System.ComponentModel.BackgroundWorker BgWorker;
+        private System.Windows.Forms.Label label_Status;
     }
 }
 
