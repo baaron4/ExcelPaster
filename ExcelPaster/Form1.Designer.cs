@@ -36,16 +36,16 @@
             this.btn_SelectFile = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_Status = new System.Windows.Forms.Label();
+            this.btn_Cancel1 = new System.Windows.Forms.Button();
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_StartCopyDirect = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayDirect = new System.Windows.Forms.TextBox();
-            this.btn_Cancel1 = new System.Windows.Forms.Button();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
-            this.label_Status = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -143,6 +143,48 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // label_Status
+            // 
+            this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Status.AutoSize = true;
+            this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Status.Location = new System.Drawing.Point(148, 366);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(58, 22);
+            this.label_Status.TabIndex = 9;
+            this.label_Status.Text = "status";
+            // 
+            // btn_Cancel1
+            // 
+            this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Cancel1.Enabled = false;
+            this.btn_Cancel1.Location = new System.Drawing.Point(457, 366);
+            this.btn_Cancel1.Name = "btn_Cancel1";
+            this.btn_Cancel1.Size = new System.Drawing.Size(142, 23);
+            this.btn_Cancel1.TabIndex = 8;
+            this.btn_Cancel1.Text = "Cancel (ESC)";
+            this.btn_Cancel1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_FileLocation
+            // 
+            this.comboBox_FileLocation.AllowDrop = true;
+            this.comboBox_FileLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_FileLocation.FormattingEnabled = true;
+            this.comboBox_FileLocation.Location = new System.Drawing.Point(186, 148);
+            this.comboBox_FileLocation.MaxDropDownItems = 10;
+            this.comboBox_FileLocation.Name = "comboBox_FileLocation";
+            this.comboBox_FileLocation.Size = new System.Drawing.Size(561, 21);
+            this.comboBox_FileLocation.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 119);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(233, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Select a .CSV File to copy into another program:";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label4);
@@ -156,26 +198,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Direct Copy(WIP)";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(233, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Select a .CSV File to copy into another program:";
-            // 
-            // comboBox_FileLocation
-            // 
-            this.comboBox_FileLocation.AllowDrop = true;
-            this.comboBox_FileLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_FileLocation.FormattingEnabled = true;
-            this.comboBox_FileLocation.Location = new System.Drawing.Point(186, 148);
-            this.comboBox_FileLocation.MaxDropDownItems = 10;
-            this.comboBox_FileLocation.Name = "comboBox_FileLocation";
-            this.comboBox_FileLocation.Size = new System.Drawing.Size(561, 21);
-            this.comboBox_FileLocation.TabIndex = 7;
             // 
             // label4
             // 
@@ -217,31 +239,10 @@
             this.textBox_StartCopyDelayDirect.Text = "5";
             this.textBox_StartCopyDelayDirect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btn_Cancel1
-            // 
-            this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Cancel1.Enabled = false;
-            this.btn_Cancel1.Location = new System.Drawing.Point(457, 366);
-            this.btn_Cancel1.Name = "btn_Cancel1";
-            this.btn_Cancel1.Size = new System.Drawing.Size(142, 23);
-            this.btn_Cancel1.TabIndex = 8;
-            this.btn_Cancel1.Text = "Cancel (ESC)";
-            this.btn_Cancel1.UseVisualStyleBackColor = true;
-            // 
             // BgWorker
             // 
             this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
-            // 
-            // label_Status
-            // 
-            this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Status.AutoSize = true;
-            this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(148, 366);
-            this.label_Status.Name = "label_Status";
-            this.label_Status.Size = new System.Drawing.Size(58, 22);
-            this.label_Status.TabIndex = 9;
-            this.label_Status.Text = "status";
+            this.BgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker_Completed);
             // 
             // MainForm
             // 
