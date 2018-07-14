@@ -7,14 +7,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsInput;
 
 namespace ExcelPaster
 {
     public class Typer
     {
-        private Keyboard kb = new Keyboard();
+        //private Keyboard kb = new Keyboard();
         private int strokeDelay = 500;
-      
+        private InputSimulator In_sim = new InputSimulator();
 
         public void TypeCSVArray(List<List<String>> csv)
         {
@@ -31,21 +32,22 @@ namespace ExcelPaster
             // SendKeys.Send(c.ToString());
             short b = Convert.ToSByte(c);
             // ((Keyboard.ScanCodeShort)b).ToString();
-            Keyboard.VirtualKeyShort vKB = ((Keyboard.VirtualKeyShort)b);
-            kb.SendVirtual(vKB);//Keyboard.ScanCodeShort.KEY_0);
-           
-            Thread.Sleep(strokeDelay);
+            // Keyboard.VirtualKeyShort vKB = ((Keyboard.VirtualKeyShort)b);
+            // kb.SendVirtual(vKB);//Keyboard.ScanCodeShort.KEY_0);
+            In_sim.Keyboard.TextEntry(c);
+            In_sim.Keyboard.Sleep(strokeDelay);
+            //Thread.Sleep(strokeDelay);
         }
         private void NewCell()
         {
             //SendKeys.Send("{TAB}");
-            kb.SendVirtual(Keyboard.VirtualKeyShort.TAB);
+            //kb.SendVirtual(Keyboard.VirtualKeyShort.TAB);
             Thread.Sleep(strokeDelay);
         }
         private void NewLine()
         {
             // SendKeys.Send("{ENTER}");
-            kb.SendVirtual(Keyboard.VirtualKeyShort.RETURN);
+           // kb.SendVirtual(Keyboard.VirtualKeyShort.RETURN);
             Thread.Sleep(strokeDelay);
         }
         private void TypeCSVtoText(List<List<String>> csv)
