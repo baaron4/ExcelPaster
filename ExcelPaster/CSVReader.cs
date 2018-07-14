@@ -19,7 +19,7 @@ namespace ExcelPaster
         }
         public void ParseCSV(string csv)
         {
-            using (var fs = new FileStream(csv, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var fs = new FileStream(csv, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 var sr = new StreamReader(fs);
                ParseCSV(sr);
@@ -50,6 +50,8 @@ namespace ExcelPaster
                     {
                         ReadCharacter(c);
                     }
+                    CurLineList.Add(CurCell);
+                    CurCell = "";
                     ArrayStorage.Add(CurLineList);
                 }
                 else

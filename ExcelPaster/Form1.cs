@@ -120,6 +120,7 @@ namespace ExcelPaster
                 {
                     BgWorker.RunWorkerAsync(CSVFile);
                 }
+
             }
             else
             {
@@ -151,8 +152,12 @@ namespace ExcelPaster
          
             finally
             {
-                EnableButtons(ButtonState.READY);
+               
             }
+        }
+        private void BgWorker_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            EnableButtons(ButtonState.READY);
         }
     }
 }
