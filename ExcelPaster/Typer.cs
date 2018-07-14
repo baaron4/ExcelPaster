@@ -27,6 +27,7 @@ namespace ExcelPaster
             //Keyboard.IsKeyDown(Key.)
             return false;
         }
+        private InputHelper ih = new InputHelper();
         private void SendKey(char c)
         {
             // SendKeys.Send(c.ToString());
@@ -36,7 +37,7 @@ namespace ExcelPaster
             // kb.SendVirtual(vKB);//Keyboard.ScanCodeShort.KEY_0);
             //In_sim.Keyboard.TextEntry(c);
             //In_sim.Keyboard.Sleep(strokeDelay);
-            InputHelper ih = new InputHelper();
+           
             ih.test();
             Thread.Sleep(strokeDelay);
         }
