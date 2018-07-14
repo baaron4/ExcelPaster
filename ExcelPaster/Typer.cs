@@ -34,9 +34,11 @@ namespace ExcelPaster
             // ((Keyboard.ScanCodeShort)b).ToString();
             // Keyboard.VirtualKeyShort vKB = ((Keyboard.VirtualKeyShort)b);
             // kb.SendVirtual(vKB);//Keyboard.ScanCodeShort.KEY_0);
-            In_sim.Keyboard.TextEntry(c);
-            In_sim.Keyboard.Sleep(strokeDelay);
-            //Thread.Sleep(strokeDelay);
+            //In_sim.Keyboard.TextEntry(c);
+            //In_sim.Keyboard.Sleep(strokeDelay);
+            InputHelper ih = new InputHelper();
+            ih.test();
+            Thread.Sleep(strokeDelay);
         }
         private void NewCell()
         {
