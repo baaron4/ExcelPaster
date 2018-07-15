@@ -28,7 +28,7 @@ namespace ExcelPaster
                     comboBox_FileLocation.Items.Add(filename);
                 }
             }
-           
+            label_Version.Text = "V " + Application.ProductVersion;
             textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
             textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
         }
