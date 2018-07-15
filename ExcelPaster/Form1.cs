@@ -31,6 +31,7 @@ namespace ExcelPaster
             label_Version.Text = "V " + Application.ProductVersion;
             textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
             textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
+            comboBox_TargetProgramCSV.SelectedIndex = Properties.Settings.Default.TargetProgram ;
         }
         public enum ButtonState
         {
@@ -116,6 +117,12 @@ namespace ExcelPaster
 
         }
 
+        private enum TargetProgram {
+            TxT = 0,
+            Excel = 1,
+            PCCU = 2
+        }
+
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
         {
             string CSVFile = comboBox_FileLocation.Text;
@@ -172,7 +179,20 @@ namespace ExcelPaster
                                 break;
                             }
                         }
-                        typer.TypeCSVArray(reader.GetArrayStorage(), bg);
+                        TargetProgram tgt = ((TargetProgram)Properties.Settings.Default.TargetProgram);
+                        if (tgt == TargetProgram.TxT)
+                        {
+                            typer.TypeCSVtoText(reader.GetArrayStorage(), bg);
+                        }
+                        else if (tgt == TargetProgram.Excel)
+                        {
+                            typer.TypeCSVtoExcel(reader.GetArrayStorage(), bg);
+                        }
+                        else if (tgt == TargetProgram.PCCU)
+                        {
+                            typer.TypeCSVtoPCCU(reader.GetArrayStorage(), bg);
+                        }
+                        
                         if (bg.CancellationPending)
                         {
                             e.Cancel = true;
@@ -234,7 +254,7 @@ namespace ExcelPaster
                 if (newValue < 60)
                 {
                     Properties.Settings.Default.DelayTime = newValue;
-
+                    Properties.Settings.Default.Save();
                 }
 
                 textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
@@ -242,6 +262,12 @@ namespace ExcelPaster
             }
            
 
+        }
+
+        private void comboBox_TargetProgramCSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TargetProgram = comboBox_TargetProgramCSV.SelectedIndex;
+            Properties.Settings.Default.Save();
         }
     }
 }

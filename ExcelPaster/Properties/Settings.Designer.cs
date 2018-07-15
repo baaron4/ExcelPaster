@@ -45,5 +45,17 @@ namespace ExcelPaster.Properties {
                 this["DelayTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TargetProgram {
+            get {
+                return ((int)(this["TargetProgram"]));
+            }
+            set {
+                this["TargetProgram"] = value;
+            }
+        }
     }
 }

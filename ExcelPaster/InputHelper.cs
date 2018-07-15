@@ -58,6 +58,25 @@ namespace ExcelPaster
             }
             
         }
+        public void SendModKey(Interceptor.Keys m, Interceptor.Keys k)
+        {
+            if (!input.IsLoaded)
+            {
+                LoadDriver();
+            }
+            if (input.IsLoaded)
+            {
+                input.SendKey(m, KeyState.Down);
+                Thread.Sleep(50);
+                input.SendKey(k, KeyState.Down);
+                Thread.Sleep(50);
+                input.SendKey(k, KeyState.Up);
+                Thread.Sleep(50);
+                input.SendKey(m, KeyState.Up);
+                Thread.Sleep(50);
+
+            }
+        }
         public  void LoadDriver()
         {
             if (input == null)

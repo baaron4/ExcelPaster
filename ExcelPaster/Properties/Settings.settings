@@ -8,5 +8,8 @@
     <Setting Name="DelayTime" Type="System.Single" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="TargetProgram" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -47,6 +47,8 @@
             this.textBox_StartCopyDelayDirect = new System.Windows.Forms.TextBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
+            this.comboBox_TargetProgramCSV = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -126,6 +128,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.comboBox_TargetProgramCSV);
             this.tabPage1.Controls.Add(this.label_Status);
             this.tabPage1.Controls.Add(this.btn_Cancel1);
             this.tabPage1.Controls.Add(this.comboBox_FileLocation);
@@ -261,6 +265,33 @@
             this.label_Version.TabIndex = 10;
             this.label_Version.Text = "V1.0";
             // 
+            // comboBox_TargetProgramCSV
+            // 
+            this.comboBox_TargetProgramCSV.AllowDrop = true;
+            this.comboBox_TargetProgramCSV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_TargetProgramCSV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_TargetProgramCSV.FormattingEnabled = true;
+            this.comboBox_TargetProgramCSV.Items.AddRange(new object[] {
+            "Notepad/Text Editor",
+            "Excel",
+            "PCCU"});
+            this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(555, 8);
+            this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
+            this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
+            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(98, 21);
+            this.comboBox_TargetProgramCSV.TabIndex = 10;
+            this.comboBox_TargetProgramCSV.SelectedIndexChanged += new System.EventHandler(this.comboBox_TargetProgramCSV_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(316, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(210, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Select target program (Copying into what?):";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +333,8 @@
         private System.ComponentModel.BackgroundWorker BgWorker;
         private System.Windows.Forms.Label label_Status;
         private System.Windows.Forms.Label label_Version;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox_TargetProgramCSV;
     }
 }
 
