@@ -17,9 +17,9 @@ namespace ExcelPaster
         private int strokeDelay = 500;
         private InputSimulator In_sim = new InputSimulator();
 
-        public void TypeCSVArray(List<List<String>> csv)
+        public void TypeCSVArray(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
         {
-            TypeCSVtoText(csv);
+            TypeCSVtoText(csv,bg);
         }
         private bool StopCheck()
         {
@@ -27,7 +27,7 @@ namespace ExcelPaster
             //Keyboard.IsKeyDown(Key.)
             return false;
         }
-        private InputHelper ih = new InputHelper();
+        public InputHelper ih = new InputHelper();
         private void SendKey(char c)
         {
             // SendKeys.Send(c.ToString());
@@ -38,24 +38,24 @@ namespace ExcelPaster
             //In_sim.Keyboard.TextEntry(c);
             //In_sim.Keyboard.Sleep(strokeDelay);
            
-            ih.test();
+           
             Thread.Sleep(strokeDelay);
         }
         private void NewCell()
         {
             //SendKeys.Send("{TAB}");
             //kb.SendVirtual(Keyboard.VirtualKeyShort.TAB);
-            Thread.Sleep(strokeDelay);
+            //Thread.Sleep(strokeDelay);
         }
         private void NewLine()
         {
             // SendKeys.Send("{ENTER}");
            // kb.SendVirtual(Keyboard.VirtualKeyShort.RETURN);
-            Thread.Sleep(strokeDelay);
+            //Thread.Sleep(strokeDelay);
         }
-        private void TypeCSVtoText(List<List<String>> csv)
+        private void TypeCSVtoText(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
         {
-            
+           // ih.LoadDriver();
             for (int i = 0;i <csv.Count();i++ )
             {
                 List<string> line = csv[i];
@@ -64,19 +64,36 @@ namespace ExcelPaster
                     string cell = line[j];
                     for (int k = 0; k < cell.Count(); k++)
                     {
+                        if (bg.CancellationPending)
+                        {
+                            break;
+                        }
                         char c = cell[k];
-                        SendKey(c);
+                        //SendKey(c);
+                        ih.SendKey(c);
                     }
-                    if (j < line.Count())
+                    if (bg.CancellationPending)
                     {
-                        NewCell();
+                        break;
                     }
+                    if (j < line.Count()-1)
+                    {
+                        // NewCell();
+                        ih.SendKey(Interceptor.Keys.Tab);
+                    }
+                }
+                if (bg.CancellationPending)
+                {
+                    break;
                 }
                 if (i < csv.Count())
                 {
-                    NewLine();
+                    //NewLine();
+                    ih.SendKey(Interceptor.Keys.Enter);
                 }
             }
+           
+            ih.UnloadDriver();
         }
         private void TypeCSVtoPCCU(List<List<String>> csv)
         {

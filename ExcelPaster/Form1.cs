@@ -28,6 +28,9 @@ namespace ExcelPaster
                     comboBox_FileLocation.Items.Add(filename);
                 }
             }
+           
+            textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
+            textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
         }
         public enum ButtonState
         {
@@ -43,12 +46,16 @@ namespace ExcelPaster
                     btn_SelectFile.Enabled = false;
                     btn_StartCopyDirect.Enabled = false;
                     btn_StartCopyFile.Enabled = false;
+                    textBox_StartCopyDelayDirect.Enabled = false;
+                    textBox_StartCopyDelayFile.Enabled = false;
                     break;
                 case ButtonState.READY:
                     btn_Cancel1.Enabled = false;
                     btn_SelectFile.Enabled = true;
                     btn_StartCopyDirect.Enabled = true;
                     btn_StartCopyFile.Enabled = true;
+                    textBox_StartCopyDelayDirect.Enabled = true;
+                    textBox_StartCopyDelayFile.Enabled = true;
                     break;
                 default:
                     break;
@@ -114,6 +121,7 @@ namespace ExcelPaster
             string CSVFile = comboBox_FileLocation.Text;
             if (CSVFile.Count() > 0)
             {
+                label_Status.Text = "Loading File...";
                 EnableButtons(ButtonState.COPYING);
 
                 if (!BgWorker.IsBusy)
@@ -145,8 +153,36 @@ namespace ExcelPaster
                     CSVReader reader = new CSVReader();
                     reader.ParseCSV(fInfo.FullName);
                     Typer typer = new Typer();
-                    Thread.Sleep(5000);
-                    typer.TypeCSVArray(reader.GetArrayStorage());
+                    typer.ih.LoadDriver();
+                    if (!bg.CancellationPending)
+                    {
+                        float dTime = Properties.Settings.Default.DelayTime;
+                        bg.ReportProgress((int)dTime);
+                        while (dTime >= 1)
+                        {
+                            if (!bg.CancellationPending)
+                            {
+                                dTime--;
+                                Thread.Sleep(1000);
+                                bg.ReportProgress((int)dTime);
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                                break;
+                            }
+                        }
+                        typer.TypeCSVArray(reader.GetArrayStorage(), bg);
+                        if (bg.CancellationPending)
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                    }
+                    
                 }
             }
          
@@ -155,9 +191,57 @@ namespace ExcelPaster
                
             }
         }
+        private void BgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage > 0)
+            {
+                label_Status.Text = "Press Any Key at least Once \n Starting in " + e.ProgressPercentage;
+            }
+            else
+            {
+                label_Status.Text = "Copying...";
+            }
+            
+        }
         private void BgWorker_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableButtons(ButtonState.READY);
+            if (e.Cancelled)
+            {
+                label_Status.Text = "Canceled";
+            }
+            else
+            {
+                label_Status.Text = "Finished";
+            }
+        }
+
+        private void btn_Cancel1_Click(object sender, EventArgs e)
+        {
+            CancelBGWorker();
+        }
+        private void CancelBGWorker()
+        {
+            BgWorker.CancelAsync();
+        }
+
+        private void textBox_StartCopyDelayFile_TextChanged(object sender, EventArgs e)
+        {
+            float newValue = 0;
+            bool isNumber = float.TryParse(textBox_StartCopyDelayFile.Text, out newValue);
+            if (isNumber)
+            {
+                if (newValue < 60)
+                {
+                    Properties.Settings.Default.DelayTime = newValue;
+
+                }
+
+                textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
+                textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
+            }
+           
+
         }
     }
 }

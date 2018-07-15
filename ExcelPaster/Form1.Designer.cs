@@ -71,6 +71,7 @@
             this.textBox_StartCopyDelayFile.TabIndex = 1;
             this.textBox_StartCopyDelayFile.Text = "5";
             this.textBox_StartCopyDelayFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_StartCopyDelayFile.TextChanged += new System.EventHandler(this.textBox_StartCopyDelayFile_TextChanged);
             // 
             // label1
             // 
@@ -148,7 +149,7 @@
             this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Status.AutoSize = true;
             this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(148, 366);
+            this.label_Status.Location = new System.Drawing.Point(39, 324);
             this.label_Status.Name = "label_Status";
             this.label_Status.Size = new System.Drawing.Size(58, 22);
             this.label_Status.TabIndex = 9;
@@ -164,6 +165,7 @@
             this.btn_Cancel1.TabIndex = 8;
             this.btn_Cancel1.Text = "Cancel (ESC)";
             this.btn_Cancel1.UseVisualStyleBackColor = true;
+            this.btn_Cancel1.Click += new System.EventHandler(this.btn_Cancel1_Click);
             // 
             // comboBox_FileLocation
             // 
@@ -241,7 +243,10 @@
             // 
             // BgWorker
             // 
+            this.BgWorker.WorkerReportsProgress = true;
+            this.BgWorker.WorkerSupportsCancellation = true;
             this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
+            this.BgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgWorker_ProgressChanged);
             this.BgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker_Completed);
             // 
             // MainForm
