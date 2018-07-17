@@ -36,6 +36,8 @@
             this.btn_SelectFile = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_TargetProgramCSV = new System.Windows.Forms.ComboBox();
             this.label_Status = new System.Windows.Forms.Label();
             this.btn_Cancel1 = new System.Windows.Forms.Button();
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
@@ -47,8 +49,6 @@
             this.textBox_StartCopyDelayDirect = new System.Windows.Forms.TextBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
-            this.comboBox_TargetProgramCSV = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -148,6 +148,33 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(316, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(210, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Select target program (Copying into what?):";
+            // 
+            // comboBox_TargetProgramCSV
+            // 
+            this.comboBox_TargetProgramCSV.AllowDrop = true;
+            this.comboBox_TargetProgramCSV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_TargetProgramCSV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_TargetProgramCSV.FormattingEnabled = true;
+            this.comboBox_TargetProgramCSV.Items.AddRange(new object[] {
+            "Notepad/Text Editor",
+            "Excel",
+            "PCCU"});
+            this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(555, 8);
+            this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
+            this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
+            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(98, 21);
+            this.comboBox_TargetProgramCSV.TabIndex = 10;
+            this.comboBox_TargetProgramCSV.SelectedIndexChanged += new System.EventHandler(this.comboBox_TargetProgramCSV_SelectedIndexChanged);
+            // 
             // label_Status
             // 
             this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -176,7 +203,6 @@
             this.comboBox_FileLocation.AllowDrop = true;
             this.comboBox_FileLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_FileLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_FileLocation.FormattingEnabled = true;
             this.comboBox_FileLocation.Location = new System.Drawing.Point(186, 35);
             this.comboBox_FileLocation.MaxDropDownItems = 10;
@@ -202,7 +228,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 400);
+            this.tabPage2.Size = new System.Drawing.Size(674, 217);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Direct Copy(WIP)";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -264,33 +290,6 @@
             this.label_Version.Size = new System.Drawing.Size(29, 13);
             this.label_Version.TabIndex = 10;
             this.label_Version.Text = "V1.0";
-            // 
-            // comboBox_TargetProgramCSV
-            // 
-            this.comboBox_TargetProgramCSV.AllowDrop = true;
-            this.comboBox_TargetProgramCSV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_TargetProgramCSV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_TargetProgramCSV.FormattingEnabled = true;
-            this.comboBox_TargetProgramCSV.Items.AddRange(new object[] {
-            "Notepad/Text Editor",
-            "Excel",
-            "PCCU"});
-            this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(555, 8);
-            this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
-            this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
-            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(98, 21);
-            this.comboBox_TargetProgramCSV.TabIndex = 10;
-            this.comboBox_TargetProgramCSV.SelectedIndexChanged += new System.EventHandler(this.comboBox_TargetProgramCSV_SelectedIndexChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(316, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(210, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Select target program (Copying into what?):";
             // 
             // MainForm
             // 

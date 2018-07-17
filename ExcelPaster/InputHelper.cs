@@ -24,8 +24,21 @@ namespace ExcelPaster
             }
             if (input.IsLoaded)
             {
-                input.SendText(c.ToString());
-                Thread.Sleep(50);
+                if (Char.IsUpper(c))
+                {
+                    input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
+                    Thread.Sleep(50);
+                    input.SendText(c.ToString());
+                    Thread.Sleep(50);
+                    input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
+                    Thread.Sleep(50);
+                }
+                else
+                {
+                    input.SendText(c.ToString());
+                    Thread.Sleep(50);
+                }
+               
             }
            
         }

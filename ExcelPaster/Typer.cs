@@ -103,6 +103,7 @@ namespace ExcelPaster
         }
         public void TypeCSVtoPCCU(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
         {
+            bool InTimeCell = false;
             // ih.LoadDriver();
             for (int i = 0; i < csv.Count(); i++)
             {
@@ -117,8 +118,22 @@ namespace ExcelPaster
                             break;
                         }
                         char c = cell[k];
+                        if (c == ' ')
+                        {
+                            ih.SendKey(Interceptor.Keys.Space);
+
+                        }
+                        else if (c == ':')
+                        {
+                            ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);
+                            InTimeCell = true;
+                        }
+                        else
+                        {
+                            ih.SendKey(c);
+                        }
                         //SendKey(c);
-                        ih.SendKey(c);
+                        
                     }
                     if (bg.CancellationPending)
                     {
@@ -128,7 +143,16 @@ namespace ExcelPaster
                     {
                         // NewCell();
                         //ih.SendKey(Interceptor.Keys.Tab);
-                        ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);
+                        if (InTimeCell)
+                        {
+                            ih.SendKey(Interceptor.Keys.Tab);
+                            InTimeCell = false;
+                        }
+                        else
+                        {
+                            ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);
+                        }
+                        
                     }
                 }
                 if (bg.CancellationPending)
