@@ -24,19 +24,31 @@ namespace ExcelPaster
             }
             if (input.IsLoaded)
             {
+                if (c == '_')
+                {
+                    input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
+                    Thread.Sleep(5);
+                    input.SendKey(Interceptor.Keys.DashUnderscore);
+                    Thread.Sleep(5);
+                    input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
+                    Thread.Sleep(5);
+                    
+                } else
                 if (Char.IsUpper(c))
                 {
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
-                    Thread.Sleep(50);
+                    Thread.Sleep(5);
                     input.SendText(c.ToString());
-                    Thread.Sleep(50);
+                    Thread.Sleep(5);
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
-                    Thread.Sleep(50);
+                    Thread.Sleep(5);
+                    
                 }
                 else
                 {
                     input.SendText(c.ToString());
-                    Thread.Sleep(50);
+                    Thread.Sleep(5);
+                   
                 }
                
             }
@@ -51,7 +63,7 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendText(s);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
 
             }
         }
@@ -64,9 +76,9 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendKey(k, KeyState.Down);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
                 input.SendKey(k, KeyState.Up);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
 
             }
             
@@ -80,13 +92,13 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendKey(m, KeyState.Down);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
                 input.SendKey(k, KeyState.Down);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
                 input.SendKey(k, KeyState.Up);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
                 input.SendKey(m, KeyState.Up);
-                Thread.Sleep(50);
+                Thread.Sleep(5);
 
             }
         }

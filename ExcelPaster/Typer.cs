@@ -151,6 +151,7 @@ namespace ExcelPaster
                         else
                         {
                             ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);
+                            Thread.Sleep(50);
                         }
                         
                     }

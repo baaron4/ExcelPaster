@@ -47,11 +47,22 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btn_StartCopyDirect = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayDirect = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label_DefaultGateway = new System.Windows.Forms.Label();
+            this.label_SubnetMask = new System.Windows.Forms.Label();
+            this.label_IPAddress = new System.Windows.Forms.Label();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
+            this.textBox_IPAdress = new System.Windows.Forms.TextBox();
+            this.IPAdress_Status = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -120,6 +131,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -273,6 +285,51 @@
             this.textBox_StartCopyDelayDirect.Text = "5";
             this.textBox_StartCopyDelayDirect.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.IPAdress_Status);
+            this.tabPage3.Controls.Add(this.textBox_IPAdress);
+            this.tabPage3.Controls.Add(this.label_DefaultGateway);
+            this.tabPage3.Controls.Add(this.label_SubnetMask);
+            this.tabPage3.Controls.Add(this.label_IPAddress);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(674, 217);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "IP Change";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label_DefaultGateway
+            // 
+            this.label_DefaultGateway.AutoSize = true;
+            this.label_DefaultGateway.Location = new System.Drawing.Point(11, 100);
+            this.label_DefaultGateway.Name = "label_DefaultGateway";
+            this.label_DefaultGateway.Size = new System.Drawing.Size(89, 13);
+            this.label_DefaultGateway.TabIndex = 3;
+            this.label_DefaultGateway.Text = "Default Gateway:";
+            // 
+            // label_SubnetMask
+            // 
+            this.label_SubnetMask.AutoSize = true;
+            this.label_SubnetMask.Location = new System.Drawing.Point(11, 76);
+            this.label_SubnetMask.Name = "label_SubnetMask";
+            this.label_SubnetMask.Size = new System.Drawing.Size(73, 13);
+            this.label_SubnetMask.TabIndex = 2;
+            this.label_SubnetMask.Text = "Subnet Mask:";
+            // 
+            // label_IPAddress
+            // 
+            this.label_IPAddress.AutoSize = true;
+            this.label_IPAddress.Location = new System.Drawing.Point(11, 53);
+            this.label_IPAddress.Name = "label_IPAddress";
+            this.label_IPAddress.Size = new System.Drawing.Size(61, 13);
+            this.label_IPAddress.TabIndex = 1;
+            this.label_IPAddress.Text = "IP Address:";
+            // 
             // BgWorker
             // 
             this.BgWorker.WorkerReportsProgress = true;
@@ -291,6 +348,58 @@
             this.label_Version.TabIndex = 10;
             this.label_Version.Text = "V1.0";
             // 
+            // textBox_IPAdress
+            // 
+            this.textBox_IPAdress.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPAdress.Location = new System.Drawing.Point(106, 46);
+            this.textBox_IPAdress.Name = "textBox_IPAdress";
+            this.textBox_IPAdress.Size = new System.Drawing.Size(167, 20);
+            this.textBox_IPAdress.TabIndex = 4;
+            this.textBox_IPAdress.TextChanged += new System.EventHandler(this.textBox_IPAdress_TextChanged);
+            // 
+            // IPAdress_Status
+            // 
+            this.IPAdress_Status.AutoSize = true;
+            this.IPAdress_Status.Location = new System.Drawing.Point(279, 49);
+            this.IPAdress_Status.Name = "IPAdress_Status";
+            this.IPAdress_Status.Size = new System.Drawing.Size(54, 13);
+            this.IPAdress_Status.TabIndex = 5;
+            this.IPAdress_Status.Text = "Current IP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(279, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Current IP";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox2.Location = new System.Drawing.Point(106, 72);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(167, 20);
+            this.textBox2.TabIndex = 6;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(279, 100);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Current IP";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox3.Location = new System.Drawing.Point(106, 97);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(167, 20);
+            this.textBox3.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +415,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,6 +445,16 @@
         private System.Windows.Forms.Label label_Version;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox_TargetProgramCSV;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label_DefaultGateway;
+        private System.Windows.Forms.Label label_SubnetMask;
+        private System.Windows.Forms.Label label_IPAddress;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label IPAdress_Status;
+        private System.Windows.Forms.TextBox textBox_IPAdress;
     }
 }
 

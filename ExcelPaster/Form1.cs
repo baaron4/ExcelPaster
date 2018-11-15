@@ -28,6 +28,7 @@ namespace ExcelPaster
                     comboBox_FileLocation.Items.Add(filename);
                 }
             }
+            
             label_Version.Text = "V " + Application.ProductVersion;
             textBox_StartCopyDelayDirect.Text = Properties.Settings.Default.DelayTime.ToString();
             textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
@@ -268,6 +269,11 @@ namespace ExcelPaster
         {
             Properties.Settings.Default.TargetProgram = comboBox_TargetProgramCSV.SelectedIndex;
             Properties.Settings.Default.Save();
+        }
+
+        private void textBox_IPAdress_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
