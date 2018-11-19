@@ -14,7 +14,7 @@ namespace ExcelPaster
     public class Typer
     {
         //private Keyboard kb = new Keyboard();
-        private int strokeDelay = 500;
+        public int strokeDelay = 500;
         private InputSimulator In_sim = new InputSimulator();
         public InputHelper ih = new InputHelper();
         public void TypeCSVtoText(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)

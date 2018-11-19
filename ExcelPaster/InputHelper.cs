@@ -15,7 +15,7 @@ namespace ExcelPaster
     public class InputHelper
     {
         private Input input = null;
-
+        public int kscdelay = 5;
         public void SendKey(char c)
         {
             if (!input.IsLoaded)
@@ -27,27 +27,27 @@ namespace ExcelPaster
                 if (c == '_')
                 {
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     input.SendKey(Interceptor.Keys.DashUnderscore);
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     
                 } else
                 if (Char.IsUpper(c))
                 {
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     input.SendText(c.ToString());
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                     
                 }
                 else
                 {
                     input.SendText(c.ToString());
-                    Thread.Sleep(5);
+                    Thread.Sleep(kscdelay);
                    
                 }
                
@@ -63,7 +63,7 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendText(s);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
 
             }
         }
@@ -76,9 +76,9 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendKey(k, KeyState.Down);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
                 input.SendKey(k, KeyState.Up);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
 
             }
             
@@ -92,13 +92,13 @@ namespace ExcelPaster
             if (input.IsLoaded)
             {
                 input.SendKey(m, KeyState.Down);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
                 input.SendKey(k, KeyState.Down);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
                 input.SendKey(k, KeyState.Up);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
                 input.SendKey(m, KeyState.Up);
-                Thread.Sleep(5);
+                Thread.Sleep(kscdelay);
 
             }
         }

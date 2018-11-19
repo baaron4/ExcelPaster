@@ -23,6 +23,10 @@ namespace ExcelPaster
         IPAddress gateway;
         Dictionary<int,NetworkInterface> adapterList= new Dictionary<int, NetworkInterface>();
         NetworkInterface selectedAdapter;
+        List<PadInfo> PadInfo = new List<PadInfo>();
+        List<String> Companys;
+        List<String> Pads;
+        List<String> Devices;
 
         public MainForm()
         {
@@ -46,6 +50,9 @@ namespace ExcelPaster
 
             selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback).First(n => n.OperationalStatus == OperationalStatus.Up);
             LoadAdapters();
+
+            SetPadDB();
+            
         }
         public enum ButtonState
         {
@@ -140,6 +147,7 @@ namespace ExcelPaster
 
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
         {
+            List<string> BGWorkStorage = new List<string>();
             string CSVFile = comboBox_FileLocation.Text;
             if (CSVFile.Count() > 0)
             {
@@ -148,7 +156,10 @@ namespace ExcelPaster
 
                 if (!BgWorker.IsBusy)
                 {
-                    BgWorker.RunWorkerAsync(CSVFile);
+                    BGWorkStorage.Add(CSVFile);
+                    BGWorkStorage.Add(textBox_KeypressDelay.Text);
+                    BGWorkStorage.Add(textBox_KeyStateChange.Text);
+                    BgWorker.RunWorkerAsync(BGWorkStorage);
                 }
 
             }
@@ -160,7 +171,11 @@ namespace ExcelPaster
         private void BgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bg = sender as BackgroundWorker;
-            string fileLoc = (string)e.Argument;
+            List<string> BGWorkerList = (List<string>)e.Argument;
+            string fileLoc = BGWorkerList[0];
+            int KeypressDelay = Int32.Parse(BGWorkerList[1]);
+            int KeypressStateDelay = Int32.Parse(BGWorkerList[2]);
+
             try
             {
                 FileInfo fInfo = new FileInfo(fileLoc);
@@ -175,6 +190,9 @@ namespace ExcelPaster
                     CSVReader reader = new CSVReader();
                     reader.ParseCSV(fInfo.FullName);
                     Typer typer = new Typer();
+                    typer.strokeDelay = KeypressDelay;
+                    typer.ih.kscdelay = KeypressStateDelay;
+
                     typer.ih.LoadDriver();
                     if (!bg.CancellationPending)
                     {
@@ -546,5 +564,135 @@ namespace ExcelPaster
             textBox3.BackColor = Color.LightGreen;
         }
 
+        private void button_ChangeDBFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_DBFile.Text = result;
+                    Properties.Settings.Default.DatabaseFileLoc = result;
+                    Properties.Settings.Default.Save();
+                }
+            }
+        }
+        private void SetPadDB()
+        {
+            if (Properties.Settings.Default.DatabaseFileLoc != "")
+            {
+                comboBox_DBFile.Text = Properties.Settings.Default.DatabaseFileLoc;
+                //Load Pad DB
+                CSVReader padReader = new CSVReader();
+                padReader.ParseCSV(Properties.Settings.Default.DatabaseFileLoc);
+                foreach (List<string> ListS in padReader.GetArrayStorage())
+                {
+                    if (ListS.Count >= 5)
+                    {
+                        PadInfo pInfo = new PadInfo(ListS[0], ListS[1], ListS[2], ListS[3], ListS[4], ListS[5]);
+
+                        PadInfo.Add(pInfo);
+                    }
+                    
+                }
+                Companys = PadInfo.Select(s => s.Company).Distinct().ToList();
+                Pads = PadInfo.Select(s => s.PadName).Distinct().ToList();
+                Devices = PadInfo.Select(s => s.DeviceName).Distinct().ToList();
+
+                comboBox_NewCompany.Items.AddRange(Companys.ToArray());
+                comboBox_AddDBCompany.Items.AddRange(Companys.ToArray());
+
+                comboBox_NewPad.Items.AddRange(Pads.ToArray());
+                comboBox_AddDBPad.Items.AddRange(Pads.ToArray());
+
+                comboBox_NewDevice.Items.AddRange(Devices.ToArray());
+                comboBox_AddDBDevice.Items.AddRange(Devices.ToArray());
+            }
+            
+        }
+
+        private void comboBox_NewCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox_NewPad.Items.Clear();
+            comboBox_NewPad.Items.AddRange(PadInfo.Where(c=>c.Company == comboBox_NewCompany.SelectedItem.ToString()).Select(s => s.PadName).Distinct().ToArray());
+            comboBox_NewPad.SelectedIndex = 0;
+            comboBox_NewDevice.SelectedIndex = 0;
+            textBox_DBAddress.Text = "";
+            textBox_DBSubMask.Text = "";
+            textBox_DBGateway.Text = "";
+            comboBox_NewPad.Enabled = true;
+        }
+
+        private void comboBox_NewPad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox_NewDevice.Items.Clear();
+            comboBox_NewDevice.Items.AddRange(PadInfo.Where(c => c.Company == comboBox_NewCompany.SelectedItem.ToString())
+                .Where(c => c.PadName == comboBox_NewPad.SelectedItem.ToString()).Select(s => s.DeviceName).Distinct().ToArray());
+            comboBox_NewDevice.SelectedIndex = 0;
+            textBox_DBAddress.Text = "";
+            textBox_DBSubMask.Text = "";
+            textBox_DBGateway.Text = "";
+            comboBox_NewDevice.Enabled = true;
+        }
+
+        private void comboBox_NewDevice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_NewCompany.SelectedItem.ToString() != "" && comboBox_NewPad.SelectedItem.ToString() != "" && comboBox_NewDevice.SelectedItem.ToString() != "")
+            {
+                //search for IP
+                PadInfo pi = PadInfo.Where(x => x.Company == comboBox_NewCompany.SelectedItem.ToString()).Where(x => x.PadName == comboBox_NewPad.SelectedItem.ToString()).First(x => x.DeviceName == comboBox_NewDevice.SelectedItem.ToString());
+                textBox_DBAddress.Text = pi.IPAddress;
+                textBox_DBSubMask.Text = pi.SubnetMask;
+                textBox_DBGateway.Text = pi.Gateway;
+
+            }
+            else
+            {
+                textBox_DBAddress.Text = "";
+                textBox_DBSubMask.Text = "";
+                textBox_DBGateway.Text = "";
+            }
+        }
+        private void comboBox_AddDBPad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_AddIPInfo_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.DatabaseFileLoc != "")
+            {
+                //Search PadInfo for existing entry
+                string addcompany = comboBox_AddDBCompany.Text;
+                string addpad = comboBox_AddDBPad.Text;
+                string adddevice = comboBox_AddDBDevice.Text;
+
+                PadInfo possibleDevice = PadInfo.Where(c => c.Company == addcompany).Where(p => p.PadName == addpad).FirstOrDefault(d => d.DeviceName == adddevice);
+                if (possibleDevice == null)
+                {
+                    PadInfo.Add(new PadInfo(addcompany,addpad,adddevice,textBox_AddDBAddress.Text,textBox_AddDB_SubMask.Text,textBox_AddDBGateway.Text));
+
+                    if (File.Exists(Properties.Settings.Default.DatabaseFileLoc))
+                    {
+
+                        string appendInfo = addcompany +","+ addpad + "," + adddevice + "," + textBox_AddDBAddress.Text + "," + textBox_AddDB_SubMask.Text + "," + textBox_AddDBGateway.Text;
+                        
+                        File.AppendAllText(Properties.Settings.Default.DatabaseFileLoc, Environment.NewLine + appendInfo);
+                        //PadInfo = new List<PadInfo>();
+                        //Companys = new List<string>();
+                        //Pads = new List<string>();
+                        //Devices = new List<string>();
+                        //SetPadDB();
+                    }
+
+                   
+                }
+            }
+        }
+
+        private void textBox_KeypressDelay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
