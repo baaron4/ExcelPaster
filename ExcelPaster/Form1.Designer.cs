@@ -103,9 +103,9 @@
             // btn_StartCopyFile
             // 
             this.btn_StartCopyFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_StartCopyFile.Location = new System.Drawing.Point(741, 246);
+            this.btn_StartCopyFile.Location = new System.Drawing.Point(688, 246);
             this.btn_StartCopyFile.Name = "btn_StartCopyFile";
-            this.btn_StartCopyFile.Size = new System.Drawing.Size(142, 23);
+            this.btn_StartCopyFile.Size = new System.Drawing.Size(195, 23);
             this.btn_StartCopyFile.TabIndex = 0;
             this.btn_StartCopyFile.Text = "Start Copying File";
             this.btn_StartCopyFile.UseVisualStyleBackColor = true;
@@ -242,9 +242,9 @@
             // 
             this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel1.Enabled = false;
-            this.btn_Cancel1.Location = new System.Drawing.Point(593, 246);
+            this.btn_Cancel1.Location = new System.Drawing.Point(474, 246);
             this.btn_Cancel1.Name = "btn_Cancel1";
-            this.btn_Cancel1.Size = new System.Drawing.Size(142, 23);
+            this.btn_Cancel1.Size = new System.Drawing.Size(208, 23);
             this.btn_Cancel1.TabIndex = 8;
             this.btn_Cancel1.Text = "Cancel ";
             this.btn_Cancel1.UseVisualStyleBackColor = true;
@@ -280,7 +280,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(674, 217);
+            this.tabPage2.Size = new System.Drawing.Size(889, 275);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Direct Copy(WIP)";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -289,7 +289,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(664, 342);
+            this.label4.Location = new System.Drawing.Point(879, 400);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 7;
@@ -299,7 +299,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(610, 323);
+            this.label5.Location = new System.Drawing.Point(825, 381);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 6;
@@ -308,7 +308,7 @@
             // btn_StartCopyDirect
             // 
             this.btn_StartCopyDirect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_StartCopyDirect.Location = new System.Drawing.Point(606, 365);
+            this.btn_StartCopyDirect.Location = new System.Drawing.Point(821, 423);
             this.btn_StartCopyDirect.Name = "btn_StartCopyDirect";
             this.btn_StartCopyDirect.Size = new System.Drawing.Size(142, 23);
             this.btn_StartCopyDirect.TabIndex = 4;
@@ -318,7 +318,7 @@
             // textBox_StartCopyDelayDirect
             // 
             this.textBox_StartCopyDelayDirect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_StartCopyDelayDirect.Location = new System.Drawing.Point(606, 339);
+            this.textBox_StartCopyDelayDirect.Location = new System.Drawing.Point(821, 397);
             this.textBox_StartCopyDelayDirect.Name = "textBox_StartCopyDelayDirect";
             this.textBox_StartCopyDelayDirect.Size = new System.Drawing.Size(52, 20);
             this.textBox_StartCopyDelayDirect.TabIndex = 5;
