@@ -48,7 +48,8 @@ namespace ExcelPaster
             textBox_StartCopyDelayFile.Text = Properties.Settings.Default.DelayTime.ToString();
             comboBox_TargetProgramCSV.SelectedIndex = Properties.Settings.Default.TargetProgram;
 
-            selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback).First(n => n.OperationalStatus == OperationalStatus.Up);
+            //selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback).First(n => n.OperationalStatus == OperationalStatus.Up);
+            selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.Name.Contains("Ethernet") == true).FirstOrDefault();
             LoadAdapters();
 
             SetPadDB();
@@ -712,6 +713,11 @@ namespace ExcelPaster
         private void textBox_KeypressDelay_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_OpenFile_Click(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Settings.Default.DatabaseFileLoc);
         }
     }
 }
