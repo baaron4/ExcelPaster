@@ -94,11 +94,12 @@
             this.btn_Cancel1 = new System.Windows.Forms.Button();
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button_SetDynamic = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -496,6 +497,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_SetDynamic);
             this.groupBox1.Controls.Add(this.button_ApplyIPChanges);
             this.groupBox1.Controls.Add(this.button_RefreshAdapter);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -817,6 +819,15 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Select a .CSV File to copy into another program:";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Modbus Test";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // BgWorker
             // 
             this.BgWorker.WorkerReportsProgress = true;
@@ -847,14 +858,15 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // tabPage2
+            // button_SetDynamic
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1024, 480);
-            this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "Modbus Test";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.button_SetDynamic.Location = new System.Drawing.Point(6, 176);
+            this.button_SetDynamic.Name = "button_SetDynamic";
+            this.button_SetDynamic.Size = new System.Drawing.Size(99, 23);
+            this.button_SetDynamic.TabIndex = 14;
+            this.button_SetDynamic.Text = "Set to Dynamic";
+            this.button_SetDynamic.UseVisualStyleBackColor = true;
+            this.button_SetDynamic.Click += new System.EventHandler(this.button_SetDynamic_Click);
             // 
             // MainForm
             // 
@@ -957,6 +969,7 @@
         private System.Windows.Forms.Label label_PingResults;
         private System.ComponentModel.BackgroundWorker pingWorker;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button_SetDynamic;
     }
 }
 

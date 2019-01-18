@@ -560,17 +560,43 @@ namespace ExcelPaster
 
         private void button_ApplyIPChanges_Click(object sender, EventArgs e)
         {
-            IPAddress newAddress;
-            IPAddress.TryParse( textBox_IPAdress.Text, out newAddress);
 
+            string newAddressString = "";
+            string newSubMaskString = "";
+            string newGatewayString = "";
+
+            IPAddress newAddress;
+            if (IPAddress.TryParse(textBox_IPAdress.Text, out newAddress))
+            {
+                newAddressString = newAddress.ToString();
+            }
+            else
+            {
+                newAddressString = "0.0.0.0";
+            }
+            
             IPAddress newSubMask;
-            IPAddress.TryParse(textBox2.Text, out newSubMask);
+            if (IPAddress.TryParse(textBox2.Text, out newSubMask))
+            {
+                newSubMaskString = newSubMask.ToString();
+            }
+            else
+            {
+                newSubMaskString = "0.0.0.0";
+            }
 
             IPAddress newGateway;
-            IPAddress.TryParse(textBox3.Text, out newGateway);
+            if (IPAddress.TryParse(textBox3.Text, out newGateway))
+            {
+                newGatewayString = newGateway.ToString();
+            }
+            else
+            {
+                newGatewayString = "0.0.0.0";
+            }
 
             Process p = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address \""+selectedAdapter.Name +"\" static "+newAddress.ToString()+" "+newSubMask.ToString() +" "+newGateway.ToString()+" 1");
+            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address \""+selectedAdapter.Name +"\" static "+newAddressString+" "+newSubMaskString +" "+newGatewayString+" 1");
             p.StartInfo = psi;
             p.StartInfo.Verb = "runas"; 
             p.Start();
@@ -771,6 +797,24 @@ namespace ExcelPaster
         {
             label_PingResults.Text = "";
             label_PingResults.Text += (string)e.UserState;// output;
+        }
+
+        private void button_SetDynamic_Click(object sender, EventArgs e)
+        {
+            Process p = new Process();
+            ProcessStartInfo psi = new ProcessStartInfo("netsh", "interface ip set address \"" + selectedAdapter.Name + "\" dhcp");
+            p.StartInfo = psi;
+            p.StartInfo.Verb = "runas";
+            p.Start();
+
+            p.WaitForExit();
+            System.Threading.Thread.Sleep(2000);
+            adapterList.Clear();
+            comboBox_NetworkAdapter.Items.Clear();
+            LoadAdapters();
+            textBox_IPAdress.BackColor = Color.LightGreen;
+            textBox2.BackColor = Color.LightGreen;
+            textBox3.BackColor = Color.LightGreen; 
         }
     }
 }
