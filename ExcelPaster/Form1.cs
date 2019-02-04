@@ -53,7 +53,12 @@ namespace ExcelPaster
             LoadAdapters();
 
             SetPadDB();
-            
+
+            //Load ToDo name at start
+            comboBox_TODOFileLoc.Text = Properties.Settings.Default.TODOFileLoc;
+            textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
+
+
         }
         public enum ButtonState
         {
@@ -351,7 +356,9 @@ namespace ExcelPaster
         }
         public static IPAddress GetLocalIPAddress(NetworkInterface adapter)
         {
-            
+            int trys = 0;
+            while (trys < 10)
+            {
                 foreach (UnicastIPAddressInformation unicastIPAddressInformation in adapter.GetIPProperties().UnicastAddresses)
                 {
                     if (unicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork)
@@ -361,6 +368,10 @@ namespace ExcelPaster
 
                     }
                 }
+                trys++;
+                System.Threading.Thread.Sleep(1000);
+
+            }
             
             throw new ArgumentException(string.Format("Can't find address"));
         }
@@ -519,7 +530,7 @@ namespace ExcelPaster
 
         private void LoadAdapters()
         {
-           
+           //TODO: If IP is dynamic dont load the IP into text box
             int indexer = 0;
             foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback))
             {
@@ -751,7 +762,7 @@ namespace ExcelPaster
         
         private void button_Ping_Click(object sender, EventArgs e)
         {
-            
+            //TODO: Change to Ping.exe and run pings into a list with graphics
             IPAddress newAddress;
             IPAddress.TryParse(textBox_DBAddress.Text, out newAddress);
             label_PingResults.Text = "Pinging 4 times....";
@@ -809,12 +820,78 @@ namespace ExcelPaster
 
             p.WaitForExit();
             System.Threading.Thread.Sleep(2000);
+            
             adapterList.Clear();
             comboBox_NetworkAdapter.Items.Clear();
             LoadAdapters();
             textBox_IPAdress.BackColor = Color.LightGreen;
             textBox2.BackColor = Color.LightGreen;
             textBox3.BackColor = Color.LightGreen; 
+        }
+
+       
+
+
+       
+
+        private void button_OpenTODOFile_Click_1(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Settings.Default.TODOFileLoc);
+        }
+
+        private void button_ChangeTODOFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_TODOFileLoc.Text = result;
+                    Properties.Settings.Default.TODOFileLoc = result;
+                    Properties.Settings.Default.Save();
+                }
+            }
+        }
+
+        private void button_UserLoad_Click(object sender, EventArgs e)
+        {
+            string username = textBox_UserNameToDo.Text;
+            Properties.Settings.Default.UserName = username;
+            Properties.Settings.Default.Save();
+
+            if (Properties.Settings.Default.TODOFileLoc != "")
+            {
+                int NameColumnIndex = 0;
+                CSVReader todoReader = new CSVReader();
+                todoReader.ParseCSV(comboBox_TODOFileLoc.Text);
+                //Assign Coloumn to search for Name
+                foreach (string cell in todoReader.GetArrayStorage().First())
+                {
+                    if (NameColumnIndex > 9)
+                    {
+                        throw new Exception("No 'Assignee' Colomn present in this CSV");
+                    }
+                    if (cell.Contains("Assignee"))
+                    {
+                        break;
+                    }
+                    NameColumnIndex++;
+                }
+                
+                foreach (List<string> ListS in todoReader.GetArrayStorage())
+                {
+                    if (ListS[NameColumnIndex] == username)
+                    {
+                        foreach (string cell in ListS)
+                        {
+                            textBox_ToDoWorkArea.Text += " ["+ cell + "] ";
+                        }
+                        
+                    }
+                    textBox_ToDoWorkArea.Text += "\r\n";
+
+                }
+            }
         }
     }
 }
