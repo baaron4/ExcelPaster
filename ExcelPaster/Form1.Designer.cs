@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "Test",
-            "OK",
-            "192.168.13.1",
-            "192.168.1.1"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.HotTrack, null);
             this.btn_StartCopyFile = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -101,17 +96,21 @@
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
+            this.button_UserLoad = new System.Windows.Forms.Button();
+            this.button_OpenTODOFile = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
+            this.button_ChangeTODOFile = new System.Windows.Forms.Button();
+            this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.IP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ping = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TTL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Hostname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_CancelPing = new System.Windows.Forms.Button();
+            this.button_ClearPings = new System.Windows.Forms.Button();
+            this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -119,13 +118,13 @@
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
             // 
             this.btn_StartCopyFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_StartCopyFile.Location = new System.Drawing.Point(688, 361);
+            this.btn_StartCopyFile.Location = new System.Drawing.Point(693, 439);
             this.btn_StartCopyFile.Name = "btn_StartCopyFile";
             this.btn_StartCopyFile.Size = new System.Drawing.Size(195, 23);
             this.btn_StartCopyFile.TabIndex = 0;
@@ -136,7 +135,7 @@
             // textBox_StartCopyDelayFile
             // 
             this.textBox_StartCopyDelayFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(741, 335);
+            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(746, 413);
             this.textBox_StartCopyDelayFile.Name = "textBox_StartCopyDelayFile";
             this.textBox_StartCopyDelayFile.Size = new System.Drawing.Size(52, 20);
             this.textBox_StartCopyDelayFile.TabIndex = 1;
@@ -148,7 +147,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(745, 319);
+            this.label1.Location = new System.Drawing.Point(750, 397);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 2;
@@ -158,7 +157,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(799, 338);
+            this.label2.Location = new System.Drawing.Point(804, 416);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 3;
@@ -189,6 +188,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -197,7 +197,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.button_OpenFile);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.label10);
@@ -370,7 +369,10 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.panel1);
+            this.groupBox4.Controls.Add(this.textBox1_PingTrys);
+            this.groupBox4.Controls.Add(this.button_ClearPings);
+            this.groupBox4.Controls.Add(this.button_CancelPing);
+            this.groupBox4.Controls.Add(this.label_PingResults);
             this.groupBox4.Controls.Add(this.button_Ping);
             this.groupBox4.Location = new System.Drawing.Point(295, 16);
             this.groupBox4.Name = "groupBox4";
@@ -382,7 +384,7 @@
             // label_PingResults
             // 
             this.label_PingResults.AutoSize = true;
-            this.label_PingResults.Location = new System.Drawing.Point(3, 11);
+            this.label_PingResults.Location = new System.Drawing.Point(3, 53);
             this.label_PingResults.Name = "label_PingResults";
             this.label_PingResults.Size = new System.Drawing.Size(66, 13);
             this.label_PingResults.TabIndex = 30;
@@ -392,7 +394,7 @@
             // 
             this.button_Ping.Location = new System.Drawing.Point(6, 22);
             this.button_Ping.Name = "button_Ping";
-            this.button_Ping.Size = new System.Drawing.Size(268, 23);
+            this.button_Ping.Size = new System.Drawing.Size(144, 23);
             this.button_Ping.TabIndex = 14;
             this.button_Ping.Text = "Ping IP From DB Lookup";
             this.button_Ping.UseVisualStyleBackColor = true;
@@ -715,7 +717,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(661, 338);
+            this.label13.Location = new System.Drawing.Point(666, 416);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 17;
@@ -725,7 +727,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(600, 319);
+            this.label14.Location = new System.Drawing.Point(605, 397);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(123, 13);
             this.label14.TabIndex = 16;
@@ -734,7 +736,7 @@
             // textBox_KeyStateChange
             // 
             this.textBox_KeyStateChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeyStateChange.Location = new System.Drawing.Point(603, 335);
+            this.textBox_KeyStateChange.Location = new System.Drawing.Point(608, 413);
             this.textBox_KeyStateChange.Name = "textBox_KeyStateChange";
             this.textBox_KeyStateChange.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeyStateChange.TabIndex = 15;
@@ -745,7 +747,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(532, 338);
+            this.label11.Location = new System.Drawing.Point(537, 416);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 13);
             this.label11.TabIndex = 14;
@@ -755,7 +757,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(471, 319);
+            this.label12.Location = new System.Drawing.Point(476, 397);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 13);
             this.label12.TabIndex = 13;
@@ -764,7 +766,7 @@
             // textBox_KeypressDelay
             // 
             this.textBox_KeypressDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeypressDelay.Location = new System.Drawing.Point(474, 335);
+            this.textBox_KeypressDelay.Location = new System.Drawing.Point(479, 413);
             this.textBox_KeypressDelay.Name = "textBox_KeypressDelay";
             this.textBox_KeypressDelay.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeypressDelay.TabIndex = 12;
@@ -804,7 +806,7 @@
             this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_Status.AutoSize = true;
             this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(6, 361);
+            this.label_Status.Location = new System.Drawing.Point(11, 439);
             this.label_Status.Name = "label_Status";
             this.label_Status.Size = new System.Drawing.Size(58, 22);
             this.label_Status.TabIndex = 9;
@@ -814,7 +816,7 @@
             // 
             this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel1.Enabled = false;
-            this.btn_Cancel1.Location = new System.Drawing.Point(474, 361);
+            this.btn_Cancel1.Location = new System.Drawing.Point(479, 439);
             this.btn_Cancel1.Name = "btn_Cancel1";
             this.btn_Cancel1.Size = new System.Drawing.Size(208, 23);
             this.btn_Cancel1.TabIndex = 8;
@@ -852,6 +854,97 @@
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.textBox_UserNameToDo);
+            this.tabPage4.Controls.Add(this.button_UserLoad);
+            this.tabPage4.Controls.Add(this.button_OpenTODOFile);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.comboBox_TODOFileLoc);
+            this.tabPage4.Controls.Add(this.button_ChangeTODOFile);
+            this.tabPage4.Controls.Add(this.textBox_ToDoWorkArea);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "To Do List";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // textBox_UserNameToDo
+            // 
+            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
+            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
+            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
+            this.textBox_UserNameToDo.TabIndex = 29;
+            // 
+            // button_UserLoad
+            // 
+            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
+            this.button_UserLoad.Name = "button_UserLoad";
+            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
+            this.button_UserLoad.TabIndex = 28;
+            this.button_UserLoad.Text = "Load ToDo For User";
+            this.button_UserLoad.UseVisualStyleBackColor = true;
+            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
+            // 
+            // button_OpenTODOFile
+            // 
+            this.button_OpenTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_OpenTODOFile.Location = new System.Drawing.Point(50, 453);
+            this.button_OpenTODOFile.Name = "button_OpenTODOFile";
+            this.button_OpenTODOFile.Size = new System.Drawing.Size(99, 23);
+            this.button_OpenTODOFile.TabIndex = 25;
+            this.button_OpenTODOFile.Text = "Open TODO File";
+            this.button_OpenTODOFile.UseVisualStyleBackColor = true;
+            this.button_OpenTODOFile.Click += new System.EventHandler(this.button_OpenTODOFile_Click_1);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(280, 438);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Select TODO File (.csv file): \r\n";
+            // 
+            // comboBox_TODOFileLoc
+            // 
+            this.comboBox_TODOFileLoc.AllowDrop = true;
+            this.comboBox_TODOFileLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_TODOFileLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.comboBox_TODOFileLoc.FormattingEnabled = true;
+            this.comboBox_TODOFileLoc.Location = new System.Drawing.Point(283, 454);
+            this.comboBox_TODOFileLoc.MaxDropDownItems = 10;
+            this.comboBox_TODOFileLoc.Name = "comboBox_TODOFileLoc";
+            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(277, 21);
+            this.comboBox_TODOFileLoc.TabIndex = 27;
+            // 
+            // button_ChangeTODOFile
+            // 
+            this.button_ChangeTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ChangeTODOFile.Location = new System.Drawing.Point(155, 454);
+            this.button_ChangeTODOFile.Name = "button_ChangeTODOFile";
+            this.button_ChangeTODOFile.Size = new System.Drawing.Size(122, 23);
+            this.button_ChangeTODOFile.TabIndex = 26;
+            this.button_ChangeTODOFile.Text = "Change File";
+            this.button_ChangeTODOFile.UseVisualStyleBackColor = true;
+            this.button_ChangeTODOFile.Click += new System.EventHandler(this.button_ChangeTODOFile_Click);
+            // 
+            // textBox_ToDoWorkArea
+            // 
+            this.textBox_ToDoWorkArea.Location = new System.Drawing.Point(20, 24);
+            this.textBox_ToDoWorkArea.Multiline = true;
+            this.textBox_ToDoWorkArea.Name = "textBox_ToDoWorkArea";
+            this.textBox_ToDoWorkArea.Size = new System.Drawing.Size(983, 399);
+            this.textBox_ToDoWorkArea.TabIndex = 0;
+            // 
             // BgWorker
             // 
             this.BgWorker.WorkerReportsProgress = true;
@@ -882,59 +975,35 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // panel1
+            // button_CancelPing
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.label_PingResults);
-            this.panel1.Location = new System.Drawing.Point(9, 51);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(264, 131);
-            this.panel1.TabIndex = 31;
+            this.button_CancelPing.Location = new System.Drawing.Point(195, 22);
+            this.button_CancelPing.Name = "button_CancelPing";
+            this.button_CancelPing.Size = new System.Drawing.Size(79, 23);
+            this.button_CancelPing.TabIndex = 31;
+            this.button_CancelPing.Text = "Cancel";
+            this.button_CancelPing.UseVisualStyleBackColor = true;
+            this.button_CancelPing.Click += new System.EventHandler(this.button_CancelPing_Click);
             // 
-            // listView1
+            // button_ClearPings
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.IP,
-            this.Ping,
-            this.TTL,
-            this.Hostname,
-            this.Ports});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            listViewItem1.Checked = true;
-            listViewItem1.StateImageIndex = 1;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(750, 225);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(252, 194);
-            this.listView1.TabIndex = 25;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.button_ClearPings.Location = new System.Drawing.Point(196, 156);
+            this.button_ClearPings.Name = "button_ClearPings";
+            this.button_ClearPings.Size = new System.Drawing.Size(79, 23);
+            this.button_ClearPings.TabIndex = 32;
+            this.button_ClearPings.Text = "Clear";
+            this.button_ClearPings.UseVisualStyleBackColor = true;
+            this.button_ClearPings.Click += new System.EventHandler(this.button_ClearPings_Click);
             // 
-            // IP
+            // textBox1_PingTrys
             // 
-            this.IP.Text = "IP";
-            this.IP.Width = 80;
-            // 
-            // Ping
-            // 
-            this.Ping.Text = "Ping";
-            this.Ping.Width = 30;
-            // 
-            // TTL
-            // 
-            this.TTL.Text = "TTL";
-            this.TTL.Width = 30;
-            // 
-            // Hostname
-            // 
-            this.Hostname.Text = "Hostname";
-            this.Hostname.Width = 80;
-            // 
-            // Ports
-            // 
-            this.Ports.Text = "Ports";
+            this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1_PingTrys.Location = new System.Drawing.Point(156, 22);
+            this.textBox1_PingTrys.Name = "textBox1_PingTrys";
+            this.textBox1_PingTrys.Size = new System.Drawing.Size(33, 20);
+            this.textBox1_PingTrys.TabIndex = 32;
+            this.textBox1_PingTrys.Text = "4";
+            this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
@@ -954,12 +1023,13 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1039,13 +1109,17 @@
         private System.ComponentModel.BackgroundWorker pingWorker;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button_SetDynamic;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader IP;
-        private System.Windows.Forms.ColumnHeader Ping;
-        private System.Windows.Forms.ColumnHeader TTL;
-        private System.Windows.Forms.ColumnHeader Hostname;
-        private System.Windows.Forms.ColumnHeader Ports;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox textBox_ToDoWorkArea;
+        private System.Windows.Forms.Button button_OpenTODOFile;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox_TODOFileLoc;
+        private System.Windows.Forms.Button button_ChangeTODOFile;
+        private System.Windows.Forms.Button button_UserLoad;
+        private System.Windows.Forms.TextBox textBox_UserNameToDo;
+        private System.Windows.Forms.Button button_CancelPing;
+        private System.Windows.Forms.Button button_ClearPings;
+        private System.Windows.Forms.TextBox textBox1_PingTrys;
     }
 }
 

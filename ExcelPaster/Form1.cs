@@ -53,7 +53,12 @@ namespace ExcelPaster
             LoadAdapters();
 
             SetPadDB();
-            
+
+            //Load ToDo name at start
+            comboBox_TODOFileLoc.Text = Properties.Settings.Default.TODOFileLoc;
+            textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
+
+
         }
         public enum ButtonState
         {
@@ -351,7 +356,9 @@ namespace ExcelPaster
         }
         public static IPAddress GetLocalIPAddress(NetworkInterface adapter)
         {
-            
+            int trys = 0;
+            while (trys < 10)
+            {
                 foreach (UnicastIPAddressInformation unicastIPAddressInformation in adapter.GetIPProperties().UnicastAddresses)
                 {
                     if (unicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork)
@@ -361,6 +368,10 @@ namespace ExcelPaster
 
                     }
                 }
+                trys++;
+                System.Threading.Thread.Sleep(1000);
+
+            }
             
             throw new ArgumentException(string.Format("Can't find address"));
         }
@@ -519,7 +530,7 @@ namespace ExcelPaster
 
         private void LoadAdapters()
         {
-           
+           //TODO: If IP is dynamic dont load the IP into text box
             int indexer = 0;
             foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback))
             {
@@ -747,19 +758,36 @@ namespace ExcelPaster
         }
 
         //private BackgroundWorker pingWorker = new BackgroundWorker();
+        public class PingObject
+        {
 
-        
+            public PingObject(IPAddress ip,int trys)
+            {
+                this.IP = ip;
+                this.Trys = trys;
+
+            }
+            public IPAddress IP;
+            public int Trys;
+            
+
+        }
+
         private void button_Ping_Click(object sender, EventArgs e)
         {
-            
+            //TODO: Change to Ping.exe and run pings into a list with graphics
             IPAddress newAddress;
             IPAddress.TryParse(textBox_DBAddress.Text, out newAddress);
-            label_PingResults.Text = "Pinging 4 times....";
+            int pingTrys = Int32.Parse(textBox1_PingTrys.Text.ToString());
+            PingObject po = new PingObject(newAddress,pingTrys);
+            //-----------------------------------------------------------------
+
+            label_PingResults.Text += "\nPinging "+ textBox_DBAddress.Text + "....";
             if (newAddress != null)
             {
 
 
-                pingWorker.RunWorkerAsync(argument: newAddress);
+                pingWorker.RunWorkerAsync(argument: po);
                
                    
                
@@ -768,7 +796,7 @@ namespace ExcelPaster
             {
                 label_PingResults.Text = "'"+ textBox_DBAddress.Text + "' was not a valid IP Address";
             }
-            
+            //-------------------------------------------------------------------------
         }
        
         private void label15_Click(object sender, EventArgs e)
@@ -778,39 +806,79 @@ namespace ExcelPaster
 
         private void pingWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            IPAddress newAddress = (IPAddress)e.Argument;
-            //========================================================================
-            //Process p = new Process();
-            //// No need to use the CMD processor - just call ping directly.
-            //p.StartInfo.FileName = "ping.exe";
-            //p.StartInfo.Arguments = "-a " + newAddress.ToString();
-            //p.StartInfo.RedirectStandardOutput = true;
-            //p.StartInfo.UseShellExecute = false;
-            //p.StartInfo.CreateNoWindow = true;
-            //p.Start();
-            //p.WaitForExit();
+            PingObject po = (PingObject)e.Argument;
+            IPAddress newAddress = po.IP;
+            int pingCount = po.Trys;
+            int pingTrys = pingCount;
+            int successCount = 0;
+           
+            /*
+            Process p = new Process();
+            // No need to use the CMD processor - just call ping directly.
+            p.StartInfo.FileName = "ping.exe";
+            p.StartInfo.Arguments = "-a " + newAddress.ToString();
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.CreateNoWindow = true;
+            p.Start();
+            p.WaitForExit();
 
-            //var output = p.StandardOutput.ReadToEnd();
-            // pingWorker.ReportProgress(100,output);
-            //=========================================================================
-            Ping p = new Ping();
-            PingReply r;
-            string s;
-            s = newAddress.ToString();
-            r = p.Send(s);
-
-            if (r.Status == IPStatus.Success)
+            var output = p.StandardOutput.ReadToEnd();
+            pingWorker.ReportProgress(100,output);
+            */
+            Ping ping = new Ping();
+            PingReply pingReply = ping.Send(newAddress.ToString());
+            // check when the ping is not success
+            while (pingTrys > 0)
             {
-                var output = "Ping to " + s.ToString() + "[" + r.Address.ToString() + "]" + " Successful"
-                   + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
-                pingWorker.ReportProgress(100, output);
-                
+                while (!(pingReply.Status.ToString() == "Success") & pingTrys > 0)
+                {
+                    pingTrys--;
+                    //Console.WriteLine(pingReply.Status.ToString());
+                    // check after the ping is n success
+
+
+                    var output = "\n" + pingReply.Status.ToString();
+                    pingWorker.ReportProgress(100, output);
+                    pingReply = ping.Send(newAddress.ToString());
+
+
+                    if (pingWorker.CancellationPending)
+                    {
+                        break;
+                    }
+                }
+
+                if (pingReply.Status.ToString().Equals("Success"))
+                {
+                    pingTrys--;
+                    // Console.WriteLine(pingReply.Status.ToString());
+                    var output = pingReply.Status.ToString() + " " + pingReply.RoundtripTime.ToString() + "ms";
+                    pingWorker.ReportProgress(100, output);
+                    pingReply = ping.Send(newAddress.ToString());
+                    successCount++;
+                }
+
+                if (pingWorker.CancellationPending)
+                {
+                    var output = "\nPing Request Canceled";
+                    pingWorker.ReportProgress(100, output);
+                }
             }
+            if (pingTrys < 0)
+            {
+                var output = "\nPinged " + pingCount + " Times. \nSuccessRate of " + Math.Round ((float)successCount / (float)pingCount,2)+"%" ;
+                pingWorker.ReportProgress(100, output);
+            }
+            
+
+        
         }
+
 
         private void pingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            label_PingResults.Text = "";
+            //label_PingResults.Text = "";
             label_PingResults.Text += (string)e.UserState;// output;
         }
 
@@ -824,12 +892,88 @@ namespace ExcelPaster
 
             p.WaitForExit();
             System.Threading.Thread.Sleep(2000);
+            
             adapterList.Clear();
             comboBox_NetworkAdapter.Items.Clear();
             LoadAdapters();
             textBox_IPAdress.BackColor = Color.LightGreen;
             textBox2.BackColor = Color.LightGreen;
             textBox3.BackColor = Color.LightGreen; 
+        }
+
+       
+
+
+       
+
+        private void button_OpenTODOFile_Click_1(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Settings.Default.TODOFileLoc);
+        }
+
+        private void button_ChangeTODOFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_TODOFileLoc.Text = result;
+                    Properties.Settings.Default.TODOFileLoc = result;
+                    Properties.Settings.Default.Save();
+                }
+            }
+        }
+
+        private void button_UserLoad_Click(object sender, EventArgs e)
+        {
+            string username = textBox_UserNameToDo.Text;
+            Properties.Settings.Default.UserName = username;
+            Properties.Settings.Default.Save();
+
+            if (Properties.Settings.Default.TODOFileLoc != "")
+            {
+                int NameColumnIndex = 0;
+                CSVReader todoReader = new CSVReader();
+                todoReader.ParseCSV(comboBox_TODOFileLoc.Text);
+                //Assign Coloumn to search for Name
+                foreach (string cell in todoReader.GetArrayStorage().First())
+                {
+                    if (NameColumnIndex > 9)
+                    {
+                        throw new Exception("No 'Assignee' Colomn present in this CSV");
+                    }
+                    if (cell.Contains("Assignee"))
+                    {
+                        break;
+                    }
+                    NameColumnIndex++;
+                }
+                
+                foreach (List<string> ListS in todoReader.GetArrayStorage())
+                {
+                    if (ListS[NameColumnIndex] == username)
+                    {
+                        foreach (string cell in ListS)
+                        {
+                            textBox_ToDoWorkArea.Text += " ["+ cell + "] ";
+                        }
+                        
+                    }
+                    textBox_ToDoWorkArea.Text += "\r\n";
+
+                }
+            }
+        }
+
+        private void button_CancelPing_Click(object sender, EventArgs e)
+        {
+            pingWorker.CancelAsync();
+        }
+
+        private void button_ClearPings_Click(object sender, EventArgs e)
+        {
+            label_PingResults.Text = "";
         }
     }
 }
