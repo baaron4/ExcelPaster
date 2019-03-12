@@ -758,19 +758,36 @@ namespace ExcelPaster
         }
 
         //private BackgroundWorker pingWorker = new BackgroundWorker();
+        public class PingObject
+        {
 
-        
+            public PingObject(IPAddress ip,int trys)
+            {
+                this.IP = ip;
+                this.Trys = trys;
+
+            }
+            public IPAddress IP;
+            public int Trys;
+            
+
+        }
+
         private void button_Ping_Click(object sender, EventArgs e)
         {
             //TODO: Change to Ping.exe and run pings into a list with graphics
             IPAddress newAddress;
             IPAddress.TryParse(textBox_DBAddress.Text, out newAddress);
-            label_PingResults.Text = "Pinging 4 times....";
+            int pingTrys = Int32.Parse(textBox1_PingTrys.Text.ToString());
+            PingObject po = new PingObject(newAddress,pingTrys);
+            //-----------------------------------------------------------------
+
+            label_PingResults.Text += "\nPinging "+ textBox_DBAddress.Text + "....";
             if (newAddress != null)
             {
 
 
-                pingWorker.RunWorkerAsync(argument: newAddress);
+                pingWorker.RunWorkerAsync(argument: po);
                
                    
                
@@ -779,7 +796,7 @@ namespace ExcelPaster
             {
                 label_PingResults.Text = "'"+ textBox_DBAddress.Text + "' was not a valid IP Address";
             }
-            
+            //-------------------------------------------------------------------------
         }
        
         private void label15_Click(object sender, EventArgs e)
@@ -789,7 +806,13 @@ namespace ExcelPaster
 
         private void pingWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            IPAddress newAddress = (IPAddress)e.Argument;
+            PingObject po = (PingObject)e.Argument;
+            IPAddress newAddress = po.IP;
+            int pingCount = po.Trys;
+            int pingTrys = pingCount;
+            int successCount = 0;
+           
+            /*
             Process p = new Process();
             // No need to use the CMD processor - just call ping directly.
             p.StartInfo.FileName = "ping.exe";
@@ -802,11 +825,60 @@ namespace ExcelPaster
 
             var output = p.StandardOutput.ReadToEnd();
             pingWorker.ReportProgress(100,output);
+            */
+            Ping ping = new Ping();
+            PingReply pingReply = ping.Send(newAddress.ToString());
+            // check when the ping is not success
+            while (pingTrys > 0)
+            {
+                while (!(pingReply.Status.ToString() == "Success") & pingTrys > 0)
+                {
+                    pingTrys--;
+                    //Console.WriteLine(pingReply.Status.ToString());
+                    // check after the ping is n success
+
+
+                    var output = "\n" + pingReply.Status.ToString();
+                    pingWorker.ReportProgress(100, output);
+                    pingReply = ping.Send(newAddress.ToString());
+
+
+                    if (pingWorker.CancellationPending)
+                    {
+                        break;
+                    }
+                }
+
+                if (pingReply.Status.ToString().Equals("Success"))
+                {
+                    pingTrys--;
+                    // Console.WriteLine(pingReply.Status.ToString());
+                    var output = pingReply.Status.ToString() + " " + pingReply.RoundtripTime.ToString() + "ms";
+                    pingWorker.ReportProgress(100, output);
+                    pingReply = ping.Send(newAddress.ToString());
+                    successCount++;
+                }
+
+                if (pingWorker.CancellationPending)
+                {
+                    var output = "\nPing Request Canceled";
+                    pingWorker.ReportProgress(100, output);
+                }
+            }
+            if (pingTrys < 0)
+            {
+                var output = "\nPinged " + pingCount + " Times. \nSuccessRate of " + Math.Round ((float)successCount / (float)pingCount,2)+"%" ;
+                pingWorker.ReportProgress(100, output);
+            }
+            
+
+        
         }
+
 
         private void pingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            label_PingResults.Text = "";
+            //label_PingResults.Text = "";
             label_PingResults.Text += (string)e.UserState;// output;
         }
 
@@ -892,6 +964,16 @@ namespace ExcelPaster
 
                 }
             }
+        }
+
+        private void button_CancelPing_Click(object sender, EventArgs e)
+        {
+            pingWorker.CancelAsync();
+        }
+
+        private void button_ClearPings_Click(object sender, EventArgs e)
+        {
+            label_PingResults.Text = "";
         }
     }
 }

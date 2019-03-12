@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "",
-            "Status",
-            "IP",
-            "Time"}, -1);
             this.btn_StartCopyFile = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -102,6 +97,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
+            this.button_UserLoad = new System.Windows.Forms.Button();
             this.button_OpenTODOFile = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
@@ -111,9 +108,9 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.button_UserLoad = new System.Windows.Forms.Button();
-            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.button_CancelPing = new System.Windows.Forms.Button();
+            this.button_ClearPings = new System.Windows.Forms.Button();
+            this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -200,7 +197,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.button_OpenFile);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.label10);
@@ -373,6 +369,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.textBox1_PingTrys);
+            this.groupBox4.Controls.Add(this.button_ClearPings);
+            this.groupBox4.Controls.Add(this.button_CancelPing);
             this.groupBox4.Controls.Add(this.label_PingResults);
             this.groupBox4.Controls.Add(this.button_Ping);
             this.groupBox4.Location = new System.Drawing.Point(295, 16);
@@ -395,7 +394,7 @@
             // 
             this.button_Ping.Location = new System.Drawing.Point(6, 22);
             this.button_Ping.Name = "button_Ping";
-            this.button_Ping.Size = new System.Drawing.Size(268, 23);
+            this.button_Ping.Size = new System.Drawing.Size(144, 23);
             this.button_Ping.TabIndex = 14;
             this.button_Ping.Text = "Ping IP From DB Lookup";
             this.button_Ping.UseVisualStyleBackColor = true;
@@ -871,6 +870,25 @@
             this.tabPage4.Text = "To Do List";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // textBox_UserNameToDo
+            // 
+            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
+            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
+            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
+            this.textBox_UserNameToDo.TabIndex = 29;
+            // 
+            // button_UserLoad
+            // 
+            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
+            this.button_UserLoad.Name = "button_UserLoad";
+            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
+            this.button_UserLoad.TabIndex = 28;
+            this.button_UserLoad.Text = "Load ToDo For User";
+            this.button_UserLoad.UseVisualStyleBackColor = true;
+            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
+            // 
             // button_OpenTODOFile
             // 
             this.button_OpenTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -957,39 +975,35 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // button_UserLoad
+            // button_CancelPing
             // 
-            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
-            this.button_UserLoad.Name = "button_UserLoad";
-            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
-            this.button_UserLoad.TabIndex = 28;
-            this.button_UserLoad.Text = "Load ToDo For User";
-            this.button_UserLoad.UseVisualStyleBackColor = true;
-            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
+            this.button_CancelPing.Location = new System.Drawing.Point(195, 22);
+            this.button_CancelPing.Name = "button_CancelPing";
+            this.button_CancelPing.Size = new System.Drawing.Size(79, 23);
+            this.button_CancelPing.TabIndex = 31;
+            this.button_CancelPing.Text = "Cancel";
+            this.button_CancelPing.UseVisualStyleBackColor = true;
+            this.button_CancelPing.Click += new System.EventHandler(this.button_CancelPing_Click);
             // 
-            // textBox_UserNameToDo
+            // button_ClearPings
             // 
-            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
-            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
-            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
-            this.textBox_UserNameToDo.TabIndex = 29;
+            this.button_ClearPings.Location = new System.Drawing.Point(196, 156);
+            this.button_ClearPings.Name = "button_ClearPings";
+            this.button_ClearPings.Size = new System.Drawing.Size(79, 23);
+            this.button_ClearPings.TabIndex = 32;
+            this.button_ClearPings.Text = "Clear";
+            this.button_ClearPings.UseVisualStyleBackColor = true;
+            this.button_ClearPings.Click += new System.EventHandler(this.button_ClearPings_Click);
             // 
-            // listView1
+            // textBox1_PingTrys
             // 
-            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(579, 255);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(334, 165);
-            this.listView1.TabIndex = 25;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1_PingTrys.Location = new System.Drawing.Point(156, 22);
+            this.textBox1_PingTrys.Name = "textBox1_PingTrys";
+            this.textBox1_PingTrys.Size = new System.Drawing.Size(33, 20);
+            this.textBox1_PingTrys.TabIndex = 32;
+            this.textBox1_PingTrys.Text = "4";
+            this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MainForm
             // 
@@ -1103,7 +1117,9 @@
         private System.Windows.Forms.Button button_ChangeTODOFile;
         private System.Windows.Forms.Button button_UserLoad;
         private System.Windows.Forms.TextBox textBox_UserNameToDo;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button_CancelPing;
+        private System.Windows.Forms.Button button_ClearPings;
+        private System.Windows.Forms.TextBox textBox1_PingTrys;
     }
 }
 
