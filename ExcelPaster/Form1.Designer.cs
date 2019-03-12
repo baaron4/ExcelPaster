@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Test",
+            "OK",
+            "192.168.13.1",
+            "192.168.1.1"}, -1, System.Drawing.Color.Empty, System.Drawing.SystemColors.HotTrack, null);
             this.btn_StartCopyFile = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,6 +71,7 @@
             this.comboBox_NewPad = new System.Windows.Forms.ComboBox();
             this.comboBox_NewCompany = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_SetDynamic = new System.Windows.Forms.Button();
             this.button_ApplyIPChanges = new System.Windows.Forms.Button();
             this.button_RefreshAdapter = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -99,7 +105,13 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.button_SetDynamic = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.IP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ping = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TTL = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Hostname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Ports = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -107,6 +119,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -184,6 +197,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Controls.Add(this.button_OpenFile);
             this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.label10);
@@ -356,7 +370,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label_PingResults);
+            this.groupBox4.Controls.Add(this.panel1);
             this.groupBox4.Controls.Add(this.button_Ping);
             this.groupBox4.Location = new System.Drawing.Point(295, 16);
             this.groupBox4.Name = "groupBox4";
@@ -368,7 +382,7 @@
             // label_PingResults
             // 
             this.label_PingResults.AutoSize = true;
-            this.label_PingResults.Location = new System.Drawing.Point(3, 53);
+            this.label_PingResults.Location = new System.Drawing.Point(3, 11);
             this.label_PingResults.Name = "label_PingResults";
             this.label_PingResults.Size = new System.Drawing.Size(66, 13);
             this.label_PingResults.TabIndex = 30;
@@ -519,6 +533,16 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adapter Addresses";
+            // 
+            // button_SetDynamic
+            // 
+            this.button_SetDynamic.Location = new System.Drawing.Point(6, 176);
+            this.button_SetDynamic.Name = "button_SetDynamic";
+            this.button_SetDynamic.Size = new System.Drawing.Size(99, 23);
+            this.button_SetDynamic.TabIndex = 14;
+            this.button_SetDynamic.Text = "Set to Dynamic";
+            this.button_SetDynamic.UseVisualStyleBackColor = true;
+            this.button_SetDynamic.Click += new System.EventHandler(this.button_SetDynamic_Click);
             // 
             // button_ApplyIPChanges
             // 
@@ -858,15 +882,59 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // button_SetDynamic
+            // panel1
             // 
-            this.button_SetDynamic.Location = new System.Drawing.Point(6, 176);
-            this.button_SetDynamic.Name = "button_SetDynamic";
-            this.button_SetDynamic.Size = new System.Drawing.Size(99, 23);
-            this.button_SetDynamic.TabIndex = 14;
-            this.button_SetDynamic.Text = "Set to Dynamic";
-            this.button_SetDynamic.UseVisualStyleBackColor = true;
-            this.button_SetDynamic.Click += new System.EventHandler(this.button_SetDynamic_Click);
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.label_PingResults);
+            this.panel1.Location = new System.Drawing.Point(9, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(264, 131);
+            this.panel1.TabIndex = 31;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IP,
+            this.Ping,
+            this.TTL,
+            this.Hostname,
+            this.Ports});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            listViewItem1.Checked = true;
+            listViewItem1.StateImageIndex = 1;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.listView1.Location = new System.Drawing.Point(750, 225);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(252, 194);
+            this.listView1.TabIndex = 25;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // IP
+            // 
+            this.IP.Text = "IP";
+            this.IP.Width = 80;
+            // 
+            // Ping
+            // 
+            this.Ping.Text = "Ping";
+            this.Ping.Width = 30;
+            // 
+            // TTL
+            // 
+            this.TTL.Text = "TTL";
+            this.TTL.Width = 30;
+            // 
+            // Hostname
+            // 
+            this.Hostname.Text = "Hostname";
+            this.Hostname.Width = 80;
+            // 
+            // Ports
+            // 
+            this.Ports.Text = "Ports";
             // 
             // MainForm
             // 
@@ -886,11 +954,12 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -970,6 +1039,13 @@
         private System.ComponentModel.BackgroundWorker pingWorker;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button_SetDynamic;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader IP;
+        private System.Windows.Forms.ColumnHeader Ping;
+        private System.Windows.Forms.ColumnHeader TTL;
+        private System.Windows.Forms.ColumnHeader Hostname;
+        private System.Windows.Forms.ColumnHeader Ports;
     }
 }
 

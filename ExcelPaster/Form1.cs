@@ -779,18 +779,33 @@ namespace ExcelPaster
         private void pingWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             IPAddress newAddress = (IPAddress)e.Argument;
-            Process p = new Process();
-            // No need to use the CMD processor - just call ping directly.
-            p.StartInfo.FileName = "ping.exe";
-            p.StartInfo.Arguments = "-a " + newAddress.ToString();
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.CreateNoWindow = true;
-            p.Start();
-            p.WaitForExit();
+            //========================================================================
+            //Process p = new Process();
+            //// No need to use the CMD processor - just call ping directly.
+            //p.StartInfo.FileName = "ping.exe";
+            //p.StartInfo.Arguments = "-a " + newAddress.ToString();
+            //p.StartInfo.RedirectStandardOutput = true;
+            //p.StartInfo.UseShellExecute = false;
+            //p.StartInfo.CreateNoWindow = true;
+            //p.Start();
+            //p.WaitForExit();
 
-            var output = p.StandardOutput.ReadToEnd();
-            pingWorker.ReportProgress(100,output);
+            //var output = p.StandardOutput.ReadToEnd();
+            // pingWorker.ReportProgress(100,output);
+            //=========================================================================
+            Ping p = new Ping();
+            PingReply r;
+            string s;
+            s = newAddress.ToString();
+            r = p.Send(s);
+
+            if (r.Status == IPStatus.Success)
+            {
+                var output = "Ping to " + s.ToString() + "[" + r.Address.ToString() + "]" + " Successful"
+                   + " Response delay = " + r.RoundtripTime.ToString() + " ms" + "\n";
+                pingWorker.ReportProgress(100, output);
+                
+            }
         }
 
         private void pingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
