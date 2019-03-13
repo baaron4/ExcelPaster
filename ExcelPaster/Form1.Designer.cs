@@ -37,7 +37,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button_OpenFile = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_DBFile = new System.Windows.Forms.ComboBox();
             this.button_ChangeDBFile = new System.Windows.Forms.Button();
@@ -50,8 +49,18 @@
             this.comboBox_AddDBPad = new System.Windows.Forms.ComboBox();
             this.comboBox_AddDBCompany = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listView_DBAddresses = new System.Windows.Forms.ListView();
+            this.Column1IPAddres = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button_ScanNetwork = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.label_PingResults = new System.Windows.Forms.Label();
+            this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
+            this.listView_ScannedPadIPs = new System.Windows.Forms.ListView();
+            this.button_ClearPings = new System.Windows.Forms.Button();
+            this.button_CancelPing = new System.Windows.Forms.Button();
             this.button_Ping = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -66,6 +75,7 @@
             this.comboBox_NewPad = new System.Windows.Forms.ComboBox();
             this.comboBox_NewCompany = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_AdapterOptionsControlPanel = new System.Windows.Forms.Button();
             this.button_SetDynamic = new System.Windows.Forms.Button();
             this.button_ApplyIPChanges = new System.Windows.Forms.Button();
             this.button_RefreshAdapter = new System.Windows.Forms.Button();
@@ -108,14 +118,17 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.button_CancelPing = new System.Windows.Forms.Button();
-            this.button_ClearPings = new System.Windows.Forms.Button();
-            this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
+            this.textBox_IPScanStart = new System.Windows.Forms.TextBox();
+            this.textBox_IPScanStop = new System.Windows.Forms.TextBox();
+            this.Column1Success = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -198,7 +211,6 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button_OpenFile);
-            this.tabPage3.Controls.Add(this.label21);
             this.tabPage3.Controls.Add(this.label10);
             this.tabPage3.Controls.Add(this.comboBox_DBFile);
             this.tabPage3.Controls.Add(this.button_ChangeDBFile);
@@ -223,16 +235,6 @@
             this.button_OpenFile.Text = "Open DB File";
             this.button_OpenFile.UseVisualStyleBackColor = true;
             this.button_OpenFile.Click += new System.EventHandler(this.button_OpenFile_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(8, 298);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(395, 26);
-            this.label21.TabIndex = 24;
-            this.label21.Text = "**Changes to Database file will not occur to these lists until ExcelPaster is res" +
-    "tarted\r\n\r\n";
             // 
             // label10
             // 
@@ -301,7 +303,7 @@
             this.textBox_AddDBGateway.BackColor = System.Drawing.SystemColors.Window;
             this.textBox_AddDBGateway.Location = new System.Drawing.Point(264, 48);
             this.textBox_AddDBGateway.Name = "textBox_AddDBGateway";
-            this.textBox_AddDBGateway.Size = new System.Drawing.Size(121, 20);
+            this.textBox_AddDBGateway.Size = new System.Drawing.Size(144, 20);
             this.textBox_AddDBGateway.TabIndex = 19;
             // 
             // textBox_AddDB_SubMask
@@ -347,6 +349,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.listView_DBAddresses);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label19);
@@ -362,33 +366,139 @@
             this.groupBox2.Controls.Add(this.comboBox_NewCompany);
             this.groupBox2.Location = new System.Drawing.Point(445, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(576, 205);
+            this.groupBox2.Size = new System.Drawing.Size(576, 423);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lookup IP from Database";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 226);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(155, 13);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Lookup Site IP Known Devices";
+            // 
+            // listView_DBAddresses
+            // 
+            this.listView_DBAddresses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Column1IPAddres,
+            this.Column2Name});
+            this.listView_DBAddresses.FullRowSelect = true;
+            this.listView_DBAddresses.GridLines = true;
+            this.listView_DBAddresses.Location = new System.Drawing.Point(9, 242);
+            this.listView_DBAddresses.Name = "listView_DBAddresses";
+            this.listView_DBAddresses.Size = new System.Drawing.Size(280, 174);
+            this.listView_DBAddresses.TabIndex = 33;
+            this.listView_DBAddresses.UseCompatibleStateImageBehavior = false;
+            this.listView_DBAddresses.View = System.Windows.Forms.View.Details;
+            // 
+            // Column1IPAddres
+            // 
+            this.Column1IPAddres.Text = "IP Address";
+            this.Column1IPAddres.Width = 130;
+            // 
+            // Column2Name
+            // 
+            this.Column2Name.Text = "Name";
+            this.Column2Name.Width = 152;
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.textBox_IPScanStop);
+            this.groupBox4.Controls.Add(this.panel1);
+            this.groupBox4.Controls.Add(this.textBox_IPScanStart);
             this.groupBox4.Controls.Add(this.textBox1_PingTrys);
+            this.groupBox4.Controls.Add(this.button_ScanNetwork);
+            this.groupBox4.Controls.Add(this.listView_ScannedPadIPs);
             this.groupBox4.Controls.Add(this.button_ClearPings);
             this.groupBox4.Controls.Add(this.button_CancelPing);
-            this.groupBox4.Controls.Add(this.label_PingResults);
             this.groupBox4.Controls.Add(this.button_Ping);
             this.groupBox4.Location = new System.Drawing.Point(295, 16);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(280, 185);
+            this.groupBox4.Size = new System.Drawing.Size(280, 401);
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ping IP";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
+            // 
+            // button_ScanNetwork
+            // 
+            this.button_ScanNetwork.Enabled = false;
+            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 197);
+            this.button_ScanNetwork.Name = "button_ScanNetwork";
+            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
+            this.button_ScanNetwork.TabIndex = 33;
+            this.button_ScanNetwork.Text = "Scan Network";
+            this.button_ScanNetwork.UseVisualStyleBackColor = true;
+            this.button_ScanNetwork.Click += new System.EventHandler(this.button_ScanNetwork_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.label_PingResults);
+            this.panel1.Location = new System.Drawing.Point(6, 48);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(257, 102);
+            this.panel1.TabIndex = 25;
             // 
             // label_PingResults
             // 
             this.label_PingResults.AutoSize = true;
-            this.label_PingResults.Location = new System.Drawing.Point(3, 53);
+            this.label_PingResults.ForeColor = System.Drawing.Color.LightGreen;
+            this.label_PingResults.Location = new System.Drawing.Point(3, 12);
             this.label_PingResults.Name = "label_PingResults";
             this.label_PingResults.Size = new System.Drawing.Size(66, 13);
             this.label_PingResults.TabIndex = 30;
             this.label_PingResults.Text = "Ping Results";
+            // 
+            // textBox1_PingTrys
+            // 
+            this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1_PingTrys.Location = new System.Drawing.Point(156, 22);
+            this.textBox1_PingTrys.Name = "textBox1_PingTrys";
+            this.textBox1_PingTrys.Size = new System.Drawing.Size(33, 20);
+            this.textBox1_PingTrys.TabIndex = 32;
+            this.textBox1_PingTrys.Text = "4";
+            this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // listView_ScannedPadIPs
+            // 
+            this.listView_ScannedPadIPs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Column1Success,
+            this.Column2IPAddress,
+            this.Column3Name});
+            this.listView_ScannedPadIPs.Enabled = false;
+            this.listView_ScannedPadIPs.FullRowSelect = true;
+            this.listView_ScannedPadIPs.GridLines = true;
+            this.listView_ScannedPadIPs.Location = new System.Drawing.Point(1, 226);
+            this.listView_ScannedPadIPs.Name = "listView_ScannedPadIPs";
+            this.listView_ScannedPadIPs.Size = new System.Drawing.Size(280, 174);
+            this.listView_ScannedPadIPs.TabIndex = 32;
+            this.listView_ScannedPadIPs.UseCompatibleStateImageBehavior = false;
+            this.listView_ScannedPadIPs.View = System.Windows.Forms.View.Details;
+            // 
+            // button_ClearPings
+            // 
+            this.button_ClearPings.Location = new System.Drawing.Point(196, 156);
+            this.button_ClearPings.Name = "button_ClearPings";
+            this.button_ClearPings.Size = new System.Drawing.Size(79, 23);
+            this.button_ClearPings.TabIndex = 32;
+            this.button_ClearPings.Text = "Clear";
+            this.button_ClearPings.UseVisualStyleBackColor = true;
+            this.button_ClearPings.Click += new System.EventHandler(this.button_ClearPings_Click);
+            // 
+            // button_CancelPing
+            // 
+            this.button_CancelPing.Location = new System.Drawing.Point(195, 22);
+            this.button_CancelPing.Name = "button_CancelPing";
+            this.button_CancelPing.Size = new System.Drawing.Size(79, 23);
+            this.button_CancelPing.TabIndex = 31;
+            this.button_CancelPing.Text = "Cancel";
+            this.button_CancelPing.UseVisualStyleBackColor = true;
+            this.button_CancelPing.Click += new System.EventHandler(this.button_CancelPing_Click);
             // 
             // button_Ping
             // 
@@ -513,6 +623,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_AdapterOptionsControlPanel);
             this.groupBox1.Controls.Add(this.button_SetDynamic);
             this.groupBox1.Controls.Add(this.button_ApplyIPChanges);
             this.groupBox1.Controls.Add(this.button_RefreshAdapter);
@@ -535,6 +646,16 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adapter Addresses";
+            // 
+            // button_AdapterOptionsControlPanel
+            // 
+            this.button_AdapterOptionsControlPanel.Location = new System.Drawing.Point(119, 176);
+            this.button_AdapterOptionsControlPanel.Name = "button_AdapterOptionsControlPanel";
+            this.button_AdapterOptionsControlPanel.Size = new System.Drawing.Size(203, 23);
+            this.button_AdapterOptionsControlPanel.TabIndex = 15;
+            this.button_AdapterOptionsControlPanel.Text = "Open Adapter Options (Control Panel)";
+            this.button_AdapterOptionsControlPanel.UseVisualStyleBackColor = true;
+            this.button_AdapterOptionsControlPanel.Click += new System.EventHandler(this.button_AdapterOptionsControlPanel_Click);
             // 
             // button_SetDynamic
             // 
@@ -975,35 +1096,38 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // button_CancelPing
+            // textBox_IPScanStart
             // 
-            this.button_CancelPing.Location = new System.Drawing.Point(195, 22);
-            this.button_CancelPing.Name = "button_CancelPing";
-            this.button_CancelPing.Size = new System.Drawing.Size(79, 23);
-            this.button_CancelPing.TabIndex = 31;
-            this.button_CancelPing.Text = "Cancel";
-            this.button_CancelPing.UseVisualStyleBackColor = true;
-            this.button_CancelPing.Click += new System.EventHandler(this.button_CancelPing_Click);
+            this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStart.Enabled = false;
+            this.textBox_IPScanStart.Location = new System.Drawing.Point(92, 199);
+            this.textBox_IPScanStart.Name = "textBox_IPScanStart";
+            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStart.TabIndex = 35;
+            this.textBox_IPScanStart.TextChanged += new System.EventHandler(this.textBox_IPScanStart_TextChanged);
             // 
-            // button_ClearPings
+            // textBox_IPScanStop
             // 
-            this.button_ClearPings.Location = new System.Drawing.Point(196, 156);
-            this.button_ClearPings.Name = "button_ClearPings";
-            this.button_ClearPings.Size = new System.Drawing.Size(79, 23);
-            this.button_ClearPings.TabIndex = 32;
-            this.button_ClearPings.Text = "Clear";
-            this.button_ClearPings.UseVisualStyleBackColor = true;
-            this.button_ClearPings.Click += new System.EventHandler(this.button_ClearPings_Click);
+            this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStop.Enabled = false;
+            this.textBox_IPScanStop.Location = new System.Drawing.Point(189, 199);
+            this.textBox_IPScanStop.Name = "textBox_IPScanStop";
+            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStop.TabIndex = 36;
             // 
-            // textBox1_PingTrys
+            // Column1Success
             // 
-            this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1_PingTrys.Location = new System.Drawing.Point(156, 22);
-            this.textBox1_PingTrys.Name = "textBox1_PingTrys";
-            this.textBox1_PingTrys.Size = new System.Drawing.Size(33, 20);
-            this.textBox1_PingTrys.TabIndex = 32;
-            this.textBox1_PingTrys.Text = "4";
-            this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Column1Success.Text = "Sts";
+            this.Column1Success.Width = 30;
+            // 
+            // Column2IPAddress
+            // 
+            this.Column2IPAddress.Text = "IP Address";
+            this.Column2IPAddress.Width = 80;
+            // 
+            // Column3Name
+            // 
+            this.Column3Name.Text = "Name";
             // 
             // MainForm
             // 
@@ -1024,6 +1148,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -1102,7 +1228,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button button_Ping;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label_PingResults;
@@ -1120,6 +1245,19 @@
         private System.Windows.Forms.Button button_CancelPing;
         private System.Windows.Forms.Button button_ClearPings;
         private System.Windows.Forms.TextBox textBox1_PingTrys;
+        private System.Windows.Forms.Button button_AdapterOptionsControlPanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListView listView_DBAddresses;
+        private System.Windows.Forms.Button button_ScanNetwork;
+        private System.Windows.Forms.ListView listView_ScannedPadIPs;
+        private System.Windows.Forms.ColumnHeader Column1IPAddres;
+        private System.Windows.Forms.ColumnHeader Column2Name;
+        private System.Windows.Forms.TextBox textBox_IPScanStop;
+        private System.Windows.Forms.TextBox textBox_IPScanStart;
+        private System.Windows.Forms.ColumnHeader Column1Success;
+        private System.Windows.Forms.ColumnHeader Column2IPAddress;
+        private System.Windows.Forms.ColumnHeader Column3Name;
     }
 }
 

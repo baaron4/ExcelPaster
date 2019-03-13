@@ -560,7 +560,14 @@ namespace ExcelPaster
             gateway = GetDefaultGateway(selectedAdapter);
             DefGate_Status.Text = gateway.ToString();
             textBox3.Text = gateway.ToString();
-        
+
+
+            string startAddress = addressIP.ToString().Remove(addressIP.ToString().LastIndexOf(".") + 1) +"0";
+            string endAddress = addressIP.ToString().Remove(addressIP.ToString().LastIndexOf(".") + 1) + "254";
+            textBox_IPScanStart.Text = startAddress;
+            textBox_IPScanStop.Text = endAddress;
+
+
         }
         private void button_RefreshAdapter_Click(object sender, EventArgs e)
         {
@@ -631,6 +638,7 @@ namespace ExcelPaster
                     comboBox_DBFile.Text = result;
                     Properties.Settings.Default.DatabaseFileLoc = result;
                     Properties.Settings.Default.Save();
+                    SetPadDB();
                 }
             }
         }
@@ -652,7 +660,7 @@ namespace ExcelPaster
                     }
                     
                 }
-                Companys = PadInfo.Select(s => s.Company).Distinct().ToList();
+                Companys = PadInfo.Select(s => s.Company).Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
                 Pads = PadInfo.Select(s => s.PadName).Distinct().ToList();
                 Devices = PadInfo.Select(s => s.DeviceName).Distinct().ToList();
 
@@ -683,6 +691,7 @@ namespace ExcelPaster
         private void comboBox_NewPad_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox_NewDevice.Items.Clear();
+
             comboBox_NewDevice.Items.AddRange(PadInfo.Where(c => c.Company == comboBox_NewCompany.SelectedItem.ToString())
                 .Where(c => c.PadName == comboBox_NewPad.SelectedItem.ToString()).Select(s => s.DeviceName).Distinct().ToArray());
             comboBox_NewDevice.SelectedIndex = 0;
@@ -690,6 +699,21 @@ namespace ExcelPaster
             textBox_DBSubMask.Text = "";
             textBox_DBGateway.Text = "";
             comboBox_NewDevice.Enabled = true;
+
+            //Add all IPs to List
+            listView_DBAddresses.Items.Clear();
+            System.Version number= Version.Parse("0.0.0.0");
+            List<PadInfo> padInfoList = PadInfo.Where(c => c.Company == comboBox_NewCompany.SelectedItem.ToString())
+                .Where(c => c.PadName == comboBox_NewPad.SelectedItem.ToString()).OrderByDescending(c => Version.TryParse(c.IPAddress,out number)).Reverse().ToList();
+            foreach (PadInfo pad in padInfoList)
+            {
+                ListViewItem lvi = new ListViewItem(pad.IPAddress.ToString());
+                //lvi.SubItems.Add();
+                lvi.SubItems.Add(pad.DeviceName.ToString());
+
+                listView_DBAddresses.Items.Add(lvi);
+            }
+            
         }
 
         private void comboBox_NewDevice_SelectedIndexChanged(object sender, EventArgs e)
@@ -739,7 +763,7 @@ namespace ExcelPaster
                         //Companys = new List<string>();
                         //Pads = new List<string>();
                         //Devices = new List<string>();
-                        //SetPadDB();
+                        SetPadDB();
                     }
 
                    
@@ -782,15 +806,20 @@ namespace ExcelPaster
             PingObject po = new PingObject(newAddress,pingTrys);
             //-----------------------------------------------------------------
 
-            label_PingResults.Text += "\nPinging "+ textBox_DBAddress.Text + "....";
+          
             if (newAddress != null)
             {
 
+                try
+                {
+                    pingWorker.RunWorkerAsync(argument: po);
+                    label_PingResults.Text += "\nPinging " + textBox_DBAddress.Text + "....";
+                }
+                catch
+                {
+                }
+                
 
-                pingWorker.RunWorkerAsync(argument: po);
-               
-                   
-               
             }
             else
             {
@@ -808,10 +837,10 @@ namespace ExcelPaster
         {
             PingObject po = (PingObject)e.Argument;
             IPAddress newAddress = po.IP;
-            int pingCount = po.Trys;
-            int pingTrys = pingCount;
+            int pingCount = 0;
+            int pingTrys = po.Trys;
             int successCount = 0;
-           
+
             /*
             Process p = new Process();
             // No need to use the CMD processor - just call ping directly.
@@ -826,51 +855,67 @@ namespace ExcelPaster
             var output = p.StandardOutput.ReadToEnd();
             pingWorker.ReportProgress(100,output);
             */
+           
             Ping ping = new Ping();
-            PingReply pingReply = ping.Send(newAddress.ToString());
-            // check when the ping is not success
-            while (pingTrys > 0)
+            PingReply pingReply = null ;
+            try
             {
-                while (!(pingReply.Status.ToString() == "Success") & pingTrys > 0)
+                pingReply = ping.Send(newAddress.ToString());
+                // check when the ping is not success
+                while (pingTrys > 0)
                 {
-                    pingTrys--;
-                    //Console.WriteLine(pingReply.Status.ToString());
-                    // check after the ping is n success
+                    while (!(pingReply.Status.ToString() == "Success") & pingTrys > 0)
+                    {
+                        pingTrys--;
+                        pingCount++;
+                        //Console.WriteLine(pingReply.Status.ToString());
+                        // check after the ping is n success
 
 
-                    var output = "\n" + pingReply.Status.ToString();
-                    pingWorker.ReportProgress(100, output);
-                    pingReply = ping.Send(newAddress.ToString());
+                        var output = "\n    " + pingReply.Status.ToString();
+                        pingWorker.ReportProgress(100, output);
+                        pingReply = ping.Send(newAddress.ToString());
 
+
+                        if (pingWorker.CancellationPending)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (pingReply.Status.ToString().Equals("Success"))
+                    {
+                        pingTrys--;
+                        pingCount++;
+                        // Console.WriteLine(pingReply.Status.ToString());
+                        var output = "\n    " + pingReply.Status.ToString() + " " + pingReply.RoundtripTime.ToString() + "ms";
+                        pingWorker.ReportProgress(100, output);
+                        pingReply = ping.Send(newAddress.ToString());
+                        successCount++;
+                    }
 
                     if (pingWorker.CancellationPending)
                     {
-                        break;
+                        pingTrys = -1;
+                        var output = "\n    Ping Request Canceled";
+                        pingWorker.ReportProgress(100, output);
+
                     }
+                    
                 }
-
-                if (pingReply.Status.ToString().Equals("Success"))
+                if (pingTrys <= 0)
                 {
-                    pingTrys--;
-                    // Console.WriteLine(pingReply.Status.ToString());
-                    var output = pingReply.Status.ToString() + " " + pingReply.RoundtripTime.ToString() + "ms";
-                    pingWorker.ReportProgress(100, output);
-                    pingReply = ping.Send(newAddress.ToString());
-                    successCount++;
-                }
-
-                if (pingWorker.CancellationPending)
-                {
-                    var output = "\nPing Request Canceled";
+                    var output = "\nPinged " + pingCount + " Times. \nSuccessRate of " + Math.Round((float)successCount / (float)pingCount, 2)*100f + "%";
                     pingWorker.ReportProgress(100, output);
                 }
+
             }
-            if (pingTrys < 0)
+            catch
             {
-                var output = "\nPinged " + pingCount + " Times. \nSuccessRate of " + Math.Round ((float)successCount / (float)pingCount,2)+"%" ;
+                var output = "Not a valid IP Address";
                 pingWorker.ReportProgress(100, output);
             }
-            
+           
 
         
         }
@@ -880,6 +925,7 @@ namespace ExcelPaster
         {
             //label_PingResults.Text = "";
             label_PingResults.Text += (string)e.UserState;// output;
+            panel1.VerticalScroll.Value = panel1.VerticalScroll.Maximum;
         }
 
         private void button_SetDynamic_Click(object sender, EventArgs e)
@@ -974,6 +1020,118 @@ namespace ExcelPaster
         private void button_ClearPings_Click(object sender, EventArgs e)
         {
             label_PingResults.Text = "";
+        }
+
+        private void button_AdapterOptionsControlPanel_Click(object sender, EventArgs e)
+        {
+            //var cplPath = System.IO.Path.Combine(Environment.SystemDirectory, "control.exe");
+            //System.Diagnostics.Process.Start(cplPath, "/name Microsoft.NetworkConnections");
+            System.Diagnostics.Process.Start("NCPA.cpl");
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+        public static uint ParseIP(string ip)
+        {
+            byte[] b = ip.Split('.').Select(s => Byte.Parse(s)).ToArray();
+            if (BitConverter.IsLittleEndian) Array.Reverse(b);
+            return BitConverter.ToUInt32(b, 0);
+        }
+
+        public static string FormatIP(uint ip)
+        {
+            byte[] b = BitConverter.GetBytes(ip);
+            if (BitConverter.IsLittleEndian) Array.Reverse(b);
+            return String.Join(".", b.Select(n => n.ToString()));
+        }
+
+
+        int threadCount = 0;
+        public void PingThread(int itemID,string itemAddress)
+        {
+            
+            //listView_ScannedPadIPs.Items[itemID].Name = "";
+
+            IPAddress pingingIP = IPAddress.Parse(itemAddress);
+            Ping ping = new Ping();
+            PingReply pingReply = null;
+            try
+            {
+                pingReply = ping.Send(pingingIP.ToString());
+                int count = 5000;
+                while (!(pingReply.Status.ToString() == "Success"))
+                {
+                    System.Threading.Thread.Sleep(500);
+                    count = count - 500;
+                    if (count <= 0)
+                    {
+                        break;
+                    }
+                }
+                if (pingReply.Status.ToString() == "Success")
+                {
+                    listView_ScannedPadIPs.Items[itemID].SubItems[0].Text = "1";
+                }
+                else
+                {
+                    listView_ScannedPadIPs.Items[itemID].SubItems[0].Text = "0";
+                }
+                
+            }
+            catch
+            {
+            }
+            threadCount--;
+        }
+        
+        private void button_ScanNetwork_Click(object sender, EventArgs e)
+        {
+
+            //Create List to Scan
+            string StartIP = textBox_IPScanStart.Text.ToString();
+            string StopIP = textBox_IPScanStop.Text.ToString();
+
+            uint startInt = ParseIP(StartIP);
+            uint stopInt = ParseIP(StopIP);
+            uint IPCount = stopInt - startInt;
+
+            string[] range = new string[IPCount];
+            for (uint i = 0; i < IPCount; i++)
+            {
+                string curIP = FormatIP(startInt + i);
+                ListViewItem lvi = new ListViewItem("n/s");
+                lvi.SubItems.Add(curIP);
+                lvi.SubItems.Add("n/s");
+                listView_ScannedPadIPs.Items.Add(lvi);
+                range[i] = curIP;
+            }
+
+            //Scan over List
+          
+            int threadMaxCount = 100;
+            foreach (ListViewItem item in listView_ScannedPadIPs.Items)
+            {
+                while (threadCount > threadMaxCount)
+                {
+                    System.Threading.Thread.Sleep(500);
+                }
+                
+                //Create new thread
+                threadCount++;
+                int itemId = item.Index;
+                string itemAddress = item.SubItems[1].Text.ToString();
+                Thread t = new Thread(() => PingThread(itemId,itemAddress));
+                t.Start();
+               
+               
+            }
+        }
+
+        private void textBox_IPScanStart_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
