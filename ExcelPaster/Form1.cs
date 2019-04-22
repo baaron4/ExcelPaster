@@ -1682,10 +1682,10 @@ namespace ExcelPaster
                 for (int n = 0; n < count; n++)
                 {
                     byte[] bit32byte = BitConverter.GetBytes(Int32.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString()));
-                    data[4 * n] = bit32byte[3];
-                    data[(4 * n) + 1] = bit32byte[2];
-                    data[(4 * n) + 2] = bit32byte[1];
-                    data[(4 * n) + 3] = bit32byte[0];
+                    data[4 * n] = bit32byte[1];
+                    data[(4 * n) + 1] = bit32byte[0];
+                    data[(4 * n) + 2] = bit32byte[3];
+                    data[(4 * n) + 3] = bit32byte[2];
                 }
                 return data;
             }
@@ -1696,10 +1696,10 @@ namespace ExcelPaster
                 for (int n = 0; n < count; n++)
                 {
                     byte[] bit32byte = BitConverter.GetBytes(float.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString()));
-                    data[4 * n] = bit32byte[0];
-                    data[(4 * n) + 1] = bit32byte[1];
-                    data[(4 * n) + 2] = bit32byte[2];
-                    data[(4 * n) + 3] = bit32byte[3];
+                    data[4 * n] = bit32byte[1];
+                    data[(4 * n) + 1] = bit32byte[0];
+                    data[(4 * n) + 2] = bit32byte[3];
+                    data[(4 * n) + 3] = bit32byte[2];
                 }
                 return data;
             }
