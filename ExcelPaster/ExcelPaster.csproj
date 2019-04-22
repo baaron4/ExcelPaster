@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="InputHelper.cs" />
     <Compile Include="Keyboard.cs" />
+    <Compile Include="modbusTCP.cs" />
     <Compile Include="PadInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

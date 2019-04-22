@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ModbusTCP;
 
 namespace ExcelPaster
 {
@@ -27,6 +28,9 @@ namespace ExcelPaster
         List<String> Companys;
         List<String> Pads;
         List<String> Devices;
+
+        private ModbusTCP.Master MBmaster;
+
 
         public MainForm()
         {
@@ -103,7 +107,23 @@ namespace ExcelPaster
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Set Default Drop Downs
+            comboBox_ReqMBFunc.SelectedIndex = 2;
+            comboBox_ReqDataType.SelectedIndex = 0;
+            comboBox_ReqFormat.SelectedIndex = 1;
 
+            //Set Grid View to default
+            int number = 5;
+            int startValue = 7000;
+            if (number > 0)
+            {
+                for (int count = 0; count < number; count++)
+                {
+                    string[] rowValues = new string[] {(startValue + count).ToString(), ""};
+                    dataGridView_ReqData.Rows.Add(rowValues );
+                }
+            }
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -759,6 +779,7 @@ namespace ExcelPaster
                         string appendInfo = addcompany +","+ addpad + "," + adddevice + "," + textBox_AddDBAddress.Text + "," + textBox_AddDB_SubMask.Text + "," + textBox_AddDBGateway.Text;
                         
                         File.AppendAllText(Properties.Settings.Default.DatabaseFileLoc, Environment.NewLine + appendInfo);
+                        MessageBox.Show(addcompany + "," + addpad + "," + adddevice + "," + textBox_AddDBAddress.Text + "," + textBox_AddDB_SubMask.Text + "," + textBox_AddDBGateway.Text,"Added Entry" );
                         //PadInfo = new List<PadInfo>();
                         //Companys = new List<string>();
                         //Pads = new List<string>();
@@ -1132,6 +1153,595 @@ namespace ExcelPaster
         private void textBox_IPScanStart_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private byte[] MBRequest = {0x01, 0x01, 0x1b, 0x58, 0x00 ,0x05 };
+        private byte[] MBData;
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Create new modbus master and add event functions
+                MBmaster = new Master(textbox_ModbusIP.Text,ushort.Parse( textBox_Port.Text), true);
+                MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponseData);
+                MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
+                MBmaster.OnSocketData += new ModbusTCP.Master.SocketData(MBmaster_OnSocketData);
+
+            }
+            catch (SystemException error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+        // ------------------------------------------------------------------------
+        // Event for socket data
+        // ------------------------------------------------------------------------
+        private void MBmaster_OnSocketData(byte[] values,bool IsRecieve)
+        {
+            // ------------------------------------------------------------------
+            // Seperate calling threads
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Master.SocketData(MBmaster_OnSocketData), new object[] {  values,IsRecieve });
+                return;
+            }
+            if (IsRecieve)
+            {
+                textBox_ReqData.Text += ">>> " + BitConverter.ToString(values) + System.Environment.NewLine;
+            }
+            else
+            {
+                textBox_ReqData.Text += "<<< " + BitConverter.ToString(values) + System.Environment.NewLine;
+            }
+            
+        }
+        // ------------------------------------------------------------------------
+        // Event for response data
+        // ------------------------------------------------------------------------
+        private void MBmaster_OnResponseData(ushort ID, byte unit, byte function, byte[] values)
+        {
+            // ------------------------------------------------------------------
+            // Seperate calling threads
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponseData), new object[] { ID, unit, function, values });
+                return;
+            }
+
+            // ------------------------------------------------------------------------
+            // Identify requested data
+            switch (ID)
+            {
+                case 1:
+                    group_Data.Text = "Read coils";
+                    MBData = values;
+                    //Change MB Data ListView
+                    ReadValuesDataGrid();
+                    break;
+                case 2:
+                    group_Data.Text = "Read discrete inputs";
+                    MBData = values;
+                    //Change MB Data ListView
+                    ReadValuesDataGrid();
+                    break;
+                case 3:
+                    group_Data.Text = "Read holding register";
+                    MBData = values;
+                    //Change MB Data ListView
+                    ReadValuesDataGrid();
+                    break;
+                case 4:
+                    group_Data.Text = "Read input register";
+                    MBData = values;
+                    //Change MB Data ListView
+                    ReadValuesDataGrid();
+                    break;
+                case 5:
+                    group_Data.Text = "Write single coil";
+                    break;
+                case 6:
+                    group_Data.Text = "Write multiple coils";
+                    break;
+                case 7:
+                    group_Data.Text = "Write single register";
+                    break;
+                case 8:
+                    group_Data.Text = "Write multiple register";
+                    break;
+            }
+            
+        }
+        private void ReadValuesDataGrid()
+        {
+            if (MBData != null)
+            {
+                float divisor = 2;
+                switch(comboBox_ReqDataType.SelectedIndex)
+                {
+                    case 0:
+                        divisor = 2;
+                        break;
+                    case 1:
+                        divisor = 4;
+                        break;
+                    case 2:
+                        divisor = 4;
+                        break;
+                    case 3:
+                        divisor = 0.125f;
+                        break;
+                    default:
+                        break;
+                }
+                int multiplier = 1;
+                if (comboBox_ReqFormat.SelectedIndex > 0)// && (comboBox_ReqDataType.SelectedIndex == 1 || comboBox_ReqDataType.SelectedIndex == 2))
+                {
+                    multiplier = 2;
+                }
+                if (MBData.Count()*multiplier/divisor >= dataGridView_ReqData.Rows.Count)
+                {
+                    for (int counter = 0; counter < dataGridView_ReqData.Rows.Count; counter++)
+                    {
+                        byte[] byteArray;
+                        if (comboBox_ReqDataType.SelectedIndex == 0 && comboBox_ReqFormat.SelectedIndex == 0)
+                        {
+                            //Note only works for 16 bit ints
+                            byteArray = new byte[] { MBData[counter * 2], MBData[(counter * 2) + 1] };
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(byteArray);
+                            int dataValue = BitConverter.ToInt16(byteArray, 0);
+                            dataGridView_ReqData.Rows[counter].Cells[1].Value = (dataValue).ToString();
+                        }
+                        else if (comboBox_ReqDataType.SelectedIndex == 1 && comboBox_ReqFormat.SelectedIndex == 0)
+                        {
+
+                            //Note only works for 32 bit ints
+                            byteArray = new byte[] { MBData[counter * 4], MBData[(counter * 4) + 1], MBData[(counter * 4) + 2], MBData[(counter * 4) + 3] };
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(byteArray);
+                            int dataValue = BitConverter.ToInt32(byteArray, 0);
+                            dataGridView_ReqData.Rows[counter].Cells[1].Value = (dataValue).ToString();
+
+                        }
+                        else if (comboBox_ReqDataType.SelectedIndex == 2 && comboBox_ReqFormat.SelectedIndex == 0)
+                        {
+
+                            //Note only works for floats
+                            byteArray = new byte[] { MBData[counter * 4], MBData[(counter * 4) + 1], MBData[(counter * 4) + 2], MBData[(counter * 4) + 3] };
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(byteArray);
+                            float dataValue = BitConverter.ToSingle(byteArray, 0);
+                            dataGridView_ReqData.Rows[counter].Cells[1].Value = (dataValue).ToString();
+
+
+                        }
+                        else if (comboBox_ReqDataType.SelectedIndex == 3)
+                        {
+
+                            //Note only works for bools
+                            byte[] oneByte = new byte[] { MBData[((int)(counter / 8))] } ;
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(oneByte);
+
+
+                            bool dataValue = (oneByte[0] & (1 << counter % 8)) == 0 ? false : true;
+                            // bool dataValue = BitConverter.ToBoolean( byteArray,counter);//BitConverter.ToInt16(byteArray, 0);
+                             dataGridView_ReqData.Rows[counter].Cells[1].Value = (dataValue).ToString();
+                        }
+
+                        //16 Bit Formats selected
+                        if (comboBox_ReqFormat.SelectedIndex == 1 || comboBox_ReqFormat.SelectedIndex == 2)
+                        {
+                            int size = Int16.Parse(textBox_ReqSize.Text);
+                            if (size % 2 != 0)
+                            {
+                                textBox_ReqSize.Text = (size - 1).ToString();
+                            }
+                            //Data
+                            
+                            //Doing 16 Bit even tho 32 is selected. Will put 32 bit in Data Pair
+                            byteArray = new byte[] { MBData[counter * 2], MBData[(counter * 2) + 1] };
+                            if (BitConverter.IsLittleEndian)
+                                Array.Reverse(byteArray);
+                            int dataValue = BitConverter.ToUInt16(byteArray, 0);
+                            dataGridView_ReqData.Rows[counter].Cells[1].Value = (dataValue).ToString();
+                            
+                            //Data Pair
+                            if ((counter + 1) % 2 == 0)
+                            {
+                                if (comboBox_ReqDataType.SelectedIndex == 1)
+                                {
+                                    //Int 32 Type
+                                    Int32 valueInt32 = 0;
+                                    if (comboBox_ReqFormat.SelectedIndex == 1)
+                                    {
+                                        //16 Bit Modicon
+                                        //int combined = (highBits << 16) | lowBits;
+                                        valueInt32 = (UInt16.Parse(dataGridView_ReqData.Rows[counter].Cells[1].Value.ToString()) << 16) | UInt16.Parse(dataGridView_ReqData.Rows[counter-1].Cells[1].Value.ToString());
+
+
+                                    }
+                                    else if (comboBox_ReqFormat.SelectedIndex == 2)
+                                    {
+                                        //16 Bit Word Swapped
+                                        valueInt32 = (UInt16.Parse(dataGridView_ReqData.Rows[counter-1].Cells[1].Value.ToString()) << 16) | UInt16.Parse(dataGridView_ReqData.Rows[counter].Cells[1].Value.ToString());
+                                    }
+
+
+                                    dataGridView_ReqData.Rows[counter].Cells[2].Value = valueInt32;
+                                }
+                                else if (comboBox_ReqDataType.SelectedIndex == 2)
+                                {
+                                    //Float Type
+                                    float valueFloat = 0;
+                                    if (comboBox_ReqFormat.SelectedIndex == 1)
+                                    {
+                                        //16 Bit Modicon
+                                        //int combined = (highBits << 16) | lowBits;
+                                        valueFloat = BitConverter.ToSingle( BitConverter.GetBytes(( UInt16.Parse(dataGridView_ReqData.Rows[counter].Cells[1].Value.ToString()) << 16) 
+                                            | UInt16.Parse(dataGridView_ReqData.Rows[counter - 1].Cells[1].Value.ToString())),0);
+
+
+                                    }
+                                    else if (comboBox_ReqFormat.SelectedIndex == 2)
+                                    {
+                                        //16 Bit Word Swapped
+                                        valueFloat = BitConverter.ToSingle(BitConverter.GetBytes((UInt16.Parse(dataGridView_ReqData.Rows[counter - 1].Cells[1].Value.ToString()) << 16) 
+                                            | UInt16.Parse(dataGridView_ReqData.Rows[counter - 1].Cells[1].Value.ToString())),0);
+                                    }
+
+
+                                    dataGridView_ReqData.Rows[counter].Cells[2].Value = valueFloat;
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Too few bytes to fit target data type","Data Size Error");
+                }
+                
+            }
+        }
+        // ------------------------------------------------------------------------
+        // Modbus TCP slave exception
+        // ------------------------------------------------------------------------
+        private void MBmaster_OnException(ushort id, byte unit, byte function, byte exception)
+        {
+            string exc = "Modbus says error: ";
+            switch (exception)
+            {
+                case Master.excIllegalFunction: exc += "Illegal function!"; break;
+                case Master.excIllegalDataAdr: exc += "Illegal data address!"; break;
+                case Master.excIllegalDataVal: exc += "Illegal data value!"; break;
+                case Master.excSlaveDeviceFailure: exc += "Slave device failure!"; break;
+                case Master.excAck: exc += "Acknowledge!"; break;
+                case Master.excGatePathUnavailable: exc += "Gateway path unavailabale!"; break;
+                case Master.excExceptionTimeout: exc += "Slave timed out!"; break;
+                case Master.excExceptionConnectionLost: exc += "Connection is lost!"; break;
+                case Master.excExceptionNotConnected: exc += "Not connected!"; break;
+            }
+
+            MessageBox.Show(exc, "Modbus slave exception");
+        }
+
+        private void UpdateMBReq(byte[] value, int code)
+        {
+            switch (code)
+            {
+                case 1:
+                    //ID
+                    MBRequest[0] = value[0];
+                    break;
+                case 2:
+                    //Func
+                    MBRequest[1] = value[0];
+                    break;
+                case 3:
+                    //Start address
+                    MBRequest[2] = value[0];
+                    MBRequest[3] = value[1];
+                    break;
+                case 4:
+                    //Size
+                    MBRequest[4] = value[0];
+                    MBRequest[5] = value[1];
+                    break;
+                   
+
+            }
+            textBox_MBRequestStructure.Text = BitConverter.ToString(MBRequest);
+        }
+        private void textBox_ReqID_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Byte[] b = { Byte.Parse(textBox_ReqID.Text) };
+                UpdateMBReq(b, 1);
+                textBox_ReqID.BackColor = Color.White;
+            }
+            catch
+            {
+                //Not valid
+                textBox_ReqID.BackColor = Color.Red;
+            }
+        }
+
+        private void comboBox_ReqMBFunc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Byte[] b = { 0x00 };
+                switch (comboBox_ReqMBFunc.SelectedIndex)
+                {
+                    case 0:
+                        b[0] = 0x01;
+                        UpdateMBReq(b, 2);
+                        break;
+                    case 1:
+                        b[0] = 0x02 ;
+                        UpdateMBReq(b, 2);
+                        break;
+                    case 2:
+                        b[0] = 0x03;
+                        UpdateMBReq(b, 2);
+                        break;
+                    case 3:
+                        b[0] = 0x04;
+                        UpdateMBReq(b, 2);
+                        break;
+                    case 4:
+                        b[0] = 0x05;
+                        UpdateMBReq(b, 2);
+                        textBox_ReqSize.Text = "1";
+                        break;
+                    case 5:
+                        b[0] = 0x06;
+                        UpdateMBReq(b, 2);
+                        textBox_ReqSize.Text = "1";
+                        break;
+                    case 6:
+                        b[0] = 0x0F;
+                        UpdateMBReq(b, 2);
+                        break;
+                    case 7:
+                        b[0] = 0x10;
+                        UpdateMBReq(b, 2);
+                        break;
+
+
+
+                }
+                textBox_ReqID.BackColor = Color.White;
+            }
+            catch
+            {
+                comboBox_ReqMBFunc.BackColor = Color.Red;
+            }
+        }
+
+        private void textBox_ReqStrAddress_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+               //Change MB Request Data
+                int number = Int16.Parse(textBox_ReqStrAddress.Text);
+
+                byte[] splitb = BitConverter.GetBytes(number);
+                byte[] b = { splitb[1], splitb[0] };
+                UpdateMBReq(b, 3);
+
+                //Change MB Data ListView
+                for(int counter = 0; counter < Int16.Parse(textBox_ReqSize.Text);counter++)
+                {
+                    //listView_ReqData.Items[counter].Text = (number + counter).ToString();
+                    dataGridView_ReqData.Rows[counter].Cells[0].Value = (number + counter).ToString();
+                }
+                
+
+                //Show if Valid
+                textBox_ReqStrAddress.BackColor = Color.White;
+
+
+            }
+            catch
+            {
+                //Not valid
+                textBox_ReqStrAddress.BackColor = Color.Red;
+            }
+        }
+
+        private void textBox_ReqSize_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //Change MB Request Data
+                int number = Int16.Parse(textBox_ReqSize.Text);
+
+                byte[] splitb = BitConverter.GetBytes(number);
+                byte[] b = { splitb[1], splitb[0] };
+                UpdateMBReq(b, 4);
+
+                //Change MB Data ListView
+               // int lviCount = listView_ReqData.Items.Count;
+                int lviCount = dataGridView_ReqData.Rows.Count;
+                //int lviLastValue = Int16.Parse(listView_ReqData.Items[lviCount - 1].Text);
+                int lviLastValue = Int32.Parse(dataGridView_ReqData.Rows[lviCount - 1].Cells[0].Value.ToString());
+                if (number > lviCount)
+                {
+                    for (int count = 0; count < number - lviCount; count++)
+                    {
+                        //listView_ReqData.Items.Add(new ListViewItem( (lviLastValue+count +1).ToString() ));
+                        string[] rowValues = new string[] { (lviLastValue + count + 1).ToString(), "" };
+                        dataGridView_ReqData.Rows.Add(rowValues);
+                        //dataGridView_ReqData.Rows.Add((lviLastValue + count + 1));
+                    }
+                }else 
+                if (number < lviCount)
+                {
+                    
+                    for (int count =0 ; count < lviCount - number; count++)
+                    {
+                        //listView_ReqData.Items.RemoveAt(lviCount - count - 1);
+                        dataGridView_ReqData.Rows.RemoveAt(lviCount - count - 1);
+                    }
+                }
+
+                //Show if Valid
+                textBox_ReqSize.BackColor = Color.White;
+            }
+            catch(Exception exc)
+            {
+                //Not valid
+                textBox_ReqSize.BackColor = Color.Red;
+            }
+        }
+
+        private void button_ReqSend_Click(object sender, EventArgs e)
+        {
+            if (MBmaster == null)
+            {
+                return;
+            }
+            
+            ushort ID = 1;
+            byte unit = Convert.ToByte(textBox_ReqID.Text);
+            ushort StartAddress = ushort.Parse(textBox_ReqStrAddress.Text);
+            UInt16 Length = Convert.ToUInt16(textBox_ReqSize.Text);
+
+            switch (comboBox_ReqMBFunc.SelectedIndex)
+            {
+                case 0:
+                    ID = 1;
+                    MBmaster.ReadCoils(ID, unit, StartAddress, Length);
+                    break;
+                case 1:
+                    ID = 2;
+                    MBmaster.ReadDiscreteInputs(ID, unit, StartAddress, Length);
+                    break;
+                case 2:
+                    ID = 3;
+                    MBmaster.ReadHoldingRegister(ID, unit, StartAddress, Length);
+                    break;
+                case 3:
+                    ID = 4;
+                    MBmaster.ReadInputRegister(ID, unit, StartAddress, Length);
+                    break;
+                case 4:
+                    ID = 5;
+                    
+                    MBmaster.WriteSingleCoils(ID, unit, StartAddress, Convert.ToBoolean(GetData()[0]));
+                    break;
+                case 5:
+                    ID = 6;
+                    MBmaster.WriteSingleRegister(ID, unit, StartAddress, GetData());
+                    break;
+                case 6:
+                    ID = 15;
+                    MBmaster.WriteMultipleCoils(ID, unit, StartAddress, Length, GetData());
+                    break;
+                case 7:
+                    ID = 16;
+                    MBmaster.WriteMultipleRegister(ID, unit, StartAddress, GetData());
+                    break;
+
+
+
+            }
+
+            
+        }
+        private byte[] GetData()
+        {
+            int count = dataGridView_ReqData.Rows.Count;
+            byte[] data;
+
+            if (comboBox_ReqDataType.SelectedIndex == 0)
+            {
+                //16 bit Int
+                data = new byte[count * 2];
+                for (int n = 0; n < count; n++)
+                {
+                    byte[] bit16byte = BitConverter.GetBytes(Int16.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString()));
+                    data[2 * n] = bit16byte[1];
+                    data[(2 * n) + 1] = bit16byte[0];
+                }
+                return data;
+            }
+            else if (comboBox_ReqDataType.SelectedIndex == 1)
+            {
+                //32 bit Int
+                data = new byte[count * 4];
+                for (int n = 0; n < count; n++)
+                {
+                    byte[] bit32byte = BitConverter.GetBytes(Int32.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString()));
+                    data[4 * n] = bit32byte[3];
+                    data[(4 * n) + 1] = bit32byte[2];
+                    data[(4 * n) + 2] = bit32byte[1];
+                    data[(4 * n) + 3] = bit32byte[0];
+                }
+                return data;
+            }
+            else if (comboBox_ReqDataType.SelectedIndex == 2)
+            {
+                //32 bit Float
+                data = new byte[count * 4];
+                for (int n = 0; n < count; n++)
+                {
+                    byte[] bit32byte = BitConverter.GetBytes(float.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString()));
+                    data[4 * n] = bit32byte[0];
+                    data[(4 * n) + 1] = bit32byte[1];
+                    data[(4 * n) + 2] = bit32byte[2];
+                    data[(4 * n) + 3] = bit32byte[3];
+                }
+                return data;
+            }
+            else if (comboBox_ReqDataType.SelectedIndex == 3)
+            {
+                //Bool
+                data = new byte[count/8 +1];
+                bool[] boolArray = new bool[8];
+                for (int n = 0; n < count; n++)
+                {
+                   boolArray[n%8] = bool.Parse(dataGridView_ReqData.Rows[n].Cells[1].Value.ToString());
+                    if (n%8 == 7 || n ==count-1)
+                    {
+                        int index = 7;
+                        // Loop through the array
+                        foreach (bool b in boolArray)
+                        {
+                            // if the element is 'true' set the bit at that position
+                            if (b)
+                                data[n / 8] |= (byte)(1 << (7 - index));
+
+                            index--;
+                        }
+                        
+                    }
+                    
+                }
+                return data;
+            }
+
+            return null;
+            
+
+        }
+        private void comboBox_ReqDataType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReadValuesDataGrid();
+        }
+
+        private void comboBox_ReqFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReadValuesDataGrid();
         }
     }
 }

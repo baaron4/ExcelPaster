@@ -54,11 +54,16 @@
             this.Column1IPAddres = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button_ScanNetwork = new System.Windows.Forms.Button();
+            this.textBox_IPScanStop = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_PingResults = new System.Windows.Forms.Label();
+            this.textBox_IPScanStart = new System.Windows.Forms.TextBox();
             this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
+            this.button_ScanNetwork = new System.Windows.Forms.Button();
             this.listView_ScannedPadIPs = new System.Windows.Forms.ListView();
+            this.Column1Success = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_ClearPings = new System.Windows.Forms.Button();
             this.button_CancelPing = new System.Windows.Forms.Button();
             this.button_Ping = new System.Windows.Forms.Button();
@@ -106,6 +111,26 @@
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.group_Data = new System.Windows.Forms.GroupBox();
+            this.textBox_ReqData = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBox_MBRequestStructure = new System.Windows.Forms.TextBox();
+            this.button_ReqSend = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox_ReqSize = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBox_ReqMBFunc = new System.Windows.Forms.ComboBox();
+            this.textBox_ReqStrAddress = new System.Windows.Forms.TextBox();
+            this.textBox_ReqID = new System.Windows.Forms.TextBox();
+            this.grpStart = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox_Port = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.textbox_ModbusIP = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
             this.button_UserLoad = new System.Windows.Forms.Button();
@@ -118,11 +143,14 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.textBox_IPScanStart = new System.Windows.Forms.TextBox();
-            this.textBox_IPScanStop = new System.Windows.Forms.TextBox();
-            this.Column1Success = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridView_ReqData = new System.Windows.Forms.DataGridView();
+            this.comboBox_ReqDataType = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBox_ReqFormat = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -131,7 +159,12 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.group_Data.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.grpStart.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -423,16 +456,14 @@
             this.groupBox4.Text = "Ping IP";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
-            // button_ScanNetwork
+            // textBox_IPScanStop
             // 
-            this.button_ScanNetwork.Enabled = false;
-            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 197);
-            this.button_ScanNetwork.Name = "button_ScanNetwork";
-            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
-            this.button_ScanNetwork.TabIndex = 33;
-            this.button_ScanNetwork.Text = "Scan Network";
-            this.button_ScanNetwork.UseVisualStyleBackColor = true;
-            this.button_ScanNetwork.Click += new System.EventHandler(this.button_ScanNetwork_Click);
+            this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStop.Enabled = false;
+            this.textBox_IPScanStop.Location = new System.Drawing.Point(189, 199);
+            this.textBox_IPScanStop.Name = "textBox_IPScanStop";
+            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStop.TabIndex = 36;
             // 
             // panel1
             // 
@@ -454,6 +485,16 @@
             this.label_PingResults.TabIndex = 30;
             this.label_PingResults.Text = "Ping Results";
             // 
+            // textBox_IPScanStart
+            // 
+            this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStart.Enabled = false;
+            this.textBox_IPScanStart.Location = new System.Drawing.Point(92, 199);
+            this.textBox_IPScanStart.Name = "textBox_IPScanStart";
+            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStart.TabIndex = 35;
+            this.textBox_IPScanStart.TextChanged += new System.EventHandler(this.textBox_IPScanStart_TextChanged);
+            // 
             // textBox1_PingTrys
             // 
             this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
@@ -463,6 +504,17 @@
             this.textBox1_PingTrys.TabIndex = 32;
             this.textBox1_PingTrys.Text = "4";
             this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button_ScanNetwork
+            // 
+            this.button_ScanNetwork.Enabled = false;
+            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 197);
+            this.button_ScanNetwork.Name = "button_ScanNetwork";
+            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
+            this.button_ScanNetwork.TabIndex = 33;
+            this.button_ScanNetwork.Text = "Scan Network";
+            this.button_ScanNetwork.UseVisualStyleBackColor = true;
+            this.button_ScanNetwork.Click += new System.EventHandler(this.button_ScanNetwork_Click);
             // 
             // listView_ScannedPadIPs
             // 
@@ -479,6 +531,20 @@
             this.listView_ScannedPadIPs.TabIndex = 32;
             this.listView_ScannedPadIPs.UseCompatibleStateImageBehavior = false;
             this.listView_ScannedPadIPs.View = System.Windows.Forms.View.Details;
+            // 
+            // Column1Success
+            // 
+            this.Column1Success.Text = "Sts";
+            this.Column1Success.Width = 30;
+            // 
+            // Column2IPAddress
+            // 
+            this.Column2IPAddress.Text = "IP Address";
+            this.Column2IPAddress.Width = 80;
+            // 
+            // Column3Name
+            // 
+            this.Column3Name.Text = "Name";
             // 
             // button_ClearPings
             // 
@@ -968,12 +1034,235 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.group_Data);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.grpStart);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1024, 480);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // group_Data
+            // 
+            this.group_Data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_Data.Controls.Add(this.label29);
+            this.group_Data.Controls.Add(this.comboBox_ReqFormat);
+            this.group_Data.Controls.Add(this.label28);
+            this.group_Data.Controls.Add(this.dataGridView_ReqData);
+            this.group_Data.Controls.Add(this.textBox_ReqData);
+            this.group_Data.Controls.Add(this.comboBox_ReqDataType);
+            this.group_Data.Location = new System.Drawing.Point(3, 200);
+            this.group_Data.Name = "group_Data";
+            this.group_Data.Size = new System.Drawing.Size(1018, 279);
+            this.group_Data.TabIndex = 14;
+            this.group_Data.TabStop = false;
+            this.group_Data.Text = "Data";
+            // 
+            // textBox_ReqData
+            // 
+            this.textBox_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_ReqData.Location = new System.Drawing.Point(430, 19);
+            this.textBox_ReqData.Multiline = true;
+            this.textBox_ReqData.Name = "textBox_ReqData";
+            this.textBox_ReqData.ReadOnly = true;
+            this.textBox_ReqData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_ReqData.Size = new System.Drawing.Size(570, 252);
+            this.textBox_ReqData.TabIndex = 30;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.label27);
+            this.groupBox5.Controls.Add(this.textBox_MBRequestStructure);
+            this.groupBox5.Controls.Add(this.button_ReqSend);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.textBox_ReqSize);
+            this.groupBox5.Controls.Add(this.label25);
+            this.groupBox5.Controls.Add(this.label24);
+            this.groupBox5.Controls.Add(this.label23);
+            this.groupBox5.Controls.Add(this.comboBox_ReqMBFunc);
+            this.groupBox5.Controls.Add(this.textBox_ReqStrAddress);
+            this.groupBox5.Controls.Add(this.textBox_ReqID);
+            this.groupBox5.Location = new System.Drawing.Point(3, 78);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1018, 116);
+            this.groupBox5.TabIndex = 13;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Data Exchange";
+            // 
+            // label27
+            // 
+            this.label27.Location = new System.Drawing.Point(14, 64);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(128, 19);
+            this.label27.TabIndex = 28;
+            this.label27.Text = "Request Packet to Send";
+            // 
+            // textBox_MBRequestStructure
+            // 
+            this.textBox_MBRequestStructure.Location = new System.Drawing.Point(17, 86);
+            this.textBox_MBRequestStructure.Name = "textBox_MBRequestStructure";
+            this.textBox_MBRequestStructure.ReadOnly = true;
+            this.textBox_MBRequestStructure.Size = new System.Drawing.Size(453, 20);
+            this.textBox_MBRequestStructure.TabIndex = 27;
+            this.textBox_MBRequestStructure.Text = "01-03-1B-58-00-05";
+            // 
+            // button_ReqSend
+            // 
+            this.button_ReqSend.Location = new System.Drawing.Point(491, 78);
+            this.button_ReqSend.Name = "button_ReqSend";
+            this.button_ReqSend.Size = new System.Drawing.Size(86, 28);
+            this.button_ReqSend.TabIndex = 10;
+            this.button_ReqSend.Text = "Send";
+            this.button_ReqSend.Click += new System.EventHandler(this.button_ReqSend_Click);
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(383, 23);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(87, 14);
+            this.label26.TabIndex = 26;
+            this.label26.Text = "Size";
+            // 
+            // textBox_ReqSize
+            // 
+            this.textBox_ReqSize.Location = new System.Drawing.Point(386, 40);
+            this.textBox_ReqSize.Name = "textBox_ReqSize";
+            this.textBox_ReqSize.Size = new System.Drawing.Size(87, 20);
+            this.textBox_ReqSize.TabIndex = 25;
+            this.textBox_ReqSize.Text = "5";
+            this.textBox_ReqSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_ReqSize.TextChanged += new System.EventHandler(this.textBox_ReqSize_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(290, 23);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(87, 14);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "Start Address";
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(106, 24);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(106, 14);
+            this.label24.TabIndex = 23;
+            this.label24.Text = "Modbus Function";
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(13, 24);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(74, 14);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "Unit ID";
+            // 
+            // comboBox_ReqMBFunc
+            // 
+            this.comboBox_ReqMBFunc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReqMBFunc.FormattingEnabled = true;
+            this.comboBox_ReqMBFunc.Items.AddRange(new object[] {
+            "1 - Read Coil Status",
+            "2 - Read Input Status",
+            "3 - Read Registers",
+            "4 - Read Input Registers",
+            "5 - Write Single Coil",
+            "6 - Write Single Register",
+            "15 - Write Multiple Coils",
+            "16 - Write Multiple Registers"});
+            this.comboBox_ReqMBFunc.Location = new System.Drawing.Point(106, 40);
+            this.comboBox_ReqMBFunc.Name = "comboBox_ReqMBFunc";
+            this.comboBox_ReqMBFunc.Size = new System.Drawing.Size(181, 21);
+            this.comboBox_ReqMBFunc.TabIndex = 22;
+            this.comboBox_ReqMBFunc.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqMBFunc_SelectedIndexChanged);
+            // 
+            // textBox_ReqStrAddress
+            // 
+            this.textBox_ReqStrAddress.Location = new System.Drawing.Point(293, 40);
+            this.textBox_ReqStrAddress.Name = "textBox_ReqStrAddress";
+            this.textBox_ReqStrAddress.Size = new System.Drawing.Size(87, 20);
+            this.textBox_ReqStrAddress.TabIndex = 21;
+            this.textBox_ReqStrAddress.Text = "7000";
+            this.textBox_ReqStrAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_ReqStrAddress.TextChanged += new System.EventHandler(this.textBox_ReqStrAddress_TextChanged);
+            // 
+            // textBox_ReqID
+            // 
+            this.textBox_ReqID.Location = new System.Drawing.Point(16, 41);
+            this.textBox_ReqID.Name = "textBox_ReqID";
+            this.textBox_ReqID.Size = new System.Drawing.Size(87, 20);
+            this.textBox_ReqID.TabIndex = 20;
+            this.textBox_ReqID.Text = "1";
+            this.textBox_ReqID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox_ReqID.TextChanged += new System.EventHandler(this.textBox_ReqID_TextChanged);
+            // 
+            // grpStart
+            // 
+            this.grpStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpStart.Controls.Add(this.label22);
+            this.grpStart.Controls.Add(this.textBox_Port);
+            this.grpStart.Controls.Add(this.label21);
+            this.grpStart.Controls.Add(this.btnConnect);
+            this.grpStart.Controls.Add(this.textbox_ModbusIP);
+            this.grpStart.Location = new System.Drawing.Point(3, 14);
+            this.grpStart.Name = "grpStart";
+            this.grpStart.Size = new System.Drawing.Size(1018, 55);
+            this.grpStart.TabIndex = 12;
+            this.grpStart.TabStop = false;
+            this.grpStart.Text = "Start communication";
+            // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(186, 28);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(41, 14);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Port";
+            // 
+            // textBox_Port
+            // 
+            this.textBox_Port.Location = new System.Drawing.Point(233, 24);
+            this.textBox_Port.Name = "textBox_Port";
+            this.textBox_Port.Size = new System.Drawing.Size(87, 20);
+            this.textBox_Port.TabIndex = 8;
+            this.textBox_Port.Text = "502";
+            this.textBox_Port.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(13, 28);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 14);
+            this.label21.TabIndex = 7;
+            this.label21.Text = "IP Address";
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(491, 20);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(86, 28);
+            this.btnConnect.TabIndex = 6;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
+            // textbox_ModbusIP
+            // 
+            this.textbox_ModbusIP.Location = new System.Drawing.Point(93, 25);
+            this.textbox_ModbusIP.Name = "textbox_ModbusIP";
+            this.textbox_ModbusIP.Size = new System.Drawing.Size(87, 20);
+            this.textbox_ModbusIP.TabIndex = 5;
+            this.textbox_ModbusIP.Text = "169.254.0.12";
+            this.textbox_ModbusIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tabPage4
             // 
@@ -1096,38 +1385,85 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // textBox_IPScanStart
+            // dataGridView_ReqData
             // 
-            this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_IPScanStart.Enabled = false;
-            this.textBox_IPScanStart.Location = new System.Drawing.Point(92, 199);
-            this.textBox_IPScanStart.Name = "textBox_IPScanStart";
-            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
-            this.textBox_IPScanStart.TabIndex = 35;
-            this.textBox_IPScanStart.TextChanged += new System.EventHandler(this.textBox_IPScanStart_TextChanged);
+            this.dataGridView_ReqData.AllowUserToAddRows = false;
+            this.dataGridView_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView_ReqData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ReqData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dataGridView_ReqData.Location = new System.Drawing.Point(128, 19);
+            this.dataGridView_ReqData.Name = "dataGridView_ReqData";
+            this.dataGridView_ReqData.Size = new System.Drawing.Size(296, 250);
+            this.dataGridView_ReqData.TabIndex = 35;
             // 
-            // textBox_IPScanStop
+            // comboBox_ReqDataType
             // 
-            this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_IPScanStop.Enabled = false;
-            this.textBox_IPScanStop.Location = new System.Drawing.Point(189, 199);
-            this.textBox_IPScanStop.Name = "textBox_IPScanStop";
-            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
-            this.textBox_IPScanStop.TabIndex = 36;
+            this.comboBox_ReqDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReqDataType.FormattingEnabled = true;
+            this.comboBox_ReqDataType.Items.AddRange(new object[] {
+            "16-Bit",
+            "32-Bit",
+            "Float",
+            "Bool"});
+            this.comboBox_ReqDataType.Location = new System.Drawing.Point(6, 45);
+            this.comboBox_ReqDataType.Name = "comboBox_ReqDataType";
+            this.comboBox_ReqDataType.Size = new System.Drawing.Size(103, 21);
+            this.comboBox_ReqDataType.TabIndex = 29;
+            this.comboBox_ReqDataType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqDataType_SelectedIndexChanged);
             // 
-            // Column1Success
+            // label28
             // 
-            this.Column1Success.Text = "Sts";
-            this.Column1Success.Width = 30;
+            this.label28.Location = new System.Drawing.Point(3, 28);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(106, 14);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "Data Type";
             // 
-            // Column2IPAddress
+            // comboBox_ReqFormat
             // 
-            this.Column2IPAddress.Text = "IP Address";
-            this.Column2IPAddress.Width = 80;
+            this.comboBox_ReqFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReqFormat.FormattingEnabled = true;
+            this.comboBox_ReqFormat.Items.AddRange(new object[] {
+            "32-Bit",
+            "16-Bit Modicon",
+            "16-Bit Word Swapped"});
+            this.comboBox_ReqFormat.Location = new System.Drawing.Point(6, 100);
+            this.comboBox_ReqFormat.Name = "comboBox_ReqFormat";
+            this.comboBox_ReqFormat.Size = new System.Drawing.Size(103, 21);
+            this.comboBox_ReqFormat.TabIndex = 36;
+            this.comboBox_ReqFormat.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqFormat_SelectedIndexChanged);
             // 
-            // Column3Name
+            // label29
             // 
-            this.Column3Name.Text = "Name";
+            this.label29.Location = new System.Drawing.Point(6, 83);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(106, 14);
+            this.label29.TabIndex = 37;
+            this.label29.Text = "Data Format";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Address";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Data";
+            this.Column2.Name = "Column2";
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Data Pair";
+            this.Column3.Name = "Column3";
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainForm
             // 
@@ -1154,8 +1490,16 @@
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.group_Data.ResumeLayout(false);
+            this.group_Data.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.grpStart.ResumeLayout(false);
+            this.grpStart.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1258,6 +1602,34 @@
         private System.Windows.Forms.ColumnHeader Column1Success;
         private System.Windows.Forms.ColumnHeader Column2IPAddress;
         private System.Windows.Forms.ColumnHeader Column3Name;
+        private System.Windows.Forms.GroupBox grpStart;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.TextBox textbox_ModbusIP;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBox_Port;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBox_ReqID;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBox_ReqMBFunc;
+        private System.Windows.Forms.TextBox textBox_ReqStrAddress;
+        private System.Windows.Forms.GroupBox group_Data;
+        private System.Windows.Forms.TextBox textBox_ReqData;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox textBox_MBRequestStructure;
+        private System.Windows.Forms.Button button_ReqSend;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBox_ReqSize;
+        private System.Windows.Forms.DataGridView dataGridView_ReqData;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox comboBox_ReqDataType;
+        private System.Windows.Forms.ComboBox comboBox_ReqFormat;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 
