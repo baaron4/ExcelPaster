@@ -112,7 +112,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.group_Data = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.comboBox_ReqFormat = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.dataGridView_ReqData = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox_ReqData = new System.Windows.Forms.TextBox();
+            this.comboBox_ReqDataType = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label27 = new System.Windows.Forms.Label();
             this.textBox_MBRequestStructure = new System.Windows.Forms.TextBox();
@@ -143,14 +151,8 @@
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.dataGridView_ReqData = new System.Windows.Forms.DataGridView();
-            this.comboBox_ReqDataType = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.comboBox_ReqFormat = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button_StartPID = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -161,10 +163,11 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.group_Data.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -235,6 +238,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1063,6 +1067,71 @@
             this.group_Data.TabStop = false;
             this.group_Data.Text = "Data";
             // 
+            // label29
+            // 
+            this.label29.Location = new System.Drawing.Point(6, 83);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(106, 14);
+            this.label29.TabIndex = 37;
+            this.label29.Text = "Data Format";
+            // 
+            // comboBox_ReqFormat
+            // 
+            this.comboBox_ReqFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReqFormat.FormattingEnabled = true;
+            this.comboBox_ReqFormat.Items.AddRange(new object[] {
+            "32-Bit",
+            "16-Bit Modicon",
+            "16-Bit Word Swapped"});
+            this.comboBox_ReqFormat.Location = new System.Drawing.Point(6, 100);
+            this.comboBox_ReqFormat.Name = "comboBox_ReqFormat";
+            this.comboBox_ReqFormat.Size = new System.Drawing.Size(103, 21);
+            this.comboBox_ReqFormat.TabIndex = 36;
+            this.comboBox_ReqFormat.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqFormat_SelectedIndexChanged);
+            // 
+            // label28
+            // 
+            this.label28.Location = new System.Drawing.Point(3, 28);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(106, 14);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "Data Type";
+            // 
+            // dataGridView_ReqData
+            // 
+            this.dataGridView_ReqData.AllowUserToAddRows = false;
+            this.dataGridView_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView_ReqData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ReqData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dataGridView_ReqData.Location = new System.Drawing.Point(128, 19);
+            this.dataGridView_ReqData.Name = "dataGridView_ReqData";
+            this.dataGridView_ReqData.Size = new System.Drawing.Size(296, 250);
+            this.dataGridView_ReqData.TabIndex = 35;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Address";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 60;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Data";
+            this.Column2.Name = "Column2";
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Data Pair";
+            this.Column3.Name = "Column3";
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // textBox_ReqData
             // 
             this.textBox_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1075,6 +1144,21 @@
             this.textBox_ReqData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_ReqData.Size = new System.Drawing.Size(570, 252);
             this.textBox_ReqData.TabIndex = 30;
+            // 
+            // comboBox_ReqDataType
+            // 
+            this.comboBox_ReqDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReqDataType.FormattingEnabled = true;
+            this.comboBox_ReqDataType.Items.AddRange(new object[] {
+            "16-Bit",
+            "32-Bit",
+            "Float",
+            "Bool"});
+            this.comboBox_ReqDataType.Location = new System.Drawing.Point(6, 45);
+            this.comboBox_ReqDataType.Name = "comboBox_ReqDataType";
+            this.comboBox_ReqDataType.Size = new System.Drawing.Size(103, 21);
+            this.comboBox_ReqDataType.TabIndex = 29;
+            this.comboBox_ReqDataType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqDataType_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -1385,85 +1469,25 @@
             this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
             this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
             // 
-            // dataGridView_ReqData
+            // tabPage5
             // 
-            this.dataGridView_ReqData.AllowUserToAddRows = false;
-            this.dataGridView_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView_ReqData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ReqData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dataGridView_ReqData.Location = new System.Drawing.Point(128, 19);
-            this.dataGridView_ReqData.Name = "dataGridView_ReqData";
-            this.dataGridView_ReqData.Size = new System.Drawing.Size(296, 250);
-            this.dataGridView_ReqData.TabIndex = 35;
+            this.tabPage5.Controls.Add(this.button_StartPID);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "PID";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // comboBox_ReqDataType
+            // button_StartPID
             // 
-            this.comboBox_ReqDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_ReqDataType.FormattingEnabled = true;
-            this.comboBox_ReqDataType.Items.AddRange(new object[] {
-            "16-Bit",
-            "32-Bit",
-            "Float",
-            "Bool"});
-            this.comboBox_ReqDataType.Location = new System.Drawing.Point(6, 45);
-            this.comboBox_ReqDataType.Name = "comboBox_ReqDataType";
-            this.comboBox_ReqDataType.Size = new System.Drawing.Size(103, 21);
-            this.comboBox_ReqDataType.TabIndex = 29;
-            this.comboBox_ReqDataType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqDataType_SelectedIndexChanged);
-            // 
-            // label28
-            // 
-            this.label28.Location = new System.Drawing.Point(3, 28);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(106, 14);
-            this.label28.TabIndex = 30;
-            this.label28.Text = "Data Type";
-            // 
-            // comboBox_ReqFormat
-            // 
-            this.comboBox_ReqFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_ReqFormat.FormattingEnabled = true;
-            this.comboBox_ReqFormat.Items.AddRange(new object[] {
-            "32-Bit",
-            "16-Bit Modicon",
-            "16-Bit Word Swapped"});
-            this.comboBox_ReqFormat.Location = new System.Drawing.Point(6, 100);
-            this.comboBox_ReqFormat.Name = "comboBox_ReqFormat";
-            this.comboBox_ReqFormat.Size = new System.Drawing.Size(103, 21);
-            this.comboBox_ReqFormat.TabIndex = 36;
-            this.comboBox_ReqFormat.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqFormat_SelectedIndexChanged);
-            // 
-            // label29
-            // 
-            this.label29.Location = new System.Drawing.Point(6, 83);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(106, 14);
-            this.label29.TabIndex = 37;
-            this.label29.Text = "Data Format";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Address";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 60;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Data";
-            this.Column2.Name = "Column2";
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Data Pair";
-            this.Column3.Name = "Column3";
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.button_StartPID.Location = new System.Drawing.Point(272, 97);
+            this.button_StartPID.Name = "button_StartPID";
+            this.button_StartPID.Size = new System.Drawing.Size(75, 58);
+            this.button_StartPID.TabIndex = 0;
+            this.button_StartPID.Text = "Start PID";
+            this.button_StartPID.UseVisualStyleBackColor = true;
+            this.button_StartPID.Click += new System.EventHandler(this.button_StartPID_Click);
             // 
             // MainForm
             // 
@@ -1493,13 +1517,14 @@
             this.tabPage2.ResumeLayout(false);
             this.group_Data.ResumeLayout(false);
             this.group_Data.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.grpStart.ResumeLayout(false);
             this.grpStart.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).EndInit();
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1630,6 +1655,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button button_StartPID;
     }
 }
 
