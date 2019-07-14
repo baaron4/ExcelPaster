@@ -684,6 +684,15 @@ namespace ExcelPaster
                 Pads = PadInfo.Select(s => s.PadName).Distinct().ToList();
                 Devices = PadInfo.Select(s => s.DeviceName).Distinct().ToList();
 
+                comboBox_NewCompany.Items.Clear();
+                comboBox_AddDBCompany.Items.Clear();
+
+                comboBox_NewPad.Items.Clear();
+                comboBox_AddDBPad.Items.Clear();
+
+                comboBox_NewDevice.Items.Clear();
+                comboBox_AddDBDevice.Items.Clear();
+
                 comboBox_NewCompany.Items.AddRange(Companys.ToArray());
                 comboBox_AddDBCompany.Items.AddRange(Companys.ToArray());
 
@@ -960,12 +969,12 @@ namespace ExcelPaster
             p.WaitForExit();
             System.Threading.Thread.Sleep(2000);
             
-            adapterList.Clear();
-            comboBox_NetworkAdapter.Items.Clear();
-            LoadAdapters();
-            textBox_IPAdress.BackColor = Color.LightGreen;
-            textBox2.BackColor = Color.LightGreen;
-            textBox3.BackColor = Color.LightGreen; 
+            //adapterList.Clear();
+            //comboBox_NetworkAdapter.Items.Clear();
+            //LoadAdapters();
+            //textBox_IPAdress.BackColor = Color.LightGreen;
+            //textBox2.BackColor = Color.LightGreen;
+            //textBox3.BackColor = Color.LightGreen; 
         }
 
        
