@@ -675,7 +675,7 @@ namespace ExcelPaster
                     if (ListS.Count >= 5)
                     {
                         PadInfo pInfo = new PadInfo(ListS[0], ListS[1], ListS[2], ListS[3], ListS[4], ListS[5]);
-
+                        PadInfo.Clear();
                         PadInfo.Add(pInfo);
                     }
                     
@@ -684,14 +684,14 @@ namespace ExcelPaster
                 Pads = PadInfo.Select(s => s.PadName).Distinct().ToList();
                 Devices = PadInfo.Select(s => s.DeviceName).Distinct().ToList();
 
-                comboBox_NewCompany.Items.Clear();
-                comboBox_AddDBCompany.Items.Clear();
+                //comboBox_NewCompany.Items.Clear();
+                //comboBox_AddDBCompany.Items.Clear();
 
-                comboBox_NewPad.Items.Clear();
-                comboBox_AddDBPad.Items.Clear();
+                //comboBox_NewPad.Items.Clear();
+                //comboBox_AddDBPad.Items.Clear();
 
-                comboBox_NewDevice.Items.Clear();
-                comboBox_AddDBDevice.Items.Clear();
+                //comboBox_NewDevice.Items.Clear();
+                //comboBox_AddDBDevice.Items.Clear();
 
                 comboBox_NewCompany.Items.AddRange(Companys.ToArray());
                 comboBox_AddDBCompany.Items.AddRange(Companys.ToArray());
