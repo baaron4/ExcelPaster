@@ -62,7 +62,7 @@ namespace ExcelPaster
             comboBox_TODOFileLoc.Text = Properties.Settings.Default.TODOFileLoc;
             textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
 
-
+            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
         }
         public enum ButtonState
         {
@@ -214,7 +214,7 @@ namespace ExcelPaster
                 if (fInfo.Extension.Equals(".csv", StringComparison.OrdinalIgnoreCase))
                 {
                     CSVReader reader = new CSVReader();
-                    reader.ParseCSV(fInfo.FullName);
+                    reader.ParseCSV(fInfo.FullName,"");
                     Typer typer = new Typer();
                     typer.strokeDelay = KeypressDelay;
                     typer.ih.kscdelay = KeypressStateDelay;
@@ -669,13 +669,14 @@ namespace ExcelPaster
                 comboBox_DBFile.Text = Properties.Settings.Default.DatabaseFileLoc;
                 //Load Pad DB
                 CSVReader padReader = new CSVReader();
-                padReader.ParseCSV(Properties.Settings.Default.DatabaseFileLoc);
+                padReader.ParseCSV(Properties.Settings.Default.DatabaseFileLoc,"");
+                PadInfo.Clear();
                 foreach (List<string> ListS in padReader.GetArrayStorage())
                 {
                     if (ListS.Count >= 5)
                     {
                         PadInfo pInfo = new PadInfo(ListS[0], ListS[1], ListS[2], ListS[3], ListS[4], ListS[5]);
-                        PadInfo.Clear();
+                       
                         PadInfo.Add(pInfo);
                     }
                     
@@ -1011,7 +1012,7 @@ namespace ExcelPaster
             {
                 int NameColumnIndex = 0;
                 CSVReader todoReader = new CSVReader();
-                todoReader.ParseCSV(comboBox_TODOFileLoc.Text);
+                todoReader.ParseCSV(comboBox_TODOFileLoc.Text,"");
                 //Assign Coloumn to search for Name
                 foreach (string cell in todoReader.GetArrayStorage().First())
                 {
@@ -1756,6 +1757,81 @@ namespace ExcelPaster
         private void button_StartPID_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button_Change_SourceDB_CSV_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog3.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_SourceDB_CSV_Loc.Text = result;
+                }
+            }
+        }
+
+        private void button_Change_TargetDB_CSV_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog3.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_TargetDB_CSV_Loc.Text = result;
+                }
+            }
+        }
+
+        string SourceDB = "";
+        string targetDB = "";
+        string DB_OUT = "";
+        private void button_STARTCOPY_Click(object sender, EventArgs e)
+        {
+            
+            label_DBCopy_Results.Text = "Working...";
+            if (!backgroundWorker1.IsBusy)
+            {
+                SourceDB = comboBox_SourceDB_CSV_Loc.Text;
+                targetDB = comboBox_TargetDB_CSV_Loc.Text;
+                DB_OUT = comboBox_DB_COPY_OUT.Text;
+                backgroundWorker1.RunWorkerAsync();
+            }
+            
+
+           
+        }
+
+        private void button_DB_OUT_LOC_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog3.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_DB_COPY_OUT.Text = result;
+                }
+            }
+        }
+        public void UpdateDBResult(string text)
+        {
+            label_DBCopy_Results.Text = text;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ExcelPaster.DBSearchCopy dBSearchCopy = new DBSearchCopy();
+            dBSearchCopy.StartSearchCopy(SourceDB,targetDB,DB_OUT);
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            label_DBCopy_Results.Text = "Done!";
+        }
+
+        private void checkBox_levenstheins_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
         }
     }
 }

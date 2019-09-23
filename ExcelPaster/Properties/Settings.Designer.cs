@@ -93,5 +93,17 @@ namespace ExcelPaster.Properties {
                 this["UserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseLevensteins {
+            get {
+                return ((bool)(this["UseLevensteins"]));
+            }
+            set {
+                this["UseLevensteins"] = value;
+            }
+        }
     }
 }

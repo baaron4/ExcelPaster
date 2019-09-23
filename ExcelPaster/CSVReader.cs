@@ -17,12 +17,12 @@ namespace ExcelPaster
         {
             return ArrayStorage;
         }
-        public void ParseCSV(string csv)
+        public void ParseCSV(string csv,string customEndline)
         {
             using (var fs = new FileStream(csv, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 var sr = new StreamReader(fs);
-               ParseCSV(sr);
+               ParseCSV(sr,customEndline);
             }
         }
         private void ReadCharacter(char c)
@@ -37,12 +37,25 @@ namespace ExcelPaster
                 CurCell = "";
             }
         }
-        private void ParseCSV(StreamReader stream)
+        private void ParseCSV(StreamReader stream,string customEndline)
         {
             string curline = "";
             while (curline != null)
             {
                 curline = stream.ReadLine();
+                if (curline != null)
+                {
+                    if (customEndline != "")
+                    {
+                        
+                        while (!curline.Contains(customEndline))
+                        {
+                            curline += stream.ReadLine();
+                        }
+                    }
+                }
+              
+
                 if (curline != null)//end of file?
                 {
                     CurLineList = new List<string>();
