@@ -70,6 +70,7 @@ namespace ExcelPaster
 
             //Start finding matches
             int[] matchScore = new int[finalList.Count];
+            int successfulMatchCounter = 0;
             int processedAmount = 0;
             foreach (OrderEntry oE in orderList)
             {
@@ -114,6 +115,7 @@ namespace ExcelPaster
                                     finalList[counter].proposedWorkOrder.Add(oE.orderID);
 
                                     orderList[oE.indexID].matched = true;
+                                    successfulMatchCounter++;
                                 }
                                 
                                 counter++;
@@ -134,7 +136,8 @@ namespace ExcelPaster
                 if (fs.CanWrite)
                 {
                     string csvInput = "";
-                    csvInput = "Index_ID" + delimiter + "API_ID" + delimiter + "Customer" + delimiter + "Site_Names" + delimiter + "Prop_Ship_ID1" + delimiter + "Prop_Name1" + delimiter + "Prop_Work_Order1";
+                    csvInput = "Index_ID" + delimiter + "API_ID" + delimiter + "Customer" + delimiter + "Site_Names" + delimiter + "Prop_Ship_ID1" + 
+                        delimiter + "Prop_Name1" + delimiter + "Prop_Work_Order1" + delimiter + "Match Rate: " + successfulMatchCounter + "/" + processedAmount;
                     fs.Write(Encoding.ASCII.GetBytes(csvInput), 0, ASCIIEncoding.ASCII.GetByteCount(csvInput));
                     byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
                     fs.Write(newline, 0, newline.Length);
@@ -175,10 +178,13 @@ namespace ExcelPaster
 
                     foreach (OrderEntry oE in orderList)
                     {
+                        if (oE.matched == false)
+                        {
+                            csvInput = oE.indexID + delimiter + oE.orderID + delimiter + oE.shipID + delimiter + oE.sitenames[0] + delimiter + oE.notes;
+                            fs.Write(Encoding.ASCII.GetBytes(csvInput), 0, ASCIIEncoding.ASCII.GetByteCount(csvInput));
+                            fs.Write(newline, 0, newline.Length);
+                        }
                         
-                        csvInput = oE.indexID + delimiter + oE.orderID + delimiter + oE.shipID + delimiter + oE.sitenames[0] +delimiter + oE.notes;
-                        fs.Write(Encoding.ASCII.GetBytes(csvInput), 0, ASCIIEncoding.ASCII.GetByteCount(csvInput));
-                        fs.Write(newline, 0, newline.Length);
                     }
 
 
@@ -209,10 +215,25 @@ namespace ExcelPaster
                     
                     split1[1] = split1[1].Remove(split1[1].IndexOf(':'),1);
                 }
+                string fullName = "";
+
+                //Cut off end
+                bool foundCutOff = false;
+                String[] cutOffWords = new String[] { "SERVICE DATE","DATE COMPLETED","WO#","SCOPE","SERVICE BY", "SERVICE COMPLETED" };
+
+                foreach (string cutoffWord in cutOffWords)
+                {
+                    String[] split2 = split1[1].ToUpper().Split(new[] { cutoffWord }, StringSplitOptions.None);
+                    if (split2.Count() > 1)
+                    {
+                        fullName = split1[0] + ":" + split2[0];
+                        break;
+                    }
+                    
+                }
+
                 
-                String[] split2 = split1[1].ToUpper().Split(new[] { "SERVICE DATE" }, StringSplitOptions.None);
-                
-                string fullName = split1[0] +":"+ split2[0];
+                 
                 String[] lines = new String[] { fullName };
                 int assigningID = 0;
                 foreach (string line in lines)
@@ -397,10 +418,90 @@ namespace ExcelPaster
                 }
                
             }
-            if (score/totalScore > 0.75)//75% accurate
+            if (score / totalScore > 0.75)//75% accurate
             {
-                
+
                 return true;
+            }
+            else //Try Bruin naming
+            {
+                String[] splitByFB = s.Split(new string[] { "FB"}, StringSplitOptions.None);
+                if (splitByFB.Count() > 1 )
+                {
+                    if (splitByFB[1] != "")
+                    {
+                        for (int i = 1; i < splitByFB.Count(); i++)
+                        {
+                            string FBName = splitByFB[i];
+                            if (FBName[0] == '-')
+                            {
+                                FBName = ' ' + FBName.Remove(0, 1);
+                            }
+                            FBName = "FORT BERTHOLD" + FBName;
+                            FBName = FBName.Replace(".", "");
+
+                            //Repeat Search of elements
+                            String[] elementsBruin = FBName.Split(' ');
+
+                            //Combine Texts if in order
+                            List<String> refElementsBruin = new List<string>();
+                            string eleToStoreBruin = "";
+                            foreach (string element in elementsBruin)
+                            {
+                                if (!element.Any(char.IsDigit))
+                                {
+                                    if (eleToStoreBruin == "")
+                                    {
+                                        eleToStoreBruin += element;
+                                    }
+                                    else
+                                    {
+                                        eleToStoreBruin += " " + element;
+
+                                    }
+
+                                }
+                                else
+                                {
+                                    refElementsBruin.Add(eleToStoreBruin);
+                                    eleToStoreBruin = "";
+                                    refElementsBruin.Add(element);
+                                }
+                            }
+
+
+                            double scoreBruin = 0;
+                            double totalScoreBruin = 0;
+                            foreach (string element in refElementsBruin)
+                            {
+                                if (element != "")
+                                {
+                                    if (t.Contains(element))
+                                    {
+                                        scoreBruin += 0.25;
+                                        if ((" " + t + " ").Contains(" " + element + " "))
+                                        {
+                                            scoreBruin += 0.75;
+                                        }
+                                    }
+                                    totalScoreBruin++;
+                                }
+
+                            }
+                            if (scoreBruin / totalScoreBruin > 0.75)//75% accurate
+                            {
+
+                                return true;
+                            }
+
+                        }
+                    }
+                   
+                }
+                else
+                {
+                    return false;
+                }
             }
             return false;
         }
