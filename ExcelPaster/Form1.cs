@@ -53,7 +53,7 @@ namespace ExcelPaster
             comboBox_TargetProgramCSV.SelectedIndex = Properties.Settings.Default.TargetProgram;
 
             //selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.NetworkInterfaceType != NetworkInterfaceType.Loopback).First(n => n.OperationalStatus == OperationalStatus.Up);
-            selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().Where(n => n.Name.Contains("Ethernet") == true).FirstOrDefault();
+            selectedAdapter = NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault();
             LoadAdapters();
 
             SetPadDB();
@@ -545,7 +545,9 @@ namespace ExcelPaster
 
             gateway = GetDefaultGateway(selectedAdapter);
             DefGate_Status.Text = gateway.ToString();
-            textBox3.Text = gateway.ToString();
+            textBox3.Text = gateway.ToString();           
+            
+            label36.Text = selectedAdapter.Description.ToString();
         }
 
         private void LoadAdapters()
@@ -566,9 +568,10 @@ namespace ExcelPaster
 
 
             }
-
+            
             comboBox_NetworkAdapter.SelectedItem = selectedAdapter.Name;
-
+            
+          
             addressIP = GetLocalIPAddress(selectedAdapter);
             IPAdress_Status.Text = addressIP.ToString();
             textBox_IPAdress.Text = addressIP.ToString();
