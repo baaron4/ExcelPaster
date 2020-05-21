@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -63,6 +64,9 @@ namespace ExcelPaster
             textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
 
             Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
+
+            //Reports
+            comboBox_ReportType.SelectedIndex = 1;
         }
         public enum ButtonState
         {
@@ -211,6 +215,11 @@ namespace ExcelPaster
                     e.Cancel = true;
 
                 }
+                if (fInfo.Extension.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                {
+                    ConvertExcelToCsv(fInfo.FullName,fInfo.FullName.Trim('.') + ".csv");
+                }
+                
                 if (fInfo.Extension.Equals(".csv", StringComparison.OrdinalIgnoreCase))
                 {
                     CSVReader reader = new CSVReader();
@@ -561,10 +570,6 @@ namespace ExcelPaster
                     comboBox_NetworkAdapter.Items.Insert(indexer, adapter.Name);
                     indexer++;
                 }
-                
-
-
-
             }
 
             comboBox_NetworkAdapter.SelectedItem = selectedAdapter.Name;
@@ -607,6 +612,23 @@ namespace ExcelPaster
             if (IPAddress.TryParse(textBox_IPAdress.Text, out newAddress))
             {
                 newAddressString = newAddress.ToString();
+                //Check that IP does not match another adapter
+                foreach (var netInt in adapterList)
+                {
+                    if (selectedAdapter == netInt.Value)
+                    {
+                        continue;
+                    }
+                    IPAddress ipTest = GetLocalIPAddress(netInt.Value);
+                    if (newAddress.ToString() == ipTest.ToString())
+                    {
+                        var confirmResult = MessageBox.Show("IP Address is the same as " + netInt.Value.Name,
+                                     "Try a different IP",
+                                     MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+                
             }
             else
             {
@@ -809,7 +831,11 @@ namespace ExcelPaster
 
         private void button_OpenFile_Click(object sender, EventArgs e)
         {
-            Process.Start(Properties.Settings.Default.DatabaseFileLoc);
+            if ( !string.IsNullOrEmpty(Properties.Settings.Default.DatabaseFileLoc))
+            {
+                Process.Start(Properties.Settings.Default.DatabaseFileLoc);
+            }
+            
         }
 
         //private BackgroundWorker pingWorker = new BackgroundWorker();
@@ -1832,6 +1858,152 @@ namespace ExcelPaster
         private void checkBox_levenstheins_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
+        }
+        static void ConvertExcelToCsv(string excelFilePath, string csvOutputFile, int worksheetNumber = 1)
+        {
+            if (!File.Exists(excelFilePath)) throw new FileNotFoundException(excelFilePath);
+            if (File.Exists(csvOutputFile)) throw new ArgumentException("File exists: " + csvOutputFile);
+
+            // connection string
+            var cnnStr = String.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=\"Excel 8.0;IMEX=1;HDR=NO\"", excelFilePath);
+            var cnn = new OleDbConnection(cnnStr);
+
+            // get schema, then data
+            var dt = new DataTable();
+            try
+            {
+                cnn.Open();
+                var schemaTable = cnn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                if (schemaTable.Rows.Count < worksheetNumber) throw new ArgumentException("The worksheet number provided cannot be found in the spreadsheet");
+                string worksheet = schemaTable.Rows[worksheetNumber - 1]["table_name"].ToString().Replace("'", "");
+                string sql = String.Format("select * from [{0}]", worksheet);
+                var da = new OleDbDataAdapter(sql, cnn);
+                da.Fill(dt);
+            }
+            catch (Exception e)
+            {
+                // ???
+                throw e;
+            }
+            finally
+            {
+                // free resources
+                cnn.Close();
+            }
+
+            // write out CSV data
+            using (var wtr = new StreamWriter(csvOutputFile))
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool firstLine = true;
+                    foreach (DataColumn col in dt.Columns)
+                    {
+                        if (!firstLine) { wtr.Write(","); } else { firstLine = false; }
+                        var data = row[col.ColumnName].ToString().Replace("\"", "\"\"");
+                        wtr.Write(String.Format("\"{0}\"", data));
+                    }
+                    wtr.WriteLine();
+                }
+            }
+        }
+
+        private void button_ReportChooseFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog4.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog4.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_ReportSource.Text = result;
+                }
+            }
+        }
+
+        private void button_ReportChooseLoc_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_ReportOutput.Text = result;
+                    if (!Properties.Settings.Default.RecentFiles.Contains(result))
+                    {
+                        Properties.Settings.Default.RecentFiles.Add(result);
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        SetFileMostRecent(result);
+                    }
+                }
+            }
+        }
+
+        private void button_ReportGenerate_Click(object sender, EventArgs e)
+        {
+            //TODO: Save Recents to Properties and set dropDownLists
+
+            if (File.Exists(comboBox_ReportSource.Text))
+            {
+
+                if (Directory.Exists(comboBox_ReportOutput.Text))
+                {
+                    ReportGenerator rG = new ReportGenerator();
+
+                    //Limerock Report
+                    if (comboBox_ReportType.SelectedIndex == 1)
+                    {
+                        bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Select a valid Output Folder", "Invalid Output Folder Location",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else {
+                MessageBox.Show("Select a valid Source File", "Invalid Source File Location",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
+        }
+    
+
+        private void comboBox_ReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Update Report Type Image here
+            int index = comboBox_ReportType.SelectedIndex;
+            switch (index) {
+                case 0:
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
+                    break;
+                case 1:
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
+                    break;
+                default:
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
+                    break;
+            } 
+        }
+
+        private void comboBox_ReportSource_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Link;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void comboBox_ReportSource_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = e.Data.GetData(DataFormats.FileDrop) as string[]; // get all files droppeds  
+            if (files != null && files.Any())
+                comboBox_ReportSource.Text = files.First(); //select the first one  
         }
     }
 }

@@ -149,26 +149,39 @@
             this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button_StartPID = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.checkBox_levenstheins = new System.Windows.Forms.CheckBox();
+            this.comboBox_DB_COPY_OUT = new System.Windows.Forms.ComboBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.button_DB_OUT_LOC = new System.Windows.Forms.Button();
+            this.label_DBCopy_Results = new System.Windows.Forms.Label();
+            this.button_STARTCOPY = new System.Windows.Forms.Button();
+            this.comboBox_TargetDB_CSV_Loc = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.button_Change_TargetDB_CSV = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.comboBox_SourceDB_CSV_Loc = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button_ReportChooseLoc = new System.Windows.Forms.Button();
+            this.button_ReportChooseFile = new System.Windows.Forms.Button();
+            this.label36 = new System.Windows.Forms.Label();
+            this.comboBox_ReportOutput = new System.Windows.Forms.ComboBox();
+            this.button_ReportGenerate = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.comboBox_ReportType = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.comboBox_ReportSource = new System.Windows.Forms.ComboBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.pingWorker = new System.ComponentModel.BackgroundWorker();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.comboBox_SourceDB_CSV_Loc = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.comboBox_TargetDB_CSV_Loc = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.button_Change_TargetDB_CSV = new System.Windows.Forms.Button();
             this.openFileDialog3 = new System.Windows.Forms.OpenFileDialog();
-            this.button_STARTCOPY = new System.Windows.Forms.Button();
-            this.label_DBCopy_Results = new System.Windows.Forms.Label();
-            this.comboBox_DB_COPY_OUT = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.button_DB_OUT_LOC = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.checkBox_levenstheins = new System.Windows.Forms.CheckBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -185,6 +198,8 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -232,8 +247,7 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "*.csv";
-            this.openFileDialog1.Filter = "Excel Sheet Files | *.csv";
+            this.openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // btn_SelectFile
@@ -257,6 +271,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -442,6 +457,7 @@
             this.Column2Name});
             this.listView_DBAddresses.FullRowSelect = true;
             this.listView_DBAddresses.GridLines = true;
+            this.listView_DBAddresses.HideSelection = false;
             this.listView_DBAddresses.Location = new System.Drawing.Point(9, 242);
             this.listView_DBAddresses.Name = "listView_DBAddresses";
             this.listView_DBAddresses.Size = new System.Drawing.Size(280, 174);
@@ -547,6 +563,7 @@
             this.listView_ScannedPadIPs.Enabled = false;
             this.listView_ScannedPadIPs.FullRowSelect = true;
             this.listView_ScannedPadIPs.GridLines = true;
+            this.listView_ScannedPadIPs.HideSelection = false;
             this.listView_ScannedPadIPs.Location = new System.Drawing.Point(1, 226);
             this.listView_ScannedPadIPs.Name = "listView_ScannedPadIPs";
             this.listView_ScannedPadIPs.Size = new System.Drawing.Size(280, 174);
@@ -1477,36 +1494,6 @@
             this.button_StartPID.UseVisualStyleBackColor = true;
             this.button_StartPID.Click += new System.EventHandler(this.button_StartPID_Click);
             // 
-            // BgWorker
-            // 
-            this.BgWorker.WorkerReportsProgress = true;
-            this.BgWorker.WorkerSupportsCancellation = true;
-            this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
-            this.BgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgWorker_ProgressChanged);
-            this.BgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker_Completed);
-            // 
-            // label_Version
-            // 
-            this.label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Version.AutoSize = true;
-            this.label_Version.Location = new System.Drawing.Point(990, 9);
-            this.label_Version.Name = "label_Version";
-            this.label_Version.Size = new System.Drawing.Size(29, 13);
-            this.label_Version.TabIndex = 10;
-            this.label_Version.Text = "V1.0";
-            // 
-            // openFileDialog2
-            // 
-            this.openFileDialog2.FileName = "*.csv";
-            this.openFileDialog2.Filter = "Excel Sheet Files | *.csv";
-            // 
-            // pingWorker
-            // 
-            this.pingWorker.WorkerReportsProgress = true;
-            this.pingWorker.WorkerSupportsCancellation = true;
-            this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
-            this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.checkBox_levenstheins);
@@ -1530,100 +1517,16 @@
             this.tabPage6.Text = "CSV Scan";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // comboBox_SourceDB_CSV_Loc
+            // checkBox_levenstheins
             // 
-            this.comboBox_SourceDB_CSV_Loc.AllowDrop = true;
-            this.comboBox_SourceDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_SourceDB_CSV_Loc.FormattingEnabled = true;
-            this.comboBox_SourceDB_CSV_Loc.Location = new System.Drawing.Point(241, 61);
-            this.comboBox_SourceDB_CSV_Loc.MaxDropDownItems = 10;
-            this.comboBox_SourceDB_CSV_Loc.Name = "comboBox_SourceDB_CSV_Loc";
-            this.comboBox_SourceDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
-            this.comboBox_SourceDB_CSV_Loc.TabIndex = 10;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(80, 45);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(127, 13);
-            this.label30.TabIndex = 9;
-            this.label30.Text = "Select Source Data .CSV";
-            // 
-            // Button_Change_SourceDB_CSV
-            // 
-            this.Button_Change_SourceDB_CSV.Location = new System.Drawing.Point(83, 61);
-            this.Button_Change_SourceDB_CSV.Name = "Button_Change_SourceDB_CSV";
-            this.Button_Change_SourceDB_CSV.Size = new System.Drawing.Size(122, 23);
-            this.Button_Change_SourceDB_CSV.TabIndex = 8;
-            this.Button_Change_SourceDB_CSV.Text = "Change File";
-            this.Button_Change_SourceDB_CSV.UseVisualStyleBackColor = true;
-            this.Button_Change_SourceDB_CSV.Click += new System.EventHandler(this.Button_Change_SourceDB_CSV_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(385, 14);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(239, 13);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "Warning! This is specialized code for one project!";
-            // 
-            // comboBox_TargetDB_CSV_Loc
-            // 
-            this.comboBox_TargetDB_CSV_Loc.AllowDrop = true;
-            this.comboBox_TargetDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_TargetDB_CSV_Loc.FormattingEnabled = true;
-            this.comboBox_TargetDB_CSV_Loc.Location = new System.Drawing.Point(241, 128);
-            this.comboBox_TargetDB_CSV_Loc.MaxDropDownItems = 10;
-            this.comboBox_TargetDB_CSV_Loc.Name = "comboBox_TargetDB_CSV_Loc";
-            this.comboBox_TargetDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
-            this.comboBox_TargetDB_CSV_Loc.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(80, 112);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(124, 13);
-            this.label32.TabIndex = 13;
-            this.label32.Text = "Select Target Data .CSV";
-            // 
-            // button_Change_TargetDB_CSV
-            // 
-            this.button_Change_TargetDB_CSV.Location = new System.Drawing.Point(83, 128);
-            this.button_Change_TargetDB_CSV.Name = "button_Change_TargetDB_CSV";
-            this.button_Change_TargetDB_CSV.Size = new System.Drawing.Size(122, 23);
-            this.button_Change_TargetDB_CSV.TabIndex = 12;
-            this.button_Change_TargetDB_CSV.Text = "Change File";
-            this.button_Change_TargetDB_CSV.UseVisualStyleBackColor = true;
-            this.button_Change_TargetDB_CSV.Click += new System.EventHandler(this.button_Change_TargetDB_CSV_Click);
-            // 
-            // openFileDialog3
-            // 
-            this.openFileDialog3.FileName = "*.csv";
-            this.openFileDialog3.Filter = "Excel Sheet Files | *.csv";
-            // 
-            // button_STARTCOPY
-            // 
-            this.button_STARTCOPY.Location = new System.Drawing.Point(353, 226);
-            this.button_STARTCOPY.Name = "button_STARTCOPY";
-            this.button_STARTCOPY.Size = new System.Drawing.Size(286, 23);
-            this.button_STARTCOPY.TabIndex = 15;
-            this.button_STARTCOPY.Text = "Start Transfer";
-            this.button_STARTCOPY.UseVisualStyleBackColor = true;
-            this.button_STARTCOPY.Click += new System.EventHandler(this.button_STARTCOPY_Click);
-            // 
-            // label_DBCopy_Results
-            // 
-            this.label_DBCopy_Results.AutoSize = true;
-            this.label_DBCopy_Results.Location = new System.Drawing.Point(462, 314);
-            this.label_DBCopy_Results.Name = "label_DBCopy_Results";
-            this.label_DBCopy_Results.Size = new System.Drawing.Size(42, 13);
-            this.label_DBCopy_Results.TabIndex = 16;
-            this.label_DBCopy_Results.Text = "Results";
+            this.checkBox_levenstheins.AutoSize = true;
+            this.checkBox_levenstheins.Location = new System.Drawing.Point(101, 240);
+            this.checkBox_levenstheins.Name = "checkBox_levenstheins";
+            this.checkBox_levenstheins.Size = new System.Drawing.Size(127, 17);
+            this.checkBox_levenstheins.TabIndex = 20;
+            this.checkBox_levenstheins.Text = "Use Levensthiesn Eq";
+            this.checkBox_levenstheins.UseVisualStyleBackColor = true;
+            this.checkBox_levenstheins.CheckedChanged += new System.EventHandler(this.checkBox_levenstheins_CheckedChanged);
             // 
             // comboBox_DB_COPY_OUT
             // 
@@ -1656,6 +1559,240 @@
             this.button_DB_OUT_LOC.UseVisualStyleBackColor = true;
             this.button_DB_OUT_LOC.Click += new System.EventHandler(this.button_DB_OUT_LOC_Click);
             // 
+            // label_DBCopy_Results
+            // 
+            this.label_DBCopy_Results.AutoSize = true;
+            this.label_DBCopy_Results.Location = new System.Drawing.Point(462, 314);
+            this.label_DBCopy_Results.Name = "label_DBCopy_Results";
+            this.label_DBCopy_Results.Size = new System.Drawing.Size(42, 13);
+            this.label_DBCopy_Results.TabIndex = 16;
+            this.label_DBCopy_Results.Text = "Results";
+            // 
+            // button_STARTCOPY
+            // 
+            this.button_STARTCOPY.Location = new System.Drawing.Point(353, 226);
+            this.button_STARTCOPY.Name = "button_STARTCOPY";
+            this.button_STARTCOPY.Size = new System.Drawing.Size(286, 23);
+            this.button_STARTCOPY.TabIndex = 15;
+            this.button_STARTCOPY.Text = "Start Transfer";
+            this.button_STARTCOPY.UseVisualStyleBackColor = true;
+            this.button_STARTCOPY.Click += new System.EventHandler(this.button_STARTCOPY_Click);
+            // 
+            // comboBox_TargetDB_CSV_Loc
+            // 
+            this.comboBox_TargetDB_CSV_Loc.AllowDrop = true;
+            this.comboBox_TargetDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_TargetDB_CSV_Loc.FormattingEnabled = true;
+            this.comboBox_TargetDB_CSV_Loc.Location = new System.Drawing.Point(241, 128);
+            this.comboBox_TargetDB_CSV_Loc.MaxDropDownItems = 10;
+            this.comboBox_TargetDB_CSV_Loc.Name = "comboBox_TargetDB_CSV_Loc";
+            this.comboBox_TargetDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_TargetDB_CSV_Loc.TabIndex = 14;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(80, 112);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(124, 13);
+            this.label32.TabIndex = 13;
+            this.label32.Text = "Select Target Data .CSV";
+            // 
+            // button_Change_TargetDB_CSV
+            // 
+            this.button_Change_TargetDB_CSV.Location = new System.Drawing.Point(83, 128);
+            this.button_Change_TargetDB_CSV.Name = "button_Change_TargetDB_CSV";
+            this.button_Change_TargetDB_CSV.Size = new System.Drawing.Size(122, 23);
+            this.button_Change_TargetDB_CSV.TabIndex = 12;
+            this.button_Change_TargetDB_CSV.Text = "Change File";
+            this.button_Change_TargetDB_CSV.UseVisualStyleBackColor = true;
+            this.button_Change_TargetDB_CSV.Click += new System.EventHandler(this.button_Change_TargetDB_CSV_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(385, 14);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(239, 13);
+            this.label31.TabIndex = 11;
+            this.label31.Text = "Warning! This is specialized code for one project!";
+            // 
+            // comboBox_SourceDB_CSV_Loc
+            // 
+            this.comboBox_SourceDB_CSV_Loc.AllowDrop = true;
+            this.comboBox_SourceDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_SourceDB_CSV_Loc.FormattingEnabled = true;
+            this.comboBox_SourceDB_CSV_Loc.Location = new System.Drawing.Point(241, 61);
+            this.comboBox_SourceDB_CSV_Loc.MaxDropDownItems = 10;
+            this.comboBox_SourceDB_CSV_Loc.Name = "comboBox_SourceDB_CSV_Loc";
+            this.comboBox_SourceDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_SourceDB_CSV_Loc.TabIndex = 10;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(80, 45);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(127, 13);
+            this.label30.TabIndex = 9;
+            this.label30.Text = "Select Source Data .CSV";
+            // 
+            // Button_Change_SourceDB_CSV
+            // 
+            this.Button_Change_SourceDB_CSV.Location = new System.Drawing.Point(83, 61);
+            this.Button_Change_SourceDB_CSV.Name = "Button_Change_SourceDB_CSV";
+            this.Button_Change_SourceDB_CSV.Size = new System.Drawing.Size(122, 23);
+            this.Button_Change_SourceDB_CSV.TabIndex = 8;
+            this.Button_Change_SourceDB_CSV.Text = "Change File";
+            this.Button_Change_SourceDB_CSV.UseVisualStyleBackColor = true;
+            this.Button_Change_SourceDB_CSV.Click += new System.EventHandler(this.Button_Change_SourceDB_CSV_Click);
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.pictureBox1);
+            this.tabPage7.Controls.Add(this.button_ReportChooseLoc);
+            this.tabPage7.Controls.Add(this.button_ReportChooseFile);
+            this.tabPage7.Controls.Add(this.label36);
+            this.tabPage7.Controls.Add(this.comboBox_ReportOutput);
+            this.tabPage7.Controls.Add(this.button_ReportGenerate);
+            this.tabPage7.Controls.Add(this.label35);
+            this.tabPage7.Controls.Add(this.comboBox_ReportType);
+            this.tabPage7.Controls.Add(this.label34);
+            this.tabPage7.Controls.Add(this.comboBox_ReportSource);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Reports";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button_ReportChooseLoc
+            // 
+            this.button_ReportChooseLoc.Location = new System.Drawing.Point(528, 376);
+            this.button_ReportChooseLoc.Name = "button_ReportChooseLoc";
+            this.button_ReportChooseLoc.Size = new System.Drawing.Size(111, 31);
+            this.button_ReportChooseLoc.TabIndex = 9;
+            this.button_ReportChooseLoc.Text = "Change Location";
+            this.button_ReportChooseLoc.UseVisualStyleBackColor = true;
+            this.button_ReportChooseLoc.Click += new System.EventHandler(this.button_ReportChooseLoc_Click);
+            // 
+            // button_ReportChooseFile
+            // 
+            this.button_ReportChooseFile.Location = new System.Drawing.Point(131, 24);
+            this.button_ReportChooseFile.Name = "button_ReportChooseFile";
+            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
+            this.button_ReportChooseFile.TabIndex = 8;
+            this.button_ReportChooseFile.Text = "Change File";
+            this.button_ReportChooseFile.UseVisualStyleBackColor = true;
+            this.button_ReportChooseFile.Click += new System.EventHandler(this.button_ReportChooseFile_Click);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(436, 385);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(86, 13);
+            this.label36.TabIndex = 6;
+            this.label36.Text = "Output Location:";
+            // 
+            // comboBox_ReportOutput
+            // 
+            this.comboBox_ReportOutput.FormattingEnabled = true;
+            this.comboBox_ReportOutput.Location = new System.Drawing.Point(645, 382);
+            this.comboBox_ReportOutput.Name = "comboBox_ReportOutput";
+            this.comboBox_ReportOutput.Size = new System.Drawing.Size(357, 21);
+            this.comboBox_ReportOutput.TabIndex = 5;
+            this.comboBox_ReportOutput.Text = "C:\\Users\\193039\\Desktop";
+            // 
+            // button_ReportGenerate
+            // 
+            this.button_ReportGenerate.Location = new System.Drawing.Point(645, 425);
+            this.button_ReportGenerate.Name = "button_ReportGenerate";
+            this.button_ReportGenerate.Size = new System.Drawing.Size(360, 31);
+            this.button_ReportGenerate.TabIndex = 4;
+            this.button_ReportGenerate.Text = "Generate";
+            this.button_ReportGenerate.UseVisualStyleBackColor = true;
+            this.button_ReportGenerate.Click += new System.EventHandler(this.button_ReportGenerate_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(642, 63);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(69, 13);
+            this.label35.TabIndex = 3;
+            this.label35.Text = "Report Type:";
+            // 
+            // comboBox_ReportType
+            // 
+            this.comboBox_ReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReportType.FormattingEnabled = true;
+            this.comboBox_ReportType.Items.AddRange(new object[] {
+            "None",
+            "Limerock Gas Report"});
+            this.comboBox_ReportType.Location = new System.Drawing.Point(712, 60);
+            this.comboBox_ReportType.Name = "comboBox_ReportType";
+            this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_ReportType.TabIndex = 2;
+            this.comboBox_ReportType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReportType_SelectedIndexChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(38, 32);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(87, 13);
+            this.label34.TabIndex = 1;
+            this.label34.Text = "Source Text File:";
+            // 
+            // comboBox_ReportSource
+            // 
+            this.comboBox_ReportSource.AllowDrop = true;
+            this.comboBox_ReportSource.FormattingEnabled = true;
+            this.comboBox_ReportSource.Location = new System.Drawing.Point(248, 29);
+            this.comboBox_ReportSource.Name = "comboBox_ReportSource";
+            this.comboBox_ReportSource.Size = new System.Drawing.Size(754, 21);
+            this.comboBox_ReportSource.TabIndex = 0;
+            this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
+            this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
+            // 
+            // BgWorker
+            // 
+            this.BgWorker.WorkerReportsProgress = true;
+            this.BgWorker.WorkerSupportsCancellation = true;
+            this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
+            this.BgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgWorker_ProgressChanged);
+            this.BgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker_Completed);
+            // 
+            // label_Version
+            // 
+            this.label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Version.AutoSize = true;
+            this.label_Version.Location = new System.Drawing.Point(990, 9);
+            this.label_Version.Name = "label_Version";
+            this.label_Version.Size = new System.Drawing.Size(29, 13);
+            this.label_Version.TabIndex = 10;
+            this.label_Version.Text = "V1.0";
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "*.csv";
+            this.openFileDialog2.Filter = "Excel Sheet Files | *.csv";
+            // 
+            // pingWorker
+            // 
+            this.pingWorker.WorkerReportsProgress = true;
+            this.pingWorker.WorkerSupportsCancellation = true;
+            this.pingWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.pingWorker_DoWork);
+            this.pingWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.pingWorker_ProgressChanged);
+            // 
+            // openFileDialog3
+            // 
+            this.openFileDialog3.FileName = "*.csv";
+            this.openFileDialog3.Filter = "Excel Sheet Files | *.csv";
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -1663,16 +1800,18 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // checkBox_levenstheins
+            // openFileDialog4
             // 
-            this.checkBox_levenstheins.AutoSize = true;
-            this.checkBox_levenstheins.Location = new System.Drawing.Point(101, 240);
-            this.checkBox_levenstheins.Name = "checkBox_levenstheins";
-            this.checkBox_levenstheins.Size = new System.Drawing.Size(127, 17);
-            this.checkBox_levenstheins.TabIndex = 20;
-            this.checkBox_levenstheins.Text = "Use Levensthiesn Eq";
-            this.checkBox_levenstheins.UseVisualStyleBackColor = true;
-            this.checkBox_levenstheins.CheckedChanged += new System.EventHandler(this.checkBox_levenstheins_CheckedChanged);
+            this.openFileDialog4.FileName = "*.txt";
+            this.openFileDialog4.Filter = "Notepad Files | *.txt";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(645, 103);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(357, 273);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -1712,6 +1851,9 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1860,6 +2002,19 @@
         private System.Windows.Forms.Button button_DB_OUT_LOC;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.CheckBox checkBox_levenstheins;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.ComboBox comboBox_ReportOutput;
+        private System.Windows.Forms.Button button_ReportGenerate;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.ComboBox comboBox_ReportType;
+        private System.Windows.Forms.ComboBox comboBox_ReportSource;
+        private System.Windows.Forms.Button button_ReportChooseLoc;
+        private System.Windows.Forms.Button button_ReportChooseFile;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
