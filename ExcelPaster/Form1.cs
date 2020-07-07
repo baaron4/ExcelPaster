@@ -556,7 +556,7 @@ namespace ExcelPaster
             DefGate_Status.Text = gateway.ToString();
             textBox3.Text = gateway.ToString();           
             
-            label36.Text = selectedAdapter.Description.ToString();
+            //label36.Text = selectedAdapter.Description.ToString();
         }
 
         private void LoadAdapters()
@@ -1947,32 +1947,74 @@ namespace ExcelPaster
         private void button_ReportGenerate_Click(object sender, EventArgs e)
         {
             //TODO: Save Recents to Properties and set dropDownLists
-
-            if (File.Exists(comboBox_ReportSource.Text))
+            if (checkBox_UseFolder.Checked == false)
             {
-
-                if (Directory.Exists(comboBox_ReportOutput.Text))
+                if (File.Exists(comboBox_ReportSource.Text))
                 {
-                    ReportGenerator rG = new ReportGenerator();
 
-                    //Limerock Report
-                    if (comboBox_ReportType.SelectedIndex == 1)
+                    if (Directory.Exists(comboBox_ReportOutput.Text))
                     {
-                        bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        ReportGenerator rG = new ReportGenerator();
+
+                        //Limerock Report
+                        if (comboBox_ReportType.SelectedIndex == 1)
+                        {
+                            bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        } else if (comboBox_ReportType.SelectedIndex == 2)
+                        {
+                            bool success = rG.GenerateExcelCalReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Select a valid Output Folder", "Invalid Output Folder Location",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("Select a valid Output Folder", "Invalid Output Folder Location",
+                    MessageBox.Show("Select a valid Source File", "Invalid Source File Location",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             else {
-                MessageBox.Show("Select a valid Source File", "Invalid Source File Location",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                if (Directory.EnumerateFileSystemEntries(comboBox_SourceFolder.Text).Any())
+                {
+                    string[] files = Directory.GetFiles(comboBox_SourceFolder.Text, openFileDialog4.FileName, SearchOption.AllDirectories);
+                    foreach (string file in files)
+                    {
+                        if (File.Exists(file))
+                        {
+                            if (Directory.Exists(comboBox_ReportOutput.Text))
+                            {
+                                ReportGenerator rG = new ReportGenerator();
 
+                                //Limerock Report
+                                if (comboBox_ReportType.SelectedIndex == 1)
+                                {
+                                    bool success = rG.GenerateLimerockReport(file, comboBox_ReportOutput.Text);
+                                }
+                                else if (comboBox_ReportType.SelectedIndex == 2)
+                                {
+                                    bool success = rG.GenerateExcelCalReport(file, comboBox_ReportOutput.Text);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Select a valid Output Folder", "Invalid Output Folder Location",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Select a valid Source File", "Invalid Source File Location",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                
+            }
             
         }
     
@@ -1987,6 +2029,14 @@ namespace ExcelPaster
                     break;
                 case 1:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    break;
+                case 2:
+                    //Excel report
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.Excel_Report;
+                    openFileDialog4.Filter = "Excel Files | *.xlsx";
+                    openFileDialog4.FileName = "*.xlsx";
                     break;
                 default:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
@@ -2008,5 +2058,20 @@ namespace ExcelPaster
             if (files != null && files.Any())
                 comboBox_ReportSource.Text = files.First(); //select the first one  
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_SourceFolder.Text = result;
+                   
+                }
+            }
+        }
+
+        
     }
 }

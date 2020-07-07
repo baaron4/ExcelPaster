@@ -164,6 +164,11 @@
             this.label30 = new System.Windows.Forms.Label();
             this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.checkBox_UseFolder = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.comboBox_SourceFolder = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_ReportChooseLoc = new System.Windows.Forms.Button();
             this.button_ReportChooseFile = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
@@ -181,7 +186,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1651,6 +1655,10 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.checkBox_UseFolder);
+            this.tabPage7.Controls.Add(this.button1);
+            this.tabPage7.Controls.Add(this.label37);
+            this.tabPage7.Controls.Add(this.comboBox_SourceFolder);
             this.tabPage7.Controls.Add(this.pictureBox1);
             this.tabPage7.Controls.Add(this.button_ReportChooseLoc);
             this.tabPage7.Controls.Add(this.button_ReportChooseFile);
@@ -1668,6 +1676,52 @@
             this.tabPage7.Text = "Reports";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // checkBox_UseFolder
+            // 
+            this.checkBox_UseFolder.AutoSize = true;
+            this.checkBox_UseFolder.Location = new System.Drawing.Point(399, 60);
+            this.checkBox_UseFolder.Name = "checkBox_UseFolder";
+            this.checkBox_UseFolder.Size = new System.Drawing.Size(102, 17);
+            this.checkBox_UseFolder.TabIndex = 21;
+            this.checkBox_UseFolder.Text = "Generate Folder";
+            this.checkBox_UseFolder.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(502, 77);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 31);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Change Folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(396, 86);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(100, 13);
+            this.label37.TabIndex = 12;
+            this.label37.Text = "Source Text Folder:";
+            // 
+            // comboBox_SourceFolder
+            // 
+            this.comboBox_SourceFolder.AllowDrop = true;
+            this.comboBox_SourceFolder.FormattingEnabled = true;
+            this.comboBox_SourceFolder.Location = new System.Drawing.Point(619, 83);
+            this.comboBox_SourceFolder.Name = "comboBox_SourceFolder";
+            this.comboBox_SourceFolder.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_SourceFolder.TabIndex = 11;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(21, 60);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(357, 273);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // button_ReportChooseLoc
             // 
             this.button_ReportChooseLoc.Location = new System.Drawing.Point(528, 376);
@@ -1680,7 +1734,7 @@
             // 
             // button_ReportChooseFile
             // 
-            this.button_ReportChooseFile.Location = new System.Drawing.Point(131, 24);
+            this.button_ReportChooseFile.Location = new System.Drawing.Point(502, 20);
             this.button_ReportChooseFile.Name = "button_ReportChooseFile";
             this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
             this.button_ReportChooseFile.TabIndex = 8;
@@ -1704,7 +1758,6 @@
             this.comboBox_ReportOutput.Name = "comboBox_ReportOutput";
             this.comboBox_ReportOutput.Size = new System.Drawing.Size(357, 21);
             this.comboBox_ReportOutput.TabIndex = 5;
-            this.comboBox_ReportOutput.Text = "C:\\Users\\193039\\Desktop";
             // 
             // button_ReportGenerate
             // 
@@ -1719,7 +1772,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(642, 63);
+            this.label35.Location = new System.Drawing.Point(18, 20);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 13);
             this.label35.TabIndex = 3;
@@ -1731,8 +1784,9 @@
             this.comboBox_ReportType.FormattingEnabled = true;
             this.comboBox_ReportType.Items.AddRange(new object[] {
             "None",
-            "Limerock Gas Report"});
-            this.comboBox_ReportType.Location = new System.Drawing.Point(712, 60);
+            "Limerock Gas Report",
+            "Exel Limerock Gas Report"});
+            this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
             this.comboBox_ReportType.TabIndex = 2;
@@ -1741,7 +1795,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(38, 32);
+            this.label34.Location = new System.Drawing.Point(409, 28);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(87, 13);
             this.label34.TabIndex = 1;
@@ -1751,9 +1805,9 @@
             // 
             this.comboBox_ReportSource.AllowDrop = true;
             this.comboBox_ReportSource.FormattingEnabled = true;
-            this.comboBox_ReportSource.Location = new System.Drawing.Point(248, 29);
+            this.comboBox_ReportSource.Location = new System.Drawing.Point(619, 25);
             this.comboBox_ReportSource.Name = "comboBox_ReportSource";
-            this.comboBox_ReportSource.Size = new System.Drawing.Size(754, 21);
+            this.comboBox_ReportSource.Size = new System.Drawing.Size(391, 21);
             this.comboBox_ReportSource.TabIndex = 0;
             this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
             this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
@@ -1804,14 +1858,6 @@
             // 
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(645, 103);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(357, 273);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -2015,6 +2061,10 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.ComboBox comboBox_SourceFolder;
+        private System.Windows.Forms.CheckBox checkBox_UseFolder;
     }
 }
 

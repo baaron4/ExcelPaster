@@ -61,6 +61,36 @@ namespace ExcelPaster.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Calibration_Doc_250_1000_PSI {
+            get {
+                object obj = ResourceManager.GetObject("Calibration_Doc_250_1000_PSI", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Excel_Report {
+            get {
+                object obj = ResourceManager.GetObject("Excel_Report", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] FreeSans {
+            get {
+                object obj = ResourceManager.GetObject("FreeSans", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Limerock_DocSmall {
