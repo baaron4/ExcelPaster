@@ -51,7 +51,7 @@ namespace ExcelPaster
                 this.RelDensity = relDensity;
             }
         }
-        public bool GenerateLimerockReport(string sourceLoc, string outputLoc)
+        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc)
         {
             string printDateTime="", analyzedBy="", meterID="", analysisTime="", sampleType="", elevation = "";
             float flowingTemp=0, flowingPressure=0, calibrationElevation=0,
@@ -304,25 +304,52 @@ namespace ExcelPaster
                         }
                     }
 
-                    if (substance.Name == "Hexanes" /*|| substance.Name == "Heptanes" || substance.Name == "Octanes" || substance.Name == "Nonane+" || substance.Name == "Nonanes"
-                        || substance.Name == "Decanes" || substance.Name == "Undecanes" || substance.Name == "Pentane-" */|| substance.Name == "Hexane+" /*|| substance.Name == "Propane+" || substance.Name == "Ethane-"*/)
-                    {
+                    if (hexaneCalcType == 0)
 
-                        hexanes.UnNorm += substance.UnNorm;
-                        hexanes.Norm = substance.Norm;
-                        hexanes.Liquids += substance.Liquids;
-                        hexanes.Ideal += substance.Ideal;
-                        hexanes.RelDensity += substance.RelDensity;
-                        if (substance.Name == "Hexanes")
+                    {
+                        if (substance.Name == "Hexanes" || substance.Name == "Hexane+")
                         {
-                            yDist = yDist + ySteps;
-                            gfx.DrawString(hexanes.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
-                            gfx.DrawString(hexanes.UnNorm.ToString(), font, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.CenterRight);
-                            gfx.DrawString(hexanes.Norm.ToString(), bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.CenterRight);
-                            gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
-                            gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
+
+                            hexanes.UnNorm += substance.UnNorm;
+                            hexanes.Norm = substance.Norm;
+                            hexanes.Liquids += substance.Liquids;
+                            hexanes.Ideal += substance.Ideal;
+                            hexanes.RelDensity += substance.RelDensity;
+                            if (substance.Name == "Hexane+")//Final Gas!!
+                            {
+                                yDist = yDist + ySteps;
+                                gfx.DrawString(hexanes.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.UnNorm.ToString(), font, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Norm.ToString(), bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
+                            }
                         }
                     }
+                    else if (hexaneCalcType == 1)
+                    {
+                        if (substance.Name == "Hexanes" || substance.Name == "Heptanes" || substance.Name == "Octanes" || substance.Name == "Nonane+" || substance.Name == "Nonanes"
+                        || substance.Name == "Decanes" || substance.Name == "Undecanes" /*|| substance.Name == "Pentane-" */|| substance.Name == "Hexane+" /*|| substance.Name == "Propane+" || substance.Name == "Ethane-"*/)
+
+                        {
+
+                            hexanes.UnNorm += substance.UnNorm;
+                            hexanes.Norm = substance.Norm;
+                            hexanes.Liquids += substance.Liquids;
+                            hexanes.Ideal += substance.Ideal;
+                            hexanes.RelDensity += substance.RelDensity;
+                            if (substance.Name == "Hexane+")//Final Gas!!
+                            {
+                                yDist = yDist + ySteps;
+                                gfx.DrawString(hexanes.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.UnNorm.ToString(), font, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Norm.ToString(), bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
+                            }
+                        }
+                    }
+                    
 
                     if (substance.Name == "Total")
                     {

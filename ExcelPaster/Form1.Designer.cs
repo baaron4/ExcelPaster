@@ -147,8 +147,6 @@
             this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
             this.button_ChangeTODOFile = new System.Windows.Forms.Button();
             this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.button_StartPID = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.checkBox_levenstheins = new System.Windows.Forms.CheckBox();
             this.comboBox_DB_COPY_OUT = new System.Windows.Forms.ComboBox();
@@ -178,6 +176,11 @@
             this.comboBox_ReportType = new System.Windows.Forms.ComboBox();
             this.label34 = new System.Windows.Forms.Label();
             this.comboBox_ReportSource = new System.Windows.Forms.ComboBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button_GenerateModemMap = new System.Windows.Forms.Button();
+            this.button_ModemSource = new System.Windows.Forms.Button();
+            this.label38 = new System.Windows.Forms.Label();
+            this.comboBox_ModemSource = new System.Windows.Forms.ComboBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -186,6 +189,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
+            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -200,10 +205,10 @@
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -273,9 +278,9 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1478,26 +1483,6 @@
             this.textBox_ToDoWorkArea.Size = new System.Drawing.Size(983, 399);
             this.textBox_ToDoWorkArea.TabIndex = 0;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.button_StartPID);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1024, 480);
-            this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "PID";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // button_StartPID
-            // 
-            this.button_StartPID.Location = new System.Drawing.Point(272, 97);
-            this.button_StartPID.Name = "button_StartPID";
-            this.button_StartPID.Size = new System.Drawing.Size(75, 58);
-            this.button_StartPID.TabIndex = 0;
-            this.button_StartPID.Text = "Start PID";
-            this.button_StartPID.UseVisualStyleBackColor = true;
-            this.button_StartPID.Click += new System.EventHandler(this.button_StartPID_Click);
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.checkBox_levenstheins);
@@ -1655,6 +1640,8 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.label39);
+            this.tabPage7.Controls.Add(this.comboBox_HexaneCalc);
             this.tabPage7.Controls.Add(this.checkBox_UseFolder);
             this.tabPage7.Controls.Add(this.button1);
             this.tabPage7.Controls.Add(this.label37);
@@ -1812,6 +1799,57 @@
             this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
             this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.button_GenerateModemMap);
+            this.tabPage5.Controls.Add(this.button_ModemSource);
+            this.tabPage5.Controls.Add(this.label38);
+            this.tabPage5.Controls.Add(this.comboBox_ModemSource);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "Modem Map";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // button_GenerateModemMap
+            // 
+            this.button_GenerateModemMap.Location = new System.Drawing.Point(37, 98);
+            this.button_GenerateModemMap.Name = "button_GenerateModemMap";
+            this.button_GenerateModemMap.Size = new System.Drawing.Size(360, 31);
+            this.button_GenerateModemMap.TabIndex = 12;
+            this.button_GenerateModemMap.Text = "Generate";
+            this.button_GenerateModemMap.UseVisualStyleBackColor = true;
+            this.button_GenerateModemMap.Click += new System.EventHandler(this.button_GenerateModemMap_Click);
+            // 
+            // button_ModemSource
+            // 
+            this.button_ModemSource.Location = new System.Drawing.Point(116, 19);
+            this.button_ModemSource.Name = "button_ModemSource";
+            this.button_ModemSource.Size = new System.Drawing.Size(111, 31);
+            this.button_ModemSource.TabIndex = 11;
+            this.button_ModemSource.Text = "Change File";
+            this.button_ModemSource.UseVisualStyleBackColor = true;
+            this.button_ModemSource.Click += new System.EventHandler(this.button_ModemSource_Click);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(23, 27);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(87, 13);
+            this.label38.TabIndex = 10;
+            this.label38.Text = "Source Text File:";
+            // 
+            // comboBox_ModemSource
+            // 
+            this.comboBox_ModemSource.AllowDrop = true;
+            this.comboBox_ModemSource.FormattingEnabled = true;
+            this.comboBox_ModemSource.Location = new System.Drawing.Point(233, 24);
+            this.comboBox_ModemSource.Name = "comboBox_ModemSource";
+            this.comboBox_ModemSource.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_ModemSource.TabIndex = 9;
+            // 
             // BgWorker
             // 
             this.BgWorker.WorkerReportsProgress = true;
@@ -1859,6 +1897,27 @@
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
             // 
+            // comboBox_HexaneCalc
+            // 
+            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_HexaneCalc.FormattingEnabled = true;
+            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
+            "TYPE 1",
+            "TYPE 2"});
+            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
+            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
+            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_HexaneCalc.TabIndex = 22;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(18, 352);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(71, 13);
+            this.label39.TabIndex = 23;
+            this.label39.Text = "Hexane Calc:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1894,12 +1953,13 @@
             this.grpStart.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2031,7 +2091,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button button_StartPID;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.ComboBox comboBox_TargetDB_CSV_Loc;
         private System.Windows.Forms.Label label32;
@@ -2065,6 +2124,12 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox comboBox_SourceFolder;
         private System.Windows.Forms.CheckBox checkBox_UseFolder;
+        private System.Windows.Forms.Button button_GenerateModemMap;
+        private System.Windows.Forms.Button button_ModemSource;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox comboBox_ModemSource;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ComboBox comboBox_HexaneCalc;
     }
 }
 

@@ -67,6 +67,7 @@ namespace ExcelPaster
 
             //Reports
             comboBox_ReportType.SelectedIndex = 1;
+            comboBox_HexaneCalc.SelectedIndex = 0;
         }
         public enum ButtonState
         {
@@ -1959,7 +1960,7 @@ namespace ExcelPaster
                         //Limerock Report
                         if (comboBox_ReportType.SelectedIndex == 1)
                         {
-                            bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                            bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text,comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text);
                         } else if (comboBox_ReportType.SelectedIndex == 2)
                         {
                             bool success = rG.GenerateExcelCalReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
@@ -1993,7 +1994,7 @@ namespace ExcelPaster
                                 //Limerock Report
                                 if (comboBox_ReportType.SelectedIndex == 1)
                                 {
-                                    bool success = rG.GenerateLimerockReport(file, comboBox_ReportOutput.Text);
+                                    bool success = rG.GenerateLimerockReport(file, comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text);
                                 }
                                 else if (comboBox_ReportType.SelectedIndex == 2)
                                 {
@@ -2072,6 +2073,21 @@ namespace ExcelPaster
             }
         }
 
-        
+        private void button_ModemSource_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog4.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog4.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_ModemSource.Text = result;
+                }
+            }
+        }
+
+        private void button_GenerateModemMap_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
