@@ -162,6 +162,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
             this.checkBox_UseFolder = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label37 = new System.Windows.Forms.Label();
@@ -189,8 +191,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
-            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
-            this.label39 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1663,6 +1663,27 @@
             this.tabPage7.Text = "Reports";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(18, 352);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(71, 13);
+            this.label39.TabIndex = 23;
+            this.label39.Text = "Hexane Calc:";
+            // 
+            // comboBox_HexaneCalc
+            // 
+            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_HexaneCalc.FormattingEnabled = true;
+            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
+            "TYPE 1",
+            "TYPE 2"});
+            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
+            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
+            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_HexaneCalc.TabIndex = 22;
+            // 
             // checkBox_UseFolder
             // 
             this.checkBox_UseFolder.AutoSize = true;
@@ -1703,11 +1724,13 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.spread1;
             this.pictureBox1.Location = new System.Drawing.Point(21, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(357, 273);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button_ReportChooseLoc
             // 
@@ -1772,7 +1795,8 @@
             this.comboBox_ReportType.Items.AddRange(new object[] {
             "None",
             "Limerock Gas Report",
-            "Exel Limerock Gas Report"});
+            "Exel Limerock Gas Report",
+            "PCCU Spreadsheet Option 1"});
             this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
@@ -1896,27 +1920,6 @@
             // 
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
-            // 
-            // comboBox_HexaneCalc
-            // 
-            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_HexaneCalc.FormattingEnabled = true;
-            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
-            "TYPE 1",
-            "TYPE 2"});
-            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
-            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
-            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
-            this.comboBox_HexaneCalc.TabIndex = 22;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(18, 352);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(71, 13);
-            this.label39.TabIndex = 23;
-            this.label39.Text = "Hexane Calc:";
             // 
             // MainForm
             // 

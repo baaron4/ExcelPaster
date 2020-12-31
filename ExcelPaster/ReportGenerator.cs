@@ -16,11 +16,18 @@ using iText.IO.Font;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace ExcelPaster
 {
     class ReportGenerator
     {
+        public string printDateTime = "", analyzedBy = "", meterID = "", analysisTime = "", sampleType = "", elevation = "";
+        public float flowingTemp = 0, flowingPressure = 0, calibrationElevation = 0,
+            locationElevation = 0, inferiorWobbe = 0, superiorWobbe = 0,
+            compressibility = 0, density = 0, realRelDensity = 0, idealCV = 0, wetCV = 0, dryCV = 0, contractTemp = 0, contractPress = 0, atmoPressure = 0;
+        public int numCycles = 0, connectedStreams = 0;
+
         public static readonly String FONT = System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\FreeSans.ttf";
         private float GetNumbersAndDecimalsAsFloat(string input)
         {
@@ -33,7 +40,8 @@ namespace ExcelPaster
             XImage image = XImage.FromFile(jpegSamplePath);
             gfx.DrawImage(image, x, y, width, height);
         }
-        public class Gas{
+        public class Gas
+        {
             public string Name;
             public float UnNorm;
             public float Norm;
@@ -51,13 +59,9 @@ namespace ExcelPaster
                 this.RelDensity = relDensity;
             }
         }
-        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc)
+        //Make data-fetching code its own function
+        public List<Gas> loadData(string sourceLoc)
         {
-            string printDateTime="", analyzedBy="", meterID="", analysisTime="", sampleType="", elevation = "";
-            float flowingTemp=0, flowingPressure=0, calibrationElevation=0,
-                locationElevation=0,inferiorWobbe=0,superiorWobbe=0, 
-                compressibility=0, density=0, realRelDensity=0, idealCV=0,wetCV=0,dryCV=0,contractTemp=0,contractPress=0,atmoPressure=0;
-            int numCycles=0, connectedStreams=0;
             List<Gas> gasList = new List<Gas>();
 
             //Read text file
@@ -70,28 +74,40 @@ namespace ExcelPaster
                 switch (lineNum)
                 {
                     case 0:
-                        if (line.Contains("Print Date Time:")) { printDateTime = line.Replace("Print Date Time:", "").Replace("  ", "");
-                            lineNum++; }
+                        if (line.Contains("Print Date Time:"))
+                        {
+                            printDateTime = line.Replace("Print Date Time:", "").Replace("  ", "");
+                            lineNum++;
+                        }
                         break;
                     case 1:
-                        if (line.Contains("Analyzed By:")) { analyzedBy = line.Replace("Analyzed By:", "").Replace("  ", "");
-                            lineNum++; }
+                        if (line.Contains("Analyzed By:"))
+                        {
+                            analyzedBy = line.Replace("Analyzed By:", "").Replace("  ", "");
+                            lineNum++;
+                        }
                         break;
                     case 2:
-                        if (line.Contains("Meter ID:")) { meterID = line.Replace("Meter ID:", "").Replace("  ", "").TrimEnd('.');
-                            lineNum++; }
+                        if (line.Contains("Meter ID:"))
+                        {
+                            meterID = line.Replace("Meter ID:", "").Replace("  ", "").TrimEnd('.');
+                            lineNum++;
+                        }
                         break;
                     case 3:
-                        if (line.Contains("Analysis Time:")) {
+                        if (line.Contains("Analysis Time:"))
+                        {
                             analysisTime = line.Substring(0, line.LastIndexOf("Sample Type:")).Replace("Analysis Time:", "").Replace("  ", "");
                         }
-                        if (line.Contains("Sample Type:")) {
-                            sampleType = line.Substring(line.LastIndexOf("Sample Type:"),line.Length - line.LastIndexOf("Sample Type:")).Replace("  ", "").Replace("Sample Type:", "");
+                        if (line.Contains("Sample Type:"))
+                        {
+                            sampleType = line.Substring(line.LastIndexOf("Sample Type:"), line.Length - line.LastIndexOf("Sample Type:")).Replace("  ", "").Replace("Sample Type:", "");
                             lineNum++;
                         }
                         break;
                     case 4:
-                        if (line.Contains("Flowing Temp.:")) {
+                        if (line.Contains("Flowing Temp.:"))
+                        {
                             flowingTemp = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", ""));
                         }
                         if (line.Contains("Flowing Pressure:"))
@@ -105,7 +121,8 @@ namespace ExcelPaster
                         {
                             calibrationElevation = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Location Elevation:")).Replace("Calibration Elevation:", "").Replace("  ", ""));
                         }
-                        else {
+                        else
+                        {
                             lineNum++;
                         }
                         if (line.Contains("Location Elevation:"))
@@ -115,21 +132,29 @@ namespace ExcelPaster
                         }
                         break;
                     case 6://into table
-                        if (tablePrimer == false) {
-                            if (line.Contains("----------------------------------------------------------------------------")) { tablePrimer = true; }
-                        }else{
+                        if (tablePrimer == false)
+                        {
+                            if (line.Contains("----------------------------------------------------------------------------")) tablePrimer = true;
+                        }
+                        else
+                        {
                             string combineWords = line.Replace("Carbon Dioxide", "Carbon-Dioxide");
-                             
+
                             string reduceSpaces = string.Join(" ", combineWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                             combineWords = reduceSpaces.Replace("Hydrogen Sulfide", "Hydrogen-Sulfide");
-                             reduceSpaces = string.Join(" ", combineWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+                            reduceSpaces = string.Join(" ", combineWords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
 
                             string[] data = reduceSpaces.Split(' ');
-                            if (data.Length >= 5) {
+                            if (data.Length >= 5)
+                            {
                                 gasList.Add(new Gas(data[0], float.Parse(data[1]), float.Parse(data[2]),
                                     float.Parse(data[3]), float.Parse(data[4]), float.Parse(data[5])));
                             }
-                            if (data[0] == "Total") { lineNum++; }
+                            if (data[0] == "Total")
+                            {
+                                
+                                lineNum++;
+                            }
                         }
                         break;
                     case 7:
@@ -138,7 +163,8 @@ namespace ExcelPaster
                             elevation = line.Replace("Elevation", "").Replace("  ", "");
                             lineNum++;
                         }
-                        else {
+                        else
+                        {
                             lineNum++;
                         }
                         break;
@@ -218,10 +244,65 @@ namespace ExcelPaster
                     default:
                         break;
                 }
-                
+
             }
+            return gasList;
+        }
+
+        public bool GenerateSpreadsheet1(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if(gaslist != null)
+            {
+                if (!(meterID.Contains("\\") || meterID.Contains("/") || 
+                    meterID.Contains(":") || meterID.Contains("*") ||
+                    meterID.Contains("?") ||meterID.Contains("\"") ||
+                    meterID.Contains("<") || meterID.Contains(">") ||
+                    meterID.Contains("|")))
+                {
+                    string fileName = outputLoc + "/" + meterID + "..3.TXT";
+                    string dateOnly = printDateTime.Split(' ')[0];
+                    string fileTXT = meterID+"\tA\t"+dateOnly+"\t\t"+dateOnly+"\tS"+"\t\t\t"+realRelDensity+"\t\t\t14.7300\t"+
+                        gaslist.Find(x => x.Name=="Carbon-Dioxide").Norm+"\t"+gaslist.Find(x => x.Name=="Nitrogen").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Methane").Norm+"\t"+gaslist.Find(x => x.Name=="Ethane").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Propane").Norm+"\t"+gaslist.Find(x => x.Name=="IsoButane").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Butane").Norm+"\t"+gaslist.Find(x => x.Name=="IsoPentane").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Pentane").Norm+"\t"+gaslist.Find(x => x.Name=="NeoPentane").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Hexanes").Norm+"\t"+gaslist.Find(x => x.Name=="Heptanes").Norm+"\t"+
+                        gaslist.Find(x => x.Name=="Octanes").Norm+"\t"+gaslist.Find(x => x.Name=="Nonanes").Norm+
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+dryCV+"\t"+gaslist.Find(x => x.Name=="Total").Liquids+"\t\t\t\t"+
+                        analyzedBy+"\t\t\t"+flowingPressure+"\t"+flowingTemp+"\t"+gaslist.Find(x => x.Name=="Total").UnNorm+"\t"+
+                        compressibility+"\t\t\t\t\t\t\t\t\t\t"+gaslist.Find(x => x.Name=="Ethane").Liquids+"\t"+
+                        gaslist.Find(x => x.Name=="Propane").Liquids+"\t"+gaslist.Find(x => x.Name=="IsoButane").Liquids+"\t"+
+                        gaslist.Find(x => x.Name=="Butane").Liquids+"\t"+gaslist.Find(x => x.Name=="IsoPentane").Liquids+"\t"+
+                        gaslist.Find(x => x.Name=="Pentane").Liquids+"\t"+gaslist.Find(x => x.Name=="Hexanes").Liquids+"\t"+
+                        gaslist.Find(x => x.Name=="Heptanes").Liquids+"\t"+wetCV+"\t \t"+dateOnly+"\t\t\tA\t"+atmoPressure+"\t"+
+                        gaslist.Find(x => x.Name=="Octanes").Liquids+"\t"+gaslist.Find(x => x.Name=="Nonanes").Liquids+
+                        "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t ";
+                    File.WriteAllText(fileName,fileTXT);
+                    System.Diagnostics.Process.Start(fileName);
+                }
+                else 
+                {
+                    MessageBox.Show("Be sure meter has a valid ID.\nCannot contain: \\ / : * ? \" < > |","Invalid Meter ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            
+        }
+
+        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc)
+        {
+            List<Gas> gasList = loadData(sourceLoc);
+
             //successfully scraped
-            if (lineNum == 15)
+            if (gasList != null)
             {
                 //Intialize Doc
                 PdfSharp.Pdf.PdfDocument document = new PdfSharp.Pdf.PdfDocument();

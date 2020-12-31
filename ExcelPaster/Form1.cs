@@ -1957,13 +1957,17 @@ namespace ExcelPaster
                     {
                         ReportGenerator rG = new ReportGenerator();
 
-                        //Limerock Report
+                        //Report Type
                         if (comboBox_ReportType.SelectedIndex == 1)
                         {
                             bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text,comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text);
                         } else if (comboBox_ReportType.SelectedIndex == 2)
                         {
                             bool success = rG.GenerateExcelCalReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        }
+                        else if(comboBox_ReportType.SelectedIndex == 3)
+                        {
+                            bool success = rG.GenerateSpreadsheet1(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
                         }
                     }
                     else
@@ -2039,6 +2043,12 @@ namespace ExcelPaster
                     openFileDialog4.Filter = "Excel Files | *.xlsx";
                     openFileDialog4.FileName = "*.xlsx";
                     break;
+                case 3:
+                    //PCCU spreadsheet option 1
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.spread1;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    break;
                 default:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
                     break;
@@ -2086,6 +2096,11 @@ namespace ExcelPaster
         }
 
         private void button_GenerateModemMap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
