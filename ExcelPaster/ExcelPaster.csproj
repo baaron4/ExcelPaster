@@ -210,6 +210,7 @@
     <Content Include="Resources\winn-marion_graphic.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\XMV.PNG" />
     <Content Include="winn-marion-barber-ball_hires%281%29.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -1969,7 +1969,13 @@ namespace ExcelPaster
                         {
                             bool success = rG.GenerateSpreadsheet1(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
                         }
+                        else if(comboBox_ReportType.SelectedIndex == 4)
+                        {
+                            bool success = rG.GenerateXMVCSV(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        }
                     }
+
+
                     else
                     {
                         MessageBox.Show("Select a valid Output Folder", "Invalid Output Folder Location",
@@ -2046,6 +2052,12 @@ namespace ExcelPaster
                 case 3:
                     //PCCU spreadsheet option 1
                     pictureBox1.Image = ExcelPaster.Properties.Resources.spread1;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    break;
+                case 4:
+                    //XMV csv
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.XMV;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
                     break;

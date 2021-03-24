@@ -297,6 +297,45 @@ namespace ExcelPaster
             
         }
 
+        public bool GenerateXMVCSV(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if (gaslist != null)
+            {
+                if (!(meterID.Contains("\\") || meterID.Contains("/") ||
+                    meterID.Contains(":") || meterID.Contains("*") ||
+                    meterID.Contains("?") || meterID.Contains("\"") ||
+                    meterID.Contains("<") || meterID.Contains(">") ||
+                    meterID.Contains("|")))
+                {
+                    string fileName = outputLoc + "/" + meterID + ".csv";
+                    string fileTXT = idealCV + "\n" + realRelDensity + "\n" +
+                        gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
+                        gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
+                        gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" +
+                        gaslist.Find(x => x.Name == "Butane").Norm + "\n" + 
+                        (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
+                        gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" + 
+                        gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" +gaslist.Find(x => x.Name == "Octanes").Norm + "\n" + 
+                        gaslist.Find(x => x.Name == "Nonanes").Norm;
+                    File.WriteAllText(fileName, fileTXT);
+                    //System.Diagnostics.Process.Start(fileName);
+                    MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+                else
+                {
+                    MessageBox.Show("Be sure meter has a valid ID.\nCannot contain: \\ / : * ? \" < > |", "Invalid Meter ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc)
         {
             List<Gas> gasList = loadData(sourceLoc);

@@ -1724,7 +1724,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.spread1;
+            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.XMV;
             this.pictureBox1.Location = new System.Drawing.Point(21, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(357, 273);
@@ -1796,7 +1796,8 @@
             "None",
             "Limerock Gas Report",
             "Exel Limerock Gas Report",
-            "PCCU Spreadsheet Option 1"});
+            "PCCU Spreadsheet Option 1",
+            "XMV.csv"});
             this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
