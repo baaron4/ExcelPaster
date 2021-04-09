@@ -177,6 +177,21 @@ namespace ExcelPaster
             ih.UnloadDriver();
         }
 
+        public void TypeCSVtoRealflo(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
+        {
+            for(int i = 0; i < csv.Count(); i++)
+            {
+                string line = csv[i][0];//will only have 1 value per line
+                for (int j = 0; j < line.Count(); j++) 
+                {
+                    if (bg.CancellationPending) break;
+                    ih.SendKey(line[j]);
+                }
+                if (bg.CancellationPending) break;
+                ih.SendKey(Interceptor.Keys.Tab);
+            }
+        }
+
         private void SendKey(char c)
         {
             // SendKeys.Send(c.ToString());

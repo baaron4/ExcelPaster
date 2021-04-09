@@ -173,7 +173,8 @@ namespace ExcelPaster
         {
             TxT = 0,
             Excel = 1,
-            PCCU = 2
+            PCCU = 2,
+            Realflo = 3
         }
 
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
@@ -261,7 +262,10 @@ namespace ExcelPaster
                         {
                             typer.TypeCSVtoPCCU(reader.GetArrayStorage(), bg);
                         }
-
+                        else if (tgt == TargetProgram.Realflo)
+                        {
+                            typer.TypeCSVtoRealflo(reader.GetArrayStorage(), bg);
+                        }
                         if (bg.CancellationPending)
                         {
                             e.Cancel = true;
@@ -1973,6 +1977,10 @@ namespace ExcelPaster
                         {
                             bool success = rG.GenerateXMVCSV(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
                         }
+                        else if(comboBox_ReportType.SelectedIndex == 5)
+                        {
+                            bool success = rG.GenerateRealfloCSV(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                        }
                     }
 
 
@@ -2058,6 +2066,12 @@ namespace ExcelPaster
                 case 4:
                     //XMV csv
                     pictureBox1.Image = ExcelPaster.Properties.Resources.XMV;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    break;
+                case 5:
+                    //Realflo csv
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.Realflo;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
                     break;

@@ -207,6 +207,7 @@
     <None Include="Resources\Excel_Report.bmp" />
     <Content Include="Resources\Excel_Report.PNG" />
     <None Include="Resources\spread1.PNG" />
+    <None Include="Resources\Realflo.PNG" />
     <Content Include="Resources\winn-marion_graphic.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
