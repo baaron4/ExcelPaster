@@ -22,7 +22,7 @@ namespace ExcelPaster
 {
     class ReportGenerator
     {
-        public string printDateTime = "", analyzedBy = "", meterID = "", analysisTime = "", sampleType = "", elevation = "";
+        public string printDateTime = "", analyzedBy = "", meterID = "", meterDescription = "", analysisTime = "", sampleType = "", elevation = "";
         public float flowingTemp = 0, flowingPressure = 0, calibrationElevation = 0,
             locationElevation = 0, inferiorWobbe = 0, superiorWobbe = 0,
             compressibility = 0, density = 0, realRelDensity = 0, idealCV = 0, wetCV = 0, dryCV = 0, contractTemp = 0, contractPress = 0, atmoPressure = 0;
@@ -95,6 +95,10 @@ namespace ExcelPaster
                         }
                         break;
                     case 3:
+                        if (line.Contains("..."))
+                        {
+                            meterDescription = line.Trim().Split('.')[0];
+                        }
                         if (line.Contains("Analysis Time:"))
                         {
                             analysisTime = line.Substring(0, line.LastIndexOf("Sample Type:")).Replace("Analysis Time:", "").Replace("  ", "");
@@ -302,13 +306,7 @@ namespace ExcelPaster
             List<Gas> gaslist = loadData(sourceLoc);
             if (gaslist != null)
             {
-                if (!(meterID.Contains("\\") || meterID.Contains("/") ||
-                    meterID.Contains(":") || meterID.Contains("*") ||
-                    meterID.Contains("?") || meterID.Contains("\"") ||
-                    meterID.Contains("<") || meterID.Contains(">") ||
-                    meterID.Contains("|")))
-                {
-                    string fileName = outputLoc + "/" + meterID + ".csv";
+                    string fileName = outputLoc + "/" + meterDescription + ".csv";
                     string fileTXT = idealCV + "\n" + realRelDensity + "\n" +
                         gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
                         gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
@@ -321,13 +319,7 @@ namespace ExcelPaster
                     File.WriteAllText(fileName, fileTXT);
                     //System.Diagnostics.Process.Start(fileName);
                     MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                }
-                else
-                {
-                    MessageBox.Show("Be sure meter has a valid ID.\nCannot contain: \\ / : * ? \" < > |", "Invalid Meter ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                return true;
+                    return true;
             }
             else
             {
@@ -341,13 +333,7 @@ namespace ExcelPaster
             List<Gas> gaslist = loadData(sourceLoc);
             if (gaslist != null)
             {
-                if (!(meterID.Contains("\\") || meterID.Contains("/") ||
-                    meterID.Contains(":") || meterID.Contains("*") ||
-                    meterID.Contains("?") || meterID.Contains("\"") ||
-                    meterID.Contains("<") || meterID.Contains(">") ||
-                    meterID.Contains("|")))
-                {
-                    string fileName = outputLoc + "/" + meterID + ".csv";
+                    string fileName = outputLoc + "/" + meterDescription + ".csv";
                     string fileTXT = 
                         gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
                         gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
@@ -360,13 +346,7 @@ namespace ExcelPaster
                     File.WriteAllText(fileName, fileTXT);
                     //System.Diagnostics.Process.Start(fileName);
                     MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                }
-                else
-                {
-                    MessageBox.Show("Be sure meter has a valid ID.\nCannot contain: \\ / : * ? \" < > |", "Invalid Meter ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                return true;
+                    return true;
             }
             else
             {
