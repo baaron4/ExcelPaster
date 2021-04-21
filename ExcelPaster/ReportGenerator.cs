@@ -112,11 +112,23 @@ namespace ExcelPaster
                     case 4:
                         if (line.Contains("Flowing Temp.:"))
                         {
-                            flowingTemp = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", ""));
+                            if (line.Contains("-")) line.Replace("-", "0");
+                            if (line.Contains("?")) line.Replace("?", "0");
+                            if(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", "") == "")
+                            {
+                                flowingTemp = 0;
+                            }
+                            else flowingTemp = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", ""));
                         }
                         if (line.Contains("Flowing Pressure:"))
                         {
-                            flowingPressure = GetNumbersAndDecimalsAsFloat(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Replace("  ", ""));
+                            if (line.Contains("-")) line.Replace("-", "0");
+                            if (line.Contains("?")) line.Replace("?", "0");
+                            if(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Replace("  ", "") == "")
+                            {
+                                flowingPressure = 0;
+                            }
+                            else flowingPressure = GetNumbersAndDecimalsAsFloat(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Replace("  ", ""));
                             lineNum++;
                         }
                         break;
@@ -253,18 +265,89 @@ namespace ExcelPaster
             return gasList;
         }
 
-        public bool GenerateSpreadsheet1(string sourceLoc, string outputLoc)
+        public bool breaksFileNameRules(string name)
+        {
+            if ((name.Contains("\\") || name.Contains("/") ||
+                    name.Contains(":") || name.Contains("*") ||
+                    name.Contains("?") || name.Contains("\"") ||
+                    name.Contains("<") || name.Contains(">") ||
+                    name.Contains("|"))) return true;
+            else return false;
+        }
+
+        public string GenerateXMVCSV(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if (gaslist != null)
+            {
+                meterDescription = meterDescription.Replace("/", ",").Replace("\\", ",");
+                string fileName = outputLoc + "\\" + meterDescription + ".csv";
+                if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                {
+                    MessageBox.Show("File name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                string fileTXT = idealCV + "\n" + realRelDensity + "\n" +
+                    gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
+                    (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
+                    gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" + gaslist.Find(x => x.Name == "Octanes").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Nonanes").Norm;
+                File.WriteAllText(fileName, fileTXT);
+                return fileName;
+            }
+            else
+            {
+                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public string GenerateRealfloCSV(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if (gaslist != null)
+            {
+                meterDescription = meterDescription.Replace("/", ",").Replace("\\",",");
+                string fileName = outputLoc + "\\" + meterDescription + ".csv";
+                if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                {
+                    MessageBox.Show("File name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                string fileTXT =
+                    gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Propane").Norm + "\n0\n0\n0\n0\n0\n0\n" + gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
+                    (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
+                    gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" + gaslist.Find(x => x.Name == "Octanes").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Nonanes").Norm + "\n0\n0\nl\n" + realRelDensity + "\n" + idealCV;
+                File.WriteAllText(fileName, fileTXT);
+                return fileName;
+            }
+            else
+            {
+                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public bool GenerateSpreadsheet1(string sourceLoc, string outputLoc, bool showReport)
         {
             List<Gas> gaslist = loadData(sourceLoc);
             if(gaslist != null)
             {
-                if (!(meterID.Contains("\\") || meterID.Contains("/") || 
-                    meterID.Contains(":") || meterID.Contains("*") ||
-                    meterID.Contains("?") ||meterID.Contains("\"") ||
-                    meterID.Contains("<") || meterID.Contains(">") ||
-                    meterID.Contains("|")))
-                {
-                    string fileName = outputLoc + "/" + meterID + "..3.TXT";
+                    string fileName = outputLoc + "\\" + meterID + "..3.TXT";
+                    if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                    {
+                        MessageBox.Show("File name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                     string dateOnly = printDateTime.Split(' ')[0];
                     string fileTXT = meterID+"\tA\t"+dateOnly+"\t\t"+dateOnly+"\tS"+"\t\t\t"+realRelDensity+"\t\t\t14.7300\t"+
                         gaslist.Find(x => x.Name=="Carbon-Dioxide").Norm+"\t"+gaslist.Find(x => x.Name=="Nitrogen").Norm+"\t"+
@@ -284,13 +367,7 @@ namespace ExcelPaster
                         gaslist.Find(x => x.Name=="Octanes").Liquids+"\t"+gaslist.Find(x => x.Name=="Nonanes").Liquids+
                         "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t ";
                     File.WriteAllText(fileName,fileTXT);
-                    System.Diagnostics.Process.Start(fileName);
-                }
-                else 
-                {
-                    MessageBox.Show("Be sure meter has a valid ID.\nCannot contain: \\ / : * ? \" < > |","Invalid Meter ID", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                    if(showReport) System.Diagnostics.Process.Start(fileName);
                 return true;
             }
             else
@@ -301,61 +378,99 @@ namespace ExcelPaster
             
         }
 
-        public bool GenerateXMVCSV(string sourceLoc, string outputLoc)
+        public bool GenerateRunReportRename(string sourceLoc, string outputLoc, string meter_id, string meter_desc, bool doAll, bool showReport)
         {
-            List<Gas> gaslist = loadData(sourceLoc);
-            if (gaslist != null)
+            /*Run report names follow this format:
+              meter_id..meter_desc.runNumber.txt
+              Spreadshee report names follow this format:
+              meter_id..3
+            */
+            int runs = 1;
+            int runNumber;
+            string fileName;
+            string fileText;
+            string[] path = sourceLoc.Split('\\');
+            string sourceFileName = path[path.Length - 1];
+            string old_id = sourceFileName.Split('.')[0];
+            int dirIndex = sourceLoc.LastIndexOf('\\') + 1;
+            string dir = sourceLoc.Remove(dirIndex);
+            if (Int32.TryParse(sourceFileName.Split('.')[3], out runNumber))
             {
-                    string fileName = outputLoc + "/" + meterDescription + ".csv";
-                    string fileTXT = idealCV + "\n" + realRelDensity + "\n" +
-                        gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Butane").Norm + "\n" + 
-                        (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
-                        gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" + 
-                        gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" +gaslist.Find(x => x.Name == "Octanes").Norm + "\n" + 
-                        gaslist.Find(x => x.Name == "Nonanes").Norm;
-                    File.WriteAllText(fileName, fileTXT);
-                    //System.Diagnostics.Process.Start(fileName);
-                    MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    return true;
+                if (doAll)
+                {
+                    //set for-loop parameters
+                    runs = 3;
+                    runNumber = 1;
+                    //generate renamed spreadsheet (easier method below)
+                    if (File.Exists(dir + old_id + "..3.txt"))
+                    {
+                        fileText = File.ReadAllText(dir + old_id + "..3.txt");
+                        fileText = fileText.Replace(old_id, meter_id);
+                        fileName = outputLoc + "\\" + meter_id + "..3.TXT";
+                        //Console.WriteLine(fileName.Split('\\')[fileName.Split('\\').Length - 1]);
+                        if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                        {
+                            MessageBox.Show("Spreadsheet file name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                        File.WriteAllText(fileName,fileText);
+                        if (showReport) System.Diagnostics.Process.Start(fileName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No such spreadsheet to rename.\nCheck naming scheme.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                //generate run reports
+                for (int i = 0; i < runs; i++)
+                {
+                    sourceLoc = sourceLoc.Remove(sourceLoc.Length - 5) + runNumber.ToString() + ".txt"; //replace run number
+                    string newMeterIDLine = "      Meter ID:          " + meter_id;
+                    string newMeterDescLine = "                         " + meter_desc + "..." + runNumber;
+                    if (File.Exists(sourceLoc))
+                    {
+                        string[] lines = File.ReadAllLines(sourceLoc);
+                        lines[3] = newMeterIDLine;
+                        lines[4] = newMeterDescLine;
+                        fileName = outputLoc + "\\" + meter_id + ".." + meter_desc.Replace("/", ",").Replace("\\", ",") + "." + runNumber + ".txt";
+                        if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                        {
+                            MessageBox.Show("Run report file name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                        fileText = "";
+                        foreach (string line in lines) fileText = fileText + line + "\n";
+                        File.WriteAllText(fileName, fileText);
+                        if (showReport) System.Diagnostics.Process.Start(fileName);
+                        runNumber += 1; 
+                    }
+                    else
+                    {
+                        MessageBox.Show("No such report to rename.\nCheck naming scheme.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+                //way easier method to generate spreadsheet. won't have as many significant digits though
+                //if (doAll)
+                //{
+                //    bool success = GenerateSpreadsheet1(sourceLoc.Remove(sourceLoc.Length - 5) + "3.txt", outputLoc, showReport);
+                //    if (!success)
+                //    {
+                //        MessageBox.Show("Failed to create spreadsheet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //        return false;
+                //    } 
+                //}
+                return true; 
             }
             else
             {
-                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Check file numbering scheme.", "Error: could not read file(s).", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
 
-        public bool GenerateRealfloCSV(string sourceLoc, string outputLoc)
-        {
-            List<Gas> gaslist = loadData(sourceLoc);
-            if (gaslist != null)
-            {
-                    string fileName = outputLoc + "/" + meterDescription + ".csv";
-                    string fileTXT = 
-                        gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Propane").Norm + "\n0\n0\n0\n0\n0\n0\n" + gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
-                        (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
-                        gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" + gaslist.Find(x => x.Name == "Octanes").Norm + "\n" +
-                        gaslist.Find(x => x.Name == "Nonanes").Norm + "\n0\n0\nl\n" + realRelDensity + "\n" + idealCV;
-                    File.WriteAllText(fileName, fileTXT);
-                    //System.Diagnostics.Process.Start(fileName);
-                    MessageBox.Show("Done!", "", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    return true;
-            }
-            else
-            {
-                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc)
+        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc, bool showReport)
         {
             List<Gas> gasList = loadData(sourceLoc);
 
@@ -525,10 +640,15 @@ namespace ExcelPaster
                 gfx.DrawString("Btu/SCF", font, XBrushes.Black, new XRect(480, 480, 85, 20), XStringFormats.Center);
 
                 //Save Doc
-                document.Save(outputLoc + "/" + meterID + ".pdf");
+                document.Save(outputLoc + "\\" + meterID + ".pdf");
 
                 //Debug view
-                Process.Start(outputLoc + "/" + meterID + ".pdf");
+                if(showReport) Process.Start(outputLoc + "\\" + meterID + ".pdf");
+            }
+            else
+            {
+                MessageBox.Show("Failed to read report data. Check formatting.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             
             return true;
@@ -567,7 +687,7 @@ namespace ExcelPaster
             }
             return dvalue;
         }
-        public bool GenerateExcelCalReport(string sourceLoc, string outputLoc)
+        public bool GenerateExcelCalReport(string sourceLoc, string outputLoc, bool showReport)
         {
             string reportDate, collectionTime, deviceID, system, location, field, state, producer, 
                 calibrationTime, purchaser, tagType, spTapLocation, remarks, calibratedBy, calBydate, witness, witnessDate,currentPlateSize, speceficGravity, pipeSize, temperatureBias, amtosPressure, pressureBas, temperatureBase, dpRangeLow, dpRangeHigh, spRangeLow, spRangeHigh, tempRangeLow, tempRangeHigh;
@@ -865,7 +985,7 @@ namespace ExcelPaster
             pdfDoc.Close();
 
             //Debug view
-            Process.Start(outputLoc + "\\" + Path.GetFileName(sourceLoc).Split('.')[0] + "_CalibrationReport.pdf");
+            if(showReport) Process.Start(outputLoc + "\\" + Path.GetFileName(sourceLoc).Split('.')[0] + "_CalibrationReport.pdf");
             return true;
         }
     }

@@ -110,6 +110,40 @@
             this.btn_Cancel1 = new System.Windows.Forms.Button();
             this.comboBox_FileLocation = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label_namingScheme = new System.Windows.Forms.Label();
+            this.checkBox_showReport = new System.Windows.Forms.CheckBox();
+            this.panel_sourceFolder = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBox_SourceFolder = new System.Windows.Forms.ComboBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.renameFileInfo_label = new System.Windows.Forms.Label();
+            this.panele_renameOptions = new System.Windows.Forms.Panel();
+            this.checkBox_doAll = new System.Windows.Forms.CheckBox();
+            this.textBox_meterID = new System.Windows.Forms.TextBox();
+            this.textBox_meterDesc = new System.Windows.Forms.TextBox();
+            this.label_meterID = new System.Windows.Forms.Label();
+            this.label_meterDesc = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_ReportChooseLoc = new System.Windows.Forms.Button();
+            this.button_ReportChooseFile = new System.Windows.Forms.Button();
+            this.label36 = new System.Windows.Forms.Label();
+            this.comboBox_ReportOutput = new System.Windows.Forms.ComboBox();
+            this.button_ReportGenerate = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
+            this.comboBox_ReportType = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.comboBox_ReportSource = new System.Windows.Forms.ComboBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
+            this.button_UserLoad = new System.Windows.Forms.Button();
+            this.button_OpenTODOFile = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
+            this.button_ChangeTODOFile = new System.Windows.Forms.Button();
+            this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.group_Data = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -139,14 +173,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.textbox_ModbusIP = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
-            this.button_UserLoad = new System.Windows.Forms.Button();
-            this.button_OpenTODOFile = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
-            this.button_ChangeTODOFile = new System.Windows.Forms.Button();
-            this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.checkBox_levenstheins = new System.Windows.Forms.CheckBox();
             this.comboBox_DB_COPY_OUT = new System.Windows.Forms.ComboBox();
@@ -161,23 +187,6 @@
             this.comboBox_SourceDB_CSV_Loc = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
             this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.label39 = new System.Windows.Forms.Label();
-            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
-            this.checkBox_UseFolder = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label37 = new System.Windows.Forms.Label();
-            this.comboBox_SourceFolder = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button_ReportChooseLoc = new System.Windows.Forms.Button();
-            this.button_ReportChooseFile = new System.Windows.Forms.Button();
-            this.label36 = new System.Windows.Forms.Label();
-            this.comboBox_ReportOutput = new System.Windows.Forms.ComboBox();
-            this.button_ReportGenerate = new System.Windows.Forms.Button();
-            this.label35 = new System.Windows.Forms.Label();
-            this.comboBox_ReportType = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.comboBox_ReportSource = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button_GenerateModemMap = new System.Windows.Forms.Button();
             this.button_ModemSource = new System.Windows.Forms.Button();
@@ -199,15 +208,17 @@
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.panel_sourceFolder.SuspendLayout();
+            this.panele_renameOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.group_Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -276,10 +287,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -300,7 +311,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1024, 480);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "IP Change";
+            this.tabPage3.Text = "IP Editor";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // button_OpenFile
@@ -945,7 +956,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1024, 480);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "CSV Copy";
+            this.tabPage1.Text = "Copy & Paste";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -1029,7 +1040,8 @@
             "Notepad/Text Editor",
             "Excel",
             "PCCU",
-            "Realflo"});
+            "Realflo",
+            "XMV Analysis"});
             this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(532, 8);
             this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
             this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
@@ -1080,6 +1092,372 @@
             this.label3.Size = new System.Drawing.Size(233, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Select a .CSV File to copy into another program:";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.checkBox_showReport);
+            this.tabPage7.Controls.Add(this.panel_sourceFolder);
+            this.tabPage7.Controls.Add(this.renameFileInfo_label);
+            this.tabPage7.Controls.Add(this.panele_renameOptions);
+            this.tabPage7.Controls.Add(this.label39);
+            this.tabPage7.Controls.Add(this.comboBox_HexaneCalc);
+            this.tabPage7.Controls.Add(this.pictureBox1);
+            this.tabPage7.Controls.Add(this.button_ReportChooseLoc);
+            this.tabPage7.Controls.Add(this.button_ReportChooseFile);
+            this.tabPage7.Controls.Add(this.label36);
+            this.tabPage7.Controls.Add(this.comboBox_ReportOutput);
+            this.tabPage7.Controls.Add(this.button_ReportGenerate);
+            this.tabPage7.Controls.Add(this.label35);
+            this.tabPage7.Controls.Add(this.comboBox_ReportType);
+            this.tabPage7.Controls.Add(this.label34);
+            this.tabPage7.Controls.Add(this.comboBox_ReportSource);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Report Generator";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label_namingScheme
+            // 
+            this.label_namingScheme.AutoSize = true;
+            this.label_namingScheme.Location = new System.Drawing.Point(94, 76);
+            this.label_namingScheme.Name = "label_namingScheme";
+            this.label_namingScheme.Size = new System.Drawing.Size(245, 39);
+            this.label_namingScheme.TabIndex = 33;
+            this.label_namingScheme.Text = "Naming Scheme:\r\nRun Report: meterID..meterDescription.runNumber\r\nSpreadsheet: met" +
+    "erID..3\r\n";
+            // 
+            // checkBox_showReport
+            // 
+            this.checkBox_showReport.AutoSize = true;
+            this.checkBox_showReport.Checked = true;
+            this.checkBox_showReport.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_showReport.Location = new System.Drawing.Point(477, 433);
+            this.checkBox_showReport.Name = "checkBox_showReport";
+            this.checkBox_showReport.Size = new System.Drawing.Size(162, 17);
+            this.checkBox_showReport.TabIndex = 32;
+            this.checkBox_showReport.Text = "Show Report When Finished";
+            this.checkBox_showReport.UseVisualStyleBackColor = true;
+            // 
+            // panel_sourceFolder
+            // 
+            this.panel_sourceFolder.Controls.Add(this.button1);
+            this.panel_sourceFolder.Controls.Add(this.comboBox_SourceFolder);
+            this.panel_sourceFolder.Controls.Add(this.label37);
+            this.panel_sourceFolder.Location = new System.Drawing.Point(389, 52);
+            this.panel_sourceFolder.Name = "panel_sourceFolder";
+            this.panel_sourceFolder.Size = new System.Drawing.Size(621, 38);
+            this.panel_sourceFolder.TabIndex = 31;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(113, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 31);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Change Folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboBox_SourceFolder
+            // 
+            this.comboBox_SourceFolder.AllowDrop = true;
+            this.comboBox_SourceFolder.FormattingEnabled = true;
+            this.comboBox_SourceFolder.Location = new System.Drawing.Point(230, 8);
+            this.comboBox_SourceFolder.Name = "comboBox_SourceFolder";
+            this.comboBox_SourceFolder.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_SourceFolder.TabIndex = 11;
+            this.comboBox_SourceFolder.TextChanged += new System.EventHandler(this.comboBox_SourceFolder_TextChanged);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(7, 11);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(100, 13);
+            this.label37.TabIndex = 12;
+            this.label37.Text = "Source Text Folder:";
+            // 
+            // renameFileInfo_label
+            // 
+            this.renameFileInfo_label.AutoSize = true;
+            this.renameFileInfo_label.Location = new System.Drawing.Point(619, 9);
+            this.renameFileInfo_label.Name = "renameFileInfo_label";
+            this.renameFileInfo_label.Size = new System.Drawing.Size(161, 13);
+            this.renameFileInfo_label.TabIndex = 29;
+            this.renameFileInfo_label.Text = "Pick any of the three run reports.";
+            // 
+            // panele_renameOptions
+            // 
+            this.panele_renameOptions.Controls.Add(this.label_namingScheme);
+            this.panele_renameOptions.Controls.Add(this.checkBox_doAll);
+            this.panele_renameOptions.Controls.Add(this.textBox_meterID);
+            this.panele_renameOptions.Controls.Add(this.textBox_meterDesc);
+            this.panele_renameOptions.Controls.Add(this.label_meterID);
+            this.panele_renameOptions.Controls.Add(this.label_meterDesc);
+            this.panele_renameOptions.Location = new System.Drawing.Point(571, 96);
+            this.panele_renameOptions.Name = "panele_renameOptions";
+            this.panele_renameOptions.Size = new System.Drawing.Size(439, 127);
+            this.panele_renameOptions.TabIndex = 28;
+            // 
+            // checkBox_doAll
+            // 
+            this.checkBox_doAll.AutoSize = true;
+            this.checkBox_doAll.Checked = true;
+            this.checkBox_doAll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_doAll.Location = new System.Drawing.Point(97, 56);
+            this.checkBox_doAll.Name = "checkBox_doAll";
+            this.checkBox_doAll.Size = new System.Drawing.Size(256, 17);
+            this.checkBox_doAll.TabIndex = 28;
+            this.checkBox_doAll.Text = "Rename all 3 run reports and spreadsheet report.";
+            this.checkBox_doAll.UseVisualStyleBackColor = true;
+            this.checkBox_doAll.CheckedChanged += new System.EventHandler(this.doAll_checkbox_CheckedChanged);
+            // 
+            // textBox_meterID
+            // 
+            this.textBox_meterID.Location = new System.Drawing.Point(97, 3);
+            this.textBox_meterID.Name = "textBox_meterID";
+            this.textBox_meterID.Size = new System.Drawing.Size(137, 20);
+            this.textBox_meterID.TabIndex = 26;
+            // 
+            // textBox_meterDesc
+            // 
+            this.textBox_meterDesc.Location = new System.Drawing.Point(97, 30);
+            this.textBox_meterDesc.Name = "textBox_meterDesc";
+            this.textBox_meterDesc.Size = new System.Drawing.Size(293, 20);
+            this.textBox_meterDesc.TabIndex = 27;
+            // 
+            // label_meterID
+            // 
+            this.label_meterID.AutoSize = true;
+            this.label_meterID.Location = new System.Drawing.Point(45, 6);
+            this.label_meterID.Name = "label_meterID";
+            this.label_meterID.Size = new System.Drawing.Size(51, 13);
+            this.label_meterID.TabIndex = 24;
+            this.label_meterID.Text = "Meter ID:";
+            // 
+            // label_meterDesc
+            // 
+            this.label_meterDesc.AutoSize = true;
+            this.label_meterDesc.Location = new System.Drawing.Point(3, 33);
+            this.label_meterDesc.Name = "label_meterDesc";
+            this.label_meterDesc.Size = new System.Drawing.Size(93, 13);
+            this.label_meterDesc.TabIndex = 25;
+            this.label_meterDesc.Text = "Meter Description:";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(18, 352);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(71, 13);
+            this.label39.TabIndex = 23;
+            this.label39.Text = "Hexane Calc:";
+            // 
+            // comboBox_HexaneCalc
+            // 
+            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_HexaneCalc.FormattingEnabled = true;
+            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
+            "TYPE 1",
+            "TYPE 2"});
+            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
+            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
+            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_HexaneCalc.TabIndex = 22;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.Run_Report;
+            this.pictureBox1.Location = new System.Drawing.Point(21, 60);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(357, 273);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button_ReportChooseLoc
+            // 
+            this.button_ReportChooseLoc.Location = new System.Drawing.Point(528, 376);
+            this.button_ReportChooseLoc.Name = "button_ReportChooseLoc";
+            this.button_ReportChooseLoc.Size = new System.Drawing.Size(111, 31);
+            this.button_ReportChooseLoc.TabIndex = 9;
+            this.button_ReportChooseLoc.Text = "Change Location";
+            this.button_ReportChooseLoc.UseVisualStyleBackColor = true;
+            this.button_ReportChooseLoc.Click += new System.EventHandler(this.button_ReportChooseLoc_Click);
+            // 
+            // button_ReportChooseFile
+            // 
+            this.button_ReportChooseFile.Location = new System.Drawing.Point(502, 20);
+            this.button_ReportChooseFile.Name = "button_ReportChooseFile";
+            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
+            this.button_ReportChooseFile.TabIndex = 8;
+            this.button_ReportChooseFile.Text = "Change File";
+            this.button_ReportChooseFile.UseVisualStyleBackColor = true;
+            this.button_ReportChooseFile.Click += new System.EventHandler(this.button_ReportChooseFile_Click);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(436, 385);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(86, 13);
+            this.label36.TabIndex = 6;
+            this.label36.Text = "Output Location:";
+            // 
+            // comboBox_ReportOutput
+            // 
+            this.comboBox_ReportOutput.FormattingEnabled = true;
+            this.comboBox_ReportOutput.Location = new System.Drawing.Point(645, 382);
+            this.comboBox_ReportOutput.Name = "comboBox_ReportOutput";
+            this.comboBox_ReportOutput.Size = new System.Drawing.Size(357, 21);
+            this.comboBox_ReportOutput.TabIndex = 5;
+            // 
+            // button_ReportGenerate
+            // 
+            this.button_ReportGenerate.Location = new System.Drawing.Point(645, 425);
+            this.button_ReportGenerate.Name = "button_ReportGenerate";
+            this.button_ReportGenerate.Size = new System.Drawing.Size(360, 31);
+            this.button_ReportGenerate.TabIndex = 4;
+            this.button_ReportGenerate.Text = "Generate";
+            this.button_ReportGenerate.UseVisualStyleBackColor = true;
+            this.button_ReportGenerate.Click += new System.EventHandler(this.button_ReportGenerate_Click);
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(18, 20);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(69, 13);
+            this.label35.TabIndex = 3;
+            this.label35.Text = "Report Type:";
+            // 
+            // comboBox_ReportType
+            // 
+            this.comboBox_ReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ReportType.FormattingEnabled = true;
+            this.comboBox_ReportType.Items.AddRange(new object[] {
+            "Exel Limerock Gas Report",
+            "Limerock Gas Report",
+            "PCCU Spreadsheet Option 1",
+            "Run Report Rename"});
+            this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
+            this.comboBox_ReportType.Name = "comboBox_ReportType";
+            this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_ReportType.TabIndex = 2;
+            this.comboBox_ReportType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReportType_SelectedIndexChanged);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(409, 28);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(87, 13);
+            this.label34.TabIndex = 1;
+            this.label34.Text = "Source Text File:";
+            // 
+            // comboBox_ReportSource
+            // 
+            this.comboBox_ReportSource.AllowDrop = true;
+            this.comboBox_ReportSource.FormattingEnabled = true;
+            this.comboBox_ReportSource.Location = new System.Drawing.Point(619, 25);
+            this.comboBox_ReportSource.Name = "comboBox_ReportSource";
+            this.comboBox_ReportSource.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_ReportSource.TabIndex = 0;
+            this.comboBox_ReportSource.TextChanged += new System.EventHandler(this.comboBox_ReportSource_TextChanged);
+            this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
+            this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.textBox_UserNameToDo);
+            this.tabPage4.Controls.Add(this.button_UserLoad);
+            this.tabPage4.Controls.Add(this.button_OpenTODOFile);
+            this.tabPage4.Controls.Add(this.label4);
+            this.tabPage4.Controls.Add(this.comboBox_TODOFileLoc);
+            this.tabPage4.Controls.Add(this.button_ChangeTODOFile);
+            this.tabPage4.Controls.Add(this.textBox_ToDoWorkArea);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "To-Do List";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // textBox_UserNameToDo
+            // 
+            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
+            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
+            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
+            this.textBox_UserNameToDo.TabIndex = 29;
+            // 
+            // button_UserLoad
+            // 
+            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
+            this.button_UserLoad.Name = "button_UserLoad";
+            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
+            this.button_UserLoad.TabIndex = 28;
+            this.button_UserLoad.Text = "Load ToDo For User";
+            this.button_UserLoad.UseVisualStyleBackColor = true;
+            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
+            // 
+            // button_OpenTODOFile
+            // 
+            this.button_OpenTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_OpenTODOFile.Location = new System.Drawing.Point(50, 453);
+            this.button_OpenTODOFile.Name = "button_OpenTODOFile";
+            this.button_OpenTODOFile.Size = new System.Drawing.Size(99, 23);
+            this.button_OpenTODOFile.TabIndex = 25;
+            this.button_OpenTODOFile.Text = "Open TODO File";
+            this.button_OpenTODOFile.UseVisualStyleBackColor = true;
+            this.button_OpenTODOFile.Click += new System.EventHandler(this.button_OpenTODOFile_Click_1);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(280, 438);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Select TODO File (.csv file): \r\n";
+            // 
+            // comboBox_TODOFileLoc
+            // 
+            this.comboBox_TODOFileLoc.AllowDrop = true;
+            this.comboBox_TODOFileLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_TODOFileLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.comboBox_TODOFileLoc.FormattingEnabled = true;
+            this.comboBox_TODOFileLoc.Location = new System.Drawing.Point(283, 454);
+            this.comboBox_TODOFileLoc.MaxDropDownItems = 10;
+            this.comboBox_TODOFileLoc.Name = "comboBox_TODOFileLoc";
+            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(277, 21);
+            this.comboBox_TODOFileLoc.TabIndex = 27;
+            // 
+            // button_ChangeTODOFile
+            // 
+            this.button_ChangeTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_ChangeTODOFile.Location = new System.Drawing.Point(155, 454);
+            this.button_ChangeTODOFile.Name = "button_ChangeTODOFile";
+            this.button_ChangeTODOFile.Size = new System.Drawing.Size(122, 23);
+            this.button_ChangeTODOFile.TabIndex = 26;
+            this.button_ChangeTODOFile.Text = "Change File";
+            this.button_ChangeTODOFile.UseVisualStyleBackColor = true;
+            this.button_ChangeTODOFile.Click += new System.EventHandler(this.button_ChangeTODOFile_Click);
+            // 
+            // textBox_ToDoWorkArea
+            // 
+            this.textBox_ToDoWorkArea.Location = new System.Drawing.Point(20, 24);
+            this.textBox_ToDoWorkArea.Multiline = true;
+            this.textBox_ToDoWorkArea.Name = "textBox_ToDoWorkArea";
+            this.textBox_ToDoWorkArea.Size = new System.Drawing.Size(983, 399);
+            this.textBox_ToDoWorkArea.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -1393,97 +1771,6 @@
             this.textbox_ModbusIP.Text = "169.254.0.12";
             this.textbox_ModbusIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.textBox_UserNameToDo);
-            this.tabPage4.Controls.Add(this.button_UserLoad);
-            this.tabPage4.Controls.Add(this.button_OpenTODOFile);
-            this.tabPage4.Controls.Add(this.label4);
-            this.tabPage4.Controls.Add(this.comboBox_TODOFileLoc);
-            this.tabPage4.Controls.Add(this.button_ChangeTODOFile);
-            this.tabPage4.Controls.Add(this.textBox_ToDoWorkArea);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1024, 480);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "To Do List";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // textBox_UserNameToDo
-            // 
-            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
-            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
-            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
-            this.textBox_UserNameToDo.TabIndex = 29;
-            // 
-            // button_UserLoad
-            // 
-            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
-            this.button_UserLoad.Name = "button_UserLoad";
-            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
-            this.button_UserLoad.TabIndex = 28;
-            this.button_UserLoad.Text = "Load ToDo For User";
-            this.button_UserLoad.UseVisualStyleBackColor = true;
-            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
-            // 
-            // button_OpenTODOFile
-            // 
-            this.button_OpenTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_OpenTODOFile.Location = new System.Drawing.Point(50, 453);
-            this.button_OpenTODOFile.Name = "button_OpenTODOFile";
-            this.button_OpenTODOFile.Size = new System.Drawing.Size(99, 23);
-            this.button_OpenTODOFile.TabIndex = 25;
-            this.button_OpenTODOFile.Text = "Open TODO File";
-            this.button_OpenTODOFile.UseVisualStyleBackColor = true;
-            this.button_OpenTODOFile.Click += new System.EventHandler(this.button_OpenTODOFile_Click_1);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(280, 438);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Select TODO File (.csv file): \r\n";
-            // 
-            // comboBox_TODOFileLoc
-            // 
-            this.comboBox_TODOFileLoc.AllowDrop = true;
-            this.comboBox_TODOFileLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_TODOFileLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this.comboBox_TODOFileLoc.FormattingEnabled = true;
-            this.comboBox_TODOFileLoc.Location = new System.Drawing.Point(283, 454);
-            this.comboBox_TODOFileLoc.MaxDropDownItems = 10;
-            this.comboBox_TODOFileLoc.Name = "comboBox_TODOFileLoc";
-            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(277, 21);
-            this.comboBox_TODOFileLoc.TabIndex = 27;
-            // 
-            // button_ChangeTODOFile
-            // 
-            this.button_ChangeTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ChangeTODOFile.Location = new System.Drawing.Point(155, 454);
-            this.button_ChangeTODOFile.Name = "button_ChangeTODOFile";
-            this.button_ChangeTODOFile.Size = new System.Drawing.Size(122, 23);
-            this.button_ChangeTODOFile.TabIndex = 26;
-            this.button_ChangeTODOFile.Text = "Change File";
-            this.button_ChangeTODOFile.UseVisualStyleBackColor = true;
-            this.button_ChangeTODOFile.Click += new System.EventHandler(this.button_ChangeTODOFile_Click);
-            // 
-            // textBox_ToDoWorkArea
-            // 
-            this.textBox_ToDoWorkArea.Location = new System.Drawing.Point(20, 24);
-            this.textBox_ToDoWorkArea.Multiline = true;
-            this.textBox_ToDoWorkArea.Name = "textBox_ToDoWorkArea";
-            this.textBox_ToDoWorkArea.Size = new System.Drawing.Size(983, 399);
-            this.textBox_ToDoWorkArea.TabIndex = 0;
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.checkBox_levenstheins);
@@ -1639,193 +1926,6 @@
             this.Button_Change_SourceDB_CSV.UseVisualStyleBackColor = true;
             this.Button_Change_SourceDB_CSV.Click += new System.EventHandler(this.Button_Change_SourceDB_CSV_Click);
             // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.label39);
-            this.tabPage7.Controls.Add(this.comboBox_HexaneCalc);
-            this.tabPage7.Controls.Add(this.checkBox_UseFolder);
-            this.tabPage7.Controls.Add(this.button1);
-            this.tabPage7.Controls.Add(this.label37);
-            this.tabPage7.Controls.Add(this.comboBox_SourceFolder);
-            this.tabPage7.Controls.Add(this.pictureBox1);
-            this.tabPage7.Controls.Add(this.button_ReportChooseLoc);
-            this.tabPage7.Controls.Add(this.button_ReportChooseFile);
-            this.tabPage7.Controls.Add(this.label36);
-            this.tabPage7.Controls.Add(this.comboBox_ReportOutput);
-            this.tabPage7.Controls.Add(this.button_ReportGenerate);
-            this.tabPage7.Controls.Add(this.label35);
-            this.tabPage7.Controls.Add(this.comboBox_ReportType);
-            this.tabPage7.Controls.Add(this.label34);
-            this.tabPage7.Controls.Add(this.comboBox_ReportSource);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1024, 480);
-            this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "Reports";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(18, 352);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(71, 13);
-            this.label39.TabIndex = 23;
-            this.label39.Text = "Hexane Calc:";
-            // 
-            // comboBox_HexaneCalc
-            // 
-            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_HexaneCalc.FormattingEnabled = true;
-            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
-            "TYPE 1",
-            "TYPE 2"});
-            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
-            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
-            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
-            this.comboBox_HexaneCalc.TabIndex = 22;
-            // 
-            // checkBox_UseFolder
-            // 
-            this.checkBox_UseFolder.AutoSize = true;
-            this.checkBox_UseFolder.Location = new System.Drawing.Point(399, 60);
-            this.checkBox_UseFolder.Name = "checkBox_UseFolder";
-            this.checkBox_UseFolder.Size = new System.Drawing.Size(102, 17);
-            this.checkBox_UseFolder.TabIndex = 21;
-            this.checkBox_UseFolder.Text = "Generate Folder";
-            this.checkBox_UseFolder.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(502, 77);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 31);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Change Folder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(396, 86);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(100, 13);
-            this.label37.TabIndex = 12;
-            this.label37.Text = "Source Text Folder:";
-            // 
-            // comboBox_SourceFolder
-            // 
-            this.comboBox_SourceFolder.AllowDrop = true;
-            this.comboBox_SourceFolder.FormattingEnabled = true;
-            this.comboBox_SourceFolder.Location = new System.Drawing.Point(619, 83);
-            this.comboBox_SourceFolder.Name = "comboBox_SourceFolder";
-            this.comboBox_SourceFolder.Size = new System.Drawing.Size(391, 21);
-            this.comboBox_SourceFolder.TabIndex = 11;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.Realflo;
-            this.pictureBox1.Location = new System.Drawing.Point(21, 60);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(357, 273);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // button_ReportChooseLoc
-            // 
-            this.button_ReportChooseLoc.Location = new System.Drawing.Point(528, 376);
-            this.button_ReportChooseLoc.Name = "button_ReportChooseLoc";
-            this.button_ReportChooseLoc.Size = new System.Drawing.Size(111, 31);
-            this.button_ReportChooseLoc.TabIndex = 9;
-            this.button_ReportChooseLoc.Text = "Change Location";
-            this.button_ReportChooseLoc.UseVisualStyleBackColor = true;
-            this.button_ReportChooseLoc.Click += new System.EventHandler(this.button_ReportChooseLoc_Click);
-            // 
-            // button_ReportChooseFile
-            // 
-            this.button_ReportChooseFile.Location = new System.Drawing.Point(502, 20);
-            this.button_ReportChooseFile.Name = "button_ReportChooseFile";
-            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
-            this.button_ReportChooseFile.TabIndex = 8;
-            this.button_ReportChooseFile.Text = "Change File";
-            this.button_ReportChooseFile.UseVisualStyleBackColor = true;
-            this.button_ReportChooseFile.Click += new System.EventHandler(this.button_ReportChooseFile_Click);
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(436, 385);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(86, 13);
-            this.label36.TabIndex = 6;
-            this.label36.Text = "Output Location:";
-            // 
-            // comboBox_ReportOutput
-            // 
-            this.comboBox_ReportOutput.FormattingEnabled = true;
-            this.comboBox_ReportOutput.Location = new System.Drawing.Point(645, 382);
-            this.comboBox_ReportOutput.Name = "comboBox_ReportOutput";
-            this.comboBox_ReportOutput.Size = new System.Drawing.Size(357, 21);
-            this.comboBox_ReportOutput.TabIndex = 5;
-            // 
-            // button_ReportGenerate
-            // 
-            this.button_ReportGenerate.Location = new System.Drawing.Point(645, 425);
-            this.button_ReportGenerate.Name = "button_ReportGenerate";
-            this.button_ReportGenerate.Size = new System.Drawing.Size(360, 31);
-            this.button_ReportGenerate.TabIndex = 4;
-            this.button_ReportGenerate.Text = "Generate";
-            this.button_ReportGenerate.UseVisualStyleBackColor = true;
-            this.button_ReportGenerate.Click += new System.EventHandler(this.button_ReportGenerate_Click);
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(18, 20);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(69, 13);
-            this.label35.TabIndex = 3;
-            this.label35.Text = "Report Type:";
-            // 
-            // comboBox_ReportType
-            // 
-            this.comboBox_ReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_ReportType.FormattingEnabled = true;
-            this.comboBox_ReportType.Items.AddRange(new object[] {
-            "None",
-            "Limerock Gas Report",
-            "Exel Limerock Gas Report",
-            "PCCU Spreadsheet Option 1",
-            "XMV.csv",
-            "Realflo.csv"});
-            this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
-            this.comboBox_ReportType.Name = "comboBox_ReportType";
-            this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
-            this.comboBox_ReportType.TabIndex = 2;
-            this.comboBox_ReportType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReportType_SelectedIndexChanged);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(409, 28);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(87, 13);
-            this.label34.TabIndex = 1;
-            this.label34.Text = "Source Text File:";
-            // 
-            // comboBox_ReportSource
-            // 
-            this.comboBox_ReportSource.AllowDrop = true;
-            this.comboBox_ReportSource.FormattingEnabled = true;
-            this.comboBox_ReportSource.Location = new System.Drawing.Point(619, 25);
-            this.comboBox_ReportSource.Name = "comboBox_ReportSource";
-            this.comboBox_ReportSource.Size = new System.Drawing.Size(391, 21);
-            this.comboBox_ReportSource.TabIndex = 0;
-            this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
-            this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.button_GenerateModemMap);
@@ -1949,6 +2049,15 @@
             this.groupBox1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            this.panel_sourceFolder.ResumeLayout(false);
+            this.panel_sourceFolder.PerformLayout();
+            this.panele_renameOptions.ResumeLayout(false);
+            this.panele_renameOptions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.group_Data.ResumeLayout(false);
             this.group_Data.PerformLayout();
@@ -1957,13 +2066,8 @@
             this.groupBox5.PerformLayout();
             this.grpStart.ResumeLayout(false);
             this.grpStart.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
@@ -2129,13 +2233,22 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox comboBox_SourceFolder;
-        private System.Windows.Forms.CheckBox checkBox_UseFolder;
         private System.Windows.Forms.Button button_GenerateModemMap;
         private System.Windows.Forms.Button button_ModemSource;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.ComboBox comboBox_ModemSource;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox comboBox_HexaneCalc;
+        private System.Windows.Forms.Panel panele_renameOptions;
+        private System.Windows.Forms.TextBox textBox_meterID;
+        private System.Windows.Forms.TextBox textBox_meterDesc;
+        private System.Windows.Forms.Label label_meterID;
+        private System.Windows.Forms.Label label_meterDesc;
+        private System.Windows.Forms.CheckBox checkBox_doAll;
+        private System.Windows.Forms.Label renameFileInfo_label;
+        private System.Windows.Forms.Panel panel_sourceFolder;
+        private System.Windows.Forms.CheckBox checkBox_showReport;
+        private System.Windows.Forms.Label label_namingScheme;
     }
 }
 

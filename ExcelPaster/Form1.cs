@@ -66,7 +66,7 @@ namespace ExcelPaster
             Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
 
             //Reports
-            comboBox_ReportType.SelectedIndex = 1;
+            comboBox_ReportType.SelectedIndex = 0;
             comboBox_HexaneCalc.SelectedIndex = 0;
         }
         public enum ButtonState
@@ -163,32 +163,35 @@ namespace ExcelPaster
 
 
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private enum TargetProgram
         {
             TxT = 0,
             Excel = 1,
             PCCU = 2,
-            Realflo = 3
+            Realflo = 3,
+            XMV = 4
         }
 
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
         {
             List<string> BGWorkStorage = new List<string>();
-            string CSVFile = comboBox_FileLocation.Text;
-            if (CSVFile.Count() > 0)
+            //if(comboBox_TargetProgramCSV.SelectedIndex == 3)
+            //{
+            //    string sourceLoc = comboBox_FileLocation.Text;
+            //    int sourceDirIndex = comboBox_FileLocation.Text.LastIndexOf('\\') + 1;
+            //    string sourceDir = comboBox_FileLocation.Text.Remove(sourceDirIndex);
+            //    ReportGenerator rG = new ReportGenerator();
+            //    bool success = rG.GenerateRealfloCSV(sourceLoc, sourceDir);
+            //}
+            string sourceLoc = comboBox_FileLocation.Text;
+            if (sourceLoc.Count() > 0)
             {
                 label_Status.Text = "Loading File...";
                 EnableButtons(ButtonState.COPYING);
 
                 if (!BgWorker.IsBusy)
                 {
-                    BGWorkStorage.Add(CSVFile);
+                    BGWorkStorage.Add(sourceLoc);
                     BGWorkStorage.Add(textBox_KeypressDelay.Text);
                     BGWorkStorage.Add(textBox_KeyStateChange.Text);
                     BgWorker.RunWorkerAsync(BGWorkStorage);
@@ -204,28 +207,52 @@ namespace ExcelPaster
         {
             BackgroundWorker bg = sender as BackgroundWorker;
             List<string> BGWorkerList = (List<string>)e.Argument;
-            string fileLoc = BGWorkerList[0];
-            int KeypressDelay = Int32.Parse(BGWorkerList[1]);
-            int KeypressStateDelay = Int32.Parse(BGWorkerList[2]);
+            string sourceLoc = BGWorkerList[0]; //set file source
+            int KeypressDelay;
+            int KeypressStateDelay;
+            //parse out delay values
+            if (!Int32.TryParse(BGWorkerList[1], out KeypressDelay)) MessageBox.Show("KeypressDelay not valid. Must be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Int32.TryParse(BGWorkerList[2], out KeypressStateDelay)) MessageBox.Show("KeypressStatDelay not valid. Musst be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            try
+            if (File.Exists(sourceLoc))
             {
-                FileInfo fInfo = new FileInfo(fileLoc);
-                if (!fInfo.Exists)
+                bool remove = false; //used to determine whether to delete csv after copying (realflow and xmv)
+                TargetProgram target = ((TargetProgram)Properties.Settings.Default.TargetProgram);
+                //Generate Realflow CSV from run report
+                if(target == TargetProgram.Realflo)
                 {
-
-                    e.Cancel = true;
-
+                    int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
+                    string outputLoc = sourceLoc.Remove(dirIndex);
+                    ReportGenerator rG = new ReportGenerator();
+                    sourceLoc = rG.GenerateRealfloCSV(sourceLoc, outputLoc); //set source to new csv
+                    if (sourceLoc == null)
+                    {
+                        MessageBox.Show("Failed to generate CSV.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Cancel = true;
+                    }
+                    else remove = true;
                 }
-                if (fInfo.Extension.Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                //Generate XMV CSV from run report
+                else if (target == TargetProgram.XMV)
                 {
-                    ConvertExcelToCsv(fInfo.FullName,fInfo.FullName.Trim('.') + ".csv");
+                    int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
+                    string outputLoc = sourceLoc.Remove(dirIndex);
+                    ReportGenerator rG = new ReportGenerator();
+                    sourceLoc = rG.GenerateXMVCSV(sourceLoc, outputLoc); //set source to new csv
+                    if (sourceLoc == null)
+                    {
+                        MessageBox.Show("Failed to generate CSV.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Cancel = true;
+                    }
+                    else remove = true;
                 }
-                
-                if (fInfo.Extension.Equals(".csv", StringComparison.OrdinalIgnoreCase))
+
+                //convert excel to csv wasn't working. Skipping for now
+
+                if (sourceLoc.Split('.')[sourceLoc.Split('.').Length - 1].ToLower() == "csv")//check if csv file
                 {
                     CSVReader reader = new CSVReader();
-                    reader.ParseCSV(fInfo.FullName,"");
+                    reader.ParseCSV(sourceLoc, "");
                     Typer typer = new Typer();
                     typer.strokeDelay = KeypressDelay;
                     typer.ih.kscdelay = KeypressStateDelay;
@@ -249,20 +276,19 @@ namespace ExcelPaster
                                 break;
                             }
                         }
-                        TargetProgram tgt = ((TargetProgram)Properties.Settings.Default.TargetProgram);
-                        if (tgt == TargetProgram.TxT)
+                        if (target == TargetProgram.TxT)
                         {
                             typer.TypeCSVtoText(reader.GetArrayStorage(), bg);
                         }
-                        else if (tgt == TargetProgram.Excel)
+                        else if (target == TargetProgram.Excel)
                         {
                             typer.TypeCSVtoExcel(reader.GetArrayStorage(), bg);
                         }
-                        else if (tgt == TargetProgram.PCCU)
+                        else if (target == TargetProgram.PCCU || target == TargetProgram.XMV)
                         {
                             typer.TypeCSVtoPCCU(reader.GetArrayStorage(), bg);
                         }
-                        else if (tgt == TargetProgram.Realflo)
+                        else if (target == TargetProgram.Realflo)
                         {
                             typer.TypeCSVtoRealflo(reader.GetArrayStorage(), bg);
                         }
@@ -271,19 +297,25 @@ namespace ExcelPaster
                             e.Cancel = true;
                         }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
-
+                    //delete temporary csv
+                    if (remove) File.Delete(sourceLoc);
                 }
+                else
+                {
+                    MessageBox.Show("CSV file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
+
             }
-
-            finally
+            else
             {
-
+                MessageBox.Show("Could not find file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Cancel = true;
+                //return;
             }
         }
+
+
         private void BgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (e.ProgressPercentage > 0)
@@ -341,6 +373,15 @@ namespace ExcelPaster
         {
             Properties.Settings.Default.TargetProgram = comboBox_TargetProgramCSV.SelectedIndex;
             Properties.Settings.Default.Save();
+
+            if(comboBox_TargetProgramCSV.SelectedIndex == 3 || comboBox_TargetProgramCSV.SelectedIndex ==4)
+            {
+                openFileDialog1.Filter = "Run Reports | *.txt";
+            }
+            else
+            {
+                openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
+            }
         }
 
         private void textBox_IPAdress_TextChanged(object sender, EventArgs e)
@@ -1019,7 +1060,8 @@ namespace ExcelPaster
 
         private void button_OpenTODOFile_Click_1(object sender, EventArgs e)
         {
-            Process.Start(Properties.Settings.Default.TODOFileLoc);
+            if (Properties.Settings.Default.TODOFileLoc.Count() > 0) Process.Start(Properties.Settings.Default.TODOFileLoc);
+            else MessageBox.Show("No file Selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void button_ChangeTODOFile_Click(object sender, EventArgs e)
@@ -1949,10 +1991,14 @@ namespace ExcelPaster
             }
         }
 
+
+
         private void button_ReportGenerate_Click(object sender, EventArgs e)
         {
+            string reportType = "";
+            bool success = false;
             //TODO: Save Recents to Properties and set dropDownLists
-            if (checkBox_UseFolder.Checked == false)
+            if (comboBox_SourceFolder.Text == "")
             {
                 if (File.Exists(comboBox_ReportSource.Text))
                 {
@@ -1962,25 +2008,33 @@ namespace ExcelPaster
                         ReportGenerator rG = new ReportGenerator();
 
                         //Report Type
-                        if (comboBox_ReportType.SelectedIndex == 1)
+                        if (comboBox_ReportType.SelectedIndex == 0)
                         {
-                            bool success = rG.GenerateLimerockReport(comboBox_ReportSource.Text,comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text);
-                        } else if (comboBox_ReportType.SelectedIndex == 2)
-                        {
-                            bool success = rG.GenerateExcelCalReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                            success = rG.GenerateExcelCalReport(comboBox_ReportSource.Text, comboBox_ReportOutput.Text,checkBox_showReport.Checked);
+                            reportType = "Limerock Excel Report";
                         }
-                        else if(comboBox_ReportType.SelectedIndex == 3)
+                        else if (comboBox_ReportType.SelectedIndex == 1)
                         {
-                            bool success = rG.GenerateSpreadsheet1(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                            success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text,checkBox_showReport.Checked);
+                            reportType = "Limerock PDF Report";
                         }
-                        else if(comboBox_ReportType.SelectedIndex == 4)
+                        else if (comboBox_ReportType.SelectedIndex == 2)
                         {
-                            bool success = rG.GenerateXMVCSV(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                            success = rG.GenerateSpreadsheet1(comboBox_ReportSource.Text, comboBox_ReportOutput.Text,checkBox_showReport.Checked);
+                            reportType = "Option 1 Spreadsheet";
                         }
-                        else if(comboBox_ReportType.SelectedIndex == 5)
+                        else if (comboBox_ReportType.SelectedIndex == 3)
                         {
-                            bool success = rG.GenerateRealfloCSV(comboBox_ReportSource.Text, comboBox_ReportOutput.Text);
+                            success = rG.GenerateRunReportRename(comboBox_ReportSource.Text, comboBox_ReportOutput.Text, textBox_meterID.Text, textBox_meterDesc.Text, checkBox_doAll.Checked,checkBox_showReport.Checked);
+                            if (checkBox_doAll.Checked) reportType = "Renamed Reports";
+                            else reportType = "Renamed Report";
                         }
+                        if (success)
+                        {
+                            if(!checkBox_showReport.Checked)MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     }
 
 
@@ -2010,13 +2064,25 @@ namespace ExcelPaster
                                 ReportGenerator rG = new ReportGenerator();
 
                                 //Limerock Report
-                                if (comboBox_ReportType.SelectedIndex == 1)
+                                if (comboBox_ReportType.SelectedIndex == 0)
                                 {
-                                    bool success = rG.GenerateLimerockReport(file, comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text);
+                                    success = rG.GenerateExcelCalReport(file, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                                    reportType = "Limerock Excel Reports";
+                                }
+                                else if (comboBox_ReportType.SelectedIndex == 1)
+                                {
+                                    success = rG.GenerateLimerockReport(file, comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                                    reportType = "Limerock PDF Reports";
                                 }
                                 else if (comboBox_ReportType.SelectedIndex == 2)
                                 {
-                                    bool success = rG.GenerateExcelCalReport(file, comboBox_ReportOutput.Text);
+                                    success = rG.GenerateSpreadsheet1(file, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                                    reportType = "Option 1 Spreadsheets";
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Directory generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
                                 }
                             }
                             else
@@ -2031,8 +2097,13 @@ namespace ExcelPaster
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+                    if (success)
+                    {
+                        if (!checkBox_showReport.Checked) MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+                else MessageBox.Show("Directory not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -2040,45 +2111,54 @@ namespace ExcelPaster
 
         private void comboBox_ReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Update Report Type Image here
+            //Update Report Type Image and hide/show options
             int index = comboBox_ReportType.SelectedIndex;
             switch (index) {
                 case 0:
-                    pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
-                    break;
-                case 1:
-                    pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
-                    openFileDialog4.Filter = "Notepad Files | *.txt";
-                    openFileDialog4.FileName = "*.txt";
-                    break;
-                case 2:
-                    //Excel report
+                    //Limerock Excel
                     pictureBox1.Image = ExcelPaster.Properties.Resources.Excel_Report;
                     openFileDialog4.Filter = "Excel Files | *.xlsx";
                     openFileDialog4.FileName = "*.xlsx";
+                    panele_renameOptions.Visible = false;
+                    renameFileInfo_label.Visible = false;
+                    panel_sourceFolder.Visible = true;
                     break;
-                case 3:
+                    
+                case 1:
+                    //Limerock pdf
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    panele_renameOptions.Visible = false;
+                    renameFileInfo_label.Visible = false;
+                    panel_sourceFolder.Visible = true;
+                    break;
+                case 2:
                     //PCCU spreadsheet option 1
                     pictureBox1.Image = ExcelPaster.Properties.Resources.spread1;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
+                    panele_renameOptions.Visible = false;
+                    renameFileInfo_label.Visible = false;
+                    panel_sourceFolder.Visible = true;
                     break;
-                case 4:
-                    //XMV csv
-                    pictureBox1.Image = ExcelPaster.Properties.Resources.XMV;
+                case 3:
+                    //Run Report Rename
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.Run_Report;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
-                    break;
-                case 5:
-                    //Realflo csv
-                    pictureBox1.Image = ExcelPaster.Properties.Resources.Realflo;
-                    openFileDialog4.Filter = "Notepad Files | *.txt";
-                    openFileDialog4.FileName = "*.txt";
+                    panele_renameOptions.Visible = true;
+                    panel_sourceFolder.Visible = false;
+                    if (checkBox_doAll.Checked) renameFileInfo_label.Visible = true;
+                    else renameFileInfo_label.Visible = false;
                     break;
                 default:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
+                    panele_renameOptions.Visible = false;
+                    renameFileInfo_label.Visible = false;
                     break;
             } 
+
         }
 
         private void comboBox_ReportSource_DragOver(object sender, DragEventArgs e)
@@ -2126,9 +2206,42 @@ namespace ExcelPaster
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void doAll_checkbox_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox_doAll.Checked)
+            {
+                renameFileInfo_label.Visible = true;
+                label_namingScheme.Visible = true;
+            }
+            else
+            {
+                renameFileInfo_label.Visible = false;
+                label_namingScheme.Visible = false;
+            }
+        }
 
+        private void comboBox_ReportSource_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox_ReportSource.Text == "") return;
+            else
+            {
+                comboBox_SourceFolder.Text = "";
+                int i = comboBox_ReportSource.Text.LastIndexOf('\\') + 1;
+                if (i > 0 && i <= comboBox_ReportSource.Text.Length)
+                {
+                    comboBox_ReportOutput.Text = comboBox_ReportSource.Text.Remove(i);
+                } 
+            }
+        }
+
+        private void comboBox_SourceFolder_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox_SourceFolder.Text == "") return;
+            else
+            {
+                comboBox_ReportSource.Text = "";
+                comboBox_ReportOutput.Text = comboBox_SourceFolder.Text; 
+            }
         }
     }
 }
