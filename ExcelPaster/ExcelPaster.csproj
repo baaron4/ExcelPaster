@@ -210,6 +210,7 @@
     <None Include="Resources\spread1.PNG" />
     <None Include="Resources\Realflo.PNG" />
     <None Include="Resources\Run Report.PNG" />
+    <None Include="Resources\send out.PNG" />
     <Content Include="Resources\winn-marion_graphic.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

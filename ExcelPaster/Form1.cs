@@ -169,20 +169,13 @@ namespace ExcelPaster
             Excel = 1,
             PCCU = 2,
             Realflo = 3,
-            XMV = 4
+            XMV = 4,
+            ModWorx = 5
         }
 
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
         {
             List<string> BGWorkStorage = new List<string>();
-            //if(comboBox_TargetProgramCSV.SelectedIndex == 3)
-            //{
-            //    string sourceLoc = comboBox_FileLocation.Text;
-            //    int sourceDirIndex = comboBox_FileLocation.Text.LastIndexOf('\\') + 1;
-            //    string sourceDir = comboBox_FileLocation.Text.Remove(sourceDirIndex);
-            //    ReportGenerator rG = new ReportGenerator();
-            //    bool success = rG.GenerateRealfloCSV(sourceLoc, sourceDir);
-            //}
             string sourceLoc = comboBox_FileLocation.Text;
             if (sourceLoc.Count() > 0)
             {
@@ -246,6 +239,20 @@ namespace ExcelPaster
                     }
                     else remove = true;
                 }
+                //Generate ModWorx CSV from run report
+                else if (target == TargetProgram.ModWorx)
+                {
+                    int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
+                    string outputLoc = sourceLoc.Remove(dirIndex);
+                    ReportGenerator rG = new ReportGenerator();
+                    sourceLoc = rG.GenerateModWorxCSV(sourceLoc, outputLoc); //set source to new CSV
+                    if (sourceLoc == null)
+                    {
+                        MessageBox.Show("Failed to generate CSV.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Cancel = true;
+                    }
+                    else remove = true;
+                }
 
                 //convert excel to csv wasn't working. Skipping for now
 
@@ -291,6 +298,10 @@ namespace ExcelPaster
                         else if (target == TargetProgram.Realflo)
                         {
                             typer.TypeCSVtoRealflo(reader.GetArrayStorage(), bg);
+                        }
+                        else if (target == TargetProgram.ModWorx)
+                        {
+                            typer.TypeCSVtoModWorx(reader.GetArrayStorage(), bg);
                         }
                         if (bg.CancellationPending)
                         {
@@ -373,10 +384,10 @@ namespace ExcelPaster
         {
             Properties.Settings.Default.TargetProgram = comboBox_TargetProgramCSV.SelectedIndex;
             Properties.Settings.Default.Save();
-
-            if(comboBox_TargetProgramCSV.SelectedIndex == 3 || comboBox_TargetProgramCSV.SelectedIndex ==4)
+            int index = comboBox_TargetProgramCSV.SelectedIndex;
+            if(index == 3 || index == 4 || index == 5)
             {
-                openFileDialog1.Filter = "Run Reports | *.txt";
+                openFileDialog1.Filter = "Run Reports | *.3.txt";
             }
             else
             {
@@ -2029,6 +2040,11 @@ namespace ExcelPaster
                             if (checkBox_doAll.Checked) reportType = "Renamed Reports";
                             else reportType = "Renamed Report";
                         }
+                        else
+                        {
+                            MessageBox.Show("Single file generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
                         if (success)
                         {
                             if(!checkBox_showReport.Checked)MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -2052,7 +2068,7 @@ namespace ExcelPaster
                 }
             }
             else {
-                if (Directory.EnumerateFileSystemEntries(comboBox_SourceFolder.Text).Any())
+                if (Directory.Exists(comboBox_SourceFolder.Text))
                 {
                     string[] files = Directory.GetFiles(comboBox_SourceFolder.Text, openFileDialog4.FileName, SearchOption.AllDirectories);
                     foreach (string file in files)
@@ -2079,10 +2095,50 @@ namespace ExcelPaster
                                     success = rG.GenerateSpreadsheet1(file, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
                                     reportType = "Option 1 Spreadsheets";
                                 }
+                                else if (comboBox_ReportType.SelectedIndex == 4)
+                                {
+                                    Console.WriteLine("We made it.");
+                                    if (textBox_ovintivDirectory.Text.Any())
+                                    {
+                                        if (rG.breaksFileNameRules(textBox_ovintivDirectory.Text))
+                                        {
+                                            MessageBox.Show("Folder name breaks Window's naming rules.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            break;
+                                        }
+                                        string outputLoc = comboBox_ReportOutput.Text + "\\" + textBox_ovintivDirectory.Text;
+                                        if (file == files.First())
+                                        {
+                                            Directory.CreateDirectory(outputLoc + @" All");
+                                            Directory.CreateDirectory(outputLoc + @" Run Reports");
+                                            Directory.CreateDirectory(outputLoc + @" Spreadsheets");
+                                            Directory.CreateDirectory(outputLoc + @" Run Reports\Run 3");
+                                        }
+                                        bool show;
+                                        if (file == files.Last()) show = checkBox_showReport.Checked;
+                                        else show = false;
+                                        success = rG.OvintivSendOut(file, outputLoc, show);
+                                        reportType = "Ovintiv send-out"; 
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Please enter a folder name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        break;
+                                    }
+                                    if (success)
+                                    {
+                                        if (!checkBox_showReport.Checked && file == files.Last()) MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    }
+                                    else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                                 else
                                 {
                                     MessageBox.Show("Directory generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     return;
+                                }
+                                if (!success)
+                                {
+                                    MessageBox.Show("Failed to generate with" + file, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                  
                                 }
                             }
                             else
@@ -2093,15 +2149,10 @@ namespace ExcelPaster
                         }
                         else
                         {
-                            MessageBox.Show("Select a valid Source File", "Invalid Source File Location",
+                            MessageBox.Show("Select a valid Source Folder", "Invalid Source File Location",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    if (success)
-                    {
-                        if (!checkBox_showReport.Checked) MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else MessageBox.Show("Directory not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -2119,9 +2170,12 @@ namespace ExcelPaster
                     pictureBox1.Image = ExcelPaster.Properties.Resources.Excel_Report;
                     openFileDialog4.Filter = "Excel Files | *.xlsx";
                     openFileDialog4.FileName = "*.xlsx";
-                    panele_renameOptions.Visible = false;
-                    renameFileInfo_label.Visible = false;
+                    panel_renameOptions.Visible = false;
+                    label_renameFileInfo.Visible = false;
                     panel_sourceFolder.Visible = true;
+                    panel_hexCalc.Visible = true;
+                    panel_ovintivDirectory.Visible = false;
+                    label_namingScheme.Visible = false;
                     break;
                     
                 case 1:
@@ -2129,33 +2183,58 @@ namespace ExcelPaster
                     pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
-                    panele_renameOptions.Visible = false;
-                    renameFileInfo_label.Visible = false;
+                    panel_renameOptions.Visible = false;
+                    label_renameFileInfo.Visible = false;
                     panel_sourceFolder.Visible = true;
+                    panel_sourceFile.Visible = true;
+                    panel_hexCalc.Visible = true;
+                    panel_ovintivDirectory.Visible = false;
+                    label_namingScheme.Visible = false;
                     break;
                 case 2:
                     //PCCU spreadsheet option 1
                     pictureBox1.Image = ExcelPaster.Properties.Resources.spread1;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
-                    panele_renameOptions.Visible = false;
-                    renameFileInfo_label.Visible = false;
+                    panel_renameOptions.Visible = false;
+                    label_renameFileInfo.Visible = false;
                     panel_sourceFolder.Visible = true;
+                    panel_sourceFile.Visible = true;
+                    panel_hexCalc.Visible = false;
+                    panel_ovintivDirectory.Visible = false;
+                    label_namingScheme.Visible = false;
                     break;
                 case 3:
                     //Run Report Rename
                     pictureBox1.Image = ExcelPaster.Properties.Resources.Run_Report;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
-                    panele_renameOptions.Visible = true;
+                    panel_renameOptions.Visible = true;
                     panel_sourceFolder.Visible = false;
-                    if (checkBox_doAll.Checked) renameFileInfo_label.Visible = true;
-                    else renameFileInfo_label.Visible = false;
+                    panel_sourceFile.Visible = true;
+                    panel_hexCalc.Visible = false;
+                    panel_ovintivDirectory.Visible = false;
+                    label_namingScheme.Visible = true;
+                    if (checkBox_doAll.Checked) label_renameFileInfo.Visible = true;
+                    else label_renameFileInfo.Visible = false;
+                    break;
+                case 4:
+                    //Ovintiv send-out
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.send_out;
+                    openFileDialog4.Filter = "Notepad Files | *.txt";
+                    openFileDialog4.FileName = "*.txt";
+                    panel_renameOptions.Visible = false;
+                    panel_sourceFolder.Visible = true;
+                    panel_sourceFile.Visible = false;
+                    label_renameFileInfo.Visible = false;
+                    panel_hexCalc.Visible = false;
+                    panel_ovintivDirectory.Visible = true;
+                    label_namingScheme.Visible = true;
                     break;
                 default:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;
-                    panele_renameOptions.Visible = false;
-                    renameFileInfo_label.Visible = false;
+                    panel_renameOptions.Visible = false;
+                    label_renameFileInfo.Visible = false;
                     break;
             } 
 
@@ -2210,12 +2289,12 @@ namespace ExcelPaster
         {
             if (checkBox_doAll.Checked)
             {
-                renameFileInfo_label.Visible = true;
+                label_renameFileInfo.Visible = true;
                 label_namingScheme.Visible = true;
             }
             else
             {
-                renameFileInfo_label.Visible = false;
+                label_renameFileInfo.Visible = false;
                 label_namingScheme.Visible = false;
             }
         }

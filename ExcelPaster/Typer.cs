@@ -179,16 +179,57 @@ namespace ExcelPaster
 
         public void TypeCSVtoRealflo(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
         {
-            for(int i = 0; i < csv.Count(); i++)
+            for (int i = 0; i < csv.Count(); i++)
             {
-                string line = csv[i][0];//will only have 1 value per line
-                for (int j = 0; j < line.Count(); j++) 
-                {
-                    if (bg.CancellationPending) break;
-                    ih.SendKey(line[j]);
-                }
                 if (bg.CancellationPending) break;
+                string line = csv[i][0];//will only have 1 value per line
+                TypeLine(line);
                 ih.SendKey(Interceptor.Keys.Tab);
+            }
+        }
+
+        public void TypeLine(string line)
+        {
+            for(int i = 0; i < line.Count(); i++)
+            {
+                ih.SendKey(line[i]);
+            }
+        }
+
+        public void TypeCSVtoModWorx(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
+        {
+            for (int i = 0; i < csv.Count(); i++)
+            {
+                if (bg.CancellationPending) break;
+                string line = csv[i][0];//will only have 1 value per line
+                //manual items
+                if(i >= 13)
+                {
+                    //move to manual items
+                    if (i == 13)
+                    {
+                        //exit entry window
+                        ih.SendKey(Interceptor.Keys.Tab);
+                        ih.SendKey(Interceptor.Keys.Enter);
+                        for (int j = 0; j < 28; j++)
+                        {
+                            ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Tab);
+                        }
+                    }
+                    ih.SendKey('m');
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    TypeLine(line);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                }
+                //gas items
+                else if(i < 13)
+                {
+                    TypeLine(line);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Enter); 
+                }
             }
         }
 

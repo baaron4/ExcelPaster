@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btn_StartCopyFile = new System.Windows.Forms.Button();
             this.textBox_StartCopyDelayFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,30 +113,35 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label_namingScheme = new System.Windows.Forms.Label();
+            this.panel_ovintivDirectory = new System.Windows.Forms.Panel();
+            this.textBox_ovintivDirectory = new System.Windows.Forms.TextBox();
+            this.label_ovintivDirectory = new System.Windows.Forms.Label();
             this.checkBox_showReport = new System.Windows.Forms.CheckBox();
             this.panel_sourceFolder = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox_SourceFolder = new System.Windows.Forms.ComboBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.renameFileInfo_label = new System.Windows.Forms.Label();
-            this.panele_renameOptions = new System.Windows.Forms.Panel();
+            this.label_sourceFolder = new System.Windows.Forms.Label();
+            this.label_renameFileInfo = new System.Windows.Forms.Label();
+            this.panel_renameOptions = new System.Windows.Forms.Panel();
             this.checkBox_doAll = new System.Windows.Forms.CheckBox();
             this.textBox_meterID = new System.Windows.Forms.TextBox();
             this.textBox_meterDesc = new System.Windows.Forms.TextBox();
             this.label_meterID = new System.Windows.Forms.Label();
             this.label_meterDesc = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button_ReportChooseLoc = new System.Windows.Forms.Button();
-            this.button_ReportChooseFile = new System.Windows.Forms.Button();
             this.label36 = new System.Windows.Forms.Label();
             this.comboBox_ReportOutput = new System.Windows.Forms.ComboBox();
             this.button_ReportGenerate = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.comboBox_ReportType = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
+            this.panel_sourceFile = new System.Windows.Forms.Panel();
+            this.label_sourceFile = new System.Windows.Forms.Label();
+            this.button_ReportChooseFile = new System.Windows.Forms.Button();
             this.comboBox_ReportSource = new System.Windows.Forms.ComboBox();
+            this.panel_hexCalc = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
             this.button_UserLoad = new System.Windows.Forms.Button();
@@ -209,9 +215,12 @@
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.panel_ovintivDirectory.SuspendLayout();
             this.panel_sourceFolder.SuspendLayout();
-            this.panele_renameOptions.SuspendLayout();
+            this.panel_renameOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel_sourceFile.SuspendLayout();
+            this.panel_hexCalc.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.group_Data.SuspendLayout();
@@ -1040,8 +1049,9 @@
             "Notepad/Text Editor",
             "Excel",
             "PCCU",
-            "Realflo",
-            "XMV Analysis"});
+            "Realflo Analysis",
+            "XMV Analysis",
+            "ModWorx Analysis"});
             this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(532, 8);
             this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
             this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
@@ -1095,44 +1105,66 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.label_namingScheme);
+            this.tabPage7.Controls.Add(this.panel_ovintivDirectory);
             this.tabPage7.Controls.Add(this.checkBox_showReport);
             this.tabPage7.Controls.Add(this.panel_sourceFolder);
-            this.tabPage7.Controls.Add(this.renameFileInfo_label);
-            this.tabPage7.Controls.Add(this.panele_renameOptions);
-            this.tabPage7.Controls.Add(this.label39);
-            this.tabPage7.Controls.Add(this.comboBox_HexaneCalc);
+            this.tabPage7.Controls.Add(this.label_renameFileInfo);
+            this.tabPage7.Controls.Add(this.panel_renameOptions);
             this.tabPage7.Controls.Add(this.pictureBox1);
             this.tabPage7.Controls.Add(this.button_ReportChooseLoc);
-            this.tabPage7.Controls.Add(this.button_ReportChooseFile);
             this.tabPage7.Controls.Add(this.label36);
             this.tabPage7.Controls.Add(this.comboBox_ReportOutput);
             this.tabPage7.Controls.Add(this.button_ReportGenerate);
             this.tabPage7.Controls.Add(this.label35);
             this.tabPage7.Controls.Add(this.comboBox_ReportType);
-            this.tabPage7.Controls.Add(this.label34);
-            this.tabPage7.Controls.Add(this.comboBox_ReportSource);
+            this.tabPage7.Controls.Add(this.panel_sourceFile);
+            this.tabPage7.Controls.Add(this.panel_hexCalc);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(1024, 480);
             this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "Report Generator";
+            this.tabPage7.Text = "File Generator";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // label_namingScheme
             // 
             this.label_namingScheme.AutoSize = true;
-            this.label_namingScheme.Location = new System.Drawing.Point(94, 76);
+            this.label_namingScheme.Location = new System.Drawing.Point(657, 185);
             this.label_namingScheme.Name = "label_namingScheme";
             this.label_namingScheme.Size = new System.Drawing.Size(245, 39);
             this.label_namingScheme.TabIndex = 33;
             this.label_namingScheme.Text = "Naming Scheme:\r\nRun Report: meterID..meterDescription.runNumber\r\nSpreadsheet: met" +
     "erID..3\r\n";
             // 
+            // panel_ovintivDirectory
+            // 
+            this.panel_ovintivDirectory.Controls.Add(this.textBox_ovintivDirectory);
+            this.panel_ovintivDirectory.Controls.Add(this.label_ovintivDirectory);
+            this.panel_ovintivDirectory.Location = new System.Drawing.Point(570, 96);
+            this.panel_ovintivDirectory.Name = "panel_ovintivDirectory";
+            this.panel_ovintivDirectory.Size = new System.Drawing.Size(440, 45);
+            this.panel_ovintivDirectory.TabIndex = 36;
+            // 
+            // textBox_ovintivDirectory
+            // 
+            this.textBox_ovintivDirectory.Location = new System.Drawing.Point(90, 12);
+            this.textBox_ovintivDirectory.Name = "textBox_ovintivDirectory";
+            this.textBox_ovintivDirectory.Size = new System.Drawing.Size(217, 20);
+            this.textBox_ovintivDirectory.TabIndex = 36;
+            // 
+            // label_ovintivDirectory
+            // 
+            this.label_ovintivDirectory.AutoSize = true;
+            this.label_ovintivDirectory.Location = new System.Drawing.Point(14, 15);
+            this.label_ovintivDirectory.Name = "label_ovintivDirectory";
+            this.label_ovintivDirectory.Size = new System.Drawing.Size(70, 13);
+            this.label_ovintivDirectory.TabIndex = 35;
+            this.label_ovintivDirectory.Text = "Folder Name:";
+            // 
             // checkBox_showReport
             // 
             this.checkBox_showReport.AutoSize = true;
-            this.checkBox_showReport.Checked = true;
-            this.checkBox_showReport.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_showReport.Location = new System.Drawing.Point(477, 433);
             this.checkBox_showReport.Name = "checkBox_showReport";
             this.checkBox_showReport.Size = new System.Drawing.Size(162, 17);
@@ -1144,7 +1176,7 @@
             // 
             this.panel_sourceFolder.Controls.Add(this.button1);
             this.panel_sourceFolder.Controls.Add(this.comboBox_SourceFolder);
-            this.panel_sourceFolder.Controls.Add(this.label37);
+            this.panel_sourceFolder.Controls.Add(this.label_sourceFolder);
             this.panel_sourceFolder.Location = new System.Drawing.Point(389, 52);
             this.panel_sourceFolder.Name = "panel_sourceFolder";
             this.panel_sourceFolder.Size = new System.Drawing.Size(621, 38);
@@ -1170,36 +1202,35 @@
             this.comboBox_SourceFolder.TabIndex = 11;
             this.comboBox_SourceFolder.TextChanged += new System.EventHandler(this.comboBox_SourceFolder_TextChanged);
             // 
-            // label37
+            // label_sourceFolder
             // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(7, 11);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(100, 13);
-            this.label37.TabIndex = 12;
-            this.label37.Text = "Source Text Folder:";
+            this.label_sourceFolder.AutoSize = true;
+            this.label_sourceFolder.Location = new System.Drawing.Point(31, 11);
+            this.label_sourceFolder.Name = "label_sourceFolder";
+            this.label_sourceFolder.Size = new System.Drawing.Size(76, 13);
+            this.label_sourceFolder.TabIndex = 12;
+            this.label_sourceFolder.Text = "Source Folder:";
             // 
-            // renameFileInfo_label
+            // label_renameFileInfo
             // 
-            this.renameFileInfo_label.AutoSize = true;
-            this.renameFileInfo_label.Location = new System.Drawing.Point(619, 9);
-            this.renameFileInfo_label.Name = "renameFileInfo_label";
-            this.renameFileInfo_label.Size = new System.Drawing.Size(161, 13);
-            this.renameFileInfo_label.TabIndex = 29;
-            this.renameFileInfo_label.Text = "Pick any of the three run reports.";
+            this.label_renameFileInfo.AutoSize = true;
+            this.label_renameFileInfo.Location = new System.Drawing.Point(623, 1);
+            this.label_renameFileInfo.Name = "label_renameFileInfo";
+            this.label_renameFileInfo.Size = new System.Drawing.Size(161, 13);
+            this.label_renameFileInfo.TabIndex = 29;
+            this.label_renameFileInfo.Text = "Pick any of the three run reports.";
             // 
-            // panele_renameOptions
+            // panel_renameOptions
             // 
-            this.panele_renameOptions.Controls.Add(this.label_namingScheme);
-            this.panele_renameOptions.Controls.Add(this.checkBox_doAll);
-            this.panele_renameOptions.Controls.Add(this.textBox_meterID);
-            this.panele_renameOptions.Controls.Add(this.textBox_meterDesc);
-            this.panele_renameOptions.Controls.Add(this.label_meterID);
-            this.panele_renameOptions.Controls.Add(this.label_meterDesc);
-            this.panele_renameOptions.Location = new System.Drawing.Point(571, 96);
-            this.panele_renameOptions.Name = "panele_renameOptions";
-            this.panele_renameOptions.Size = new System.Drawing.Size(439, 127);
-            this.panele_renameOptions.TabIndex = 28;
+            this.panel_renameOptions.Controls.Add(this.checkBox_doAll);
+            this.panel_renameOptions.Controls.Add(this.textBox_meterID);
+            this.panel_renameOptions.Controls.Add(this.textBox_meterDesc);
+            this.panel_renameOptions.Controls.Add(this.label_meterID);
+            this.panel_renameOptions.Controls.Add(this.label_meterDesc);
+            this.panel_renameOptions.Location = new System.Drawing.Point(571, 96);
+            this.panel_renameOptions.Name = "panel_renameOptions";
+            this.panel_renameOptions.Size = new System.Drawing.Size(439, 86);
+            this.panel_renameOptions.TabIndex = 28;
             // 
             // checkBox_doAll
             // 
@@ -1246,30 +1277,9 @@
             this.label_meterDesc.TabIndex = 25;
             this.label_meterDesc.Text = "Meter Description:";
             // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(18, 352);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(71, 13);
-            this.label39.TabIndex = 23;
-            this.label39.Text = "Hexane Calc:";
-            // 
-            // comboBox_HexaneCalc
-            // 
-            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_HexaneCalc.FormattingEnabled = true;
-            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
-            "TYPE 1",
-            "TYPE 2"});
-            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(95, 349);
-            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
-            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
-            this.comboBox_HexaneCalc.TabIndex = 22;
-            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.Run_Report;
+            this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.send_out;
             this.pictureBox1.Location = new System.Drawing.Point(21, 60);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(357, 273);
@@ -1285,16 +1295,6 @@
             this.button_ReportChooseLoc.Text = "Change Location";
             this.button_ReportChooseLoc.UseVisualStyleBackColor = true;
             this.button_ReportChooseLoc.Click += new System.EventHandler(this.button_ReportChooseLoc_Click);
-            // 
-            // button_ReportChooseFile
-            // 
-            this.button_ReportChooseFile.Location = new System.Drawing.Point(502, 20);
-            this.button_ReportChooseFile.Name = "button_ReportChooseFile";
-            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
-            this.button_ReportChooseFile.TabIndex = 8;
-            this.button_ReportChooseFile.Text = "Change File";
-            this.button_ReportChooseFile.UseVisualStyleBackColor = true;
-            this.button_ReportChooseFile.Click += new System.EventHandler(this.button_ReportChooseFile_Click);
             // 
             // label36
             // 
@@ -1340,33 +1340,84 @@
             "Exel Limerock Gas Report",
             "Limerock Gas Report",
             "PCCU Spreadsheet Option 1",
-            "Run Report Rename"});
+            "Run Report Rename",
+            "Ovintiv Send-out"});
             this.comboBox_ReportType.Location = new System.Drawing.Point(88, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
             this.comboBox_ReportType.TabIndex = 2;
             this.comboBox_ReportType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReportType_SelectedIndexChanged);
             // 
-            // label34
+            // panel_sourceFile
             // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(409, 28);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(87, 13);
-            this.label34.TabIndex = 1;
-            this.label34.Text = "Source Text File:";
+            this.panel_sourceFile.Controls.Add(this.label_sourceFile);
+            this.panel_sourceFile.Controls.Add(this.button_ReportChooseFile);
+            this.panel_sourceFile.Controls.Add(this.comboBox_ReportSource);
+            this.panel_sourceFile.Location = new System.Drawing.Point(389, 16);
+            this.panel_sourceFile.Name = "panel_sourceFile";
+            this.panel_sourceFile.Size = new System.Drawing.Size(621, 36);
+            this.panel_sourceFile.TabIndex = 33;
+            // 
+            // label_sourceFile
+            // 
+            this.label_sourceFile.AutoSize = true;
+            this.label_sourceFile.Location = new System.Drawing.Point(44, 11);
+            this.label_sourceFile.Name = "label_sourceFile";
+            this.label_sourceFile.Size = new System.Drawing.Size(63, 13);
+            this.label_sourceFile.TabIndex = 1;
+            this.label_sourceFile.Text = "Source File:";
+            // 
+            // button_ReportChooseFile
+            // 
+            this.button_ReportChooseFile.Location = new System.Drawing.Point(113, 2);
+            this.button_ReportChooseFile.Name = "button_ReportChooseFile";
+            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
+            this.button_ReportChooseFile.TabIndex = 8;
+            this.button_ReportChooseFile.Text = "Change File";
+            this.button_ReportChooseFile.UseVisualStyleBackColor = true;
+            this.button_ReportChooseFile.Click += new System.EventHandler(this.button_ReportChooseFile_Click);
             // 
             // comboBox_ReportSource
             // 
             this.comboBox_ReportSource.AllowDrop = true;
             this.comboBox_ReportSource.FormattingEnabled = true;
-            this.comboBox_ReportSource.Location = new System.Drawing.Point(619, 25);
+            this.comboBox_ReportSource.Location = new System.Drawing.Point(230, 8);
             this.comboBox_ReportSource.Name = "comboBox_ReportSource";
             this.comboBox_ReportSource.Size = new System.Drawing.Size(391, 21);
             this.comboBox_ReportSource.TabIndex = 0;
             this.comboBox_ReportSource.TextChanged += new System.EventHandler(this.comboBox_ReportSource_TextChanged);
             this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
             this.comboBox_ReportSource.DragOver += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragOver);
+            // 
+            // panel_hexCalc
+            // 
+            this.panel_hexCalc.Controls.Add(this.label39);
+            this.panel_hexCalc.Controls.Add(this.comboBox_HexaneCalc);
+            this.panel_hexCalc.Location = new System.Drawing.Point(15, 339);
+            this.panel_hexCalc.Name = "panel_hexCalc";
+            this.panel_hexCalc.Size = new System.Drawing.Size(382, 42);
+            this.panel_hexCalc.TabIndex = 34;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(3, 13);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(71, 13);
+            this.label39.TabIndex = 23;
+            this.label39.Text = "Hexane Calc:";
+            // 
+            // comboBox_HexaneCalc
+            // 
+            this.comboBox_HexaneCalc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_HexaneCalc.FormattingEnabled = true;
+            this.comboBox_HexaneCalc.Items.AddRange(new object[] {
+            "TYPE 1",
+            "TYPE 2"});
+            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(80, 10);
+            this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
+            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
+            this.comboBox_HexaneCalc.TabIndex = 22;
             // 
             // tabPage4
             // 
@@ -2028,9 +2079,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1056, 530);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Excel Paster";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2051,11 +2105,17 @@
             this.tabPage1.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.panel_ovintivDirectory.ResumeLayout(false);
+            this.panel_ovintivDirectory.PerformLayout();
             this.panel_sourceFolder.ResumeLayout(false);
             this.panel_sourceFolder.PerformLayout();
-            this.panele_renameOptions.ResumeLayout(false);
-            this.panele_renameOptions.PerformLayout();
+            this.panel_renameOptions.ResumeLayout(false);
+            this.panel_renameOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel_sourceFile.ResumeLayout(false);
+            this.panel_sourceFile.PerformLayout();
+            this.panel_hexCalc.ResumeLayout(false);
+            this.panel_hexCalc.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -2218,7 +2278,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.CheckBox checkBox_levenstheins;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label_sourceFile;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.ComboBox comboBox_ReportOutput;
         private System.Windows.Forms.Button button_ReportGenerate;
@@ -2231,7 +2291,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label_sourceFolder;
         private System.Windows.Forms.ComboBox comboBox_SourceFolder;
         private System.Windows.Forms.Button button_GenerateModemMap;
         private System.Windows.Forms.Button button_ModemSource;
@@ -2239,16 +2299,21 @@
         private System.Windows.Forms.ComboBox comboBox_ModemSource;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox comboBox_HexaneCalc;
-        private System.Windows.Forms.Panel panele_renameOptions;
+        private System.Windows.Forms.Panel panel_renameOptions;
         private System.Windows.Forms.TextBox textBox_meterID;
         private System.Windows.Forms.TextBox textBox_meterDesc;
         private System.Windows.Forms.Label label_meterID;
         private System.Windows.Forms.Label label_meterDesc;
         private System.Windows.Forms.CheckBox checkBox_doAll;
-        private System.Windows.Forms.Label renameFileInfo_label;
+        private System.Windows.Forms.Label label_renameFileInfo;
         private System.Windows.Forms.Panel panel_sourceFolder;
         private System.Windows.Forms.CheckBox checkBox_showReport;
         private System.Windows.Forms.Label label_namingScheme;
+        private System.Windows.Forms.Panel panel_sourceFile;
+        private System.Windows.Forms.Panel panel_hexCalc;
+        private System.Windows.Forms.Panel panel_ovintivDirectory;
+        private System.Windows.Forms.TextBox textBox_ovintivDirectory;
+        private System.Windows.Forms.Label label_ovintivDirectory;
     }
 }
 

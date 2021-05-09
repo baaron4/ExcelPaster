@@ -32,8 +32,9 @@ namespace ExcelPaster
                     Thread.Sleep(kscdelay);
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
                     Thread.Sleep(kscdelay);
-                    
-                } else
+
+                }
+                else
                 if (Char.IsUpper(c))
                 {
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Down);
@@ -42,17 +43,17 @@ namespace ExcelPaster
                     Thread.Sleep(kscdelay);
                     input.SendKey(Interceptor.Keys.LeftShift, KeyState.Up);
                     Thread.Sleep(kscdelay);
-                    
+
                 }
                 else
                 {
                     input.SendText(c.ToString());
                     Thread.Sleep(kscdelay);
-                   
+
                 }
-               
+
             }
-           
+
         }
         public void SendKeys(string s)
         {
@@ -81,7 +82,7 @@ namespace ExcelPaster
                 Thread.Sleep(kscdelay);
 
             }
-            
+
         }
         public void SendModKey(Interceptor.Keys m, Interceptor.Keys k)
         {
@@ -102,7 +103,7 @@ namespace ExcelPaster
 
             }
         }
-        public  void LoadDriver()
+        public void LoadDriver()
         {
             if (input == null)
             {
@@ -156,6 +157,6 @@ namespace ExcelPaster
 
             //input.Unload();
         }
-        
+
     }
 }

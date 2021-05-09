@@ -2,22 +2,24 @@
 All-in-one software to easily facilitate and automate common tasks in the fields of automation and measurement.
 
 ## Table of Contents
-* Features
-* Compatibility
-* Installation
-* How-to
-  * Change IP Address
-  * Generate Reports
-    * Limerock
-    * Spreadsheet
-    * Rename
-  * Copy and Paste
-    * PCCU
-    * Realflo
-    * XMV
-* Development Notes
-  * To-Do
-* Credits
+* [Features](https://github.com/joneslinger/ExcelPaster#features)
+* [Compatibility](https://github.com/joneslinger/ExcelPaster#compatibility)
+* [Installation](https://github.com/joneslinger/ExcelPaster#installation)
+* [How-to](https://github.com/joneslinger/ExcelPaster#how-to)
+  * [Change IP Address](https://github.com/joneslinger/ExcelPaster#change-ip-address)
+  * [File Generator](https://github.com/joneslinger/ExcelPaster#file-generator)
+    * [Limerock](https://github.com/joneslinger/ExcelPaster#limerock)
+    * [Spreadsheet](https://github.com/joneslinger/ExcelPaster#spreadsheet)
+    * [Rename](https://github.com/joneslinger/ExcelPaster#rename)
+    * [Ovintiv Send Out](https://github.com/joneslinger/ExcelPaster#ovintiv-send-out)
+  * [Copy and Paste](https://github.com/joneslinger/ExcelPaster#copy-and-paste-1)
+    * [PCCU](https://github.com/joneslinger/ExcelPaster#pccu)
+    * [Realflo](https://github.com/joneslinger/ExcelPaster#realflo)
+    * [XMV](https://github.com/joneslinger/ExcelPaster#xmv)
+    * [ModWorx](https://github.com/joneslinger/ExcelPaster#ModWorx)
+* [Development Notes](https://github.com/joneslinger/ExcelPaster#development-notes)
+  * [To-Do](https://github.com/joneslinger/ExcelPaster#to-do)
+* [Credits](https://github.com/joneslinger/ExcelPaster#credits)
 
 
 ### Features
@@ -53,19 +55,24 @@ Development on Linux and MacOS is never expected.
 #### Change IP address
 *Instructions will be added*
 
-#### Generate Reports
+#### File Generator
+##### Limerock
+##### Spreadsheet
+##### Rename
+##### Ovintiv Send Out
 *Instructions will be added*
 
 #### Copy and Paste
+##### PCCU
+##### Realflo
+##### XMV
+##### ModWorx
 *Instructions will be added*
 
 ### Development Notes
 #### To-Do
 * [ ] Finish Readme
-  * [ ] Instructions
-  * [ ] Details
-  * [ ] Linkable ToC
-* [ ] Develop List of Needed fixes/additions
+* [ ] Develope list of bugs and issues
 * [ ] Get Excel to CSV working
 * [ ] Develop for 32bit
 

@@ -336,6 +336,99 @@ namespace ExcelPaster
                 return null;
             }
         }
+        
+        public string GenerateModWorxCSV(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if(gaslist != null)
+            {
+                //get 100% normalized with percision to 4 decimal places
+                float totalNorm =
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Nitrogen").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Methane").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Ethane").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Propane").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Butane").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "IsoButane").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Pentane").Norm, 4) +
+                    (float)System.Math.Round((gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm), 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Hexanes").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Heptanes").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Octanes").Norm, 4) +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Nonanes").Norm, 4);
+                Console.WriteLine((float)System.Math.Round(totalNorm, 4));
+                float difference = totalNorm - 100;
+                gaslist.Find(x => x.Name == "Methane").Norm = (float)System.Math.Round(gaslist.Find(x => x.Name == "Methane").Norm, 4) - difference;
+                //File Setup
+                meterDescription = meterDescription.Replace("/", ",").Replace("\\", ",");
+                string fileName = outputLoc + "\\" + meterDescription + ".csv";
+                if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                {
+                    MessageBox.Show("File name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                string fileText =
+                    gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" + gaslist.Find(x => x.Name == "Pentane").Norm + "\n" +
+                    (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
+                    gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" + gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Octanes").Norm + "\n" + gaslist.Find(x => x.Name == "Nonanes").Norm + "\n" +
+                    idealCV + "\n" + realRelDensity + "\n" + "0.010268" + "\n" + "1.3";
+                File.WriteAllText(fileName, fileText);
+                return fileName;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool OvintivSendOut(string sourceLoc, string outputLoc, bool showReport)
+        {
+            string sourceFileName = sourceLoc.Split('\\')[sourceLoc.Split('\\').Length - 1];
+            //put in try statement
+            if(sourceFileName.Split('.').Length == 4)
+            {
+                File.Copy(sourceLoc, outputLoc + @" Run Reports\" + sourceFileName, true);
+                File.Copy(sourceLoc, outputLoc + @" Spreadsheets\" + sourceFileName, true);
+                File.Move(sourceLoc, outputLoc + @" All\" + sourceFileName);
+                
+            }
+            else if (sourceFileName.Split('.').Length == 5)
+            {
+                string meterID = sourceFileName.Split('.')[0];
+                string meterDesc = sourceFileName.Split('.')[2];
+                string outputFileText = meterID + "," + meterDesc + "\n";
+                string outputFileName = outputLoc + @" Report List.csv";
+                string runNumber = sourceFileName.Split('.')[3];
+                if (runNumber == "1" || runNumber == "2")
+                {
+                    File.Copy(sourceLoc, outputLoc + @" Run Reports\" + sourceFileName, true);
+                    File.Move(sourceLoc, outputLoc + @" All\" + sourceFileName);
+                    
+                }
+                else if (runNumber == "3")
+                {
+                    File.Copy(sourceLoc, outputLoc + @" Run Reports\Run 3\" + sourceFileName, true);
+                    File.Move(sourceLoc, outputLoc + @" All\" + sourceFileName);
+                    File.AppendAllText(outputFileName, outputFileText);
+                }
+                else
+                {
+                    MessageBox.Show("Could not assess " + sourceFileName + "\n Check run number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Could not assess " + sourceFileName + "\n Check file naming convention", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (showReport) System.Diagnostics.Process.Start(outputLoc + @" Report List.csv");
+            return true;
+        }
 
         public bool GenerateSpreadsheet1(string sourceLoc, string outputLoc, bool showReport)
         {
