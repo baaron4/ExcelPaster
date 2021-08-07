@@ -130,6 +130,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -203,18 +204,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\winn-marion-barber-ball_hires%281%29.ico" />
-    <None Include="Resources\Limerock_DocSmall.PNG" />
     <None Include="Resources\No_Report.PNG" />
     <None Include="Resources\Excel_Report.bmp" />
     <Content Include="Resources\Excel_Report.PNG" />
     <None Include="Resources\spread1.PNG" />
-    <None Include="Resources\Realflo.PNG" />
     <None Include="Resources\Run Report.PNG" />
     <None Include="Resources\send out.PNG" />
+    <None Include="Resources\LimerockPDF.PNG" />
+    <None Include="Resources\NewAGA.PNG" />
+    <None Include="Resources\No_Photo.PNG" />
+    <None Include="Resources\TXT.PNG" />
+    <None Include="Resources\Realflo.PNG" />
     <Content Include="Resources\winn-marion_graphic.PNG">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\XMV.PNG" />
     <Content Include="winn-marion-barber-ball_hires%281%29.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +242,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

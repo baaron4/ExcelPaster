@@ -196,7 +196,7 @@ namespace ExcelPaster
             }
         }
 
-        public void TypeCSVtoModWorx(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
+        public void TypeCSVtoOldModWorx(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
         {
             for (int i = 0; i < csv.Count(); i++)
             {
@@ -211,7 +211,7 @@ namespace ExcelPaster
                         //exit entry window
                         ih.SendKey(Interceptor.Keys.Tab);
                         ih.SendKey(Interceptor.Keys.Enter);
-                        for (int j = 0; j < 28; j++)
+                        for (int j = 0; j < 26; j++)
                         {
                             ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Tab);
                         }
@@ -230,6 +230,58 @@ namespace ExcelPaster
                     ih.SendKey(Interceptor.Keys.Tab);
                     ih.SendKey(Interceptor.Keys.Enter); 
                 }
+            }
+        }
+
+        public void TyperCSVtoNewModWorx(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
+        {
+            for (int i = 0; i < csv.Count(); i++)
+            {
+                if (bg.CancellationPending) break;
+                string line = csv[i][0];//will only have 1 value per line
+                //manual items
+                if (i >= 13)
+                {
+                    //move to manual items
+                    if (i == 13)
+                    {
+                        //exit entry window
+                        ih.SendKey(Interceptor.Keys.Tab);
+                        ih.SendKey(Interceptor.Keys.Enter);
+                        for (int j = 0; j < 28; j++)
+                        {
+                            ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Tab);
+                        }
+                    }
+                    ih.SendKey('m');
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    TypeLine(line);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                }
+                //gas items
+                else if (i < 13)
+                {
+                    TypeLine(line);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Tab);
+                    ih.SendKey(Interceptor.Keys.Enter);
+                }
+            }
+        }
+
+        public void TypeCSVtoAGA(List<List<String>> csv, System.ComponentModel.BackgroundWorker bg)
+        {
+            for(int i = 0; i < csv.Count(); i++)
+            {
+                if (bg.CancellationPending) break;
+                string line = csv[i][0]; //will only have 1 value per line
+                TypeLine(line);
+                ih.SendKey(Interceptor.Keys.Enter);
+                if(i == 0 || i == 1)
+                {
+                    ih.SendKey(Interceptor.Keys.Enter);
+                } 
             }
         }
 

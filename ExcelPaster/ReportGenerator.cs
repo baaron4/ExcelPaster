@@ -29,7 +29,7 @@ namespace ExcelPaster
         public int numCycles = 0, connectedStreams = 0;
 
         public static readonly String FONT = System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\FreeSans.ttf";
-        private float GetNumbersAndDecimalsAsFloat(string input)
+        private float GetNumbersAndDecimalsAsFloat(string input) //make try parse
         {
             string st = new string(input.Where(c => char.IsDigit(c) || c == '.').ToArray());
 
@@ -112,23 +112,20 @@ namespace ExcelPaster
                     case 4:
                         if (line.Contains("Flowing Temp.:"))
                         {
-                            if (line.Contains("-")) line.Replace("-", "0");
-                            if (line.Contains("?")) line.Replace("?", "0");
-                            if(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", "") == "")
+                            if(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("Deg. F", "").Replace("-","").Replace("?","").Trim() == "")
                             {
                                 flowingTemp = 0;
                             }
-                            else flowingTemp = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("  ", "").Replace("Deg. F", ""));
+                            else flowingTemp = GetNumbersAndDecimalsAsFloat(line.Substring(0, line.LastIndexOf("Flowing Pressure:")).Replace("Flowing Temp.:", "").Replace("Deg. F", "").Trim());
                         }
                         if (line.Contains("Flowing Pressure:"))
                         {
-                            if (line.Contains("-")) line.Replace("-", "0");
-                            if (line.Contains("?")) line.Replace("?", "0");
-                            if(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Replace("  ", "") == "")
+                            Console.WriteLine(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Trim().ToLower().Replace("flowing pressure:", "").Replace("psia", "").Replace("psig", ""));
+                            if (line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).ToLower().Replace("flowing pressure:", "").Replace("psia","").Replace("psig","").Replace("-", "").Replace("?", "").Trim() == "")
                             {
                                 flowingPressure = 0;
                             }
-                            else flowingPressure = GetNumbersAndDecimalsAsFloat(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Replace("  ", ""));
+                            else flowingPressure = GetNumbersAndDecimalsAsFloat(line.Substring(line.LastIndexOf("Flowing Pressure:"), line.Length - line.LastIndexOf("Flowing Pressure:")).Trim().ToLower().Replace("flowing pressure:", "").Replace("psia", "").Replace("psig", ""));
                             lineNum++;
                         }
                         break;
@@ -275,7 +272,7 @@ namespace ExcelPaster
             else return false;
         }
 
-        public string GenerateXMVCSV(string sourceLoc, string outputLoc)
+        public string GenerateNewAGA3CSV(string sourceLoc, string outputLoc)
         {
             List<Gas> gaslist = loadData(sourceLoc);
             if (gaslist != null)
@@ -296,6 +293,36 @@ namespace ExcelPaster
                     gaslist.Find(x => x.Name == "Pentane").Norm + "\n" + gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" +
                     gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" + gaslist.Find(x => x.Name == "Octanes").Norm + "\n" +
                     gaslist.Find(x => x.Name == "Nonanes").Norm;
+                File.WriteAllText(fileName, fileTXT);
+                return fileName;
+            }
+            else
+            {
+                MessageBox.Show("File could not be read correctly.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public string GenerateOldAGA3CSV(string sourceLoc, string outputLoc)
+        {
+            List<Gas> gaslist = loadData(sourceLoc);
+            if (gaslist != null)
+            {
+                meterDescription = meterDescription.Replace("/", ",").Replace("\\", ",");
+                string fileName = outputLoc + "\\" + meterDescription + ".csv";
+                if (breaksFileNameRules(fileName.Split('\\')[fileName.Split('\\').Length - 1]))
+                {
+                    MessageBox.Show("File name breaks Window's rules", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                string fileTXT = idealCV + "\n" + realRelDensity + "\n" +
+                    gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" + gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n0\n0\n0\n" + 
+                    gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
+                    gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" + gaslist.Find(x => x.Name == "Pentane").Norm + "\n" +
+                    (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
+                     gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" + gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" +
+                     gaslist.Find(x => x.Name == "Octanes").Norm + "\n" + gaslist.Find(x => x.Name == "Nonanes").Norm;
                 File.WriteAllText(fileName, fileTXT);
                 return fileName;
             }
@@ -357,7 +384,6 @@ namespace ExcelPaster
                     (float)System.Math.Round(gaslist.Find(x => x.Name == "Heptanes").Norm, 4) +
                     (float)System.Math.Round(gaslist.Find(x => x.Name == "Octanes").Norm, 4) +
                     (float)System.Math.Round(gaslist.Find(x => x.Name == "Nonanes").Norm, 4);
-                Console.WriteLine((float)System.Math.Round(totalNorm, 4));
                 float difference = totalNorm - 100;
                 gaslist.Find(x => x.Name == "Methane").Norm = (float)System.Math.Round(gaslist.Find(x => x.Name == "Methane").Norm, 4) - difference;
                 //File Setup
@@ -369,13 +395,19 @@ namespace ExcelPaster
                     return null;
                 }
                 string fileText =
-                    gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm + "\n" + gaslist.Find(x => x.Name == "Nitrogen").Norm + "\n" +
-                    gaslist.Find(x => x.Name == "Methane").Norm + "\n" + gaslist.Find(x => x.Name == "Ethane").Norm + "\n" +
-                    gaslist.Find(x => x.Name == "Propane").Norm + "\n" + gaslist.Find(x => x.Name == "Butane").Norm + "\n" +
-                    gaslist.Find(x => x.Name == "IsoButane").Norm + "\n" + gaslist.Find(x => x.Name == "Pentane").Norm + "\n" +
-                    (gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm) + "\n" +
-                    gaslist.Find(x => x.Name == "Hexanes").Norm + "\n" + gaslist.Find(x => x.Name == "Heptanes").Norm + "\n" +
-                    gaslist.Find(x => x.Name == "Octanes").Norm + "\n" + gaslist.Find(x => x.Name == "Nonanes").Norm + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Carbon-Dioxide").Norm, 4) + "\n" + 
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Nitrogen").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Methane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Ethane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Propane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Butane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "IsoButane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Pentane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "IsoPentane").Norm + gaslist.Find(x => x.Name == "NeoPentane").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Hexanes").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Heptanes").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Octanes").Norm, 4) + "\n" +
+                    (float)System.Math.Round(gaslist.Find(x => x.Name == "Nonanes").Norm, 4) + "\n" +
                     idealCV + "\n" + realRelDensity + "\n" + "0.010268" + "\n" + "1.3";
                 File.WriteAllText(fileName, fileText);
                 return fileName;
@@ -400,7 +432,7 @@ namespace ExcelPaster
             else if (sourceFileName.Split('.').Length == 5)
             {
                 string meterID = sourceFileName.Split('.')[0];
-                string meterDesc = sourceFileName.Split('.')[2];
+                string meterDesc = sourceFileName.Split('.')[2].Replace(",","/");
                 string outputFileText = meterID + "," + meterDesc + "\n";
                 string outputFileName = outputLoc + @" Report List.csv";
                 string runNumber = sourceFileName.Split('.')[3];

@@ -59,12 +59,6 @@ namespace ExcelPaster
 
             SetPadDB();
 
-            //Load ToDo name at start
-            comboBox_TODOFileLoc.Text = Properties.Settings.Default.TODOFileLoc;
-            textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
-
-            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
-
             //Reports
             comboBox_ReportType.SelectedIndex = 0;
             comboBox_HexaneCalc.SelectedIndex = 0;
@@ -169,8 +163,10 @@ namespace ExcelPaster
             Excel = 1,
             PCCU = 2,
             Realflo = 3,
-            XMV = 4,
-            ModWorx = 5
+            NewAGA = 4,
+            OldAGA = 5,
+            NewModWorx = 6,
+            OldModWorx = 7
         }
 
         private void btn_StartCopyFile_Click(object sender, EventArgs e)
@@ -226,12 +222,25 @@ namespace ExcelPaster
                     else remove = true;
                 }
                 //Generate XMV CSV from run report
-                else if (target == TargetProgram.XMV)
+                else if (target == TargetProgram.NewAGA)
                 {
                     int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
                     string outputLoc = sourceLoc.Remove(dirIndex);
                     ReportGenerator rG = new ReportGenerator();
-                    sourceLoc = rG.GenerateXMVCSV(sourceLoc, outputLoc); //set source to new csv
+                    sourceLoc = rG.GenerateNewAGA3CSV(sourceLoc, outputLoc); //set source to new csv
+                    if (sourceLoc == null)
+                    {
+                        MessageBox.Show("Failed to generate CSV.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Cancel = true;
+                    }
+                    else remove = true;
+                }
+                else if (target == TargetProgram.OldAGA)
+                {
+                    int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
+                    string outputLoc = sourceLoc.Remove(dirIndex);
+                    ReportGenerator rG = new ReportGenerator();
+                    sourceLoc = rG.GenerateOldAGA3CSV(sourceLoc, outputLoc); //set source to new csv
                     if (sourceLoc == null)
                     {
                         MessageBox.Show("Failed to generate CSV.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -240,7 +249,7 @@ namespace ExcelPaster
                     else remove = true;
                 }
                 //Generate ModWorx CSV from run report
-                else if (target == TargetProgram.ModWorx)
+                else if (target == TargetProgram.NewModWorx || target == TargetProgram.OldModWorx)
                 {
                     int dirIndex = sourceLoc.LastIndexOf("\\") + 1;
                     string outputLoc = sourceLoc.Remove(dirIndex);
@@ -291,17 +300,25 @@ namespace ExcelPaster
                         {
                             typer.TypeCSVtoExcel(reader.GetArrayStorage(), bg);
                         }
-                        else if (target == TargetProgram.PCCU || target == TargetProgram.XMV)
+                        else if (target == TargetProgram.PCCU)
                         {
                             typer.TypeCSVtoPCCU(reader.GetArrayStorage(), bg);
+                        }
+                        else if (target == TargetProgram.NewAGA || target == TargetProgram.OldAGA)
+                        {
+                            typer.TypeCSVtoAGA(reader.GetArrayStorage(), bg);
                         }
                         else if (target == TargetProgram.Realflo)
                         {
                             typer.TypeCSVtoRealflo(reader.GetArrayStorage(), bg);
                         }
-                        else if (target == TargetProgram.ModWorx)
+                        else if (target == TargetProgram.NewModWorx)
                         {
-                            typer.TypeCSVtoModWorx(reader.GetArrayStorage(), bg);
+                            typer.TyperCSVtoNewModWorx(reader.GetArrayStorage(), bg);
+                        }
+                        else if (target == TargetProgram.OldModWorx)
+                        {
+                            typer.TypeCSVtoOldModWorx(reader.GetArrayStorage(), bg);
                         }
                         if (bg.CancellationPending)
                         {
@@ -331,7 +348,7 @@ namespace ExcelPaster
         {
             if (e.ProgressPercentage > 0)
             {
-                label_Status.Text = "Press Any Key at least Once \n Starting in " + e.ProgressPercentage;
+                label_Status.Text = "Press Any Key at least Once. Starting in " + e.ProgressPercentage;
             }
             else
             {
@@ -385,13 +402,42 @@ namespace ExcelPaster
             Properties.Settings.Default.TargetProgram = comboBox_TargetProgramCSV.SelectedIndex;
             Properties.Settings.Default.Save();
             int index = comboBox_TargetProgramCSV.SelectedIndex;
-            if(index == 3 || index == 4 || index == 5)
+            switch (index)
             {
-                openFileDialog1.Filter = "Run Reports | *.3.txt";
-            }
-            else
-            {
-                openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
+                case (int)TargetProgram.TxT:
+                    openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.TXT;
+                    break;
+                case (int)TargetProgram.Excel:
+                    openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    break;
+                case (int)TargetProgram.PCCU:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    break;
+                case (int)TargetProgram.Realflo:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.Realflo;
+                    break;
+                case (int)TargetProgram.NewAGA:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.NewAGA;
+                    break;
+                case (int)TargetProgram.OldAGA:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    break;
+                case (int)TargetProgram.NewModWorx:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    break;
+                case (int)TargetProgram.OldModWorx:
+                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -1075,60 +1121,6 @@ namespace ExcelPaster
             else MessageBox.Show("No file Selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void button_ChangeTODOFile_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog2.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_TODOFileLoc.Text = result;
-                    Properties.Settings.Default.TODOFileLoc = result;
-                    Properties.Settings.Default.Save();
-                }
-            }
-        }
-
-        private void button_UserLoad_Click(object sender, EventArgs e)
-        {
-            string username = textBox_UserNameToDo.Text;
-            Properties.Settings.Default.UserName = username;
-            Properties.Settings.Default.Save();
-
-            if (Properties.Settings.Default.TODOFileLoc != "")
-            {
-                int NameColumnIndex = 0;
-                CSVReader todoReader = new CSVReader();
-                todoReader.ParseCSV(comboBox_TODOFileLoc.Text,"");
-                //Assign Coloumn to search for Name
-                foreach (string cell in todoReader.GetArrayStorage().First())
-                {
-                    if (NameColumnIndex > 9)
-                    {
-                        throw new Exception("No 'Assignee' Colomn present in this CSV");
-                    }
-                    if (cell.Contains("Assignee"))
-                    {
-                        break;
-                    }
-                    NameColumnIndex++;
-                }
-                
-                foreach (List<string> ListS in todoReader.GetArrayStorage())
-                {
-                    if (ListS[NameColumnIndex] == username)
-                    {
-                        foreach (string cell in ListS)
-                        {
-                            textBox_ToDoWorkArea.Text += " ["+ cell + "] ";
-                        }
-                        
-                    }
-                    textBox_ToDoWorkArea.Text += "\r\n";
-
-                }
-            }
-        }
 
         private void button_CancelPing_Click(object sender, EventArgs e)
         {
@@ -1841,85 +1833,6 @@ namespace ExcelPaster
             ReadValuesDataGrid();
         }
 
-        private void button_StartPID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button_Change_SourceDB_CSV_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_SourceDB_CSV_Loc.Text = result;
-                }
-            }
-        }
-
-        private void button_Change_TargetDB_CSV_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_TargetDB_CSV_Loc.Text = result;
-                }
-            }
-        }
-
-        string SourceDB = "";
-        string targetDB = "";
-        string DB_OUT = "";
-        private void button_STARTCOPY_Click(object sender, EventArgs e)
-        {
-            
-            label_DBCopy_Results.Text = "Working...";
-            if (!backgroundWorker1.IsBusy)
-            {
-                SourceDB = comboBox_SourceDB_CSV_Loc.Text;
-                targetDB = comboBox_TargetDB_CSV_Loc.Text;
-                DB_OUT = comboBox_DB_COPY_OUT.Text;
-                backgroundWorker1.RunWorkerAsync();
-            }
-            
-
-           
-        }
-
-        private void button_DB_OUT_LOC_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_DB_COPY_OUT.Text = result;
-                }
-            }
-        }
-        public void UpdateDBResult(string text)
-        {
-            label_DBCopy_Results.Text = text;
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ExcelPaster.DBSearchCopy dBSearchCopy = new DBSearchCopy();
-            dBSearchCopy.StartSearchCopy(SourceDB,targetDB,DB_OUT);
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            label_DBCopy_Results.Text = "Done!";
-        }
-
-        private void checkBox_levenstheins_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
-        }
         static void ConvertExcelToCsv(string excelFilePath, string csvOutputFile, int worksheetNumber = 1)
         {
             if (!File.Exists(excelFilePath)) throw new FileNotFoundException(excelFilePath);
@@ -2097,7 +2010,8 @@ namespace ExcelPaster
                                 }
                                 else if (comboBox_ReportType.SelectedIndex == 4)
                                 {
-                                    Console.WriteLine("We made it.");
+                                    string outputLoc = comboBox_ReportOutput.Text + "\\" + textBox_ovintivDirectory.Text; ;
+                                    string[] directories = {outputLoc + @" Run Reports\Run 3", outputLoc + @" Run Reports", outputLoc + @" Spreadsheets", outputLoc + @" All" };
                                     if (textBox_ovintivDirectory.Text.Any())
                                     {
                                         if (rG.breaksFileNameRules(textBox_ovintivDirectory.Text))
@@ -2105,13 +2019,14 @@ namespace ExcelPaster
                                             MessageBox.Show("Folder name breaks Window's naming rules.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             break;
                                         }
-                                        string outputLoc = comboBox_ReportOutput.Text + "\\" + textBox_ovintivDirectory.Text;
+                                        
                                         if (file == files.First())
                                         {
-                                            Directory.CreateDirectory(outputLoc + @" All");
-                                            Directory.CreateDirectory(outputLoc + @" Run Reports");
-                                            Directory.CreateDirectory(outputLoc + @" Spreadsheets");
-                                            Directory.CreateDirectory(outputLoc + @" Run Reports\Run 3");
+                                            for(int i = 0; i < 4; i++)
+                                            {
+                                                
+                                                if(i != 1) Directory.CreateDirectory(directories[i]);
+                                            }
                                         }
                                         bool show;
                                         if (file == files.Last()) show = checkBox_showReport.Checked;
@@ -2126,7 +2041,25 @@ namespace ExcelPaster
                                     }
                                     if (success)
                                     {
-                                        if (!checkBox_showReport.Checked && file == files.Last()) MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                        if(file == files.Last())
+                                        {
+                                            for(int i = 1; i < 4; i++) //Compress folders (make zips)
+                                            {
+                                                System.IO.Compression.ZipFile.CreateFromDirectory(directories[i], directories[i] + ".zip");
+                                            }
+                                            for(int i = 0; i < 4; i++)//Remove folders
+                                            {
+                                                string[] filesToRemove = Directory.GetFiles(directories[i], openFileDialog4.FileName, SearchOption.AllDirectories);
+                                                foreach (string fileToRemove in filesToRemove)
+                                                {
+                                                    File.Delete(fileToRemove);
+                                                }
+                                                Directory.Delete(directories[i]);
+                                            }
+
+                                            if (!checkBox_showReport.Checked) MessageBox.Show("Successfully generated " + reportType, "Complete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                                        }
                                     }
                                     else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
@@ -2180,7 +2113,7 @@ namespace ExcelPaster
                     
                 case 1:
                     //Limerock pdf
-                    pictureBox1.Image = ExcelPaster.Properties.Resources.Limerock_DocSmall;
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.LimerockPDF;
                     openFileDialog4.Filter = "Notepad Files | *.txt";
                     openFileDialog4.FileName = "*.txt";
                     panel_renameOptions.Visible = false;
@@ -2268,45 +2201,30 @@ namespace ExcelPaster
             }
         }
 
-        private void button_ModemSource_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog4.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog4.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_ModemSource.Text = result;
-                }
-            }
-        }
-
-        private void button_GenerateModemMap_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void doAll_checkbox_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_doAll.Checked)
             {
                 label_renameFileInfo.Visible = true;
-                label_namingScheme.Visible = true;
             }
             else
             {
                 label_renameFileInfo.Visible = false;
-                label_namingScheme.Visible = false;
             }
         }
 
         private void comboBox_ReportSource_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox_ReportSource.Text == "") return;
+            if (comboBox_ReportSource.Text == "")
+            {
+                comboBox_ReportOutput.Text = "";
+                return;
+            }
             else
             {
                 comboBox_SourceFolder.Text = "";
                 int i = comboBox_ReportSource.Text.LastIndexOf('\\') + 1;
-                if (i > 0 && i <= comboBox_ReportSource.Text.Length)
+                if (i > 0 && i < comboBox_ReportSource.Text.Length)
                 {
                     comboBox_ReportOutput.Text = comboBox_ReportSource.Text.Remove(i);
                 } 
@@ -2322,5 +2240,25 @@ namespace ExcelPaster
                 comboBox_ReportOutput.Text = comboBox_SourceFolder.Text; 
             }
         }
+
+        //---------------------------------------------------------------------------------------------------
+        //                                        Time Tracker
+        //---------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

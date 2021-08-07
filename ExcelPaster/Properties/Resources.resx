@@ -124,11 +124,14 @@
   <data name="Excel_Report" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Excel_Report.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="No_Report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\No_Report.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NewAGA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewAGA.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="XMV" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\XMV.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LimerockPDF" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LimerockPDF.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="send out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\send out.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FreeSans" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FreeSans.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -139,16 +142,19 @@
   <data name="Calibration_Doc_250_1000_PSI" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Calibration Doc 250 1000 PSI.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Limerock_DocSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Limerock_DocSmall.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Realflo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Realflo.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TXT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TXT.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="winn_marion_barber_ball_hires_1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\winn-marion-barber-ball_hires(1).ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="send out" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\send out.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="No_Report" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\No_Report.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="No_Photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\No_Photo.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Realflo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Realflo.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

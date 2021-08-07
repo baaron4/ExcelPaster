@@ -93,9 +93,29 @@ namespace ExcelPaster.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Limerock_DocSmall {
+        internal static System.Drawing.Bitmap LimerockPDF {
             get {
-                object obj = ResourceManager.GetObject("Limerock_DocSmall", resourceCulture);
+                object obj = ResourceManager.GetObject("LimerockPDF", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NewAGA {
+            get {
+                object obj = ResourceManager.GetObject("NewAGA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap No_Photo {
+            get {
+                object obj = ResourceManager.GetObject("No_Photo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -151,22 +171,22 @@ namespace ExcelPaster.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TXT {
+            get {
+                object obj = ResourceManager.GetObject("TXT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon winn_marion_barber_ball_hires_1_ {
             get {
                 object obj = ResourceManager.GetObject("winn_marion_barber_ball_hires_1_", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap XMV {
-            get {
-                object obj = ResourceManager.GetObject("XMV", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
