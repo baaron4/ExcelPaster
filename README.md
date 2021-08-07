@@ -7,13 +7,13 @@ All-in-one software to easily facilitate and automate common tasks in the fields
 * [Compatibility](https://github.com/joneslinger/ExcelPaster#compatibility)
 * [Installation](https://github.com/joneslinger/ExcelPaster#installation)
 * [How-to](https://github.com/joneslinger/ExcelPaster#how-to)
-  * Change IP Address
-  * File Generator
+  * [Change IP Address](https://github.com/joneslinger/ExcelPaster#change-ip-address)
+  * [File Generator](https://github.com/joneslinger/ExcelPaster#file-generator)
     * Limerock
     * Spreadsheet
     * Rename
     * Ovintiv Send Out
-  * Copy and Paste
+  * [Copy and Paste](https://github.com/joneslinger/ExcelPaster#copy-and-paste)
     * PCCU
     * Realflo
     * XMV
