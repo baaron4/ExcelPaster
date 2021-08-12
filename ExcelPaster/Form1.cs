@@ -413,7 +413,7 @@ namespace ExcelPaster
                     pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
                     break;
                 case (int)TargetProgram.PCCU:
-                    openFileDialog1.Filter = "Run Reports | *.3.txt";
+                    openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
                     pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
                     break;
                 case (int)TargetProgram.Realflo:
