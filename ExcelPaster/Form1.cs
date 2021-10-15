@@ -31,6 +31,7 @@ namespace ExcelPaster
         List<String> Devices;
         bool CancelPingLogger;
 
+
         private ModbusTCP.Master MBmaster;
 
 
@@ -2293,6 +2294,14 @@ namespace ExcelPaster
         private void button_CEGenerate_Click(object sender, EventArgs e)
         {
           //Generate Documents
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //Load Interface based on Project selected
+            CESetupGeneration ceSetupGenScript = new CESetupGeneration();
+            tabControl_CESetup = ceSetupGenScript.GenerateSetupInterface( (CESetupGeneration.ProjectType)comboBox_CEProjectType.SelectedIndex, tabControl_CESetup);
+            //Load Device Database
         }
     }
 }
