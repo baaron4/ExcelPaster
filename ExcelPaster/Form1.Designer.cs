@@ -54,16 +54,19 @@
             this.Column1IPAddres = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column2Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox_IPScanStop = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label45 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.textBox_pinglogsec = new System.Windows.Forms.TextBox();
+            this.textBox_pinglogmin = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_PingResults = new System.Windows.Forms.Label();
-            this.textBox_IPScanStart = new System.Windows.Forms.TextBox();
             this.textBox1_PingTrys = new System.Windows.Forms.TextBox();
-            this.button_ScanNetwork = new System.Windows.Forms.Button();
-            this.listView_ScannedPadIPs = new System.Windows.Forms.ListView();
-            this.Column1Success = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_ClearPings = new System.Windows.Forms.Button();
             this.button_CancelPing = new System.Windows.Forms.Button();
             this.button_Ping = new System.Windows.Forms.Button();
@@ -183,6 +186,16 @@
             this.button_ModemSource = new System.Windows.Forms.Button();
             this.label38 = new System.Windows.Forms.Label();
             this.comboBox_ModemSource = new System.Windows.Forms.ComboBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.textBox_IPScanStop = new System.Windows.Forms.TextBox();
+            this.textBox_IPScanStart = new System.Windows.Forms.TextBox();
+            this.button_ScanNetwork = new System.Windows.Forms.Button();
+            this.listView_ScannedPadIPs = new System.Windows.Forms.ListView();
+            this.Column1Success = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label40 = new System.Windows.Forms.Label();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -191,11 +204,36 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
+            this.bgWorker_pinglogger = new System.ComponentModel.BackgroundWorker();
+            this.label47 = new System.Windows.Forms.Label();
+            this.button_CEModelDBFileOpen = new System.Windows.Forms.Button();
+            this.comboBox_CEModelDBFile = new System.Windows.Forms.ComboBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.button_CEModelDBFileSelect = new System.Windows.Forms.Button();
+            this.button_CETemplateFileOpen = new System.Windows.Forms.Button();
+            this.comboBox_CETemplateFile = new System.Windows.Forms.ComboBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.button_CETemplateFileSelect = new System.Windows.Forms.Button();
+            this.button_CEPanelTemplateFileOpen = new System.Windows.Forms.Button();
+            this.comboBox_CEPanelTemplateFile = new System.Windows.Forms.ComboBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.button_CEPanelTemplateFileSelect = new System.Windows.Forms.Button();
+            this.button_CEGenerate = new System.Windows.Forms.Button();
+            this.comboBox_CEOutputLoc = new System.Windows.Forms.ComboBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.button_CEChangeOutputLoc = new System.Windows.Forms.Button();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label_CEGenStatus = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox_CEProjectType = new System.Windows.Forms.ComboBox();
+            this.label51 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -209,12 +247,15 @@
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage5.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
             // 
             this.btn_StartCopyFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_StartCopyFile.Location = new System.Drawing.Point(693, 439);
+            this.btn_StartCopyFile.Location = new System.Drawing.Point(701, 439);
             this.btn_StartCopyFile.Name = "btn_StartCopyFile";
             this.btn_StartCopyFile.Size = new System.Drawing.Size(195, 23);
             this.btn_StartCopyFile.TabIndex = 0;
@@ -225,7 +266,7 @@
             // textBox_StartCopyDelayFile
             // 
             this.textBox_StartCopyDelayFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(746, 413);
+            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(754, 413);
             this.textBox_StartCopyDelayFile.Name = "textBox_StartCopyDelayFile";
             this.textBox_StartCopyDelayFile.Size = new System.Drawing.Size(52, 20);
             this.textBox_StartCopyDelayFile.TabIndex = 1;
@@ -237,7 +278,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(750, 397);
+            this.label1.Location = new System.Drawing.Point(758, 397);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 2;
@@ -247,7 +288,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(804, 416);
+            this.label2.Location = new System.Drawing.Point(812, 416);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 3;
@@ -281,10 +322,13 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1032, 506);
+            this.tabControl1.Size = new System.Drawing.Size(1040, 506);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage3
@@ -298,7 +342,7 @@
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage3.Size = new System.Drawing.Size(1032, 480);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "IP Change";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -309,7 +353,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_OpenFile.Location = new System.Drawing.Point(93, 444);
             this.button_OpenFile.Name = "button_OpenFile";
-            this.button_OpenFile.Size = new System.Drawing.Size(99, 23);
+            this.button_OpenFile.Size = new System.Drawing.Size(107, 23);
             this.button_OpenFile.TabIndex = 21;
             this.button_OpenFile.Text = "Open DB File";
             this.button_OpenFile.UseVisualStyleBackColor = true;
@@ -336,7 +380,7 @@
             this.comboBox_DBFile.Location = new System.Drawing.Point(326, 445);
             this.comboBox_DBFile.MaxDropDownItems = 10;
             this.comboBox_DBFile.Name = "comboBox_DBFile";
-            this.comboBox_DBFile.Size = new System.Drawing.Size(695, 21);
+            this.comboBox_DBFile.Size = new System.Drawing.Size(703, 21);
             this.comboBox_DBFile.TabIndex = 23;
             // 
             // button_ChangeDBFile
@@ -345,7 +389,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ChangeDBFile.Location = new System.Drawing.Point(198, 445);
             this.button_ChangeDBFile.Name = "button_ChangeDBFile";
-            this.button_ChangeDBFile.Size = new System.Drawing.Size(122, 23);
+            this.button_ChangeDBFile.Size = new System.Drawing.Size(130, 23);
             this.button_ChangeDBFile.TabIndex = 22;
             this.button_ChangeDBFile.Text = "Change File";
             this.button_ChangeDBFile.UseVisualStyleBackColor = true;
@@ -486,12 +530,9 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox_IPScanStop);
+            this.groupBox4.Controls.Add(this.groupBox6);
             this.groupBox4.Controls.Add(this.panel1);
-            this.groupBox4.Controls.Add(this.textBox_IPScanStart);
             this.groupBox4.Controls.Add(this.textBox1_PingTrys);
-            this.groupBox4.Controls.Add(this.button_ScanNetwork);
-            this.groupBox4.Controls.Add(this.listView_ScannedPadIPs);
             this.groupBox4.Controls.Add(this.button_ClearPings);
             this.groupBox4.Controls.Add(this.button_CancelPing);
             this.groupBox4.Controls.Add(this.button_Ping);
@@ -503,14 +544,109 @@
             this.groupBox4.Text = "Ping IP";
             this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
-            // textBox_IPScanStop
+            // groupBox6
             // 
-            this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_IPScanStop.Enabled = false;
-            this.textBox_IPScanStop.Location = new System.Drawing.Point(189, 199);
-            this.textBox_IPScanStop.Name = "textBox_IPScanStop";
-            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
-            this.textBox_IPScanStop.TabIndex = 36;
+            this.groupBox6.Controls.Add(this.button2);
+            this.groupBox6.Controls.Add(this.label45);
+            this.groupBox6.Controls.Add(this.button3);
+            this.groupBox6.Controls.Add(this.label44);
+            this.groupBox6.Controls.Add(this.label43);
+            this.groupBox6.Controls.Add(this.label41);
+            this.groupBox6.Controls.Add(this.textBox_pinglogsec);
+            this.groupBox6.Controls.Add(this.textBox_pinglogmin);
+            this.groupBox6.Controls.Add(this.label42);
+            this.groupBox6.Location = new System.Drawing.Point(12, 199);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(259, 196);
+            this.groupBox6.TabIndex = 35;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Ping Logging";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(98, 155);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 23);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(6, 82);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(189, 13);
+            this.label45.TabIndex = 41;
+            this.label45.Text = "Note: Will ping indefinatly until stopped";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(65, 109);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(144, 23);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "Start Ping Logging";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(6, 60);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(230, 13);
+            this.label44.TabIndex = 40;
+            this.label44.Text = "Note: Uses IP address from DB Lookup section";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(203, 27);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(24, 13);
+            this.label43.TabIndex = 39;
+            this.label43.Text = "sec";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(132, 27);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(23, 13);
+            this.label41.TabIndex = 38;
+            this.label41.Text = "min";
+            this.label41.Click += new System.EventHandler(this.label41_Click);
+            // 
+            // textBox_pinglogsec
+            // 
+            this.textBox_pinglogsec.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_pinglogsec.Location = new System.Drawing.Point(164, 24);
+            this.textBox_pinglogsec.Name = "textBox_pinglogsec";
+            this.textBox_pinglogsec.Size = new System.Drawing.Size(33, 20);
+            this.textBox_pinglogsec.TabIndex = 37;
+            this.textBox_pinglogsec.Text = "0";
+            this.textBox_pinglogsec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox_pinglogmin
+            // 
+            this.textBox_pinglogmin.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_pinglogmin.Location = new System.Drawing.Point(93, 24);
+            this.textBox_pinglogmin.Name = "textBox_pinglogmin";
+            this.textBox_pinglogmin.Size = new System.Drawing.Size(33, 20);
+            this.textBox_pinglogmin.TabIndex = 36;
+            this.textBox_pinglogmin.Text = "5";
+            this.textBox_pinglogmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 27);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(81, 13);
+            this.label42.TabIndex = 34;
+            this.label42.Text = "Ping Frequency";
             // 
             // panel1
             // 
@@ -532,16 +668,6 @@
             this.label_PingResults.TabIndex = 30;
             this.label_PingResults.Text = "Ping Results";
             // 
-            // textBox_IPScanStart
-            // 
-            this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_IPScanStart.Enabled = false;
-            this.textBox_IPScanStart.Location = new System.Drawing.Point(92, 199);
-            this.textBox_IPScanStart.Name = "textBox_IPScanStart";
-            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
-            this.textBox_IPScanStart.TabIndex = 35;
-            this.textBox_IPScanStart.TextChanged += new System.EventHandler(this.textBox_IPScanStart_TextChanged);
-            // 
             // textBox1_PingTrys
             // 
             this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
@@ -551,48 +677,6 @@
             this.textBox1_PingTrys.TabIndex = 32;
             this.textBox1_PingTrys.Text = "4";
             this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // button_ScanNetwork
-            // 
-            this.button_ScanNetwork.Enabled = false;
-            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 197);
-            this.button_ScanNetwork.Name = "button_ScanNetwork";
-            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
-            this.button_ScanNetwork.TabIndex = 33;
-            this.button_ScanNetwork.Text = "Scan Network";
-            this.button_ScanNetwork.UseVisualStyleBackColor = true;
-            this.button_ScanNetwork.Click += new System.EventHandler(this.button_ScanNetwork_Click);
-            // 
-            // listView_ScannedPadIPs
-            // 
-            this.listView_ScannedPadIPs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Column1Success,
-            this.Column2IPAddress,
-            this.Column3Name});
-            this.listView_ScannedPadIPs.Enabled = false;
-            this.listView_ScannedPadIPs.FullRowSelect = true;
-            this.listView_ScannedPadIPs.GridLines = true;
-            this.listView_ScannedPadIPs.HideSelection = false;
-            this.listView_ScannedPadIPs.Location = new System.Drawing.Point(1, 226);
-            this.listView_ScannedPadIPs.Name = "listView_ScannedPadIPs";
-            this.listView_ScannedPadIPs.Size = new System.Drawing.Size(280, 174);
-            this.listView_ScannedPadIPs.TabIndex = 32;
-            this.listView_ScannedPadIPs.UseCompatibleStateImageBehavior = false;
-            this.listView_ScannedPadIPs.View = System.Windows.Forms.View.Details;
-            // 
-            // Column1Success
-            // 
-            this.Column1Success.Text = "Sts";
-            this.Column1Success.Width = 30;
-            // 
-            // Column2IPAddress
-            // 
-            this.Column2IPAddress.Text = "IP Address";
-            this.Column2IPAddress.Width = 80;
-            // 
-            // Column3Name
-            // 
-            this.Column3Name.Text = "Name";
             // 
             // button_ClearPings
             // 
@@ -943,7 +1027,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage1.Size = new System.Drawing.Size(1032, 480);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CSV Copy";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -952,7 +1036,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(666, 416);
+            this.label13.Location = new System.Drawing.Point(674, 416);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 17;
@@ -962,7 +1046,7 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(605, 397);
+            this.label14.Location = new System.Drawing.Point(613, 397);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(123, 13);
             this.label14.TabIndex = 16;
@@ -971,7 +1055,7 @@
             // textBox_KeyStateChange
             // 
             this.textBox_KeyStateChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeyStateChange.Location = new System.Drawing.Point(608, 413);
+            this.textBox_KeyStateChange.Location = new System.Drawing.Point(616, 413);
             this.textBox_KeyStateChange.Name = "textBox_KeyStateChange";
             this.textBox_KeyStateChange.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeyStateChange.TabIndex = 15;
@@ -982,7 +1066,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(537, 416);
+            this.label11.Location = new System.Drawing.Point(545, 416);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 13);
             this.label11.TabIndex = 14;
@@ -992,7 +1076,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(476, 397);
+            this.label12.Location = new System.Drawing.Point(484, 397);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 13);
             this.label12.TabIndex = 13;
@@ -1001,7 +1085,7 @@
             // textBox_KeypressDelay
             // 
             this.textBox_KeypressDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeypressDelay.Location = new System.Drawing.Point(479, 413);
+            this.textBox_KeypressDelay.Location = new System.Drawing.Point(487, 413);
             this.textBox_KeypressDelay.Name = "textBox_KeypressDelay";
             this.textBox_KeypressDelay.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeypressDelay.TabIndex = 12;
@@ -1032,7 +1116,7 @@
             this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(532, 8);
             this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
             this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
-            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(214, 21);
+            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(222, 21);
             this.comboBox_TargetProgramCSV.TabIndex = 10;
             this.comboBox_TargetProgramCSV.SelectedIndexChanged += new System.EventHandler(this.comboBox_TargetProgramCSV_SelectedIndexChanged);
             // 
@@ -1051,7 +1135,7 @@
             // 
             this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel1.Enabled = false;
-            this.btn_Cancel1.Location = new System.Drawing.Point(479, 439);
+            this.btn_Cancel1.Location = new System.Drawing.Point(487, 439);
             this.btn_Cancel1.Name = "btn_Cancel1";
             this.btn_Cancel1.Size = new System.Drawing.Size(208, 23);
             this.btn_Cancel1.TabIndex = 8;
@@ -1068,7 +1152,7 @@
             this.comboBox_FileLocation.Location = new System.Drawing.Point(186, 35);
             this.comboBox_FileLocation.MaxDropDownItems = 10;
             this.comboBox_FileLocation.Name = "comboBox_FileLocation";
-            this.comboBox_FileLocation.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_FileLocation.Size = new System.Drawing.Size(568, 21);
             this.comboBox_FileLocation.TabIndex = 7;
             // 
             // label3
@@ -1087,7 +1171,7 @@
             this.tabPage2.Controls.Add(this.grpStart);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage2.Size = new System.Drawing.Size(1032, 480);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1106,7 +1190,7 @@
             this.group_Data.Controls.Add(this.comboBox_ReqDataType);
             this.group_Data.Location = new System.Drawing.Point(3, 200);
             this.group_Data.Name = "group_Data";
-            this.group_Data.Size = new System.Drawing.Size(1018, 279);
+            this.group_Data.Size = new System.Drawing.Size(1026, 279);
             this.group_Data.TabIndex = 14;
             this.group_Data.TabStop = false;
             this.group_Data.Text = "Data";
@@ -1186,7 +1270,7 @@
             this.textBox_ReqData.Name = "textBox_ReqData";
             this.textBox_ReqData.ReadOnly = true;
             this.textBox_ReqData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_ReqData.Size = new System.Drawing.Size(570, 252);
+            this.textBox_ReqData.Size = new System.Drawing.Size(578, 252);
             this.textBox_ReqData.TabIndex = 30;
             // 
             // comboBox_ReqDataType
@@ -1221,7 +1305,7 @@
             this.groupBox5.Controls.Add(this.textBox_ReqID);
             this.groupBox5.Location = new System.Drawing.Point(3, 78);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1018, 116);
+            this.groupBox5.Size = new System.Drawing.Size(1026, 116);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Data Exchange";
@@ -1344,7 +1428,7 @@
             this.grpStart.Controls.Add(this.textbox_ModbusIP);
             this.grpStart.Location = new System.Drawing.Point(3, 14);
             this.grpStart.Name = "grpStart";
-            this.grpStart.Size = new System.Drawing.Size(1018, 55);
+            this.grpStart.Size = new System.Drawing.Size(1026, 55);
             this.grpStart.TabIndex = 12;
             this.grpStart.TabStop = false;
             this.grpStart.Text = "Start communication";
@@ -1403,7 +1487,7 @@
             this.tabPage4.Controls.Add(this.textBox_ToDoWorkArea);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage4.Size = new System.Drawing.Size(1032, 480);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "To Do List";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1421,7 +1505,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
             this.button_UserLoad.Name = "button_UserLoad";
-            this.button_UserLoad.Size = new System.Drawing.Size(130, 23);
+            this.button_UserLoad.Size = new System.Drawing.Size(138, 23);
             this.button_UserLoad.TabIndex = 28;
             this.button_UserLoad.Text = "Load ToDo For User";
             this.button_UserLoad.UseVisualStyleBackColor = true;
@@ -1433,7 +1517,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_OpenTODOFile.Location = new System.Drawing.Point(50, 453);
             this.button_OpenTODOFile.Name = "button_OpenTODOFile";
-            this.button_OpenTODOFile.Size = new System.Drawing.Size(99, 23);
+            this.button_OpenTODOFile.Size = new System.Drawing.Size(107, 23);
             this.button_OpenTODOFile.TabIndex = 25;
             this.button_OpenTODOFile.Text = "Open TODO File";
             this.button_OpenTODOFile.UseVisualStyleBackColor = true;
@@ -1460,7 +1544,7 @@
             this.comboBox_TODOFileLoc.Location = new System.Drawing.Point(283, 454);
             this.comboBox_TODOFileLoc.MaxDropDownItems = 10;
             this.comboBox_TODOFileLoc.Name = "comboBox_TODOFileLoc";
-            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(277, 21);
+            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(285, 21);
             this.comboBox_TODOFileLoc.TabIndex = 27;
             // 
             // button_ChangeTODOFile
@@ -1469,7 +1553,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_ChangeTODOFile.Location = new System.Drawing.Point(155, 454);
             this.button_ChangeTODOFile.Name = "button_ChangeTODOFile";
-            this.button_ChangeTODOFile.Size = new System.Drawing.Size(122, 23);
+            this.button_ChangeTODOFile.Size = new System.Drawing.Size(130, 23);
             this.button_ChangeTODOFile.TabIndex = 26;
             this.button_ChangeTODOFile.Text = "Change File";
             this.button_ChangeTODOFile.UseVisualStyleBackColor = true;
@@ -1501,7 +1585,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage6.Size = new System.Drawing.Size(1032, 480);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "CSV Scan";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1526,7 +1610,7 @@
             this.comboBox_DB_COPY_OUT.Location = new System.Drawing.Point(241, 185);
             this.comboBox_DB_COPY_OUT.MaxDropDownItems = 10;
             this.comboBox_DB_COPY_OUT.Name = "comboBox_DB_COPY_OUT";
-            this.comboBox_DB_COPY_OUT.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_DB_COPY_OUT.Size = new System.Drawing.Size(568, 21);
             this.comboBox_DB_COPY_OUT.TabIndex = 19;
             // 
             // label33
@@ -1576,7 +1660,7 @@
             this.comboBox_TargetDB_CSV_Loc.Location = new System.Drawing.Point(241, 128);
             this.comboBox_TargetDB_CSV_Loc.MaxDropDownItems = 10;
             this.comboBox_TargetDB_CSV_Loc.Name = "comboBox_TargetDB_CSV_Loc";
-            this.comboBox_TargetDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_TargetDB_CSV_Loc.Size = new System.Drawing.Size(568, 21);
             this.comboBox_TargetDB_CSV_Loc.TabIndex = 14;
             // 
             // label32
@@ -1616,7 +1700,7 @@
             this.comboBox_SourceDB_CSV_Loc.Location = new System.Drawing.Point(241, 61);
             this.comboBox_SourceDB_CSV_Loc.MaxDropDownItems = 10;
             this.comboBox_SourceDB_CSV_Loc.Name = "comboBox_SourceDB_CSV_Loc";
-            this.comboBox_SourceDB_CSV_Loc.Size = new System.Drawing.Size(560, 21);
+            this.comboBox_SourceDB_CSV_Loc.Size = new System.Drawing.Size(568, 21);
             this.comboBox_SourceDB_CSV_Loc.TabIndex = 10;
             // 
             // label30
@@ -1658,7 +1742,7 @@
             this.tabPage7.Controls.Add(this.comboBox_ReportSource);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage7.Size = new System.Drawing.Size(1032, 480);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Reports";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1831,7 +1915,7 @@
             this.tabPage5.Controls.Add(this.comboBox_ModemSource);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1024, 480);
+            this.tabPage5.Size = new System.Drawing.Size(1032, 480);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Modem Map";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1874,6 +1958,116 @@
             this.comboBox_ModemSource.Size = new System.Drawing.Size(391, 21);
             this.comboBox_ModemSource.TabIndex = 9;
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.textBox_IPScanStop);
+            this.tabPage8.Controls.Add(this.textBox_IPScanStart);
+            this.tabPage8.Controls.Add(this.button_ScanNetwork);
+            this.tabPage8.Controls.Add(this.listView_ScannedPadIPs);
+            this.tabPage8.Controls.Add(this.label40);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(1032, 480);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "Angry IP";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // textBox_IPScanStop
+            // 
+            this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStop.Enabled = false;
+            this.textBox_IPScanStop.Location = new System.Drawing.Point(564, 141);
+            this.textBox_IPScanStop.Name = "textBox_IPScanStop";
+            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStop.TabIndex = 40;
+            // 
+            // textBox_IPScanStart
+            // 
+            this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_IPScanStart.Enabled = false;
+            this.textBox_IPScanStart.Location = new System.Drawing.Point(467, 141);
+            this.textBox_IPScanStart.Name = "textBox_IPScanStart";
+            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
+            this.textBox_IPScanStart.TabIndex = 39;
+            // 
+            // button_ScanNetwork
+            // 
+            this.button_ScanNetwork.Enabled = false;
+            this.button_ScanNetwork.Location = new System.Drawing.Point(376, 139);
+            this.button_ScanNetwork.Name = "button_ScanNetwork";
+            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
+            this.button_ScanNetwork.TabIndex = 38;
+            this.button_ScanNetwork.Text = "Scan Network";
+            this.button_ScanNetwork.UseVisualStyleBackColor = true;
+            // 
+            // listView_ScannedPadIPs
+            // 
+            this.listView_ScannedPadIPs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Column1Success,
+            this.Column2IPAddress,
+            this.Column3Name});
+            this.listView_ScannedPadIPs.Enabled = false;
+            this.listView_ScannedPadIPs.FullRowSelect = true;
+            this.listView_ScannedPadIPs.GridLines = true;
+            this.listView_ScannedPadIPs.HideSelection = false;
+            this.listView_ScannedPadIPs.Location = new System.Drawing.Point(376, 168);
+            this.listView_ScannedPadIPs.Name = "listView_ScannedPadIPs";
+            this.listView_ScannedPadIPs.Size = new System.Drawing.Size(280, 174);
+            this.listView_ScannedPadIPs.TabIndex = 37;
+            this.listView_ScannedPadIPs.UseCompatibleStateImageBehavior = false;
+            this.listView_ScannedPadIPs.View = System.Windows.Forms.View.Details;
+            // 
+            // Column1Success
+            // 
+            this.Column1Success.Text = "Sts";
+            this.Column1Success.Width = 30;
+            // 
+            // Column2IPAddress
+            // 
+            this.Column2IPAddress.Text = "IP Address";
+            this.Column2IPAddress.Width = 80;
+            // 
+            // Column3Name
+            // 
+            this.Column3Name.Text = "Name";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(448, 10);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(227, 13);
+            this.label40.TabIndex = 0;
+            this.label40.Text = "Angry IP in C# so you dont have to install Java";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.label_CEGenStatus);
+            this.tabPage9.Controls.Add(this.label53);
+            this.tabPage9.Controls.Add(this.comboBox_CEOutputLoc);
+            this.tabPage9.Controls.Add(this.label52);
+            this.tabPage9.Controls.Add(this.button_CEChangeOutputLoc);
+            this.tabPage9.Controls.Add(this.button_CEGenerate);
+            this.tabPage9.Controls.Add(this.button_CEPanelTemplateFileOpen);
+            this.tabPage9.Controls.Add(this.comboBox_CEPanelTemplateFile);
+            this.tabPage9.Controls.Add(this.label50);
+            this.tabPage9.Controls.Add(this.button_CEPanelTemplateFileSelect);
+            this.tabPage9.Controls.Add(this.button_CETemplateFileOpen);
+            this.tabPage9.Controls.Add(this.comboBox_CETemplateFile);
+            this.tabPage9.Controls.Add(this.label49);
+            this.tabPage9.Controls.Add(this.button_CETemplateFileSelect);
+            this.tabPage9.Controls.Add(this.button_CEModelDBFileOpen);
+            this.tabPage9.Controls.Add(this.comboBox_CEModelDBFile);
+            this.tabPage9.Controls.Add(this.label48);
+            this.tabPage9.Controls.Add(this.button_CEModelDBFileSelect);
+            this.tabPage9.Controls.Add(this.label47);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(1032, 480);
+            this.tabPage9.TabIndex = 9;
+            this.tabPage9.Text = "C&E Files";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
             // BgWorker
             // 
             this.BgWorker.WorkerReportsProgress = true;
@@ -1886,7 +2080,7 @@
             // 
             this.label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Version.AutoSize = true;
-            this.label_Version.Location = new System.Drawing.Point(990, 9);
+            this.label_Version.Location = new System.Drawing.Point(998, 9);
             this.label_Version.Name = "label_Version";
             this.label_Version.Size = new System.Drawing.Size(29, 13);
             this.label_Version.TabIndex = 10;
@@ -1921,11 +2115,251 @@
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
             // 
+            // bgWorker_pinglogger
+            // 
+            this.bgWorker_pinglogger.WorkerReportsProgress = true;
+            this.bgWorker_pinglogger.WorkerSupportsCancellation = true;
+            this.bgWorker_pinglogger.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_pinglogger_DoWork);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(439, 9);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(200, 13);
+            this.label47.TabIndex = 15;
+            this.label47.Text = "Generate Automation Control Documents";
+            // 
+            // button_CEModelDBFileOpen
+            // 
+            this.button_CEModelDBFileOpen.Location = new System.Drawing.Point(889, 63);
+            this.button_CEModelDBFileOpen.Name = "button_CEModelDBFileOpen";
+            this.button_CEModelDBFileOpen.Size = new System.Drawing.Size(122, 23);
+            this.button_CEModelDBFileOpen.TabIndex = 19;
+            this.button_CEModelDBFileOpen.Text = "Open File";
+            this.button_CEModelDBFileOpen.UseVisualStyleBackColor = true;
+            this.button_CEModelDBFileOpen.Click += new System.EventHandler(this.button_CEModelDBFileOpen_Click);
+            // 
+            // comboBox_CEModelDBFile
+            // 
+            this.comboBox_CEModelDBFile.AllowDrop = true;
+            this.comboBox_CEModelDBFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_CEModelDBFile.FormattingEnabled = true;
+            this.comboBox_CEModelDBFile.Location = new System.Drawing.Point(143, 65);
+            this.comboBox_CEModelDBFile.MaxDropDownItems = 10;
+            this.comboBox_CEModelDBFile.Name = "comboBox_CEModelDBFile";
+            this.comboBox_CEModelDBFile.Size = new System.Drawing.Size(732, 21);
+            this.comboBox_CEModelDBFile.TabIndex = 18;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(12, 49);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(180, 13);
+            this.label48.TabIndex = 17;
+            this.label48.Text = "Select Device Model Data Excel File";
+            // 
+            // button_CEModelDBFileSelect
+            // 
+            this.button_CEModelDBFileSelect.Location = new System.Drawing.Point(15, 65);
+            this.button_CEModelDBFileSelect.Name = "button_CEModelDBFileSelect";
+            this.button_CEModelDBFileSelect.Size = new System.Drawing.Size(122, 23);
+            this.button_CEModelDBFileSelect.TabIndex = 16;
+            this.button_CEModelDBFileSelect.Text = "Change File";
+            this.button_CEModelDBFileSelect.UseVisualStyleBackColor = true;
+            this.button_CEModelDBFileSelect.Click += new System.EventHandler(this.button_CEModelDBFileSelect_Click);
+            // 
+            // button_CETemplateFileOpen
+            // 
+            this.button_CETemplateFileOpen.Location = new System.Drawing.Point(889, 125);
+            this.button_CETemplateFileOpen.Name = "button_CETemplateFileOpen";
+            this.button_CETemplateFileOpen.Size = new System.Drawing.Size(122, 23);
+            this.button_CETemplateFileOpen.TabIndex = 23;
+            this.button_CETemplateFileOpen.Text = "Open File";
+            this.button_CETemplateFileOpen.UseVisualStyleBackColor = true;
+            this.button_CETemplateFileOpen.Click += new System.EventHandler(this.button_CETemplateFileOpen_Click);
+            // 
+            // comboBox_CETemplateFile
+            // 
+            this.comboBox_CETemplateFile.AllowDrop = true;
+            this.comboBox_CETemplateFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_CETemplateFile.FormattingEnabled = true;
+            this.comboBox_CETemplateFile.Location = new System.Drawing.Point(143, 127);
+            this.comboBox_CETemplateFile.MaxDropDownItems = 10;
+            this.comboBox_CETemplateFile.Name = "comboBox_CETemplateFile";
+            this.comboBox_CETemplateFile.Size = new System.Drawing.Size(732, 21);
+            this.comboBox_CETemplateFile.TabIndex = 22;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(12, 111);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(166, 13);
+            this.label49.TabIndex = 21;
+            this.label49.Text = "[TEMP] Select C&E Template Data";
+            // 
+            // button_CETemplateFileSelect
+            // 
+            this.button_CETemplateFileSelect.Location = new System.Drawing.Point(15, 127);
+            this.button_CETemplateFileSelect.Name = "button_CETemplateFileSelect";
+            this.button_CETemplateFileSelect.Size = new System.Drawing.Size(122, 23);
+            this.button_CETemplateFileSelect.TabIndex = 20;
+            this.button_CETemplateFileSelect.Text = "Change File";
+            this.button_CETemplateFileSelect.UseVisualStyleBackColor = true;
+            this.button_CETemplateFileSelect.Click += new System.EventHandler(this.button_CETemplateFileSelect_Click);
+            // 
+            // button_CEPanelTemplateFileOpen
+            // 
+            this.button_CEPanelTemplateFileOpen.Location = new System.Drawing.Point(889, 182);
+            this.button_CEPanelTemplateFileOpen.Name = "button_CEPanelTemplateFileOpen";
+            this.button_CEPanelTemplateFileOpen.Size = new System.Drawing.Size(122, 23);
+            this.button_CEPanelTemplateFileOpen.TabIndex = 27;
+            this.button_CEPanelTemplateFileOpen.Text = "Open File";
+            this.button_CEPanelTemplateFileOpen.UseVisualStyleBackColor = true;
+            this.button_CEPanelTemplateFileOpen.Click += new System.EventHandler(this.button_CEPanelTemplateFileOpen_Click);
+            // 
+            // comboBox_CEPanelTemplateFile
+            // 
+            this.comboBox_CEPanelTemplateFile.AllowDrop = true;
+            this.comboBox_CEPanelTemplateFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_CEPanelTemplateFile.FormattingEnabled = true;
+            this.comboBox_CEPanelTemplateFile.Location = new System.Drawing.Point(143, 184);
+            this.comboBox_CEPanelTemplateFile.MaxDropDownItems = 10;
+            this.comboBox_CEPanelTemplateFile.Name = "comboBox_CEPanelTemplateFile";
+            this.comboBox_CEPanelTemplateFile.Size = new System.Drawing.Size(732, 21);
+            this.comboBox_CEPanelTemplateFile.TabIndex = 26;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(12, 168);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(210, 13);
+            this.label50.TabIndex = 25;
+            this.label50.Text = "Select Panel Schedule Template Excel File";
+            // 
+            // button_CEPanelTemplateFileSelect
+            // 
+            this.button_CEPanelTemplateFileSelect.Location = new System.Drawing.Point(15, 184);
+            this.button_CEPanelTemplateFileSelect.Name = "button_CEPanelTemplateFileSelect";
+            this.button_CEPanelTemplateFileSelect.Size = new System.Drawing.Size(122, 23);
+            this.button_CEPanelTemplateFileSelect.TabIndex = 24;
+            this.button_CEPanelTemplateFileSelect.Text = "Change File";
+            this.button_CEPanelTemplateFileSelect.UseVisualStyleBackColor = true;
+            this.button_CEPanelTemplateFileSelect.Click += new System.EventHandler(this.button_CEPanelTemplateFileSelect_Click);
+            // 
+            // button_CEGenerate
+            // 
+            this.button_CEGenerate.Location = new System.Drawing.Point(889, 353);
+            this.button_CEGenerate.Name = "button_CEGenerate";
+            this.button_CEGenerate.Size = new System.Drawing.Size(122, 49);
+            this.button_CEGenerate.TabIndex = 30;
+            this.button_CEGenerate.Text = "Generate Documents";
+            this.button_CEGenerate.UseVisualStyleBackColor = true;
+            this.button_CEGenerate.Click += new System.EventHandler(this.button_CEGenerate_Click);
+            // 
+            // comboBox_CEOutputLoc
+            // 
+            this.comboBox_CEOutputLoc.AllowDrop = true;
+            this.comboBox_CEOutputLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_CEOutputLoc.FormattingEnabled = true;
+            this.comboBox_CEOutputLoc.Location = new System.Drawing.Point(151, 381);
+            this.comboBox_CEOutputLoc.MaxDropDownItems = 10;
+            this.comboBox_CEOutputLoc.Name = "comboBox_CEOutputLoc";
+            this.comboBox_CEOutputLoc.Size = new System.Drawing.Size(732, 21);
+            this.comboBox_CEOutputLoc.TabIndex = 33;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(20, 365);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(116, 13);
+            this.label52.TabIndex = 32;
+            this.label52.Text = "Select Output Location";
+            // 
+            // button_CEChangeOutputLoc
+            // 
+            this.button_CEChangeOutputLoc.Location = new System.Drawing.Point(23, 381);
+            this.button_CEChangeOutputLoc.Name = "button_CEChangeOutputLoc";
+            this.button_CEChangeOutputLoc.Size = new System.Drawing.Size(122, 23);
+            this.button_CEChangeOutputLoc.TabIndex = 31;
+            this.button_CEChangeOutputLoc.Text = "Change Folder";
+            this.button_CEChangeOutputLoc.UseVisualStyleBackColor = true;
+            this.button_CEChangeOutputLoc.Click += new System.EventHandler(this.button_CEChangeOutputLoc_Click);
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(20, 452);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(40, 13);
+            this.label53.TabIndex = 34;
+            this.label53.Text = "Status:";
+            // 
+            // label_CEGenStatus
+            // 
+            this.label_CEGenStatus.AutoSize = true;
+            this.label_CEGenStatus.Location = new System.Drawing.Point(66, 452);
+            this.label_CEGenStatus.Name = "label_CEGenStatus";
+            this.label_CEGenStatus.Size = new System.Drawing.Size(61, 13);
+            this.label_CEGenStatus.TabIndex = 35;
+            this.label_CEGenStatus.Text = "Not Started";
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.comboBox_CEProjectType);
+            this.tabPage10.Controls.Add(this.label51);
+            this.tabPage10.Controls.Add(this.button4);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(1032, 480);
+            this.tabPage10.TabIndex = 10;
+            this.tabPage10.Text = "C&E Setup";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(323, 11);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(122, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "Load Interface";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_CEProjectType
+            // 
+            this.comboBox_CEProjectType.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox_CEProjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_CEProjectType.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.comboBox_CEProjectType.FormattingEnabled = true;
+            this.comboBox_CEProjectType.Items.AddRange(new object[] {
+            "16 Well Site [KODA]"});
+            this.comboBox_CEProjectType.Location = new System.Drawing.Point(103, 11);
+            this.comboBox_CEProjectType.Name = "comboBox_CEProjectType";
+            this.comboBox_CEProjectType.Size = new System.Drawing.Size(196, 21);
+            this.comboBox_CEProjectType.TabIndex = 38;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(18, 14);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(70, 13);
+            this.label51.TabIndex = 37;
+            this.label51.Text = "Project Type:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 530);
+            this.ClientSize = new System.Drawing.Size(1064, 530);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
@@ -1940,6 +2374,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1963,6 +2399,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2056,15 +2498,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView listView_DBAddresses;
-        private System.Windows.Forms.Button button_ScanNetwork;
-        private System.Windows.Forms.ListView listView_ScannedPadIPs;
         private System.Windows.Forms.ColumnHeader Column1IPAddres;
         private System.Windows.Forms.ColumnHeader Column2Name;
-        private System.Windows.Forms.TextBox textBox_IPScanStop;
-        private System.Windows.Forms.TextBox textBox_IPScanStart;
-        private System.Windows.Forms.ColumnHeader Column1Success;
-        private System.Windows.Forms.ColumnHeader Column2IPAddress;
-        private System.Windows.Forms.ColumnHeader Column3Name;
         private System.Windows.Forms.GroupBox grpStart;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button btnConnect;
@@ -2133,6 +2568,50 @@
         private System.Windows.Forms.ComboBox comboBox_ModemSource;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox comboBox_HexaneCalc;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox textBox_pinglogsec;
+        private System.Windows.Forms.TextBox textBox_pinglogmin;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TextBox textBox_IPScanStop;
+        private System.Windows.Forms.TextBox textBox_IPScanStart;
+        private System.Windows.Forms.Button button_ScanNetwork;
+        private System.Windows.Forms.ListView listView_ScannedPadIPs;
+        private System.Windows.Forms.ColumnHeader Column1Success;
+        private System.Windows.Forms.ColumnHeader Column2IPAddress;
+        private System.Windows.Forms.ColumnHeader Column3Name;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label43;
+        private System.ComponentModel.BackgroundWorker bgWorker_pinglogger;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.Label label_CEGenStatus;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.ComboBox comboBox_CEOutputLoc;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Button button_CEChangeOutputLoc;
+        private System.Windows.Forms.Button button_CEGenerate;
+        private System.Windows.Forms.Button button_CEPanelTemplateFileOpen;
+        private System.Windows.Forms.ComboBox comboBox_CEPanelTemplateFile;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Button button_CEPanelTemplateFileSelect;
+        private System.Windows.Forms.Button button_CETemplateFileOpen;
+        private System.Windows.Forms.ComboBox comboBox_CETemplateFile;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button button_CETemplateFileSelect;
+        private System.Windows.Forms.Button button_CEModelDBFileOpen;
+        private System.Windows.Forms.ComboBox comboBox_CEModelDBFile;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Button button_CEModelDBFileSelect;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox comboBox_CEProjectType;
+        private System.Windows.Forms.Label label51;
     }
 }
 

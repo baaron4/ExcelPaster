@@ -29,6 +29,7 @@ namespace ExcelPaster
         List<String> Companys;
         List<String> Pads;
         List<String> Devices;
+        bool CancelPingLogger;
 
         private ModbusTCP.Master MBmaster;
 
@@ -846,14 +847,20 @@ namespace ExcelPaster
         public class PingObject
         {
 
-            public PingObject(IPAddress ip,int trys)
+            public PingObject(IPAddress ip,int trys,bool log,PingLoggerObject plo, string state)
             {
                 this.IP = ip;
                 this.Trys = trys;
+                this.Log = log;
+                this.PLO = plo;
+                this.OutState = state;
 
             }
             public IPAddress IP;
             public int Trys;
+            public bool Log;
+            public PingLoggerObject PLO;
+            public string OutState;
             
 
         }
@@ -864,7 +871,7 @@ namespace ExcelPaster
             IPAddress newAddress;
             IPAddress.TryParse(textBox_DBAddress.Text, out newAddress);
             int pingTrys = Int32.Parse(textBox1_PingTrys.Text.ToString());
-            PingObject po = new PingObject(newAddress,pingTrys);
+            PingObject po = new PingObject(newAddress,pingTrys,false,null, "");
             //-----------------------------------------------------------------
 
           
@@ -934,7 +941,8 @@ namespace ExcelPaster
 
 
                         var output = "\n    " + pingReply.Status.ToString();
-                        pingWorker.ReportProgress(100, output);
+                        po.OutState = output;
+                        pingWorker.ReportProgress(100, po);
                         pingReply = ping.Send(newAddress.ToString());
 
 
@@ -950,7 +958,8 @@ namespace ExcelPaster
                         pingCount++;
                         // Console.WriteLine(pingReply.Status.ToString());
                         var output = "\n    " + pingReply.Status.ToString() + " " + pingReply.RoundtripTime.ToString() + "ms";
-                        pingWorker.ReportProgress(100, output);
+                        po.OutState = output;
+                        pingWorker.ReportProgress(100, po);
                         pingReply = ping.Send(newAddress.ToString());
                         successCount++;
                     }
@@ -959,7 +968,8 @@ namespace ExcelPaster
                     {
                         pingTrys = -1;
                         var output = "\n    Ping Request Canceled";
-                        pingWorker.ReportProgress(100, output);
+                        po.OutState = output;
+                        pingWorker.ReportProgress(100, po);
 
                     }
                     
@@ -967,14 +977,16 @@ namespace ExcelPaster
                 if (pingTrys <= 0)
                 {
                     var output = "\nPinged " + pingCount + " Times. \nSuccessRate of " + Math.Round((float)successCount / (float)pingCount, 2)*100f + "%";
-                    pingWorker.ReportProgress(100, output);
+                    po.OutState = output;
+                    pingWorker.ReportProgress(100, po);
                 }
 
             }
             catch
             {
                 var output = "Not a valid IP Address";
-                pingWorker.ReportProgress(100, output);
+                po.OutState = output;
+                pingWorker.ReportProgress(100, po);
             }
            
 
@@ -984,9 +996,29 @@ namespace ExcelPaster
 
         private void pingWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            PingObject po = (PingObject)e.UserState;
+            
             //label_PingResults.Text = "";
-            label_PingResults.Text += (string)e.UserState;// output;
-            panel1.VerticalScroll.Value = panel1.VerticalScroll.Maximum;
+            label_PingResults.Invoke((MethodInvoker)delegate
+            {
+                label_PingResults.Text += po.OutState;// output;
+            });
+            panel1.Invoke((MethodInvoker)delegate
+            {
+                panel1.VerticalScroll.Value = panel1.VerticalScroll.Maximum;
+            });
+
+            if (po.Log ) {
+                //record to csv
+
+                TextWriter sw = new StreamWriter(po.PLO.Filepath);
+                sw.WriteLine("{0},{1},{2}", DateTime.Now.ToString(), po.PLO.Address.ToString(), po.OutState.Replace("\n", ""));
+                sw.Close();
+                sw.Dispose();
+                //System.Threading.Thread.Sleep(1000);
+                Debug.WriteLine("Closed file");
+
+            }
         }
 
         private void button_SetDynamic_Click(object sender, EventArgs e)
@@ -2103,6 +2135,164 @@ namespace ExcelPaster
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label41_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //TODO: Change to Ping.exe and run pings into a list with graphics
+            IPAddress newAddress;
+            IPAddress.TryParse(textBox_DBAddress.Text, out newAddress);
+            int intervalTime = Int32.Parse(textBox_pinglogmin.Text) * 60 + Int32.Parse(textBox_pinglogsec.Text);
+
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".csv";
+
+            if (!File.Exists(filepath))
+            {
+               var myFile = File.Create(filepath);
+                myFile.Close();
+                
+
+            }
+            PingLoggerObject plo = new PingLoggerObject(newAddress, intervalTime, filepath);
+            CancelPingLogger = false;
+            bgWorker_pinglogger.RunWorkerAsync(plo);
+
+           
+        }
+
+        private void bgWorker_pinglogger_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            PingLoggerObject plo = (PingLoggerObject) e.Argument;
+
+            while (true)
+            {
+                if (CancelPingLogger)
+                {
+                    CancelPingLogger = false;
+                    break;
+                }
+                System.Threading.Thread.Sleep(plo.IntervalTime * 1000);
+
+                PingObject po = new PingObject(plo.Address, 1,true,plo,"");
+                //-----------------------------------------------------------------
+                if (plo.Address != null)
+                {
+                    try
+                    {
+                        pingWorker.RunWorkerAsync(argument: po);
+                        label_PingResults.Invoke((MethodInvoker)delegate
+                        {
+                            label_PingResults.Text += "\nPinging " + textBox_DBAddress.Text + "....";
+                        });
+                        
+
+
+                    }
+                    catch
+                    {
+                    }
+                }
+                else
+                {
+                    label_PingResults.Invoke((MethodInvoker)delegate { 
+                        label_PingResults.Text = "'" + textBox_DBAddress.Text + "' was not a valid IP Address"; 
+                    });
+                }
+            }
+           
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CancelPingLogger = true;
+        }
+
+
+        private void button_CEModelDBFileSelect_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_CEModelDBFile.Text = result;
+                }
+            }
+        }
+
+        private void button_CETemplateFileSelect_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_CETemplateFile.Text = result;
+                }
+            }
+        }
+
+        private void button_CEPanelTemplateFileSelect_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog2.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_CEPanelTemplateFile.Text = result;
+                }
+            }
+        }
+
+        private void button_CEChangeOutputLoc_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_CEOutputLoc.Text = result;
+                }
+            }
+        }
+
+       
+
+        private void button_CEModelDBFileOpen_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBox_CEModelDBFile.Text))
+            {
+                Process.Start(comboBox_CEModelDBFile.Text);
+            }
+        }
+
+        private void button_CETemplateFileOpen_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBox_CETemplateFile.Text))
+            {
+                Process.Start(comboBox_CETemplateFile.Text);
+            }
+        }
+
+        private void button_CEPanelTemplateFileOpen_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBox_CEPanelTemplateFile.Text))
+            {
+                Process.Start(comboBox_CEPanelTemplateFile.Text);
+            }
+        }
+
+        private void button_CEGenerate_Click(object sender, EventArgs e)
+        {
+          //Generate Documents
         }
     }
 }

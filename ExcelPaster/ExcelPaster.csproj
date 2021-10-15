@@ -157,6 +157,7 @@
     <Compile Include="modbusTCP.cs" />
     <Compile Include="ModemMap.cs" />
     <Compile Include="PadInfo.cs" />
+    <Compile Include="PingLoggerObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportGenerator.cs" />
