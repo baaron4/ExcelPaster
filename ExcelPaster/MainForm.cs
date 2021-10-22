@@ -61,15 +61,12 @@ namespace ExcelPaster
 
             SetPadDB();
 
-            //Load ToDo name at start
-            comboBox_TODOFileLoc.Text = Properties.Settings.Default.TODOFileLoc;
-            textBox_UserNameToDo.Text = Properties.Settings.Default.UserName;
-
-            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
-
             //Reports
             comboBox_ReportType.SelectedIndex = 1;
             comboBox_HexaneCalc.SelectedIndex = 0;
+
+            Properties.Settings.Default["dbDevicesConnectionString"] = Properties.Settings.Default.UserdbDevicesConnectionString;
+            comboBox_CEModelDBFile.Text = Properties.Settings.Default.UserdbDevicesConnectionString;
         }
         public enum ButtonState
         {
@@ -1041,70 +1038,6 @@ namespace ExcelPaster
             //textBox3.BackColor = Color.LightGreen; 
         }
 
-       
-
-
-       
-
-        private void button_OpenTODOFile_Click_1(object sender, EventArgs e)
-        {
-            Process.Start(Properties.Settings.Default.TODOFileLoc);
-        }
-
-        private void button_ChangeTODOFile_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog2.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_TODOFileLoc.Text = result;
-                    Properties.Settings.Default.TODOFileLoc = result;
-                    Properties.Settings.Default.Save();
-                }
-            }
-        }
-
-        private void button_UserLoad_Click(object sender, EventArgs e)
-        {
-            string username = textBox_UserNameToDo.Text;
-            Properties.Settings.Default.UserName = username;
-            Properties.Settings.Default.Save();
-
-            if (Properties.Settings.Default.TODOFileLoc != "")
-            {
-                int NameColumnIndex = 0;
-                CSVReader todoReader = new CSVReader();
-                todoReader.ParseCSV(comboBox_TODOFileLoc.Text,"");
-                //Assign Coloumn to search for Name
-                foreach (string cell in todoReader.GetArrayStorage().First())
-                {
-                    if (NameColumnIndex > 9)
-                    {
-                        throw new Exception("No 'Assignee' Colomn present in this CSV");
-                    }
-                    if (cell.Contains("Assignee"))
-                    {
-                        break;
-                    }
-                    NameColumnIndex++;
-                }
-                
-                foreach (List<string> ListS in todoReader.GetArrayStorage())
-                {
-                    if (ListS[NameColumnIndex] == username)
-                    {
-                        foreach (string cell in ListS)
-                        {
-                            textBox_ToDoWorkArea.Text += " ["+ cell + "] ";
-                        }
-                        
-                    }
-                    textBox_ToDoWorkArea.Text += "\r\n";
-
-                }
-            }
-        }
 
         private void button_CancelPing_Click(object sender, EventArgs e)
         {
@@ -1817,85 +1750,7 @@ namespace ExcelPaster
             ReadValuesDataGrid();
         }
 
-        private void button_StartPID_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void Button_Change_SourceDB_CSV_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_SourceDB_CSV_Loc.Text = result;
-                }
-            }
-        }
-
-        private void button_Change_TargetDB_CSV_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_TargetDB_CSV_Loc.Text = result;
-                }
-            }
-        }
-
-        string SourceDB = "";
-        string targetDB = "";
-        string DB_OUT = "";
-        private void button_STARTCOPY_Click(object sender, EventArgs e)
-        {
-            
-            label_DBCopy_Results.Text = "Working...";
-            if (!backgroundWorker1.IsBusy)
-            {
-                SourceDB = comboBox_SourceDB_CSV_Loc.Text;
-                targetDB = comboBox_TargetDB_CSV_Loc.Text;
-                DB_OUT = comboBox_DB_COPY_OUT.Text;
-                backgroundWorker1.RunWorkerAsync();
-            }
-            
-
-           
-        }
-
-        private void button_DB_OUT_LOC_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string result = openFileDialog3.FileName;
-                if (!string.IsNullOrWhiteSpace(result))
-                {
-                    comboBox_DB_COPY_OUT.Text = result;
-                }
-            }
-        }
-        public void UpdateDBResult(string text)
-        {
-            label_DBCopy_Results.Text = text;
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ExcelPaster.DBSearchCopy dBSearchCopy = new DBSearchCopy();
-            dBSearchCopy.StartSearchCopy(SourceDB,targetDB,DB_OUT);
-        }
-
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            label_DBCopy_Results.Text = "Done!";
-        }
-
-        private void checkBox_levenstheins_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.UseLevensteins = checkBox_levenstheins.Checked;
-        }
         static void ConvertExcelToCsv(string excelFilePath, string csvOutputFile, int worksheetNumber = 1)
         {
             if (!File.Exists(excelFilePath)) throw new FileNotFoundException(excelFilePath);
@@ -2219,12 +2074,15 @@ namespace ExcelPaster
 
         private void button_CEModelDBFileSelect_Click(object sender, EventArgs e)
         {
-            if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog5.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string result = openFileDialog2.FileName;
+                string result = openFileDialog5.FileName;
                 if (!string.IsNullOrWhiteSpace(result))
                 {
                     comboBox_CEModelDBFile.Text = result;
+                    Properties.Settings.Default.UserdbDevicesConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"" + result + "\"";
+                    Properties.Settings.Default["dbDevicesConnectionString"] = Properties.Settings.Default.UserdbDevicesConnectionString;
+                    Properties.Settings.Default.Save();
                 }
             }
         }
@@ -2296,12 +2154,21 @@ namespace ExcelPaster
           //Generate Documents
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+        private void button_CELoadInterface_Click(object sender, EventArgs e)
         {
             //Load Interface based on Project selected
-            CESetupGeneration ceSetupGenScript = new CESetupGeneration();
-            tabControl_CESetup = ceSetupGenScript.GenerateSetupInterface( (CESetupGeneration.ProjectType)comboBox_CEProjectType.SelectedIndex, tabControl_CESetup);
+            if (comboBox_CEProjectType.SelectedIndex == 0)
+            {
+                CESetupForm_KODAMultiwell CEForm = new CESetupForm_KODAMultiwell();
+                CEForm.Show();
+            }
             //Load Device Database
+        }
+
+        private void button_CEUpdate_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

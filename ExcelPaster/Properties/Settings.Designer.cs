@@ -12,7 +12,7 @@ namespace ExcelPaster.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -94,15 +94,27 @@ namespace ExcelPaster.Properties {
             }
         }
         
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\aaron_bradford\\Winn-Mario" +
+            "n Companies\\Arnegard Service - Project Documents\\dbDevices.accdb\"")]
+        public string dbDevicesConnectionString {
+            get {
+                return ((string)(this["dbDevicesConnectionString"]));
+            }
+        }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UseLevensteins {
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\Users\\aaron_bradford\\Winn-Mario" +
+            "n Companies\\Arnegard Service - Project Documents\\dbDevices.accdb\"")]
+        public string UserdbDevicesConnectionString {
             get {
-                return ((bool)(this["UseLevensteins"]));
+                return ((string)(this["UserdbDevicesConnectionString"]));
             }
             set {
-                this["UseLevensteins"] = value;
+                this["UserdbDevicesConnectionString"] = value;
             }
         }
     }

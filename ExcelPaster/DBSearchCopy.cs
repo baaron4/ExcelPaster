@@ -79,7 +79,7 @@ namespace ExcelPaster
                 {
                     if (!name.Contains("CORIOLIS"))//theres a random scope inside a Service At: field
                     {
-                        if (Properties.Settings.Default.UseLevensteins)
+                        if (false/*Properties.Settings.Default.UseLevensteins*/)
                         {
                             //assign scores per name in comments
                             int matchCounter = 0;

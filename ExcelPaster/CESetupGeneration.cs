@@ -9,8 +9,11 @@ namespace ExcelPaster
 {
     public class CESetupGeneration
     {
-       
+        dbDevicesDataSet.tblModelDataTable tblModelDataTable = new dbDevicesDataSet.tblModelDataTable();
+
         FlowLayoutPanel[] flps = new FlowLayoutPanel[10];
+
+        dbDevicesDataSet db = new dbDevicesDataSet();
 
         string[] labelArray = new string[] { "Number of Wells:", "Number of Treaters:","Number of Oil Tanks:", "Number of Salt Water Tanks:",
         "Number of Fresh Water Tanks:", "Number of SW Disposal Systems:", "Number of FW Systems:","Number of flare Systems:","Number of Recycle Pumps:",
@@ -26,11 +29,16 @@ namespace ExcelPaster
         }
         public TabControl GenerateSetupInterface(ProjectType pType, TabControl tabControl)
         {
+            LoadDatabase();
+
             TabControl newTabControl = tabControl;
+            newTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
             if (pType == ProjectType.KODA_MultiWell)
             {
                 //Systems Tab
                 newTabControl.TabPages[0].Text = "Systems";
+                newTabControl.TabPages[0].AutoScroll = true;
 
                 flps[0] = new FlowLayoutPanel();
                 flps[0].AutoSize = true;
@@ -60,6 +68,7 @@ namespace ExcelPaster
 
                 //Well Systems Tab
                 newTabControl.TabPages.Add( "Well Systems");
+                newTabControl.TabPages[1].AutoScroll = true;
 
                 flps[1] = new FlowLayoutPanel();
                 flps[1].AutoSize = true;
@@ -73,9 +82,49 @@ namespace ExcelPaster
                     flps[1].Controls.Add(nLabel);
                 }
                 flps[1].SetFlowBreak(flps[1].Controls[wellLabelArray.Length-1], true);
+                //Content
+                int valveid = db.tblMVFeeder.FirstOrDefault(x => x.Name == "Valve").ID;
+                for (int i = 0; i < defaultSetupValues[0]; i++)
+                {
+                    Label nLabel = new Label();
+                    nLabel.Text = "Well " + (i+1);
+                    nLabel.Width = 100;
+                    flps[1].Controls.Add(nLabel);
+
+                    TextBox ntextBox = new TextBox();
+                    ntextBox.Text = Convert.ToString("Well " + (i+1));
+                    flps[1].Controls.Add(ntextBox);
+
+                    ComboBox ndriveComboBox = new ComboBox();
+                    ndriveComboBox.Items.AddRange(new string[] { "Freeflowing", "ESP","PumpJack", "Rotoflex","Jetpump","GasLift" });
+                    flps[1].Controls.Add(ndriveComboBox);
+
+                    ComboBox nmovComboBox = new ComboBox();
+                    nmovComboBox.Items.AddRange(db.tblModel.Where(y => y.modelMV == valveid).Select(z=> z.modelName).ToArray());
+                    flps[1].Controls.Add(nmovComboBox);
+                }
                 newTabControl.TabPages[1].Controls.Add(flps[1]);
             }
             return newTabControl;
+        }
+
+        private void LoadDatabase()
+        {
+            
+            dbDevicesDataSetTableAdapters.tblBrandFeederTableAdapter brandFeederTableAdapter = new dbDevicesDataSetTableAdapters.tblBrandFeederTableAdapter();
+            brandFeederTableAdapter.Fill(db.tblBrandFeeder);
+
+            dbDevicesDataSetTableAdapters.tblModelTableAdapter modelTableAdapter = new dbDevicesDataSetTableAdapters.tblModelTableAdapter();
+            modelTableAdapter.Fill(db.tblModel);
+
+            dbDevicesDataSetTableAdapters.tblMVFeederTableAdapter MVTableAdapter = new dbDevicesDataSetTableAdapters.tblMVFeederTableAdapter();
+            MVTableAdapter.Fill(db.tblMVFeeder);
+
+            dbDevicesDataSetTableAdapters.tblSpecificationsTableAdapter specificationsTableAdapter = new dbDevicesDataSetTableAdapters.tblSpecificationsTableAdapter();
+            specificationsTableAdapter.Fill(db.tblSpecifications);
+
+            dbDevicesDataSetTableAdapters.tblTypeFeederTableAdapter typeTableAdapter = new dbDevicesDataSetTableAdapters.tblTypeFeederTableAdapter();
+            typeTableAdapter.Fill(db.tblTypeFeeder);
         }
     }
 }

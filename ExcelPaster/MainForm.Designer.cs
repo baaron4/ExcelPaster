@@ -142,28 +142,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.textbox_ModbusIP = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox_UserNameToDo = new System.Windows.Forms.TextBox();
-            this.button_UserLoad = new System.Windows.Forms.Button();
-            this.button_OpenTODOFile = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox_TODOFileLoc = new System.Windows.Forms.ComboBox();
-            this.button_ChangeTODOFile = new System.Windows.Forms.Button();
-            this.textBox_ToDoWorkArea = new System.Windows.Forms.TextBox();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.checkBox_levenstheins = new System.Windows.Forms.CheckBox();
-            this.comboBox_DB_COPY_OUT = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.button_DB_OUT_LOC = new System.Windows.Forms.Button();
-            this.label_DBCopy_Results = new System.Windows.Forms.Label();
-            this.button_STARTCOPY = new System.Windows.Forms.Button();
-            this.comboBox_TargetDB_CSV_Loc = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.button_Change_TargetDB_CSV = new System.Windows.Forms.Button();
-            this.label31 = new System.Windows.Forms.Label();
-            this.comboBox_SourceDB_CSV_Loc = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.Button_Change_SourceDB_CSV = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.label39 = new System.Windows.Forms.Label();
             this.comboBox_HexaneCalc = new System.Windows.Forms.ComboBox();
@@ -195,11 +173,16 @@
             this.Column2IPAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column3Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label40 = new System.Windows.Forms.Label();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.comboBox_CEProjectType = new System.Windows.Forms.ComboBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.button_CELoadInterface = new System.Windows.Forms.Button();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.comboBox_CEProjectType = new System.Windows.Forms.ComboBox();
+            this.button_CELoadInterface = new System.Windows.Forms.Button();
+            this.label51 = new System.Windows.Forms.Label();
+            this.comboBox_CETemplateFile = new System.Windows.Forms.ComboBox();
+            this.button_CETemplateFileSelect = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.button_CETemplateFileOpen = new System.Windows.Forms.Button();
+            this.button_CEUpdate = new System.Windows.Forms.Button();
             this.label_CEGenStatus = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.comboBox_CEOutputLoc = new System.Windows.Forms.ComboBox();
@@ -210,10 +193,6 @@
             this.comboBox_CEPanelTemplateFile = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
             this.button_CEPanelTemplateFileSelect = new System.Windows.Forms.Button();
-            this.button_CETemplateFileOpen = new System.Windows.Forms.Button();
-            this.comboBox_CETemplateFile = new System.Windows.Forms.ComboBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.button_CETemplateFileSelect = new System.Windows.Forms.Button();
             this.button_CEModelDBFileOpen = new System.Windows.Forms.Button();
             this.comboBox_CEModelDBFile = new System.Windows.Forms.ComboBox();
             this.label48 = new System.Windows.Forms.Label();
@@ -228,8 +207,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
             this.bgWorker_pinglogger = new System.ComponentModel.BackgroundWorker();
-            this.tabControl_CESetup = new System.Windows.Forms.TabControl();
-            this.Quantity = new System.Windows.Forms.TabPage();
+            this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
+            this.dbDevicesDataSet = new ExcelPaster.dbDevicesDataSet();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -244,15 +223,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            this.tabPage10.SuspendLayout();
             this.tabPage9.SuspendLayout();
-            this.tabControl_CESetup.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -321,12 +298,9 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -1479,252 +1453,6 @@
             this.textbox_ModbusIP.Text = "169.254.0.12";
             this.textbox_ModbusIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.textBox_UserNameToDo);
-            this.tabPage4.Controls.Add(this.button_UserLoad);
-            this.tabPage4.Controls.Add(this.button_OpenTODOFile);
-            this.tabPage4.Controls.Add(this.label4);
-            this.tabPage4.Controls.Add(this.comboBox_TODOFileLoc);
-            this.tabPage4.Controls.Add(this.button_ChangeTODOFile);
-            this.tabPage4.Controls.Add(this.textBox_ToDoWorkArea);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1032, 480);
-            this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "To Do List";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // textBox_UserNameToDo
-            // 
-            this.textBox_UserNameToDo.Location = new System.Drawing.Point(891, 452);
-            this.textBox_UserNameToDo.Name = "textBox_UserNameToDo";
-            this.textBox_UserNameToDo.Size = new System.Drawing.Size(111, 20);
-            this.textBox_UserNameToDo.TabIndex = 29;
-            // 
-            // button_UserLoad
-            // 
-            this.button_UserLoad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_UserLoad.Location = new System.Drawing.Point(742, 452);
-            this.button_UserLoad.Name = "button_UserLoad";
-            this.button_UserLoad.Size = new System.Drawing.Size(138, 23);
-            this.button_UserLoad.TabIndex = 28;
-            this.button_UserLoad.Text = "Load ToDo For User";
-            this.button_UserLoad.UseVisualStyleBackColor = true;
-            this.button_UserLoad.Click += new System.EventHandler(this.button_UserLoad_Click);
-            // 
-            // button_OpenTODOFile
-            // 
-            this.button_OpenTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_OpenTODOFile.Location = new System.Drawing.Point(50, 453);
-            this.button_OpenTODOFile.Name = "button_OpenTODOFile";
-            this.button_OpenTODOFile.Size = new System.Drawing.Size(107, 23);
-            this.button_OpenTODOFile.TabIndex = 25;
-            this.button_OpenTODOFile.Text = "Open TODO File";
-            this.button_OpenTODOFile.UseVisualStyleBackColor = true;
-            this.button_OpenTODOFile.Click += new System.EventHandler(this.button_OpenTODOFile_Click_1);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(280, 438);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Select TODO File (.csv file): \r\n";
-            // 
-            // comboBox_TODOFileLoc
-            // 
-            this.comboBox_TODOFileLoc.AllowDrop = true;
-            this.comboBox_TODOFileLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_TODOFileLoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this.comboBox_TODOFileLoc.FormattingEnabled = true;
-            this.comboBox_TODOFileLoc.Location = new System.Drawing.Point(283, 454);
-            this.comboBox_TODOFileLoc.MaxDropDownItems = 10;
-            this.comboBox_TODOFileLoc.Name = "comboBox_TODOFileLoc";
-            this.comboBox_TODOFileLoc.Size = new System.Drawing.Size(285, 21);
-            this.comboBox_TODOFileLoc.TabIndex = 27;
-            // 
-            // button_ChangeTODOFile
-            // 
-            this.button_ChangeTODOFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ChangeTODOFile.Location = new System.Drawing.Point(155, 454);
-            this.button_ChangeTODOFile.Name = "button_ChangeTODOFile";
-            this.button_ChangeTODOFile.Size = new System.Drawing.Size(130, 23);
-            this.button_ChangeTODOFile.TabIndex = 26;
-            this.button_ChangeTODOFile.Text = "Change File";
-            this.button_ChangeTODOFile.UseVisualStyleBackColor = true;
-            this.button_ChangeTODOFile.Click += new System.EventHandler(this.button_ChangeTODOFile_Click);
-            // 
-            // textBox_ToDoWorkArea
-            // 
-            this.textBox_ToDoWorkArea.Location = new System.Drawing.Point(20, 24);
-            this.textBox_ToDoWorkArea.Multiline = true;
-            this.textBox_ToDoWorkArea.Name = "textBox_ToDoWorkArea";
-            this.textBox_ToDoWorkArea.Size = new System.Drawing.Size(983, 399);
-            this.textBox_ToDoWorkArea.TabIndex = 0;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.checkBox_levenstheins);
-            this.tabPage6.Controls.Add(this.comboBox_DB_COPY_OUT);
-            this.tabPage6.Controls.Add(this.label33);
-            this.tabPage6.Controls.Add(this.button_DB_OUT_LOC);
-            this.tabPage6.Controls.Add(this.label_DBCopy_Results);
-            this.tabPage6.Controls.Add(this.button_STARTCOPY);
-            this.tabPage6.Controls.Add(this.comboBox_TargetDB_CSV_Loc);
-            this.tabPage6.Controls.Add(this.label32);
-            this.tabPage6.Controls.Add(this.button_Change_TargetDB_CSV);
-            this.tabPage6.Controls.Add(this.label31);
-            this.tabPage6.Controls.Add(this.comboBox_SourceDB_CSV_Loc);
-            this.tabPage6.Controls.Add(this.label30);
-            this.tabPage6.Controls.Add(this.Button_Change_SourceDB_CSV);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1032, 480);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "CSV Scan";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_levenstheins
-            // 
-            this.checkBox_levenstheins.AutoSize = true;
-            this.checkBox_levenstheins.Location = new System.Drawing.Point(101, 240);
-            this.checkBox_levenstheins.Name = "checkBox_levenstheins";
-            this.checkBox_levenstheins.Size = new System.Drawing.Size(127, 17);
-            this.checkBox_levenstheins.TabIndex = 20;
-            this.checkBox_levenstheins.Text = "Use Levensthiesn Eq";
-            this.checkBox_levenstheins.UseVisualStyleBackColor = true;
-            this.checkBox_levenstheins.CheckedChanged += new System.EventHandler(this.checkBox_levenstheins_CheckedChanged);
-            // 
-            // comboBox_DB_COPY_OUT
-            // 
-            this.comboBox_DB_COPY_OUT.AllowDrop = true;
-            this.comboBox_DB_COPY_OUT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_DB_COPY_OUT.FormattingEnabled = true;
-            this.comboBox_DB_COPY_OUT.Location = new System.Drawing.Point(241, 185);
-            this.comboBox_DB_COPY_OUT.MaxDropDownItems = 10;
-            this.comboBox_DB_COPY_OUT.Name = "comboBox_DB_COPY_OUT";
-            this.comboBox_DB_COPY_OUT.Size = new System.Drawing.Size(568, 21);
-            this.comboBox_DB_COPY_OUT.TabIndex = 19;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(80, 169);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(116, 13);
-            this.label33.TabIndex = 18;
-            this.label33.Text = "Select Output Location";
-            // 
-            // button_DB_OUT_LOC
-            // 
-            this.button_DB_OUT_LOC.Location = new System.Drawing.Point(83, 185);
-            this.button_DB_OUT_LOC.Name = "button_DB_OUT_LOC";
-            this.button_DB_OUT_LOC.Size = new System.Drawing.Size(122, 23);
-            this.button_DB_OUT_LOC.TabIndex = 17;
-            this.button_DB_OUT_LOC.Text = "Change File";
-            this.button_DB_OUT_LOC.UseVisualStyleBackColor = true;
-            this.button_DB_OUT_LOC.Click += new System.EventHandler(this.button_DB_OUT_LOC_Click);
-            // 
-            // label_DBCopy_Results
-            // 
-            this.label_DBCopy_Results.AutoSize = true;
-            this.label_DBCopy_Results.Location = new System.Drawing.Point(462, 314);
-            this.label_DBCopy_Results.Name = "label_DBCopy_Results";
-            this.label_DBCopy_Results.Size = new System.Drawing.Size(42, 13);
-            this.label_DBCopy_Results.TabIndex = 16;
-            this.label_DBCopy_Results.Text = "Results";
-            // 
-            // button_STARTCOPY
-            // 
-            this.button_STARTCOPY.Location = new System.Drawing.Point(353, 226);
-            this.button_STARTCOPY.Name = "button_STARTCOPY";
-            this.button_STARTCOPY.Size = new System.Drawing.Size(286, 23);
-            this.button_STARTCOPY.TabIndex = 15;
-            this.button_STARTCOPY.Text = "Start Transfer";
-            this.button_STARTCOPY.UseVisualStyleBackColor = true;
-            this.button_STARTCOPY.Click += new System.EventHandler(this.button_STARTCOPY_Click);
-            // 
-            // comboBox_TargetDB_CSV_Loc
-            // 
-            this.comboBox_TargetDB_CSV_Loc.AllowDrop = true;
-            this.comboBox_TargetDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_TargetDB_CSV_Loc.FormattingEnabled = true;
-            this.comboBox_TargetDB_CSV_Loc.Location = new System.Drawing.Point(241, 128);
-            this.comboBox_TargetDB_CSV_Loc.MaxDropDownItems = 10;
-            this.comboBox_TargetDB_CSV_Loc.Name = "comboBox_TargetDB_CSV_Loc";
-            this.comboBox_TargetDB_CSV_Loc.Size = new System.Drawing.Size(568, 21);
-            this.comboBox_TargetDB_CSV_Loc.TabIndex = 14;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(80, 112);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(124, 13);
-            this.label32.TabIndex = 13;
-            this.label32.Text = "Select Target Data .CSV";
-            // 
-            // button_Change_TargetDB_CSV
-            // 
-            this.button_Change_TargetDB_CSV.Location = new System.Drawing.Point(83, 128);
-            this.button_Change_TargetDB_CSV.Name = "button_Change_TargetDB_CSV";
-            this.button_Change_TargetDB_CSV.Size = new System.Drawing.Size(122, 23);
-            this.button_Change_TargetDB_CSV.TabIndex = 12;
-            this.button_Change_TargetDB_CSV.Text = "Change File";
-            this.button_Change_TargetDB_CSV.UseVisualStyleBackColor = true;
-            this.button_Change_TargetDB_CSV.Click += new System.EventHandler(this.button_Change_TargetDB_CSV_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(385, 14);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(239, 13);
-            this.label31.TabIndex = 11;
-            this.label31.Text = "Warning! This is specialized code for one project!";
-            // 
-            // comboBox_SourceDB_CSV_Loc
-            // 
-            this.comboBox_SourceDB_CSV_Loc.AllowDrop = true;
-            this.comboBox_SourceDB_CSV_Loc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_SourceDB_CSV_Loc.FormattingEnabled = true;
-            this.comboBox_SourceDB_CSV_Loc.Location = new System.Drawing.Point(241, 61);
-            this.comboBox_SourceDB_CSV_Loc.MaxDropDownItems = 10;
-            this.comboBox_SourceDB_CSV_Loc.Name = "comboBox_SourceDB_CSV_Loc";
-            this.comboBox_SourceDB_CSV_Loc.Size = new System.Drawing.Size(568, 21);
-            this.comboBox_SourceDB_CSV_Loc.TabIndex = 10;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(80, 45);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(127, 13);
-            this.label30.TabIndex = 9;
-            this.label30.Text = "Select Source Data .CSV";
-            // 
-            // Button_Change_SourceDB_CSV
-            // 
-            this.Button_Change_SourceDB_CSV.Location = new System.Drawing.Point(83, 61);
-            this.Button_Change_SourceDB_CSV.Name = "Button_Change_SourceDB_CSV";
-            this.Button_Change_SourceDB_CSV.Size = new System.Drawing.Size(122, 23);
-            this.Button_Change_SourceDB_CSV.TabIndex = 8;
-            this.Button_Change_SourceDB_CSV.Text = "Change File";
-            this.Button_Change_SourceDB_CSV.UseVisualStyleBackColor = true;
-            this.Button_Change_SourceDB_CSV.Click += new System.EventHandler(this.Button_Change_SourceDB_CSV_Click);
-            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.label39);
@@ -1920,7 +1648,7 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1032, 480);
             this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "Modem Map";
+            this.tabPage5.Text = "Modem Map(WIP)";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // button_GenerateModemMap
@@ -1972,7 +1700,7 @@
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(1032, 480);
             this.tabPage8.TabIndex = 8;
-            this.tabPage8.Text = "Angry IP";
+            this.tabPage8.Text = "Angry IP(WIP)";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // textBox_IPScanStop
@@ -2043,55 +1771,10 @@
             this.label40.TabIndex = 0;
             this.label40.Text = "Angry IP in C# so you dont have to install Java";
             // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.tabControl_CESetup);
-            this.tabPage10.Controls.Add(this.comboBox_CEProjectType);
-            this.tabPage10.Controls.Add(this.label51);
-            this.tabPage10.Controls.Add(this.button_CELoadInterface);
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1032, 480);
-            this.tabPage10.TabIndex = 10;
-            this.tabPage10.Text = "C&E Setup";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_CEProjectType
-            // 
-            this.comboBox_CEProjectType.AutoCompleteCustomSource.AddRange(new string[] {
-            "[KODA] MultiWell"});
-            this.comboBox_CEProjectType.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBox_CEProjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_CEProjectType.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.comboBox_CEProjectType.FormattingEnabled = true;
-            this.comboBox_CEProjectType.Items.AddRange(new object[] {
-            "Multi Well Site [KODA]"});
-            this.comboBox_CEProjectType.Location = new System.Drawing.Point(103, 11);
-            this.comboBox_CEProjectType.Name = "comboBox_CEProjectType";
-            this.comboBox_CEProjectType.Size = new System.Drawing.Size(196, 21);
-            this.comboBox_CEProjectType.TabIndex = 38;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(18, 14);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(70, 13);
-            this.label51.TabIndex = 37;
-            this.label51.Text = "Project Type:";
-            // 
-            // button_CELoadInterface
-            // 
-            this.button_CELoadInterface.Location = new System.Drawing.Point(323, 11);
-            this.button_CELoadInterface.Name = "button_CELoadInterface";
-            this.button_CELoadInterface.Size = new System.Drawing.Size(122, 23);
-            this.button_CELoadInterface.TabIndex = 17;
-            this.button_CELoadInterface.Text = "Load Interface";
-            this.button_CELoadInterface.UseVisualStyleBackColor = true;
-            this.button_CELoadInterface.Click += new System.EventHandler(this.button4_Click);
-            // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.groupBox7);
+            this.tabPage9.Controls.Add(this.button_CEUpdate);
             this.tabPage9.Controls.Add(this.label_CEGenStatus);
             this.tabPage9.Controls.Add(this.label53);
             this.tabPage9.Controls.Add(this.comboBox_CEOutputLoc);
@@ -2102,10 +1785,6 @@
             this.tabPage9.Controls.Add(this.comboBox_CEPanelTemplateFile);
             this.tabPage9.Controls.Add(this.label50);
             this.tabPage9.Controls.Add(this.button_CEPanelTemplateFileSelect);
-            this.tabPage9.Controls.Add(this.button_CETemplateFileOpen);
-            this.tabPage9.Controls.Add(this.comboBox_CETemplateFile);
-            this.tabPage9.Controls.Add(this.label49);
-            this.tabPage9.Controls.Add(this.button_CETemplateFileSelect);
             this.tabPage9.Controls.Add(this.button_CEModelDBFileOpen);
             this.tabPage9.Controls.Add(this.comboBox_CEModelDBFile);
             this.tabPage9.Controls.Add(this.label48);
@@ -2117,6 +1796,107 @@
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "C&E Files";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.comboBox_CEProjectType);
+            this.groupBox7.Controls.Add(this.button_CELoadInterface);
+            this.groupBox7.Controls.Add(this.label51);
+            this.groupBox7.Controls.Add(this.comboBox_CETemplateFile);
+            this.groupBox7.Controls.Add(this.button_CETemplateFileSelect);
+            this.groupBox7.Controls.Add(this.label49);
+            this.groupBox7.Controls.Add(this.button_CETemplateFileOpen);
+            this.groupBox7.Location = new System.Drawing.Point(22, 168);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(981, 149);
+            this.groupBox7.TabIndex = 45;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Setup Interface";
+            // 
+            // comboBox_CEProjectType
+            // 
+            this.comboBox_CEProjectType.AutoCompleteCustomSource.AddRange(new string[] {
+            "[KODA] MultiWell"});
+            this.comboBox_CEProjectType.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox_CEProjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_CEProjectType.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.comboBox_CEProjectType.FormattingEnabled = true;
+            this.comboBox_CEProjectType.Items.AddRange(new object[] {
+            "Multi Well Site [KODA]"});
+            this.comboBox_CEProjectType.Location = new System.Drawing.Point(96, 19);
+            this.comboBox_CEProjectType.Name = "comboBox_CEProjectType";
+            this.comboBox_CEProjectType.Size = new System.Drawing.Size(196, 21);
+            this.comboBox_CEProjectType.TabIndex = 43;
+            // 
+            // button_CELoadInterface
+            // 
+            this.button_CELoadInterface.Location = new System.Drawing.Point(867, 101);
+            this.button_CELoadInterface.Name = "button_CELoadInterface";
+            this.button_CELoadInterface.Size = new System.Drawing.Size(108, 42);
+            this.button_CELoadInterface.TabIndex = 41;
+            this.button_CELoadInterface.Text = "Load Interface";
+            this.button_CELoadInterface.UseVisualStyleBackColor = true;
+            this.button_CELoadInterface.Click += new System.EventHandler(this.button_CELoadInterface_Click);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(11, 22);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(70, 13);
+            this.label51.TabIndex = 42;
+            this.label51.Text = "Project Type:";
+            // 
+            // comboBox_CETemplateFile
+            // 
+            this.comboBox_CETemplateFile.AllowDrop = true;
+            this.comboBox_CETemplateFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox_CETemplateFile.FormattingEnabled = true;
+            this.comboBox_CETemplateFile.Location = new System.Drawing.Point(137, 68);
+            this.comboBox_CETemplateFile.MaxDropDownItems = 10;
+            this.comboBox_CETemplateFile.Name = "comboBox_CETemplateFile";
+            this.comboBox_CETemplateFile.Size = new System.Drawing.Size(710, 21);
+            this.comboBox_CETemplateFile.TabIndex = 22;
+            // 
+            // button_CETemplateFileSelect
+            // 
+            this.button_CETemplateFileSelect.Location = new System.Drawing.Point(9, 68);
+            this.button_CETemplateFileSelect.Name = "button_CETemplateFileSelect";
+            this.button_CETemplateFileSelect.Size = new System.Drawing.Size(122, 23);
+            this.button_CETemplateFileSelect.TabIndex = 20;
+            this.button_CETemplateFileSelect.Text = "Change File";
+            this.button_CETemplateFileSelect.UseVisualStyleBackColor = true;
+            this.button_CETemplateFileSelect.Click += new System.EventHandler(this.button_CETemplateFileSelect_Click);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(6, 52);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(283, 13);
+            this.label49.TabIndex = 21;
+            this.label49.Text = "Load Existing Interface Data (Leave blank if new template)";
+            // 
+            // button_CETemplateFileOpen
+            // 
+            this.button_CETemplateFileOpen.Location = new System.Drawing.Point(853, 66);
+            this.button_CETemplateFileOpen.Name = "button_CETemplateFileOpen";
+            this.button_CETemplateFileOpen.Size = new System.Drawing.Size(122, 23);
+            this.button_CETemplateFileOpen.TabIndex = 23;
+            this.button_CETemplateFileOpen.Text = "Open File";
+            this.button_CETemplateFileOpen.UseVisualStyleBackColor = true;
+            this.button_CETemplateFileOpen.Click += new System.EventHandler(this.button_CETemplateFileOpen_Click);
+            // 
+            // button_CEUpdate
+            // 
+            this.button_CEUpdate.Location = new System.Drawing.Point(15, 345);
+            this.button_CEUpdate.Name = "button_CEUpdate";
+            this.button_CEUpdate.Size = new System.Drawing.Size(122, 23);
+            this.button_CEUpdate.TabIndex = 44;
+            this.button_CEUpdate.Text = "Update Interface";
+            this.button_CEUpdate.UseVisualStyleBackColor = true;
+            this.button_CEUpdate.Click += new System.EventHandler(this.button_CEUpdate_Click_1);
             // 
             // label_CEGenStatus
             // 
@@ -2142,7 +1922,7 @@
             this.comboBox_CEOutputLoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_CEOutputLoc.FormattingEnabled = true;
-            this.comboBox_CEOutputLoc.Location = new System.Drawing.Point(151, 381);
+            this.comboBox_CEOutputLoc.Location = new System.Drawing.Point(143, 414);
             this.comboBox_CEOutputLoc.MaxDropDownItems = 10;
             this.comboBox_CEOutputLoc.Name = "comboBox_CEOutputLoc";
             this.comboBox_CEOutputLoc.Size = new System.Drawing.Size(732, 21);
@@ -2151,7 +1931,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(20, 365);
+            this.label52.Location = new System.Drawing.Point(12, 398);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(116, 13);
             this.label52.TabIndex = 32;
@@ -2159,7 +1939,7 @@
             // 
             // button_CEChangeOutputLoc
             // 
-            this.button_CEChangeOutputLoc.Location = new System.Drawing.Point(23, 381);
+            this.button_CEChangeOutputLoc.Location = new System.Drawing.Point(15, 414);
             this.button_CEChangeOutputLoc.Name = "button_CEChangeOutputLoc";
             this.button_CEChangeOutputLoc.Size = new System.Drawing.Size(122, 23);
             this.button_CEChangeOutputLoc.TabIndex = 31;
@@ -2169,7 +1949,7 @@
             // 
             // button_CEGenerate
             // 
-            this.button_CEGenerate.Location = new System.Drawing.Point(889, 353);
+            this.button_CEGenerate.Location = new System.Drawing.Point(881, 386);
             this.button_CEGenerate.Name = "button_CEGenerate";
             this.button_CEGenerate.Size = new System.Drawing.Size(122, 49);
             this.button_CEGenerate.TabIndex = 30;
@@ -2179,7 +1959,7 @@
             // 
             // button_CEPanelTemplateFileOpen
             // 
-            this.button_CEPanelTemplateFileOpen.Location = new System.Drawing.Point(889, 182);
+            this.button_CEPanelTemplateFileOpen.Location = new System.Drawing.Point(889, 122);
             this.button_CEPanelTemplateFileOpen.Name = "button_CEPanelTemplateFileOpen";
             this.button_CEPanelTemplateFileOpen.Size = new System.Drawing.Size(122, 23);
             this.button_CEPanelTemplateFileOpen.TabIndex = 27;
@@ -2193,7 +1973,7 @@
             this.comboBox_CEPanelTemplateFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_CEPanelTemplateFile.FormattingEnabled = true;
-            this.comboBox_CEPanelTemplateFile.Location = new System.Drawing.Point(143, 184);
+            this.comboBox_CEPanelTemplateFile.Location = new System.Drawing.Point(143, 124);
             this.comboBox_CEPanelTemplateFile.MaxDropDownItems = 10;
             this.comboBox_CEPanelTemplateFile.Name = "comboBox_CEPanelTemplateFile";
             this.comboBox_CEPanelTemplateFile.Size = new System.Drawing.Size(732, 21);
@@ -2202,7 +1982,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(12, 168);
+            this.label50.Location = new System.Drawing.Point(12, 108);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(210, 13);
             this.label50.TabIndex = 25;
@@ -2210,54 +1990,13 @@
             // 
             // button_CEPanelTemplateFileSelect
             // 
-            this.button_CEPanelTemplateFileSelect.Location = new System.Drawing.Point(15, 184);
+            this.button_CEPanelTemplateFileSelect.Location = new System.Drawing.Point(15, 124);
             this.button_CEPanelTemplateFileSelect.Name = "button_CEPanelTemplateFileSelect";
             this.button_CEPanelTemplateFileSelect.Size = new System.Drawing.Size(122, 23);
             this.button_CEPanelTemplateFileSelect.TabIndex = 24;
             this.button_CEPanelTemplateFileSelect.Text = "Change File";
             this.button_CEPanelTemplateFileSelect.UseVisualStyleBackColor = true;
             this.button_CEPanelTemplateFileSelect.Click += new System.EventHandler(this.button_CEPanelTemplateFileSelect_Click);
-            // 
-            // button_CETemplateFileOpen
-            // 
-            this.button_CETemplateFileOpen.Location = new System.Drawing.Point(889, 125);
-            this.button_CETemplateFileOpen.Name = "button_CETemplateFileOpen";
-            this.button_CETemplateFileOpen.Size = new System.Drawing.Size(122, 23);
-            this.button_CETemplateFileOpen.TabIndex = 23;
-            this.button_CETemplateFileOpen.Text = "Open File";
-            this.button_CETemplateFileOpen.UseVisualStyleBackColor = true;
-            this.button_CETemplateFileOpen.Click += new System.EventHandler(this.button_CETemplateFileOpen_Click);
-            // 
-            // comboBox_CETemplateFile
-            // 
-            this.comboBox_CETemplateFile.AllowDrop = true;
-            this.comboBox_CETemplateFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox_CETemplateFile.FormattingEnabled = true;
-            this.comboBox_CETemplateFile.Location = new System.Drawing.Point(143, 127);
-            this.comboBox_CETemplateFile.MaxDropDownItems = 10;
-            this.comboBox_CETemplateFile.Name = "comboBox_CETemplateFile";
-            this.comboBox_CETemplateFile.Size = new System.Drawing.Size(732, 21);
-            this.comboBox_CETemplateFile.TabIndex = 22;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(12, 111);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(166, 13);
-            this.label49.TabIndex = 21;
-            this.label49.Text = "[TEMP] Select C&E Template Data";
-            // 
-            // button_CETemplateFileSelect
-            // 
-            this.button_CETemplateFileSelect.Location = new System.Drawing.Point(15, 127);
-            this.button_CETemplateFileSelect.Name = "button_CETemplateFileSelect";
-            this.button_CETemplateFileSelect.Size = new System.Drawing.Size(122, 23);
-            this.button_CETemplateFileSelect.TabIndex = 20;
-            this.button_CETemplateFileSelect.Text = "Change File";
-            this.button_CETemplateFileSelect.UseVisualStyleBackColor = true;
-            this.button_CETemplateFileSelect.Click += new System.EventHandler(this.button_CETemplateFileSelect_Click);
             // 
             // button_CEModelDBFileOpen
             // 
@@ -2286,9 +2025,9 @@
             this.label48.AutoSize = true;
             this.label48.Location = new System.Drawing.Point(12, 49);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(180, 13);
+            this.label48.Size = new System.Drawing.Size(174, 13);
             this.label48.TabIndex = 17;
-            this.label48.Text = "Select Device Model Data Excel File";
+            this.label48.Text = "Select Device Model Database File";
             // 
             // button_CEModelDBFileSelect
             // 
@@ -2348,8 +2087,6 @@
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // openFileDialog4
             // 
@@ -2362,24 +2099,15 @@
             this.bgWorker_pinglogger.WorkerSupportsCancellation = true;
             this.bgWorker_pinglogger.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_pinglogger_DoWork);
             // 
-            // tabControl_CESetup
+            // openFileDialog5
             // 
-            this.tabControl_CESetup.Controls.Add(this.Quantity);
-            this.tabControl_CESetup.Location = new System.Drawing.Point(21, 38);
-            this.tabControl_CESetup.Name = "tabControl_CESetup";
-            this.tabControl_CESetup.SelectedIndex = 0;
-            this.tabControl_CESetup.Size = new System.Drawing.Size(990, 428);
-            this.tabControl_CESetup.TabIndex = 39;
+            this.openFileDialog5.FileName = "*.accdb";
+            this.openFileDialog5.Filter = "Access Database Files | *.accdb";
             // 
-            // Quantity
+            // dbDevicesDataSet
             // 
-            this.Quantity.Location = new System.Drawing.Point(4, 22);
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Padding = new System.Windows.Forms.Padding(3);
-            this.Quantity.Size = new System.Drawing.Size(982, 402);
-            this.Quantity.TabIndex = 0;
-            this.Quantity.Text = "tabPage11";
-            this.Quantity.UseVisualStyleBackColor = true;
+            this.dbDevicesDataSet.DataSetName = "dbDevicesDataSet";
+            this.dbDevicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // MainForm
             // 
@@ -2416,10 +2144,6 @@
             this.groupBox5.PerformLayout();
             this.grpStart.ResumeLayout(false);
             this.grpStart.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -2427,11 +2151,11 @@
             this.tabPage5.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
-            this.tabControl_CESetup.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2510,14 +2234,6 @@
         private System.ComponentModel.BackgroundWorker pingWorker;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button_SetDynamic;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TextBox textBox_ToDoWorkArea;
-        private System.Windows.Forms.Button button_OpenTODOFile;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox_TODOFileLoc;
-        private System.Windows.Forms.Button button_ChangeTODOFile;
-        private System.Windows.Forms.Button button_UserLoad;
-        private System.Windows.Forms.TextBox textBox_UserNameToDo;
         private System.Windows.Forms.Button button_CancelPing;
         private System.Windows.Forms.Button button_ClearPings;
         private System.Windows.Forms.TextBox textBox1_PingTrys;
@@ -2556,22 +2272,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.ComboBox comboBox_TargetDB_CSV_Loc;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Button button_Change_TargetDB_CSV;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.ComboBox comboBox_SourceDB_CSV_Loc;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Button Button_Change_SourceDB_CSV;
-        private System.Windows.Forms.Button button_STARTCOPY;
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
-        private System.Windows.Forms.Label label_DBCopy_Results;
-        private System.Windows.Forms.ComboBox comboBox_DB_COPY_OUT;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Button button_DB_OUT_LOC;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.CheckBox checkBox_levenstheins;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label36;
@@ -2635,12 +2337,13 @@
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Button button_CEModelDBFileSelect;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.Button button_CELoadInterface;
+        private dbDevicesDataSet dbDevicesDataSet;
+        private System.Windows.Forms.OpenFileDialog openFileDialog5;
+        private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.ComboBox comboBox_CEProjectType;
+        private System.Windows.Forms.Button button_CELoadInterface;
         private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.TabControl tabControl_CESetup;
-        private System.Windows.Forms.TabPage Quantity;
+        private System.Windows.Forms.Button button_CEUpdate;
     }
 }
 
