@@ -2149,9 +2149,18 @@ namespace ExcelPaster
             }
         }
 
+        
         private void button_CEGenerate_Click(object sender, EventArgs e)
         {
-          //Generate Documents
+            
+            //Generate Documents
+            //Check if existing CE was selected
+            if (comboBox_CEExistingFile.Text != String.Empty)
+            {
+                //Parse Existing CE
+                CEFileGeneration cefg = new CEFileGeneration();
+                label_CEGenStatus.Text = cefg.GenerateFilesWithExistingCE(comboBox_CEExistingFile.Text, comboBox_CEOutputLoc.Text);
+            }
         }
 
 
@@ -2169,6 +2178,26 @@ namespace ExcelPaster
         private void button_CEUpdate_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_CEExistingFileSelect_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog1.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_CEExistingFile.Text = result;
+                }
+            }
+        }
+
+        private void button_OpenCEExistingFile_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(comboBox_CEExistingFile.Text))
+            {
+                Process.Start(comboBox_CEExistingFile.Text);
+            }
         }
     }
 }

@@ -56,14 +56,34 @@ namespace ExcelPaster
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button_SaveWell = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.checkBox__CasingPSIAlarmHighHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox__CasingPSIAlarmHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_CasingPSIAlarmLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_CasingPSIAlarmLowLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUseCasingPSIAI = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelCasingPSI = new System.Windows.Forms.ComboBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.checkBox_TubingPSIAlarmHighHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_TubingPSIAlarmHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_TubingPSIAlarmLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUseTubingPSIAI = new System.Windows.Forms.CheckBox();
+            this.checkBox_TubingPSIAlarmLowLow = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelTubingPSI = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.checkBox_MOVAlarmFailtoClose = new System.Windows.Forms.CheckBox();
+            this.checkBox_MOVAlarmFailtoOpen = new System.Windows.Forms.CheckBox();
             this.checkBox_IOUseMOVClosedDI = new System.Windows.Forms.CheckBox();
             this.checkBox_IOUseMOVDIOpen = new System.Windows.Forms.CheckBox();
             this.checkBox_IOUseMOVDO = new System.Windows.Forms.CheckBox();
             this.comboBox_ModelMOV = new System.Windows.Forms.ComboBox();
-            this.tblModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dbDevicesDataSet = new ExcelPaster.dbDevicesDataSet();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.checkBox_DriveAlarmFailtoStart = new System.Windows.Forms.CheckBox();
             this.checkBox_IOUseDriveDI = new System.Windows.Forms.CheckBox();
             this.checkBox_IOUseDriveDO = new System.Windows.Forms.CheckBox();
             this.comboBox_ModelDrive = new System.Windows.Forms.ComboBox();
@@ -88,28 +108,53 @@ namespace ExcelPaster
             this.textBox_NameW1 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tblModelTableAdapter = new ExcelPaster.dbDevicesDataSetTableAdapters.tblModelTableAdapter();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.checkBox_IOUseTubingPSIAI = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelTubingPSI = new System.Windows.Forms.ComboBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.checkBox_IOUseCasingPSIAI = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelCasingPSI = new System.Windows.Forms.ComboBox();
-            this.checkBox_DriveAlarmFailtoStart = new System.Windows.Forms.CheckBox();
-            this.checkBox_MOVAlarmFailtoClose = new System.Windows.Forms.CheckBox();
-            this.checkBox_MOVAlarmFailtoOpen = new System.Windows.Forms.CheckBox();
-            this.checkBox_CasingPSIAlarmLowLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_CasingPSIAlarmLow = new System.Windows.Forms.CheckBox();
-            this.checkBox__CasingPSIAlarmHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox__CasingPSIAlarmHighHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_TubingPSIAlarmHighHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_TubingPSIAlarmHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_TubingPSIAlarmLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_TubingPSIAlarmLowLow = new System.Windows.Forms.CheckBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.checkBox_IOUsingWaterDIFlow = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingWaterAIFlow = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.checkBox_IOUsingWaterCOMMFlow = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelWaterFlow = new System.Windows.Forms.ComboBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.checkBox_IOUsingOilCOMMPSI = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingOilCOMMTemp = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmOilDGHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox__AlarmOilDGLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmOilDensityHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmOilDensityLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingOilCOMMDG = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingOilCOMMDensity = new System.Windows.Forms.CheckBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.checkBox_IOUsingOilCOMMMass = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelOilFLow = new System.Windows.Forms.ComboBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.checkBox_AlarmGasTempHighHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasTempHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasTempLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasTempLowLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasSPHighHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasSPHigh = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasSPLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmGasSPLowLow = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingGasCOMMTemp = new System.Windows.Forms.CheckBox();
+            this.checkBox_IOUsingGasCOMMSP = new System.Windows.Forms.CheckBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.checkBox_IOUsingGasCOMMDP = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelGasFlow = new System.Windows.Forms.ComboBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.checkBox_IOUsingLSLLDI = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmLSLL = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelLSLL = new System.Windows.Forms.ComboBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.checkBox_IOUsingLSHHDI = new System.Windows.Forms.CheckBox();
+            this.checkBox_AlarmLSHH = new System.Windows.Forms.CheckBox();
+            this.comboBox_ModelLSHH = new System.Windows.Forms.ComboBox();
+            this.checkBox_AllTreatersSame = new System.Windows.Forms.CheckBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.comboBox_SelectTreater = new System.Windows.Forms.ComboBox();
             this.textBox_NameTreater8 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.textBox_NameTreater7 = new System.Windows.Forms.TextBox();
@@ -126,90 +171,44 @@ namespace ExcelPaster
             this.label27 = new System.Windows.Forms.Label();
             this.textBox_NameTreater1 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.comboBox_ModelLSLL = new System.Windows.Forms.ComboBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.checkBox_IOUsingLSHHDI = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmLSHH = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelLSHH = new System.Windows.Forms.ComboBox();
-            this.checkBox_AllTreatersSame = new System.Windows.Forms.CheckBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.comboBox_SelectTreater = new System.Windows.Forms.ComboBox();
-            this.checkBox_IOUsingLSLLDI = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmLSLL = new System.Windows.Forms.CheckBox();
-            this.button_SaveWell = new System.Windows.Forms.Button();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.checkBox_IOUsingGasCOMMDP = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelGasFlow = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.checkBox_IOUsingGasCOMMSP = new System.Windows.Forms.CheckBox();
-            this.checkBox_IOUsingGasCOMMTemp = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasSPLowLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasSPLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasSPHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasSPHighHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasTempHighHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasTempHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasTempLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmGasTempLowLow = new System.Windows.Forms.CheckBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.checkBox_AlarmOilDGHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox__AlarmOilDGLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmOilDensityHigh = new System.Windows.Forms.CheckBox();
-            this.checkBox_AlarmOilDensityLow = new System.Windows.Forms.CheckBox();
-            this.checkBox_IOUsingOilCOMMDG = new System.Windows.Forms.CheckBox();
-            this.checkBox_IOUsingOilCOMMDensity = new System.Windows.Forms.CheckBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.checkBox_IOUsingOilCOMMMass = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelOilFLow = new System.Windows.Forms.ComboBox();
-            this.checkBox_IOUsingOilCOMMTemp = new System.Windows.Forms.CheckBox();
-            this.checkBox_IOUsingOilCOMMPSI = new System.Windows.Forms.CheckBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.checkBox_IOUsingWaterDIFlow = new System.Windows.Forms.CheckBox();
-            this.checkBox_IOUsingWaterAIFlow = new System.Windows.Forms.CheckBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.checkBox_IOUsingWaterCOMMFlow = new System.Windows.Forms.CheckBox();
-            this.comboBox_ModelWaterFlow = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.label55 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.label75 = new System.Windows.Forms.Label();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.checkBox20 = new System.Windows.Forms.CheckBox();
+            this.checkBox21 = new System.Windows.Forms.CheckBox();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.label76 = new System.Windows.Forms.Label();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.checkBox26 = new System.Windows.Forms.CheckBox();
+            this.checkBox27 = new System.Windows.Forms.CheckBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.checkBox28 = new System.Windows.Forms.CheckBox();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label73 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -242,56 +241,52 @@ namespace ExcelPaster
             this.label70 = new System.Windows.Forms.Label();
             this.textBox32 = new System.Windows.Forms.TextBox();
             this.label71 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.label72 = new System.Windows.Forms.Label();
-            this.textBox34 = new System.Windows.Forms.TextBox();
-            this.label73 = new System.Windows.Forms.Label();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.label75 = new System.Windows.Forms.Label();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.checkBox20 = new System.Windows.Forms.CheckBox();
-            this.checkBox21 = new System.Windows.Forms.CheckBox();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
-            this.label76 = new System.Windows.Forms.Label();
-            this.checkBox23 = new System.Windows.Forms.CheckBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.label78 = new System.Windows.Forms.Label();
-            this.checkBox26 = new System.Windows.Forms.CheckBox();
-            this.checkBox27 = new System.Windows.Forms.CheckBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.checkBox28 = new System.Windows.Forms.CheckBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.textBox35 = new System.Windows.Forms.TextBox();
-            this.label74 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.checkBox35 = new System.Windows.Forms.CheckBox();
-            this.checkBox36 = new System.Windows.Forms.CheckBox();
-            this.label81 = new System.Windows.Forms.Label();
-            this.checkBox37 = new System.Windows.Forms.CheckBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.label84 = new System.Windows.Forms.Label();
+            this.checkBox47 = new System.Windows.Forms.CheckBox();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.label83 = new System.Windows.Forms.Label();
+            this.checkBox31 = new System.Windows.Forms.CheckBox();
+            this.checkBox32 = new System.Windows.Forms.CheckBox();
+            this.checkBox33 = new System.Windows.Forms.CheckBox();
+            this.checkBox34 = new System.Windows.Forms.CheckBox();
+            this.checkBox42 = new System.Windows.Forms.CheckBox();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.label77 = new System.Windows.Forms.Label();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
@@ -308,34 +303,32 @@ namespace ExcelPaster
             this.checkBox40 = new System.Windows.Forms.CheckBox();
             this.checkBox41 = new System.Windows.Forms.CheckBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.groupBox22 = new System.Windows.Forms.GroupBox();
-            this.label83 = new System.Windows.Forms.Label();
-            this.checkBox31 = new System.Windows.Forms.CheckBox();
-            this.checkBox32 = new System.Windows.Forms.CheckBox();
-            this.checkBox33 = new System.Windows.Forms.CheckBox();
-            this.checkBox34 = new System.Windows.Forms.CheckBox();
-            this.checkBox42 = new System.Windows.Forms.CheckBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.groupBox23 = new System.Windows.Forms.GroupBox();
-            this.label84 = new System.Windows.Forms.Label();
-            this.checkBox47 = new System.Windows.Forms.CheckBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.textBox36 = new System.Windows.Forms.TextBox();
-            this.label85 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
-            this.label86 = new System.Windows.Forms.Label();
-            this.textBox38 = new System.Windows.Forms.TextBox();
-            this.label87 = new System.Windows.Forms.Label();
-            this.textBox39 = new System.Windows.Forms.TextBox();
-            this.label88 = new System.Windows.Forms.Label();
-            this.textBox40 = new System.Windows.Forms.TextBox();
-            this.label89 = new System.Windows.Forms.Label();
-            this.textBox41 = new System.Windows.Forms.TextBox();
-            this.label90 = new System.Windows.Forms.Label();
-            this.textBox42 = new System.Windows.Forms.TextBox();
-            this.label91 = new System.Windows.Forms.Label();
-            this.textBox43 = new System.Windows.Forms.TextBox();
-            this.label92 = new System.Windows.Forms.Label();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox35 = new System.Windows.Forms.CheckBox();
+            this.checkBox36 = new System.Windows.Forms.CheckBox();
+            this.label81 = new System.Windows.Forms.Label();
+            this.checkBox37 = new System.Windows.Forms.CheckBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.groupBox26 = new System.Windows.Forms.GroupBox();
+            this.label93 = new System.Windows.Forms.Label();
+            this.checkBox43 = new System.Windows.Forms.CheckBox();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.label94 = new System.Windows.Forms.Label();
+            this.checkBox44 = new System.Windows.Forms.CheckBox();
+            this.checkBox45 = new System.Windows.Forms.CheckBox();
+            this.checkBox46 = new System.Windows.Forms.CheckBox();
+            this.checkBox48 = new System.Windows.Forms.CheckBox();
+            this.checkBox49 = new System.Windows.Forms.CheckBox();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
             this.checkBox56 = new System.Windows.Forms.CheckBox();
@@ -365,58 +358,86 @@ namespace ExcelPaster
             this.label98 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
             this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.groupBox25 = new System.Windows.Forms.GroupBox();
-            this.groupBox26 = new System.Windows.Forms.GroupBox();
-            this.label93 = new System.Windows.Forms.Label();
-            this.checkBox43 = new System.Windows.Forms.CheckBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.groupBox30 = new System.Windows.Forms.GroupBox();
-            this.label94 = new System.Windows.Forms.Label();
-            this.checkBox44 = new System.Windows.Forms.CheckBox();
-            this.checkBox45 = new System.Windows.Forms.CheckBox();
-            this.checkBox46 = new System.Windows.Forms.CheckBox();
-            this.checkBox48 = new System.Windows.Forms.CheckBox();
-            this.checkBox49 = new System.Windows.Forms.CheckBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.label89 = new System.Windows.Forms.Label();
+            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.label90 = new System.Windows.Forms.Label();
+            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.label91 = new System.Windows.Forms.Label();
+            this.textBox43 = new System.Windows.Forms.TextBox();
+            this.label92 = new System.Windows.Forms.Label();
+            this.textBox39 = new System.Windows.Forms.TextBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.label87 = new System.Windows.Forms.Label();
+            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tblModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbDevicesDataSet = new ExcelPaster.dbDevicesDataSet();
+            this.tblModelTableAdapter = new ExcelPaster.dbDevicesDataSetTableAdapters.tblModelTableAdapter();
+            this.groupBox31 = new System.Windows.Forms.GroupBox();
+            this.groupBox34 = new System.Windows.Forms.GroupBox();
+            this.label102 = new System.Windows.Forms.Label();
+            this.checkBox83 = new System.Windows.Forms.CheckBox();
+            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.checkBox85 = new System.Windows.Forms.CheckBox();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label104 = new System.Windows.Forms.Label();
+            this.comboBox19 = new System.Windows.Forms.ComboBox();
+            this.groupBox32 = new System.Windows.Forms.GroupBox();
+            this.label100 = new System.Windows.Forms.Label();
+            this.checkBox50 = new System.Windows.Forms.CheckBox();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.label101 = new System.Windows.Forms.Label();
+            this.checkBox51 = new System.Windows.Forms.CheckBox();
+            this.comboBox17 = new System.Windows.Forms.ComboBox();
             this.tabControl_KODAMW_CE.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.groupBox16.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox19.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.groupBox15.SuspendLayout();
-            this.groupBox20.SuspendLayout();
+            this.groupBox23.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox21.SuspendLayout();
-            this.groupBox22.SuspendLayout();
-            this.groupBox23.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.groupBox25.SuspendLayout();
+            this.groupBox26.SuspendLayout();
+            this.groupBox30.SuspendLayout();
             this.groupBox24.SuspendLayout();
             this.groupBox27.SuspendLayout();
             this.groupBox28.SuspendLayout();
             this.groupBox29.SuspendLayout();
-            this.groupBox25.SuspendLayout();
-            this.groupBox26.SuspendLayout();
-            this.groupBox30.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).BeginInit();
+            this.groupBox31.SuspendLayout();
+            this.groupBox34.SuspendLayout();
+            this.groupBox32.SuspendLayout();
+            this.groupBox33.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_KODAMW_CE
@@ -431,7 +452,7 @@ namespace ExcelPaster
             this.tabControl_KODAMW_CE.Location = new System.Drawing.Point(12, 12);
             this.tabControl_KODAMW_CE.Name = "tabControl_KODAMW_CE";
             this.tabControl_KODAMW_CE.SelectedIndex = 0;
-            this.tabControl_KODAMW_CE.Size = new System.Drawing.Size(996, 584);
+            this.tabControl_KODAMW_CE.Size = new System.Drawing.Size(996, 611);
             this.tabControl_KODAMW_CE.TabIndex = 0;
             // 
             // tabPage1
@@ -757,7 +778,7 @@ namespace ExcelPaster
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(988, 558);
+            this.tabPage2.Size = new System.Drawing.Size(988, 585);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Well Devices";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -780,6 +801,203 @@ namespace ExcelPaster
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Well Devices";
             // 
+            // button_SaveWell
+            // 
+            this.button_SaveWell.Location = new System.Drawing.Point(769, 23);
+            this.button_SaveWell.Name = "button_SaveWell";
+            this.button_SaveWell.Size = new System.Drawing.Size(148, 23);
+            this.button_SaveWell.TabIndex = 41;
+            this.button_SaveWell.Text = "Save Well";
+            this.button_SaveWell.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label34);
+            this.groupBox7.Controls.Add(this.checkBox__CasingPSIAlarmHighHigh);
+            this.groupBox7.Controls.Add(this.checkBox__CasingPSIAlarmHigh);
+            this.groupBox7.Controls.Add(this.checkBox_CasingPSIAlarmLow);
+            this.groupBox7.Controls.Add(this.checkBox_CasingPSIAlarmLowLow);
+            this.groupBox7.Controls.Add(this.checkBox_IOUseCasingPSIAI);
+            this.groupBox7.Controls.Add(this.comboBox_ModelCasingPSI);
+            this.groupBox7.Location = new System.Drawing.Point(13, 443);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(743, 100);
+            this.groupBox7.TabIndex = 40;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Casing Pressure";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(3, 22);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(78, 13);
+            this.label34.TabIndex = 47;
+            this.label34.Text = "Choose Model:";
+            // 
+            // checkBox__CasingPSIAlarmHighHigh
+            // 
+            this.checkBox__CasingPSIAlarmHighHigh.AutoSize = true;
+            this.checkBox__CasingPSIAlarmHighHigh.Checked = true;
+            this.checkBox__CasingPSIAlarmHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox__CasingPSIAlarmHighHigh.Location = new System.Drawing.Point(601, 61);
+            this.checkBox__CasingPSIAlarmHighHigh.Name = "checkBox__CasingPSIAlarmHighHigh";
+            this.checkBox__CasingPSIAlarmHighHigh.Size = new System.Drawing.Size(108, 17);
+            this.checkBox__CasingPSIAlarmHighHigh.TabIndex = 42;
+            this.checkBox__CasingPSIAlarmHighHigh.Text = "[Alarm] High High";
+            this.checkBox__CasingPSIAlarmHighHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox__CasingPSIAlarmHigh
+            // 
+            this.checkBox__CasingPSIAlarmHigh.AutoSize = true;
+            this.checkBox__CasingPSIAlarmHigh.Checked = true;
+            this.checkBox__CasingPSIAlarmHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox__CasingPSIAlarmHigh.Location = new System.Drawing.Point(496, 61);
+            this.checkBox__CasingPSIAlarmHigh.Name = "checkBox__CasingPSIAlarmHigh";
+            this.checkBox__CasingPSIAlarmHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox__CasingPSIAlarmHigh.TabIndex = 41;
+            this.checkBox__CasingPSIAlarmHigh.Text = "[Alarm] High";
+            this.checkBox__CasingPSIAlarmHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_CasingPSIAlarmLow
+            // 
+            this.checkBox_CasingPSIAlarmLow.AutoSize = true;
+            this.checkBox_CasingPSIAlarmLow.Checked = true;
+            this.checkBox_CasingPSIAlarmLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_CasingPSIAlarmLow.Location = new System.Drawing.Point(396, 61);
+            this.checkBox_CasingPSIAlarmLow.Name = "checkBox_CasingPSIAlarmLow";
+            this.checkBox_CasingPSIAlarmLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_CasingPSIAlarmLow.TabIndex = 40;
+            this.checkBox_CasingPSIAlarmLow.Text = "[Alarm] Low";
+            this.checkBox_CasingPSIAlarmLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_CasingPSIAlarmLowLow
+            // 
+            this.checkBox_CasingPSIAlarmLowLow.AutoSize = true;
+            this.checkBox_CasingPSIAlarmLowLow.Checked = true;
+            this.checkBox_CasingPSIAlarmLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_CasingPSIAlarmLowLow.Location = new System.Drawing.Point(249, 61);
+            this.checkBox_CasingPSIAlarmLowLow.Name = "checkBox_CasingPSIAlarmLowLow";
+            this.checkBox_CasingPSIAlarmLowLow.Size = new System.Drawing.Size(101, 17);
+            this.checkBox_CasingPSIAlarmLowLow.TabIndex = 39;
+            this.checkBox_CasingPSIAlarmLowLow.Text = "[Alarm]Low Low";
+            this.checkBox_CasingPSIAlarmLowLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_IOUseCasingPSIAI
+            // 
+            this.checkBox_IOUseCasingPSIAI.AutoSize = true;
+            this.checkBox_IOUseCasingPSIAI.Checked = true;
+            this.checkBox_IOUseCasingPSIAI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUseCasingPSIAI.Location = new System.Drawing.Point(14, 61);
+            this.checkBox_IOUseCasingPSIAI.Name = "checkBox_IOUseCasingPSIAI";
+            this.checkBox_IOUseCasingPSIAI.Size = new System.Drawing.Size(157, 17);
+            this.checkBox_IOUseCasingPSIAI.TabIndex = 35;
+            this.checkBox_IOUseCasingPSIAI.Text = "[AI(4-20mA)] Read Pressure";
+            this.checkBox_IOUseCasingPSIAI.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ModelCasingPSI
+            // 
+            this.comboBox_ModelCasingPSI.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelCasingPSI.FormattingEnabled = true;
+            this.comboBox_ModelCasingPSI.Location = new System.Drawing.Point(87, 19);
+            this.comboBox_ModelCasingPSI.Name = "comboBox_ModelCasingPSI";
+            this.comboBox_ModelCasingPSI.Size = new System.Drawing.Size(464, 21);
+            this.comboBox_ModelCasingPSI.TabIndex = 34;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label33);
+            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmHighHigh);
+            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmHigh);
+            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmLow);
+            this.groupBox6.Controls.Add(this.checkBox_IOUseTubingPSIAI);
+            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmLowLow);
+            this.groupBox6.Controls.Add(this.comboBox_ModelTubingPSI);
+            this.groupBox6.Location = new System.Drawing.Point(13, 339);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(743, 88);
+            this.groupBox6.TabIndex = 39;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Tubing Pressure";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 22);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(78, 13);
+            this.label33.TabIndex = 41;
+            this.label33.Text = "Choose Model:";
+            // 
+            // checkBox_TubingPSIAlarmHighHigh
+            // 
+            this.checkBox_TubingPSIAlarmHighHigh.AutoSize = true;
+            this.checkBox_TubingPSIAlarmHighHigh.Checked = true;
+            this.checkBox_TubingPSIAlarmHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TubingPSIAlarmHighHigh.Location = new System.Drawing.Point(604, 55);
+            this.checkBox_TubingPSIAlarmHighHigh.Name = "checkBox_TubingPSIAlarmHighHigh";
+            this.checkBox_TubingPSIAlarmHighHigh.Size = new System.Drawing.Size(108, 17);
+            this.checkBox_TubingPSIAlarmHighHigh.TabIndex = 46;
+            this.checkBox_TubingPSIAlarmHighHigh.Text = "[Alarm] High High";
+            this.checkBox_TubingPSIAlarmHighHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_TubingPSIAlarmHigh
+            // 
+            this.checkBox_TubingPSIAlarmHigh.AutoSize = true;
+            this.checkBox_TubingPSIAlarmHigh.Checked = true;
+            this.checkBox_TubingPSIAlarmHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TubingPSIAlarmHigh.Location = new System.Drawing.Point(499, 55);
+            this.checkBox_TubingPSIAlarmHigh.Name = "checkBox_TubingPSIAlarmHigh";
+            this.checkBox_TubingPSIAlarmHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_TubingPSIAlarmHigh.TabIndex = 45;
+            this.checkBox_TubingPSIAlarmHigh.Text = "[Alarm] High";
+            this.checkBox_TubingPSIAlarmHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_TubingPSIAlarmLow
+            // 
+            this.checkBox_TubingPSIAlarmLow.AutoSize = true;
+            this.checkBox_TubingPSIAlarmLow.Checked = true;
+            this.checkBox_TubingPSIAlarmLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TubingPSIAlarmLow.Location = new System.Drawing.Point(399, 55);
+            this.checkBox_TubingPSIAlarmLow.Name = "checkBox_TubingPSIAlarmLow";
+            this.checkBox_TubingPSIAlarmLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_TubingPSIAlarmLow.TabIndex = 44;
+            this.checkBox_TubingPSIAlarmLow.Text = "[Alarm] Low";
+            this.checkBox_TubingPSIAlarmLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_IOUseTubingPSIAI
+            // 
+            this.checkBox_IOUseTubingPSIAI.AutoSize = true;
+            this.checkBox_IOUseTubingPSIAI.Checked = true;
+            this.checkBox_IOUseTubingPSIAI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUseTubingPSIAI.Location = new System.Drawing.Point(17, 55);
+            this.checkBox_IOUseTubingPSIAI.Name = "checkBox_IOUseTubingPSIAI";
+            this.checkBox_IOUseTubingPSIAI.Size = new System.Drawing.Size(157, 17);
+            this.checkBox_IOUseTubingPSIAI.TabIndex = 35;
+            this.checkBox_IOUseTubingPSIAI.Text = "[AI(4-20mA)] Read Pressure";
+            this.checkBox_IOUseTubingPSIAI.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_TubingPSIAlarmLowLow
+            // 
+            this.checkBox_TubingPSIAlarmLowLow.AutoSize = true;
+            this.checkBox_TubingPSIAlarmLowLow.Checked = true;
+            this.checkBox_TubingPSIAlarmLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_TubingPSIAlarmLowLow.Location = new System.Drawing.Point(252, 55);
+            this.checkBox_TubingPSIAlarmLowLow.Name = "checkBox_TubingPSIAlarmLowLow";
+            this.checkBox_TubingPSIAlarmLowLow.Size = new System.Drawing.Size(101, 17);
+            this.checkBox_TubingPSIAlarmLowLow.TabIndex = 43;
+            this.checkBox_TubingPSIAlarmLowLow.Text = "[Alarm]Low Low";
+            this.checkBox_TubingPSIAlarmLowLow.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ModelTubingPSI
+            // 
+            this.comboBox_ModelTubingPSI.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelTubingPSI.FormattingEnabled = true;
+            this.comboBox_ModelTubingPSI.Location = new System.Drawing.Point(87, 19);
+            this.comboBox_ModelTubingPSI.Name = "comboBox_ModelTubingPSI";
+            this.comboBox_ModelTubingPSI.Size = new System.Drawing.Size(464, 21);
+            this.comboBox_ModelTubingPSI.TabIndex = 34;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label32);
@@ -795,6 +1013,39 @@ namespace ExcelPaster
             this.groupBox5.TabIndex = 37;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "MOV Type";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(3, 17);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(78, 13);
+            this.label32.TabIndex = 38;
+            this.label32.Text = "Choose Model:";
+            // 
+            // checkBox_MOVAlarmFailtoClose
+            // 
+            this.checkBox_MOVAlarmFailtoClose.AutoSize = true;
+            this.checkBox_MOVAlarmFailtoClose.Checked = true;
+            this.checkBox_MOVAlarmFailtoClose.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_MOVAlarmFailtoClose.Location = new System.Drawing.Point(252, 100);
+            this.checkBox_MOVAlarmFailtoClose.Name = "checkBox_MOVAlarmFailtoClose";
+            this.checkBox_MOVAlarmFailtoClose.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_MOVAlarmFailtoClose.TabIndex = 40;
+            this.checkBox_MOVAlarmFailtoClose.Text = "[Alarm] Fail to Close";
+            this.checkBox_MOVAlarmFailtoClose.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_MOVAlarmFailtoOpen
+            // 
+            this.checkBox_MOVAlarmFailtoOpen.AutoSize = true;
+            this.checkBox_MOVAlarmFailtoOpen.Checked = true;
+            this.checkBox_MOVAlarmFailtoOpen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_MOVAlarmFailtoOpen.Location = new System.Drawing.Point(252, 77);
+            this.checkBox_MOVAlarmFailtoOpen.Name = "checkBox_MOVAlarmFailtoOpen";
+            this.checkBox_MOVAlarmFailtoOpen.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_MOVAlarmFailtoOpen.TabIndex = 39;
+            this.checkBox_MOVAlarmFailtoOpen.Text = "[Alarm] Fail to Open";
+            this.checkBox_MOVAlarmFailtoOpen.UseVisualStyleBackColor = true;
             // 
             // checkBox_IOUseMOVClosedDI
             // 
@@ -841,16 +1092,6 @@ namespace ExcelPaster
             this.comboBox_ModelMOV.Size = new System.Drawing.Size(464, 21);
             this.comboBox_ModelMOV.TabIndex = 34;
             // 
-            // tblModelBindingSource
-            // 
-            this.tblModelBindingSource.DataMember = "tblModel";
-            this.tblModelBindingSource.DataSource = this.dbDevicesDataSet;
-            // 
-            // dbDevicesDataSet
-            // 
-            this.dbDevicesDataSet.DataSetName = "dbDevicesDataSet";
-            this.dbDevicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label31);
@@ -864,6 +1105,27 @@ namespace ExcelPaster
             this.groupBox4.TabIndex = 35;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Drive Type";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 22);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(78, 13);
+            this.label31.TabIndex = 19;
+            this.label31.Text = "Choose Model:";
+            // 
+            // checkBox_DriveAlarmFailtoStart
+            // 
+            this.checkBox_DriveAlarmFailtoStart.AutoSize = true;
+            this.checkBox_DriveAlarmFailtoStart.Checked = true;
+            this.checkBox_DriveAlarmFailtoStart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_DriveAlarmFailtoStart.Location = new System.Drawing.Point(252, 82);
+            this.checkBox_DriveAlarmFailtoStart.Name = "checkBox_DriveAlarmFailtoStart";
+            this.checkBox_DriveAlarmFailtoStart.Size = new System.Drawing.Size(114, 17);
+            this.checkBox_DriveAlarmFailtoStart.TabIndex = 37;
+            this.checkBox_DriveAlarmFailtoStart.Text = "[Alarm] Fail to Start";
+            this.checkBox_DriveAlarmFailtoStart.UseVisualStyleBackColor = true;
             // 
             // checkBox_IOUseDriveDI
             // 
@@ -1111,344 +1373,561 @@ namespace ExcelPaster
             this.tabPage3.Text = "Treater Devices";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // groupBox8
             // 
-            this.tabPage4.AutoScroll = true;
-            this.tabPage4.Controls.Add(this.groupBox14);
-            this.tabPage4.Controls.Add(this.textBox33);
-            this.tabPage4.Controls.Add(this.label72);
-            this.tabPage4.Controls.Add(this.textBox34);
-            this.tabPage4.Controls.Add(this.label73);
-            this.tabPage4.Controls.Add(this.textBox17);
-            this.tabPage4.Controls.Add(this.label56);
-            this.tabPage4.Controls.Add(this.textBox18);
-            this.tabPage4.Controls.Add(this.label57);
-            this.tabPage4.Controls.Add(this.textBox19);
-            this.tabPage4.Controls.Add(this.label58);
-            this.tabPage4.Controls.Add(this.textBox20);
-            this.tabPage4.Controls.Add(this.label59);
-            this.tabPage4.Controls.Add(this.textBox21);
-            this.tabPage4.Controls.Add(this.label60);
-            this.tabPage4.Controls.Add(this.textBox22);
-            this.tabPage4.Controls.Add(this.label61);
-            this.tabPage4.Controls.Add(this.textBox23);
-            this.tabPage4.Controls.Add(this.label62);
-            this.tabPage4.Controls.Add(this.textBox24);
-            this.tabPage4.Controls.Add(this.label63);
-            this.tabPage4.Controls.Add(this.textBox25);
-            this.tabPage4.Controls.Add(this.label64);
-            this.tabPage4.Controls.Add(this.textBox26);
-            this.tabPage4.Controls.Add(this.label65);
-            this.tabPage4.Controls.Add(this.textBox27);
-            this.tabPage4.Controls.Add(this.label66);
-            this.tabPage4.Controls.Add(this.textBox28);
-            this.tabPage4.Controls.Add(this.label67);
-            this.tabPage4.Controls.Add(this.textBox29);
-            this.tabPage4.Controls.Add(this.label68);
-            this.tabPage4.Controls.Add(this.textBox30);
-            this.tabPage4.Controls.Add(this.label69);
-            this.tabPage4.Controls.Add(this.textBox31);
-            this.tabPage4.Controls.Add(this.label70);
-            this.tabPage4.Controls.Add(this.textBox32);
-            this.tabPage4.Controls.Add(this.label71);
-            this.tabPage4.Controls.Add(this.textBox9);
-            this.tabPage4.Controls.Add(this.label48);
-            this.tabPage4.Controls.Add(this.textBox10);
-            this.tabPage4.Controls.Add(this.label49);
-            this.tabPage4.Controls.Add(this.textBox11);
-            this.tabPage4.Controls.Add(this.label50);
-            this.tabPage4.Controls.Add(this.textBox12);
-            this.tabPage4.Controls.Add(this.label51);
-            this.tabPage4.Controls.Add(this.textBox13);
-            this.tabPage4.Controls.Add(this.label52);
-            this.tabPage4.Controls.Add(this.textBox14);
-            this.tabPage4.Controls.Add(this.label53);
-            this.tabPage4.Controls.Add(this.textBox15);
-            this.tabPage4.Controls.Add(this.label54);
-            this.tabPage4.Controls.Add(this.textBox16);
-            this.tabPage4.Controls.Add(this.label55);
-            this.tabPage4.Controls.Add(this.textBox1);
-            this.tabPage4.Controls.Add(this.label40);
-            this.tabPage4.Controls.Add(this.textBox2);
-            this.tabPage4.Controls.Add(this.label41);
-            this.tabPage4.Controls.Add(this.textBox3);
-            this.tabPage4.Controls.Add(this.label42);
-            this.tabPage4.Controls.Add(this.textBox4);
-            this.tabPage4.Controls.Add(this.label43);
-            this.tabPage4.Controls.Add(this.textBox5);
-            this.tabPage4.Controls.Add(this.label44);
-            this.tabPage4.Controls.Add(this.textBox6);
-            this.tabPage4.Controls.Add(this.label45);
-            this.tabPage4.Controls.Add(this.textBox7);
-            this.tabPage4.Controls.Add(this.label46);
-            this.tabPage4.Controls.Add(this.textBox8);
-            this.tabPage4.Controls.Add(this.label47);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(988, 558);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Tank Devices";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.groupBox8.Controls.Add(this.groupBox13);
+            this.groupBox8.Controls.Add(this.groupBox12);
+            this.groupBox8.Controls.Add(this.groupBox11);
+            this.groupBox8.Controls.Add(this.groupBox9);
+            this.groupBox8.Controls.Add(this.groupBox10);
+            this.groupBox8.Controls.Add(this.checkBox_AllTreatersSame);
+            this.groupBox8.Controls.Add(this.label29);
+            this.groupBox8.Controls.Add(this.label30);
+            this.groupBox8.Controls.Add(this.comboBox_SelectTreater);
+            this.groupBox8.Location = new System.Drawing.Point(12, 233);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(937, 683);
+            this.groupBox8.TabIndex = 34;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Treater Devices";
             // 
-            // tabPage5
+            // groupBox13
             // 
-            this.tabPage5.AutoScroll = true;
-            this.tabPage5.Controls.Add(this.groupBox15);
-            this.tabPage5.Controls.Add(this.textBox35);
-            this.tabPage5.Controls.Add(this.label74);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(988, 558);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "SW Disposal Devices";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterDIFlow);
+            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterAIFlow);
+            this.groupBox13.Controls.Add(this.label39);
+            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterCOMMFlow);
+            this.groupBox13.Controls.Add(this.comboBox_ModelWaterFlow);
+            this.groupBox13.Location = new System.Drawing.Point(13, 535);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(743, 121);
+            this.groupBox13.TabIndex = 60;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Water Flow - MagMeter";
             // 
-            // tabPage6
+            // checkBox_IOUsingWaterDIFlow
             // 
-            this.tabPage6.AutoScroll = true;
-            this.tabPage6.Controls.Add(this.groupBox25);
-            this.tabPage6.Controls.Add(this.groupBox24);
-            this.tabPage6.Controls.Add(this.textBox40);
-            this.tabPage6.Controls.Add(this.label89);
-            this.tabPage6.Controls.Add(this.textBox41);
-            this.tabPage6.Controls.Add(this.label90);
-            this.tabPage6.Controls.Add(this.textBox42);
-            this.tabPage6.Controls.Add(this.label91);
-            this.tabPage6.Controls.Add(this.textBox43);
-            this.tabPage6.Controls.Add(this.label92);
-            this.tabPage6.Controls.Add(this.textBox39);
-            this.tabPage6.Controls.Add(this.label88);
-            this.tabPage6.Controls.Add(this.textBox38);
-            this.tabPage6.Controls.Add(this.label87);
-            this.tabPage6.Controls.Add(this.textBox37);
-            this.tabPage6.Controls.Add(this.label86);
-            this.tabPage6.Controls.Add(this.textBox36);
-            this.tabPage6.Controls.Add(this.label85);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(988, 558);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Gas Disposal Devices";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingWaterDIFlow.AutoSize = true;
+            this.checkBox_IOUsingWaterDIFlow.Location = new System.Drawing.Point(17, 92);
+            this.checkBox_IOUsingWaterDIFlow.Name = "checkBox_IOUsingWaterDIFlow";
+            this.checkBox_IOUsingWaterDIFlow.Size = new System.Drawing.Size(169, 17);
+            this.checkBox_IOUsingWaterDIFlow.TabIndex = 49;
+            this.checkBox_IOUsingWaterDIFlow.Text = "[DI(Pulse Input)] Volume FLow";
+            this.checkBox_IOUsingWaterDIFlow.UseVisualStyleBackColor = true;
             // 
-            // tabPage7
+            // checkBox_IOUsingWaterAIFlow
             // 
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(988, 558);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "Misc Devices";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingWaterAIFlow.AutoSize = true;
+            this.checkBox_IOUsingWaterAIFlow.Location = new System.Drawing.Point(17, 69);
+            this.checkBox_IOUsingWaterAIFlow.Name = "checkBox_IOUsingWaterAIFlow";
+            this.checkBox_IOUsingWaterAIFlow.Size = new System.Drawing.Size(150, 17);
+            this.checkBox_IOUsingWaterAIFlow.TabIndex = 48;
+            this.checkBox_IOUsingWaterAIFlow.Text = "[AI (4-20mA)] Volume Flow";
+            this.checkBox_IOUsingWaterAIFlow.UseVisualStyleBackColor = true;
             // 
-            // tblModelTableAdapter
+            // label39
             // 
-            this.tblModelTableAdapter.ClearBeforeFill = true;
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(14, 22);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(78, 13);
+            this.label39.TabIndex = 47;
+            this.label39.Text = "Choose Model:";
             // 
-            // groupBox6
+            // checkBox_IOUsingWaterCOMMFlow
             // 
-            this.groupBox6.Controls.Add(this.label33);
-            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmHighHigh);
-            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmHigh);
-            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmLow);
-            this.groupBox6.Controls.Add(this.checkBox_IOUseTubingPSIAI);
-            this.groupBox6.Controls.Add(this.checkBox_TubingPSIAlarmLowLow);
-            this.groupBox6.Controls.Add(this.comboBox_ModelTubingPSI);
-            this.groupBox6.Location = new System.Drawing.Point(13, 339);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(743, 88);
-            this.groupBox6.TabIndex = 39;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Tubing Pressure";
+            this.checkBox_IOUsingWaterCOMMFlow.AutoSize = true;
+            this.checkBox_IOUsingWaterCOMMFlow.Checked = true;
+            this.checkBox_IOUsingWaterCOMMFlow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingWaterCOMMFlow.Location = new System.Drawing.Point(17, 46);
+            this.checkBox_IOUsingWaterCOMMFlow.Name = "checkBox_IOUsingWaterCOMMFlow";
+            this.checkBox_IOUsingWaterCOMMFlow.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_IOUsingWaterCOMMFlow.TabIndex = 44;
+            this.checkBox_IOUsingWaterCOMMFlow.Text = "[RS485] Volume Flow";
+            this.checkBox_IOUsingWaterCOMMFlow.UseVisualStyleBackColor = true;
             // 
-            // checkBox_IOUseTubingPSIAI
+            // comboBox_ModelWaterFlow
             // 
-            this.checkBox_IOUseTubingPSIAI.AutoSize = true;
-            this.checkBox_IOUseTubingPSIAI.Checked = true;
-            this.checkBox_IOUseTubingPSIAI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUseTubingPSIAI.Location = new System.Drawing.Point(17, 55);
-            this.checkBox_IOUseTubingPSIAI.Name = "checkBox_IOUseTubingPSIAI";
-            this.checkBox_IOUseTubingPSIAI.Size = new System.Drawing.Size(157, 17);
-            this.checkBox_IOUseTubingPSIAI.TabIndex = 35;
-            this.checkBox_IOUseTubingPSIAI.Text = "[AI(4-20mA)] Read Pressure";
-            this.checkBox_IOUseTubingPSIAI.UseVisualStyleBackColor = true;
+            this.comboBox_ModelWaterFlow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelWaterFlow.FormattingEnabled = true;
+            this.comboBox_ModelWaterFlow.Location = new System.Drawing.Point(98, 19);
+            this.comboBox_ModelWaterFlow.Name = "comboBox_ModelWaterFlow";
+            this.comboBox_ModelWaterFlow.Size = new System.Drawing.Size(453, 21);
+            this.comboBox_ModelWaterFlow.TabIndex = 34;
             // 
-            // comboBox_ModelTubingPSI
+            // groupBox12
             // 
-            this.comboBox_ModelTubingPSI.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelTubingPSI.FormattingEnabled = true;
-            this.comboBox_ModelTubingPSI.Location = new System.Drawing.Point(87, 19);
-            this.comboBox_ModelTubingPSI.Name = "comboBox_ModelTubingPSI";
-            this.comboBox_ModelTubingPSI.Size = new System.Drawing.Size(464, 21);
-            this.comboBox_ModelTubingPSI.TabIndex = 34;
+            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMPSI);
+            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMTemp);
+            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDGHigh);
+            this.groupBox12.Controls.Add(this.checkBox__AlarmOilDGLow);
+            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDensityHigh);
+            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDensityLow);
+            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMDG);
+            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMDensity);
+            this.groupBox12.Controls.Add(this.label38);
+            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMMass);
+            this.groupBox12.Controls.Add(this.comboBox_ModelOilFLow);
+            this.groupBox12.Location = new System.Drawing.Point(13, 366);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(743, 163);
+            this.groupBox12.TabIndex = 59;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Oil Flow - Coriolis";
             // 
-            // groupBox7
+            // checkBox_IOUsingOilCOMMPSI
             // 
-            this.groupBox7.Controls.Add(this.label34);
-            this.groupBox7.Controls.Add(this.checkBox__CasingPSIAlarmHighHigh);
-            this.groupBox7.Controls.Add(this.checkBox__CasingPSIAlarmHigh);
-            this.groupBox7.Controls.Add(this.checkBox_CasingPSIAlarmLow);
-            this.groupBox7.Controls.Add(this.checkBox_CasingPSIAlarmLowLow);
-            this.groupBox7.Controls.Add(this.checkBox_IOUseCasingPSIAI);
-            this.groupBox7.Controls.Add(this.comboBox_ModelCasingPSI);
-            this.groupBox7.Location = new System.Drawing.Point(13, 443);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(743, 100);
-            this.groupBox7.TabIndex = 40;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Casing Pressure";
+            this.checkBox_IOUsingOilCOMMPSI.AutoSize = true;
+            this.checkBox_IOUsingOilCOMMPSI.Checked = true;
+            this.checkBox_IOUsingOilCOMMPSI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingOilCOMMPSI.Location = new System.Drawing.Point(17, 138);
+            this.checkBox_IOUsingOilCOMMPSI.Name = "checkBox_IOUsingOilCOMMPSI";
+            this.checkBox_IOUsingOilCOMMPSI.Size = new System.Drawing.Size(109, 17);
+            this.checkBox_IOUsingOilCOMMPSI.TabIndex = 58;
+            this.checkBox_IOUsingOilCOMMPSI.Text = "[RS485] Pressure";
+            this.checkBox_IOUsingOilCOMMPSI.UseVisualStyleBackColor = true;
             // 
-            // checkBox_IOUseCasingPSIAI
+            // checkBox_IOUsingOilCOMMTemp
             // 
-            this.checkBox_IOUseCasingPSIAI.AutoSize = true;
-            this.checkBox_IOUseCasingPSIAI.Checked = true;
-            this.checkBox_IOUseCasingPSIAI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUseCasingPSIAI.Location = new System.Drawing.Point(14, 61);
-            this.checkBox_IOUseCasingPSIAI.Name = "checkBox_IOUseCasingPSIAI";
-            this.checkBox_IOUseCasingPSIAI.Size = new System.Drawing.Size(157, 17);
-            this.checkBox_IOUseCasingPSIAI.TabIndex = 35;
-            this.checkBox_IOUseCasingPSIAI.Text = "[AI(4-20mA)] Read Pressure";
-            this.checkBox_IOUseCasingPSIAI.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingOilCOMMTemp.AutoSize = true;
+            this.checkBox_IOUsingOilCOMMTemp.Checked = true;
+            this.checkBox_IOUsingOilCOMMTemp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingOilCOMMTemp.Location = new System.Drawing.Point(17, 115);
+            this.checkBox_IOUsingOilCOMMTemp.Name = "checkBox_IOUsingOilCOMMTemp";
+            this.checkBox_IOUsingOilCOMMTemp.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_IOUsingOilCOMMTemp.TabIndex = 57;
+            this.checkBox_IOUsingOilCOMMTemp.Text = "[RS485] Temperature";
+            this.checkBox_IOUsingOilCOMMTemp.UseVisualStyleBackColor = true;
             // 
-            // comboBox_ModelCasingPSI
+            // checkBox_AlarmOilDGHigh
             // 
-            this.comboBox_ModelCasingPSI.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelCasingPSI.FormattingEnabled = true;
-            this.comboBox_ModelCasingPSI.Location = new System.Drawing.Point(87, 19);
-            this.comboBox_ModelCasingPSI.Name = "comboBox_ModelCasingPSI";
-            this.comboBox_ModelCasingPSI.Size = new System.Drawing.Size(464, 21);
-            this.comboBox_ModelCasingPSI.TabIndex = 34;
+            this.checkBox_AlarmOilDGHigh.AutoSize = true;
+            this.checkBox_AlarmOilDGHigh.Checked = true;
+            this.checkBox_AlarmOilDGHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmOilDGHigh.Location = new System.Drawing.Point(460, 92);
+            this.checkBox_AlarmOilDGHigh.Name = "checkBox_AlarmOilDGHigh";
+            this.checkBox_AlarmOilDGHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_AlarmOilDGHigh.TabIndex = 56;
+            this.checkBox_AlarmOilDGHigh.Text = "[Alarm] High";
+            this.checkBox_AlarmOilDGHigh.UseVisualStyleBackColor = true;
             // 
-            // checkBox_DriveAlarmFailtoStart
+            // checkBox__AlarmOilDGLow
             // 
-            this.checkBox_DriveAlarmFailtoStart.AutoSize = true;
-            this.checkBox_DriveAlarmFailtoStart.Checked = true;
-            this.checkBox_DriveAlarmFailtoStart.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_DriveAlarmFailtoStart.Location = new System.Drawing.Point(252, 82);
-            this.checkBox_DriveAlarmFailtoStart.Name = "checkBox_DriveAlarmFailtoStart";
-            this.checkBox_DriveAlarmFailtoStart.Size = new System.Drawing.Size(114, 17);
-            this.checkBox_DriveAlarmFailtoStart.TabIndex = 37;
-            this.checkBox_DriveAlarmFailtoStart.Text = "[Alarm] Fail to Start";
-            this.checkBox_DriveAlarmFailtoStart.UseVisualStyleBackColor = true;
+            this.checkBox__AlarmOilDGLow.AutoSize = true;
+            this.checkBox__AlarmOilDGLow.Checked = true;
+            this.checkBox__AlarmOilDGLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox__AlarmOilDGLow.Location = new System.Drawing.Point(362, 92);
+            this.checkBox__AlarmOilDGLow.Name = "checkBox__AlarmOilDGLow";
+            this.checkBox__AlarmOilDGLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox__AlarmOilDGLow.TabIndex = 55;
+            this.checkBox__AlarmOilDGLow.Text = "[Alarm] Low";
+            this.checkBox__AlarmOilDGLow.UseVisualStyleBackColor = true;
             // 
-            // checkBox_MOVAlarmFailtoClose
+            // checkBox_AlarmOilDensityHigh
             // 
-            this.checkBox_MOVAlarmFailtoClose.AutoSize = true;
-            this.checkBox_MOVAlarmFailtoClose.Checked = true;
-            this.checkBox_MOVAlarmFailtoClose.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_MOVAlarmFailtoClose.Location = new System.Drawing.Point(252, 100);
-            this.checkBox_MOVAlarmFailtoClose.Name = "checkBox_MOVAlarmFailtoClose";
-            this.checkBox_MOVAlarmFailtoClose.Size = new System.Drawing.Size(118, 17);
-            this.checkBox_MOVAlarmFailtoClose.TabIndex = 40;
-            this.checkBox_MOVAlarmFailtoClose.Text = "[Alarm] Fail to Close";
-            this.checkBox_MOVAlarmFailtoClose.UseVisualStyleBackColor = true;
+            this.checkBox_AlarmOilDensityHigh.AutoSize = true;
+            this.checkBox_AlarmOilDensityHigh.Checked = true;
+            this.checkBox_AlarmOilDensityHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmOilDensityHigh.Location = new System.Drawing.Point(460, 69);
+            this.checkBox_AlarmOilDensityHigh.Name = "checkBox_AlarmOilDensityHigh";
+            this.checkBox_AlarmOilDensityHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_AlarmOilDensityHigh.TabIndex = 52;
+            this.checkBox_AlarmOilDensityHigh.Text = "[Alarm] High";
+            this.checkBox_AlarmOilDensityHigh.UseVisualStyleBackColor = true;
             // 
-            // checkBox_MOVAlarmFailtoOpen
+            // checkBox_AlarmOilDensityLow
             // 
-            this.checkBox_MOVAlarmFailtoOpen.AutoSize = true;
-            this.checkBox_MOVAlarmFailtoOpen.Checked = true;
-            this.checkBox_MOVAlarmFailtoOpen.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_MOVAlarmFailtoOpen.Location = new System.Drawing.Point(252, 77);
-            this.checkBox_MOVAlarmFailtoOpen.Name = "checkBox_MOVAlarmFailtoOpen";
-            this.checkBox_MOVAlarmFailtoOpen.Size = new System.Drawing.Size(118, 17);
-            this.checkBox_MOVAlarmFailtoOpen.TabIndex = 39;
-            this.checkBox_MOVAlarmFailtoOpen.Text = "[Alarm] Fail to Open";
-            this.checkBox_MOVAlarmFailtoOpen.UseVisualStyleBackColor = true;
+            this.checkBox_AlarmOilDensityLow.AutoSize = true;
+            this.checkBox_AlarmOilDensityLow.Checked = true;
+            this.checkBox_AlarmOilDensityLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmOilDensityLow.Location = new System.Drawing.Point(362, 69);
+            this.checkBox_AlarmOilDensityLow.Name = "checkBox_AlarmOilDensityLow";
+            this.checkBox_AlarmOilDensityLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_AlarmOilDensityLow.TabIndex = 51;
+            this.checkBox_AlarmOilDensityLow.Text = "[Alarm] Low";
+            this.checkBox_AlarmOilDensityLow.UseVisualStyleBackColor = true;
             // 
-            // checkBox_CasingPSIAlarmLowLow
+            // checkBox_IOUsingOilCOMMDG
             // 
-            this.checkBox_CasingPSIAlarmLowLow.AutoSize = true;
-            this.checkBox_CasingPSIAlarmLowLow.Checked = true;
-            this.checkBox_CasingPSIAlarmLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_CasingPSIAlarmLowLow.Location = new System.Drawing.Point(249, 61);
-            this.checkBox_CasingPSIAlarmLowLow.Name = "checkBox_CasingPSIAlarmLowLow";
-            this.checkBox_CasingPSIAlarmLowLow.Size = new System.Drawing.Size(101, 17);
-            this.checkBox_CasingPSIAlarmLowLow.TabIndex = 39;
-            this.checkBox_CasingPSIAlarmLowLow.Text = "[Alarm]Low Low";
-            this.checkBox_CasingPSIAlarmLowLow.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingOilCOMMDG.AutoSize = true;
+            this.checkBox_IOUsingOilCOMMDG.Checked = true;
+            this.checkBox_IOUsingOilCOMMDG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingOilCOMMDG.Location = new System.Drawing.Point(17, 92);
+            this.checkBox_IOUsingOilCOMMDG.Name = "checkBox_IOUsingOilCOMMDG";
+            this.checkBox_IOUsingOilCOMMDG.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_IOUsingOilCOMMDG.TabIndex = 49;
+            this.checkBox_IOUsingOilCOMMDG.Text = "[RS485] Drive Gain";
+            this.checkBox_IOUsingOilCOMMDG.UseVisualStyleBackColor = true;
             // 
-            // checkBox_CasingPSIAlarmLow
+            // checkBox_IOUsingOilCOMMDensity
             // 
-            this.checkBox_CasingPSIAlarmLow.AutoSize = true;
-            this.checkBox_CasingPSIAlarmLow.Checked = true;
-            this.checkBox_CasingPSIAlarmLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_CasingPSIAlarmLow.Location = new System.Drawing.Point(396, 61);
-            this.checkBox_CasingPSIAlarmLow.Name = "checkBox_CasingPSIAlarmLow";
-            this.checkBox_CasingPSIAlarmLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox_CasingPSIAlarmLow.TabIndex = 40;
-            this.checkBox_CasingPSIAlarmLow.Text = "[Alarm] Low";
-            this.checkBox_CasingPSIAlarmLow.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingOilCOMMDensity.AutoSize = true;
+            this.checkBox_IOUsingOilCOMMDensity.Checked = true;
+            this.checkBox_IOUsingOilCOMMDensity.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingOilCOMMDensity.Location = new System.Drawing.Point(17, 69);
+            this.checkBox_IOUsingOilCOMMDensity.Name = "checkBox_IOUsingOilCOMMDensity";
+            this.checkBox_IOUsingOilCOMMDensity.Size = new System.Drawing.Size(103, 17);
+            this.checkBox_IOUsingOilCOMMDensity.TabIndex = 48;
+            this.checkBox_IOUsingOilCOMMDensity.Text = "[RS485] Density";
+            this.checkBox_IOUsingOilCOMMDensity.UseVisualStyleBackColor = true;
             // 
-            // checkBox__CasingPSIAlarmHigh
+            // label38
             // 
-            this.checkBox__CasingPSIAlarmHigh.AutoSize = true;
-            this.checkBox__CasingPSIAlarmHigh.Checked = true;
-            this.checkBox__CasingPSIAlarmHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox__CasingPSIAlarmHigh.Location = new System.Drawing.Point(496, 61);
-            this.checkBox__CasingPSIAlarmHigh.Name = "checkBox__CasingPSIAlarmHigh";
-            this.checkBox__CasingPSIAlarmHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox__CasingPSIAlarmHigh.TabIndex = 41;
-            this.checkBox__CasingPSIAlarmHigh.Text = "[Alarm] High";
-            this.checkBox__CasingPSIAlarmHigh.UseVisualStyleBackColor = true;
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(14, 22);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(78, 13);
+            this.label38.TabIndex = 47;
+            this.label38.Text = "Choose Model:";
             // 
-            // checkBox__CasingPSIAlarmHighHigh
+            // checkBox_IOUsingOilCOMMMass
             // 
-            this.checkBox__CasingPSIAlarmHighHigh.AutoSize = true;
-            this.checkBox__CasingPSIAlarmHighHigh.Checked = true;
-            this.checkBox__CasingPSIAlarmHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox__CasingPSIAlarmHighHigh.Location = new System.Drawing.Point(601, 61);
-            this.checkBox__CasingPSIAlarmHighHigh.Name = "checkBox__CasingPSIAlarmHighHigh";
-            this.checkBox__CasingPSIAlarmHighHigh.Size = new System.Drawing.Size(108, 17);
-            this.checkBox__CasingPSIAlarmHighHigh.TabIndex = 42;
-            this.checkBox__CasingPSIAlarmHighHigh.Text = "[Alarm] High High";
-            this.checkBox__CasingPSIAlarmHighHigh.UseVisualStyleBackColor = true;
+            this.checkBox_IOUsingOilCOMMMass.AutoSize = true;
+            this.checkBox_IOUsingOilCOMMMass.Checked = true;
+            this.checkBox_IOUsingOilCOMMMass.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingOilCOMMMass.Location = new System.Drawing.Point(17, 46);
+            this.checkBox_IOUsingOilCOMMMass.Name = "checkBox_IOUsingOilCOMMMass";
+            this.checkBox_IOUsingOilCOMMMass.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_IOUsingOilCOMMMass.TabIndex = 44;
+            this.checkBox_IOUsingOilCOMMMass.Text = "[RS485] Mass Flow";
+            this.checkBox_IOUsingOilCOMMMass.UseVisualStyleBackColor = true;
             // 
-            // checkBox_TubingPSIAlarmHighHigh
+            // comboBox_ModelOilFLow
             // 
-            this.checkBox_TubingPSIAlarmHighHigh.AutoSize = true;
-            this.checkBox_TubingPSIAlarmHighHigh.Checked = true;
-            this.checkBox_TubingPSIAlarmHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_TubingPSIAlarmHighHigh.Location = new System.Drawing.Point(604, 55);
-            this.checkBox_TubingPSIAlarmHighHigh.Name = "checkBox_TubingPSIAlarmHighHigh";
-            this.checkBox_TubingPSIAlarmHighHigh.Size = new System.Drawing.Size(108, 17);
-            this.checkBox_TubingPSIAlarmHighHigh.TabIndex = 46;
-            this.checkBox_TubingPSIAlarmHighHigh.Text = "[Alarm] High High";
-            this.checkBox_TubingPSIAlarmHighHigh.UseVisualStyleBackColor = true;
+            this.comboBox_ModelOilFLow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelOilFLow.FormattingEnabled = true;
+            this.comboBox_ModelOilFLow.Location = new System.Drawing.Point(98, 19);
+            this.comboBox_ModelOilFLow.Name = "comboBox_ModelOilFLow";
+            this.comboBox_ModelOilFLow.Size = new System.Drawing.Size(453, 21);
+            this.comboBox_ModelOilFLow.TabIndex = 34;
             // 
-            // checkBox_TubingPSIAlarmHigh
+            // groupBox11
             // 
-            this.checkBox_TubingPSIAlarmHigh.AutoSize = true;
-            this.checkBox_TubingPSIAlarmHigh.Checked = true;
-            this.checkBox_TubingPSIAlarmHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_TubingPSIAlarmHigh.Location = new System.Drawing.Point(499, 55);
-            this.checkBox_TubingPSIAlarmHigh.Name = "checkBox_TubingPSIAlarmHigh";
-            this.checkBox_TubingPSIAlarmHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox_TubingPSIAlarmHigh.TabIndex = 45;
-            this.checkBox_TubingPSIAlarmHigh.Text = "[Alarm] High";
-            this.checkBox_TubingPSIAlarmHigh.UseVisualStyleBackColor = true;
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempHighHigh);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempHigh);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempLow);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempLowLow);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPHighHigh);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPHigh);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPLow);
+            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPLowLow);
+            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMTemp);
+            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMSP);
+            this.groupBox11.Controls.Add(this.label35);
+            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMDP);
+            this.groupBox11.Controls.Add(this.comboBox_ModelGasFlow);
+            this.groupBox11.Location = new System.Drawing.Point(13, 224);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(743, 126);
+            this.groupBox11.TabIndex = 46;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Gas Flow - XMV";
             // 
-            // checkBox_TubingPSIAlarmLow
+            // checkBox_AlarmGasTempHighHigh
             // 
-            this.checkBox_TubingPSIAlarmLow.AutoSize = true;
-            this.checkBox_TubingPSIAlarmLow.Checked = true;
-            this.checkBox_TubingPSIAlarmLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_TubingPSIAlarmLow.Location = new System.Drawing.Point(399, 55);
-            this.checkBox_TubingPSIAlarmLow.Name = "checkBox_TubingPSIAlarmLow";
-            this.checkBox_TubingPSIAlarmLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox_TubingPSIAlarmLow.TabIndex = 44;
-            this.checkBox_TubingPSIAlarmLow.Text = "[Alarm] Low";
-            this.checkBox_TubingPSIAlarmLow.UseVisualStyleBackColor = true;
+            this.checkBox_AlarmGasTempHighHigh.AutoSize = true;
+            this.checkBox_AlarmGasTempHighHigh.Checked = true;
+            this.checkBox_AlarmGasTempHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasTempHighHigh.Location = new System.Drawing.Point(563, 92);
+            this.checkBox_AlarmGasTempHighHigh.Name = "checkBox_AlarmGasTempHighHigh";
+            this.checkBox_AlarmGasTempHighHigh.Size = new System.Drawing.Size(108, 17);
+            this.checkBox_AlarmGasTempHighHigh.TabIndex = 57;
+            this.checkBox_AlarmGasTempHighHigh.Text = "[Alarm] High High";
+            this.checkBox_AlarmGasTempHighHigh.UseVisualStyleBackColor = true;
             // 
-            // checkBox_TubingPSIAlarmLowLow
+            // checkBox_AlarmGasTempHigh
             // 
-            this.checkBox_TubingPSIAlarmLowLow.AutoSize = true;
-            this.checkBox_TubingPSIAlarmLowLow.Checked = true;
-            this.checkBox_TubingPSIAlarmLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_TubingPSIAlarmLowLow.Location = new System.Drawing.Point(252, 55);
-            this.checkBox_TubingPSIAlarmLowLow.Name = "checkBox_TubingPSIAlarmLowLow";
-            this.checkBox_TubingPSIAlarmLowLow.Size = new System.Drawing.Size(101, 17);
-            this.checkBox_TubingPSIAlarmLowLow.TabIndex = 43;
-            this.checkBox_TubingPSIAlarmLowLow.Text = "[Alarm]Low Low";
-            this.checkBox_TubingPSIAlarmLowLow.UseVisualStyleBackColor = true;
+            this.checkBox_AlarmGasTempHigh.AutoSize = true;
+            this.checkBox_AlarmGasTempHigh.Checked = true;
+            this.checkBox_AlarmGasTempHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasTempHigh.Location = new System.Drawing.Point(460, 92);
+            this.checkBox_AlarmGasTempHigh.Name = "checkBox_AlarmGasTempHigh";
+            this.checkBox_AlarmGasTempHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_AlarmGasTempHigh.TabIndex = 56;
+            this.checkBox_AlarmGasTempHigh.Text = "[Alarm] High";
+            this.checkBox_AlarmGasTempHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasTempLow
+            // 
+            this.checkBox_AlarmGasTempLow.AutoSize = true;
+            this.checkBox_AlarmGasTempLow.Checked = true;
+            this.checkBox_AlarmGasTempLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasTempLow.Location = new System.Drawing.Point(362, 92);
+            this.checkBox_AlarmGasTempLow.Name = "checkBox_AlarmGasTempLow";
+            this.checkBox_AlarmGasTempLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_AlarmGasTempLow.TabIndex = 55;
+            this.checkBox_AlarmGasTempLow.Text = "[Alarm] Low";
+            this.checkBox_AlarmGasTempLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasTempLowLow
+            // 
+            this.checkBox_AlarmGasTempLowLow.AutoSize = true;
+            this.checkBox_AlarmGasTempLowLow.Checked = true;
+            this.checkBox_AlarmGasTempLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasTempLowLow.Location = new System.Drawing.Point(252, 92);
+            this.checkBox_AlarmGasTempLowLow.Name = "checkBox_AlarmGasTempLowLow";
+            this.checkBox_AlarmGasTempLowLow.Size = new System.Drawing.Size(104, 17);
+            this.checkBox_AlarmGasTempLowLow.TabIndex = 54;
+            this.checkBox_AlarmGasTempLowLow.Text = "[Alarm] Low Low";
+            this.checkBox_AlarmGasTempLowLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasSPHighHigh
+            // 
+            this.checkBox_AlarmGasSPHighHigh.AutoSize = true;
+            this.checkBox_AlarmGasSPHighHigh.Checked = true;
+            this.checkBox_AlarmGasSPHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasSPHighHigh.Location = new System.Drawing.Point(563, 69);
+            this.checkBox_AlarmGasSPHighHigh.Name = "checkBox_AlarmGasSPHighHigh";
+            this.checkBox_AlarmGasSPHighHigh.Size = new System.Drawing.Size(108, 17);
+            this.checkBox_AlarmGasSPHighHigh.TabIndex = 53;
+            this.checkBox_AlarmGasSPHighHigh.Text = "[Alarm] High High";
+            this.checkBox_AlarmGasSPHighHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasSPHigh
+            // 
+            this.checkBox_AlarmGasSPHigh.AutoSize = true;
+            this.checkBox_AlarmGasSPHigh.Checked = true;
+            this.checkBox_AlarmGasSPHigh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasSPHigh.Location = new System.Drawing.Point(460, 69);
+            this.checkBox_AlarmGasSPHigh.Name = "checkBox_AlarmGasSPHigh";
+            this.checkBox_AlarmGasSPHigh.Size = new System.Drawing.Size(83, 17);
+            this.checkBox_AlarmGasSPHigh.TabIndex = 52;
+            this.checkBox_AlarmGasSPHigh.Text = "[Alarm] High";
+            this.checkBox_AlarmGasSPHigh.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasSPLow
+            // 
+            this.checkBox_AlarmGasSPLow.AutoSize = true;
+            this.checkBox_AlarmGasSPLow.Checked = true;
+            this.checkBox_AlarmGasSPLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasSPLow.Location = new System.Drawing.Point(362, 69);
+            this.checkBox_AlarmGasSPLow.Name = "checkBox_AlarmGasSPLow";
+            this.checkBox_AlarmGasSPLow.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_AlarmGasSPLow.TabIndex = 51;
+            this.checkBox_AlarmGasSPLow.Text = "[Alarm] Low";
+            this.checkBox_AlarmGasSPLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmGasSPLowLow
+            // 
+            this.checkBox_AlarmGasSPLowLow.AutoSize = true;
+            this.checkBox_AlarmGasSPLowLow.Checked = true;
+            this.checkBox_AlarmGasSPLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmGasSPLowLow.Location = new System.Drawing.Point(252, 69);
+            this.checkBox_AlarmGasSPLowLow.Name = "checkBox_AlarmGasSPLowLow";
+            this.checkBox_AlarmGasSPLowLow.Size = new System.Drawing.Size(104, 17);
+            this.checkBox_AlarmGasSPLowLow.TabIndex = 50;
+            this.checkBox_AlarmGasSPLowLow.Text = "[Alarm] Low Low";
+            this.checkBox_AlarmGasSPLowLow.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_IOUsingGasCOMMTemp
+            // 
+            this.checkBox_IOUsingGasCOMMTemp.AutoSize = true;
+            this.checkBox_IOUsingGasCOMMTemp.Checked = true;
+            this.checkBox_IOUsingGasCOMMTemp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingGasCOMMTemp.Location = new System.Drawing.Point(17, 92);
+            this.checkBox_IOUsingGasCOMMTemp.Name = "checkBox_IOUsingGasCOMMTemp";
+            this.checkBox_IOUsingGasCOMMTemp.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_IOUsingGasCOMMTemp.TabIndex = 49;
+            this.checkBox_IOUsingGasCOMMTemp.Text = "[RS485] Temperature";
+            this.checkBox_IOUsingGasCOMMTemp.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_IOUsingGasCOMMSP
+            // 
+            this.checkBox_IOUsingGasCOMMSP.AutoSize = true;
+            this.checkBox_IOUsingGasCOMMSP.Checked = true;
+            this.checkBox_IOUsingGasCOMMSP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingGasCOMMSP.Location = new System.Drawing.Point(17, 69);
+            this.checkBox_IOUsingGasCOMMSP.Name = "checkBox_IOUsingGasCOMMSP";
+            this.checkBox_IOUsingGasCOMMSP.Size = new System.Drawing.Size(115, 17);
+            this.checkBox_IOUsingGasCOMMSP.TabIndex = 48;
+            this.checkBox_IOUsingGasCOMMSP.Text = "[RS485] Static PSI";
+            this.checkBox_IOUsingGasCOMMSP.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(14, 22);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(78, 13);
+            this.label35.TabIndex = 47;
+            this.label35.Text = "Choose Model:";
+            // 
+            // checkBox_IOUsingGasCOMMDP
+            // 
+            this.checkBox_IOUsingGasCOMMDP.AutoSize = true;
+            this.checkBox_IOUsingGasCOMMDP.Checked = true;
+            this.checkBox_IOUsingGasCOMMDP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingGasCOMMDP.Location = new System.Drawing.Point(17, 46);
+            this.checkBox_IOUsingGasCOMMDP.Name = "checkBox_IOUsingGasCOMMDP";
+            this.checkBox_IOUsingGasCOMMDP.Size = new System.Drawing.Size(138, 17);
+            this.checkBox_IOUsingGasCOMMDP.TabIndex = 44;
+            this.checkBox_IOUsingGasCOMMDP.Text = "[RS485] Differential PSI";
+            this.checkBox_IOUsingGasCOMMDP.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ModelGasFlow
+            // 
+            this.comboBox_ModelGasFlow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelGasFlow.FormattingEnabled = true;
+            this.comboBox_ModelGasFlow.Location = new System.Drawing.Point(98, 19);
+            this.comboBox_ModelGasFlow.Name = "comboBox_ModelGasFlow";
+            this.comboBox_ModelGasFlow.Size = new System.Drawing.Size(453, 21);
+            this.comboBox_ModelGasFlow.TabIndex = 34;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label37);
+            this.groupBox9.Controls.Add(this.checkBox_IOUsingLSLLDI);
+            this.groupBox9.Controls.Add(this.checkBox_AlarmLSLL);
+            this.groupBox9.Controls.Add(this.comboBox_ModelLSLL);
+            this.groupBox9.Location = new System.Drawing.Point(13, 144);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(743, 74);
+            this.groupBox9.TabIndex = 40;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Level Switch Low Low";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(14, 22);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(78, 13);
+            this.label37.TabIndex = 48;
+            this.label37.Text = "Choose Model:";
+            // 
+            // checkBox_IOUsingLSLLDI
+            // 
+            this.checkBox_IOUsingLSLLDI.AutoSize = true;
+            this.checkBox_IOUsingLSLLDI.Checked = true;
+            this.checkBox_IOUsingLSLLDI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingLSLLDI.Location = new System.Drawing.Point(17, 46);
+            this.checkBox_IOUsingLSLLDI.Name = "checkBox_IOUsingLSLLDI";
+            this.checkBox_IOUsingLSLLDI.Size = new System.Drawing.Size(196, 17);
+            this.checkBox_IOUsingLSLLDI.TabIndex = 44;
+            this.checkBox_IOUsingLSLLDI.Text = "[DI(Dry Contact)] Read Level Status";
+            this.checkBox_IOUsingLSLLDI.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmLSLL
+            // 
+            this.checkBox_AlarmLSLL.AutoSize = true;
+            this.checkBox_AlarmLSLL.Checked = true;
+            this.checkBox_AlarmLSLL.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmLSLL.Location = new System.Drawing.Point(566, 46);
+            this.checkBox_AlarmLSLL.Name = "checkBox_AlarmLSLL";
+            this.checkBox_AlarmLSLL.Size = new System.Drawing.Size(105, 17);
+            this.checkBox_AlarmLSLL.TabIndex = 45;
+            this.checkBox_AlarmLSLL.Text = "[Alarm]High High";
+            this.checkBox_AlarmLSLL.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ModelLSLL
+            // 
+            this.comboBox_ModelLSLL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelLSLL.FormattingEnabled = true;
+            this.comboBox_ModelLSLL.Location = new System.Drawing.Point(98, 19);
+            this.comboBox_ModelLSLL.Name = "comboBox_ModelLSLL";
+            this.comboBox_ModelLSLL.Size = new System.Drawing.Size(453, 21);
+            this.comboBox_ModelLSLL.TabIndex = 34;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label36);
+            this.groupBox10.Controls.Add(this.checkBox_IOUsingLSHHDI);
+            this.groupBox10.Controls.Add(this.checkBox_AlarmLSHH);
+            this.groupBox10.Controls.Add(this.comboBox_ModelLSHH);
+            this.groupBox10.Location = new System.Drawing.Point(13, 62);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(743, 76);
+            this.groupBox10.TabIndex = 39;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Level Switch High High";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(14, 22);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(78, 13);
+            this.label36.TabIndex = 48;
+            this.label36.Text = "Choose Model:";
+            // 
+            // checkBox_IOUsingLSHHDI
+            // 
+            this.checkBox_IOUsingLSHHDI.AutoSize = true;
+            this.checkBox_IOUsingLSHHDI.Checked = true;
+            this.checkBox_IOUsingLSHHDI.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_IOUsingLSHHDI.Location = new System.Drawing.Point(17, 46);
+            this.checkBox_IOUsingLSHHDI.Name = "checkBox_IOUsingLSHHDI";
+            this.checkBox_IOUsingLSHHDI.Size = new System.Drawing.Size(196, 17);
+            this.checkBox_IOUsingLSHHDI.TabIndex = 35;
+            this.checkBox_IOUsingLSHHDI.Text = "[DI(Dry Contact)] Read Level Status";
+            this.checkBox_IOUsingLSHHDI.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_AlarmLSHH
+            // 
+            this.checkBox_AlarmLSHH.AutoSize = true;
+            this.checkBox_AlarmLSHH.Checked = true;
+            this.checkBox_AlarmLSHH.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_AlarmLSHH.Location = new System.Drawing.Point(563, 46);
+            this.checkBox_AlarmLSHH.Name = "checkBox_AlarmLSHH";
+            this.checkBox_AlarmLSHH.Size = new System.Drawing.Size(105, 17);
+            this.checkBox_AlarmLSHH.TabIndex = 43;
+            this.checkBox_AlarmLSHH.Text = "[Alarm]High High";
+            this.checkBox_AlarmLSHH.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ModelLSHH
+            // 
+            this.comboBox_ModelLSHH.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_ModelLSHH.FormattingEnabled = true;
+            this.comboBox_ModelLSHH.Location = new System.Drawing.Point(98, 19);
+            this.comboBox_ModelLSHH.Name = "comboBox_ModelLSHH";
+            this.comboBox_ModelLSHH.Size = new System.Drawing.Size(453, 21);
+            this.comboBox_ModelLSHH.TabIndex = 34;
+            // 
+            // checkBox_AllTreatersSame
+            // 
+            this.checkBox_AllTreatersSame.AutoSize = true;
+            this.checkBox_AllTreatersSame.Location = new System.Drawing.Point(262, 27);
+            this.checkBox_AllTreatersSame.Name = "checkBox_AllTreatersSame";
+            this.checkBox_AllTreatersSame.Size = new System.Drawing.Size(151, 17);
+            this.checkBox_AllTreatersSame.TabIndex = 33;
+            this.checkBox_AllTreatersSame.Text = "All Treaters Same Devices";
+            this.checkBox_AllTreatersSame.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(219, 30);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(26, 13);
+            this.label29.TabIndex = 32;
+            this.label29.Text = "OR ";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 30);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(77, 13);
+            this.label30.TabIndex = 19;
+            this.label30.Text = "Select Treater:";
+            // 
+            // comboBox_SelectTreater
+            // 
+            this.comboBox_SelectTreater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_SelectTreater.FormattingEnabled = true;
+            this.comboBox_SelectTreater.Items.AddRange(new object[] {
+            "Treater 1",
+            "Treater 2",
+            "Treater 3",
+            "Treater 4",
+            "Treater 5",
+            "Treater 6",
+            "Treater 7",
+            "Treater 8"});
+            this.comboBox_SelectTreater.Location = new System.Drawing.Point(89, 25);
+            this.comboBox_SelectTreater.Name = "comboBox_SelectTreater";
+            this.comboBox_SelectTreater.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_SelectTreater.TabIndex = 31;
             // 
             // textBox_NameTreater8
             // 
@@ -1586,1184 +2065,85 @@ namespace ExcelPaster
             this.label28.TabIndex = 18;
             this.label28.Text = "Treater 01 Name:";
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.groupBox13);
-            this.groupBox8.Controls.Add(this.groupBox12);
-            this.groupBox8.Controls.Add(this.groupBox11);
-            this.groupBox8.Controls.Add(this.groupBox9);
-            this.groupBox8.Controls.Add(this.groupBox10);
-            this.groupBox8.Controls.Add(this.checkBox_AllTreatersSame);
-            this.groupBox8.Controls.Add(this.label29);
-            this.groupBox8.Controls.Add(this.label30);
-            this.groupBox8.Controls.Add(this.comboBox_SelectTreater);
-            this.groupBox8.Location = new System.Drawing.Point(12, 233);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(937, 683);
-            this.groupBox8.TabIndex = 34;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Treater Devices";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.label37);
-            this.groupBox9.Controls.Add(this.checkBox_IOUsingLSLLDI);
-            this.groupBox9.Controls.Add(this.checkBox_AlarmLSLL);
-            this.groupBox9.Controls.Add(this.comboBox_ModelLSLL);
-            this.groupBox9.Location = new System.Drawing.Point(13, 144);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(743, 74);
-            this.groupBox9.TabIndex = 40;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Level Switch Low Low";
-            // 
-            // comboBox_ModelLSLL
-            // 
-            this.comboBox_ModelLSLL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelLSLL.FormattingEnabled = true;
-            this.comboBox_ModelLSLL.Location = new System.Drawing.Point(98, 19);
-            this.comboBox_ModelLSLL.Name = "comboBox_ModelLSLL";
-            this.comboBox_ModelLSLL.Size = new System.Drawing.Size(453, 21);
-            this.comboBox_ModelLSLL.TabIndex = 34;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.label36);
-            this.groupBox10.Controls.Add(this.checkBox_IOUsingLSHHDI);
-            this.groupBox10.Controls.Add(this.checkBox_AlarmLSHH);
-            this.groupBox10.Controls.Add(this.comboBox_ModelLSHH);
-            this.groupBox10.Location = new System.Drawing.Point(13, 62);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(743, 76);
-            this.groupBox10.TabIndex = 39;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Level Switch High High";
-            // 
-            // checkBox_IOUsingLSHHDI
-            // 
-            this.checkBox_IOUsingLSHHDI.AutoSize = true;
-            this.checkBox_IOUsingLSHHDI.Checked = true;
-            this.checkBox_IOUsingLSHHDI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingLSHHDI.Location = new System.Drawing.Point(17, 46);
-            this.checkBox_IOUsingLSHHDI.Name = "checkBox_IOUsingLSHHDI";
-            this.checkBox_IOUsingLSHHDI.Size = new System.Drawing.Size(196, 17);
-            this.checkBox_IOUsingLSHHDI.TabIndex = 35;
-            this.checkBox_IOUsingLSHHDI.Text = "[DI(Dry Contact)] Read Level Status";
-            this.checkBox_IOUsingLSHHDI.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmLSHH
-            // 
-            this.checkBox_AlarmLSHH.AutoSize = true;
-            this.checkBox_AlarmLSHH.Checked = true;
-            this.checkBox_AlarmLSHH.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmLSHH.Location = new System.Drawing.Point(563, 46);
-            this.checkBox_AlarmLSHH.Name = "checkBox_AlarmLSHH";
-            this.checkBox_AlarmLSHH.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_AlarmLSHH.TabIndex = 43;
-            this.checkBox_AlarmLSHH.Text = "[Alarm]High High";
-            this.checkBox_AlarmLSHH.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_ModelLSHH
-            // 
-            this.comboBox_ModelLSHH.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelLSHH.FormattingEnabled = true;
-            this.comboBox_ModelLSHH.Location = new System.Drawing.Point(98, 19);
-            this.comboBox_ModelLSHH.Name = "comboBox_ModelLSHH";
-            this.comboBox_ModelLSHH.Size = new System.Drawing.Size(453, 21);
-            this.comboBox_ModelLSHH.TabIndex = 34;
-            // 
-            // checkBox_AllTreatersSame
-            // 
-            this.checkBox_AllTreatersSame.AutoSize = true;
-            this.checkBox_AllTreatersSame.Location = new System.Drawing.Point(262, 27);
-            this.checkBox_AllTreatersSame.Name = "checkBox_AllTreatersSame";
-            this.checkBox_AllTreatersSame.Size = new System.Drawing.Size(151, 17);
-            this.checkBox_AllTreatersSame.TabIndex = 33;
-            this.checkBox_AllTreatersSame.Text = "All Treaters Same Devices";
-            this.checkBox_AllTreatersSame.UseVisualStyleBackColor = true;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(219, 30);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(26, 13);
-            this.label29.TabIndex = 32;
-            this.label29.Text = "OR ";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 30);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(77, 13);
-            this.label30.TabIndex = 19;
-            this.label30.Text = "Select Treater:";
-            // 
-            // comboBox_SelectTreater
-            // 
-            this.comboBox_SelectTreater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_SelectTreater.FormattingEnabled = true;
-            this.comboBox_SelectTreater.Items.AddRange(new object[] {
-            "Treater 1",
-            "Treater 2",
-            "Treater 3",
-            "Treater 4",
-            "Treater 5",
-            "Treater 6",
-            "Treater 7",
-            "Treater 8"});
-            this.comboBox_SelectTreater.Location = new System.Drawing.Point(89, 25);
-            this.comboBox_SelectTreater.Name = "comboBox_SelectTreater";
-            this.comboBox_SelectTreater.Size = new System.Drawing.Size(121, 21);
-            this.comboBox_SelectTreater.TabIndex = 31;
-            // 
-            // checkBox_IOUsingLSLLDI
-            // 
-            this.checkBox_IOUsingLSLLDI.AutoSize = true;
-            this.checkBox_IOUsingLSLLDI.Checked = true;
-            this.checkBox_IOUsingLSLLDI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingLSLLDI.Location = new System.Drawing.Point(17, 46);
-            this.checkBox_IOUsingLSLLDI.Name = "checkBox_IOUsingLSLLDI";
-            this.checkBox_IOUsingLSLLDI.Size = new System.Drawing.Size(196, 17);
-            this.checkBox_IOUsingLSLLDI.TabIndex = 44;
-            this.checkBox_IOUsingLSLLDI.Text = "[DI(Dry Contact)] Read Level Status";
-            this.checkBox_IOUsingLSLLDI.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmLSLL
-            // 
-            this.checkBox_AlarmLSLL.AutoSize = true;
-            this.checkBox_AlarmLSLL.Checked = true;
-            this.checkBox_AlarmLSLL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmLSLL.Location = new System.Drawing.Point(566, 46);
-            this.checkBox_AlarmLSLL.Name = "checkBox_AlarmLSLL";
-            this.checkBox_AlarmLSLL.Size = new System.Drawing.Size(105, 17);
-            this.checkBox_AlarmLSLL.TabIndex = 45;
-            this.checkBox_AlarmLSLL.Text = "[Alarm]High High";
-            this.checkBox_AlarmLSLL.UseVisualStyleBackColor = true;
-            // 
-            // button_SaveWell
-            // 
-            this.button_SaveWell.Location = new System.Drawing.Point(769, 23);
-            this.button_SaveWell.Name = "button_SaveWell";
-            this.button_SaveWell.Size = new System.Drawing.Size(148, 23);
-            this.button_SaveWell.TabIndex = 41;
-            this.button_SaveWell.Text = "Save Well";
-            this.button_SaveWell.UseVisualStyleBackColor = true;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempHighHigh);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempHigh);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempLow);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasTempLowLow);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPHighHigh);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPHigh);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPLow);
-            this.groupBox11.Controls.Add(this.checkBox_AlarmGasSPLowLow);
-            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMTemp);
-            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMSP);
-            this.groupBox11.Controls.Add(this.label35);
-            this.groupBox11.Controls.Add(this.checkBox_IOUsingGasCOMMDP);
-            this.groupBox11.Controls.Add(this.comboBox_ModelGasFlow);
-            this.groupBox11.Location = new System.Drawing.Point(13, 224);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(743, 126);
-            this.groupBox11.TabIndex = 46;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Gas Flow - XMV";
-            // 
-            // checkBox_IOUsingGasCOMMDP
-            // 
-            this.checkBox_IOUsingGasCOMMDP.AutoSize = true;
-            this.checkBox_IOUsingGasCOMMDP.Checked = true;
-            this.checkBox_IOUsingGasCOMMDP.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingGasCOMMDP.Location = new System.Drawing.Point(17, 46);
-            this.checkBox_IOUsingGasCOMMDP.Name = "checkBox_IOUsingGasCOMMDP";
-            this.checkBox_IOUsingGasCOMMDP.Size = new System.Drawing.Size(138, 17);
-            this.checkBox_IOUsingGasCOMMDP.TabIndex = 44;
-            this.checkBox_IOUsingGasCOMMDP.Text = "[RS485] Differential PSI";
-            this.checkBox_IOUsingGasCOMMDP.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_ModelGasFlow
-            // 
-            this.comboBox_ModelGasFlow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelGasFlow.FormattingEnabled = true;
-            this.comboBox_ModelGasFlow.Location = new System.Drawing.Point(98, 19);
-            this.comboBox_ModelGasFlow.Name = "comboBox_ModelGasFlow";
-            this.comboBox_ModelGasFlow.Size = new System.Drawing.Size(453, 21);
-            this.comboBox_ModelGasFlow.TabIndex = 34;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 22);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(78, 13);
-            this.label31.TabIndex = 19;
-            this.label31.Text = "Choose Model:";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 17);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(78, 13);
-            this.label32.TabIndex = 38;
-            this.label32.Text = "Choose Model:";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(6, 22);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(78, 13);
-            this.label33.TabIndex = 41;
-            this.label33.Text = "Choose Model:";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(3, 22);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(78, 13);
-            this.label34.TabIndex = 47;
-            this.label34.Text = "Choose Model:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(14, 22);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(78, 13);
-            this.label35.TabIndex = 47;
-            this.label35.Text = "Choose Model:";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(14, 22);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(78, 13);
-            this.label36.TabIndex = 48;
-            this.label36.Text = "Choose Model:";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(14, 22);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(78, 13);
-            this.label37.TabIndex = 48;
-            this.label37.Text = "Choose Model:";
-            // 
-            // checkBox_IOUsingGasCOMMSP
-            // 
-            this.checkBox_IOUsingGasCOMMSP.AutoSize = true;
-            this.checkBox_IOUsingGasCOMMSP.Checked = true;
-            this.checkBox_IOUsingGasCOMMSP.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingGasCOMMSP.Location = new System.Drawing.Point(17, 69);
-            this.checkBox_IOUsingGasCOMMSP.Name = "checkBox_IOUsingGasCOMMSP";
-            this.checkBox_IOUsingGasCOMMSP.Size = new System.Drawing.Size(115, 17);
-            this.checkBox_IOUsingGasCOMMSP.TabIndex = 48;
-            this.checkBox_IOUsingGasCOMMSP.Text = "[RS485] Static PSI";
-            this.checkBox_IOUsingGasCOMMSP.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_IOUsingGasCOMMTemp
-            // 
-            this.checkBox_IOUsingGasCOMMTemp.AutoSize = true;
-            this.checkBox_IOUsingGasCOMMTemp.Checked = true;
-            this.checkBox_IOUsingGasCOMMTemp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingGasCOMMTemp.Location = new System.Drawing.Point(17, 92);
-            this.checkBox_IOUsingGasCOMMTemp.Name = "checkBox_IOUsingGasCOMMTemp";
-            this.checkBox_IOUsingGasCOMMTemp.Size = new System.Drawing.Size(128, 17);
-            this.checkBox_IOUsingGasCOMMTemp.TabIndex = 49;
-            this.checkBox_IOUsingGasCOMMTemp.Text = "[RS485] Temperature";
-            this.checkBox_IOUsingGasCOMMTemp.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasSPLowLow
-            // 
-            this.checkBox_AlarmGasSPLowLow.AutoSize = true;
-            this.checkBox_AlarmGasSPLowLow.Checked = true;
-            this.checkBox_AlarmGasSPLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasSPLowLow.Location = new System.Drawing.Point(252, 69);
-            this.checkBox_AlarmGasSPLowLow.Name = "checkBox_AlarmGasSPLowLow";
-            this.checkBox_AlarmGasSPLowLow.Size = new System.Drawing.Size(104, 17);
-            this.checkBox_AlarmGasSPLowLow.TabIndex = 50;
-            this.checkBox_AlarmGasSPLowLow.Text = "[Alarm] Low Low";
-            this.checkBox_AlarmGasSPLowLow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasSPLow
-            // 
-            this.checkBox_AlarmGasSPLow.AutoSize = true;
-            this.checkBox_AlarmGasSPLow.Checked = true;
-            this.checkBox_AlarmGasSPLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasSPLow.Location = new System.Drawing.Point(362, 69);
-            this.checkBox_AlarmGasSPLow.Name = "checkBox_AlarmGasSPLow";
-            this.checkBox_AlarmGasSPLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox_AlarmGasSPLow.TabIndex = 51;
-            this.checkBox_AlarmGasSPLow.Text = "[Alarm] Low";
-            this.checkBox_AlarmGasSPLow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasSPHigh
-            // 
-            this.checkBox_AlarmGasSPHigh.AutoSize = true;
-            this.checkBox_AlarmGasSPHigh.Checked = true;
-            this.checkBox_AlarmGasSPHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasSPHigh.Location = new System.Drawing.Point(460, 69);
-            this.checkBox_AlarmGasSPHigh.Name = "checkBox_AlarmGasSPHigh";
-            this.checkBox_AlarmGasSPHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox_AlarmGasSPHigh.TabIndex = 52;
-            this.checkBox_AlarmGasSPHigh.Text = "[Alarm] High";
-            this.checkBox_AlarmGasSPHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasSPHighHigh
-            // 
-            this.checkBox_AlarmGasSPHighHigh.AutoSize = true;
-            this.checkBox_AlarmGasSPHighHigh.Checked = true;
-            this.checkBox_AlarmGasSPHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasSPHighHigh.Location = new System.Drawing.Point(563, 69);
-            this.checkBox_AlarmGasSPHighHigh.Name = "checkBox_AlarmGasSPHighHigh";
-            this.checkBox_AlarmGasSPHighHigh.Size = new System.Drawing.Size(108, 17);
-            this.checkBox_AlarmGasSPHighHigh.TabIndex = 53;
-            this.checkBox_AlarmGasSPHighHigh.Text = "[Alarm] High High";
-            this.checkBox_AlarmGasSPHighHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasTempHighHigh
-            // 
-            this.checkBox_AlarmGasTempHighHigh.AutoSize = true;
-            this.checkBox_AlarmGasTempHighHigh.Checked = true;
-            this.checkBox_AlarmGasTempHighHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasTempHighHigh.Location = new System.Drawing.Point(563, 92);
-            this.checkBox_AlarmGasTempHighHigh.Name = "checkBox_AlarmGasTempHighHigh";
-            this.checkBox_AlarmGasTempHighHigh.Size = new System.Drawing.Size(108, 17);
-            this.checkBox_AlarmGasTempHighHigh.TabIndex = 57;
-            this.checkBox_AlarmGasTempHighHigh.Text = "[Alarm] High High";
-            this.checkBox_AlarmGasTempHighHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasTempHigh
-            // 
-            this.checkBox_AlarmGasTempHigh.AutoSize = true;
-            this.checkBox_AlarmGasTempHigh.Checked = true;
-            this.checkBox_AlarmGasTempHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasTempHigh.Location = new System.Drawing.Point(460, 92);
-            this.checkBox_AlarmGasTempHigh.Name = "checkBox_AlarmGasTempHigh";
-            this.checkBox_AlarmGasTempHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox_AlarmGasTempHigh.TabIndex = 56;
-            this.checkBox_AlarmGasTempHigh.Text = "[Alarm] High";
-            this.checkBox_AlarmGasTempHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasTempLow
-            // 
-            this.checkBox_AlarmGasTempLow.AutoSize = true;
-            this.checkBox_AlarmGasTempLow.Checked = true;
-            this.checkBox_AlarmGasTempLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasTempLow.Location = new System.Drawing.Point(362, 92);
-            this.checkBox_AlarmGasTempLow.Name = "checkBox_AlarmGasTempLow";
-            this.checkBox_AlarmGasTempLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox_AlarmGasTempLow.TabIndex = 55;
-            this.checkBox_AlarmGasTempLow.Text = "[Alarm] Low";
-            this.checkBox_AlarmGasTempLow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmGasTempLowLow
-            // 
-            this.checkBox_AlarmGasTempLowLow.AutoSize = true;
-            this.checkBox_AlarmGasTempLowLow.Checked = true;
-            this.checkBox_AlarmGasTempLowLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmGasTempLowLow.Location = new System.Drawing.Point(252, 92);
-            this.checkBox_AlarmGasTempLowLow.Name = "checkBox_AlarmGasTempLowLow";
-            this.checkBox_AlarmGasTempLowLow.Size = new System.Drawing.Size(104, 17);
-            this.checkBox_AlarmGasTempLowLow.TabIndex = 54;
-            this.checkBox_AlarmGasTempLowLow.Text = "[Alarm] Low Low";
-            this.checkBox_AlarmGasTempLowLow.UseVisualStyleBackColor = true;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMPSI);
-            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMTemp);
-            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDGHigh);
-            this.groupBox12.Controls.Add(this.checkBox__AlarmOilDGLow);
-            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDensityHigh);
-            this.groupBox12.Controls.Add(this.checkBox_AlarmOilDensityLow);
-            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMDG);
-            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMDensity);
-            this.groupBox12.Controls.Add(this.label38);
-            this.groupBox12.Controls.Add(this.checkBox_IOUsingOilCOMMMass);
-            this.groupBox12.Controls.Add(this.comboBox_ModelOilFLow);
-            this.groupBox12.Location = new System.Drawing.Point(13, 366);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(743, 163);
-            this.groupBox12.TabIndex = 59;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Oil Flow - Coriolis";
-            // 
-            // checkBox_AlarmOilDGHigh
-            // 
-            this.checkBox_AlarmOilDGHigh.AutoSize = true;
-            this.checkBox_AlarmOilDGHigh.Checked = true;
-            this.checkBox_AlarmOilDGHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmOilDGHigh.Location = new System.Drawing.Point(460, 92);
-            this.checkBox_AlarmOilDGHigh.Name = "checkBox_AlarmOilDGHigh";
-            this.checkBox_AlarmOilDGHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox_AlarmOilDGHigh.TabIndex = 56;
-            this.checkBox_AlarmOilDGHigh.Text = "[Alarm] High";
-            this.checkBox_AlarmOilDGHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox__AlarmOilDGLow
-            // 
-            this.checkBox__AlarmOilDGLow.AutoSize = true;
-            this.checkBox__AlarmOilDGLow.Checked = true;
-            this.checkBox__AlarmOilDGLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox__AlarmOilDGLow.Location = new System.Drawing.Point(362, 92);
-            this.checkBox__AlarmOilDGLow.Name = "checkBox__AlarmOilDGLow";
-            this.checkBox__AlarmOilDGLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox__AlarmOilDGLow.TabIndex = 55;
-            this.checkBox__AlarmOilDGLow.Text = "[Alarm] Low";
-            this.checkBox__AlarmOilDGLow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmOilDensityHigh
-            // 
-            this.checkBox_AlarmOilDensityHigh.AutoSize = true;
-            this.checkBox_AlarmOilDensityHigh.Checked = true;
-            this.checkBox_AlarmOilDensityHigh.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmOilDensityHigh.Location = new System.Drawing.Point(460, 69);
-            this.checkBox_AlarmOilDensityHigh.Name = "checkBox_AlarmOilDensityHigh";
-            this.checkBox_AlarmOilDensityHigh.Size = new System.Drawing.Size(83, 17);
-            this.checkBox_AlarmOilDensityHigh.TabIndex = 52;
-            this.checkBox_AlarmOilDensityHigh.Text = "[Alarm] High";
-            this.checkBox_AlarmOilDensityHigh.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_AlarmOilDensityLow
-            // 
-            this.checkBox_AlarmOilDensityLow.AutoSize = true;
-            this.checkBox_AlarmOilDensityLow.Checked = true;
-            this.checkBox_AlarmOilDensityLow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AlarmOilDensityLow.Location = new System.Drawing.Point(362, 69);
-            this.checkBox_AlarmOilDensityLow.Name = "checkBox_AlarmOilDensityLow";
-            this.checkBox_AlarmOilDensityLow.Size = new System.Drawing.Size(81, 17);
-            this.checkBox_AlarmOilDensityLow.TabIndex = 51;
-            this.checkBox_AlarmOilDensityLow.Text = "[Alarm] Low";
-            this.checkBox_AlarmOilDensityLow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_IOUsingOilCOMMDG
-            // 
-            this.checkBox_IOUsingOilCOMMDG.AutoSize = true;
-            this.checkBox_IOUsingOilCOMMDG.Checked = true;
-            this.checkBox_IOUsingOilCOMMDG.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingOilCOMMDG.Location = new System.Drawing.Point(17, 92);
-            this.checkBox_IOUsingOilCOMMDG.Name = "checkBox_IOUsingOilCOMMDG";
-            this.checkBox_IOUsingOilCOMMDG.Size = new System.Drawing.Size(118, 17);
-            this.checkBox_IOUsingOilCOMMDG.TabIndex = 49;
-            this.checkBox_IOUsingOilCOMMDG.Text = "[RS485] Drive Gain";
-            this.checkBox_IOUsingOilCOMMDG.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_IOUsingOilCOMMDensity
-            // 
-            this.checkBox_IOUsingOilCOMMDensity.AutoSize = true;
-            this.checkBox_IOUsingOilCOMMDensity.Checked = true;
-            this.checkBox_IOUsingOilCOMMDensity.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingOilCOMMDensity.Location = new System.Drawing.Point(17, 69);
-            this.checkBox_IOUsingOilCOMMDensity.Name = "checkBox_IOUsingOilCOMMDensity";
-            this.checkBox_IOUsingOilCOMMDensity.Size = new System.Drawing.Size(103, 17);
-            this.checkBox_IOUsingOilCOMMDensity.TabIndex = 48;
-            this.checkBox_IOUsingOilCOMMDensity.Text = "[RS485] Density";
-            this.checkBox_IOUsingOilCOMMDensity.UseVisualStyleBackColor = true;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(14, 22);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(78, 13);
-            this.label38.TabIndex = 47;
-            this.label38.Text = "Choose Model:";
-            // 
-            // checkBox_IOUsingOilCOMMMass
-            // 
-            this.checkBox_IOUsingOilCOMMMass.AutoSize = true;
-            this.checkBox_IOUsingOilCOMMMass.Checked = true;
-            this.checkBox_IOUsingOilCOMMMass.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingOilCOMMMass.Location = new System.Drawing.Point(17, 46);
-            this.checkBox_IOUsingOilCOMMMass.Name = "checkBox_IOUsingOilCOMMMass";
-            this.checkBox_IOUsingOilCOMMMass.Size = new System.Drawing.Size(118, 17);
-            this.checkBox_IOUsingOilCOMMMass.TabIndex = 44;
-            this.checkBox_IOUsingOilCOMMMass.Text = "[RS485] Mass Flow";
-            this.checkBox_IOUsingOilCOMMMass.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_ModelOilFLow
-            // 
-            this.comboBox_ModelOilFLow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelOilFLow.FormattingEnabled = true;
-            this.comboBox_ModelOilFLow.Location = new System.Drawing.Point(98, 19);
-            this.comboBox_ModelOilFLow.Name = "comboBox_ModelOilFLow";
-            this.comboBox_ModelOilFLow.Size = new System.Drawing.Size(453, 21);
-            this.comboBox_ModelOilFLow.TabIndex = 34;
-            // 
-            // checkBox_IOUsingOilCOMMTemp
-            // 
-            this.checkBox_IOUsingOilCOMMTemp.AutoSize = true;
-            this.checkBox_IOUsingOilCOMMTemp.Checked = true;
-            this.checkBox_IOUsingOilCOMMTemp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingOilCOMMTemp.Location = new System.Drawing.Point(17, 115);
-            this.checkBox_IOUsingOilCOMMTemp.Name = "checkBox_IOUsingOilCOMMTemp";
-            this.checkBox_IOUsingOilCOMMTemp.Size = new System.Drawing.Size(128, 17);
-            this.checkBox_IOUsingOilCOMMTemp.TabIndex = 57;
-            this.checkBox_IOUsingOilCOMMTemp.Text = "[RS485] Temperature";
-            this.checkBox_IOUsingOilCOMMTemp.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_IOUsingOilCOMMPSI
-            // 
-            this.checkBox_IOUsingOilCOMMPSI.AutoSize = true;
-            this.checkBox_IOUsingOilCOMMPSI.Checked = true;
-            this.checkBox_IOUsingOilCOMMPSI.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingOilCOMMPSI.Location = new System.Drawing.Point(17, 138);
-            this.checkBox_IOUsingOilCOMMPSI.Name = "checkBox_IOUsingOilCOMMPSI";
-            this.checkBox_IOUsingOilCOMMPSI.Size = new System.Drawing.Size(109, 17);
-            this.checkBox_IOUsingOilCOMMPSI.TabIndex = 58;
-            this.checkBox_IOUsingOilCOMMPSI.Text = "[RS485] Pressure";
-            this.checkBox_IOUsingOilCOMMPSI.UseVisualStyleBackColor = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterDIFlow);
-            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterAIFlow);
-            this.groupBox13.Controls.Add(this.label39);
-            this.groupBox13.Controls.Add(this.checkBox_IOUsingWaterCOMMFlow);
-            this.groupBox13.Controls.Add(this.comboBox_ModelWaterFlow);
-            this.groupBox13.Location = new System.Drawing.Point(13, 535);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(743, 121);
-            this.groupBox13.TabIndex = 60;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Water Flow - MagMeter";
-            // 
-            // checkBox_IOUsingWaterDIFlow
-            // 
-            this.checkBox_IOUsingWaterDIFlow.AutoSize = true;
-            this.checkBox_IOUsingWaterDIFlow.Location = new System.Drawing.Point(17, 92);
-            this.checkBox_IOUsingWaterDIFlow.Name = "checkBox_IOUsingWaterDIFlow";
-            this.checkBox_IOUsingWaterDIFlow.Size = new System.Drawing.Size(169, 17);
-            this.checkBox_IOUsingWaterDIFlow.TabIndex = 49;
-            this.checkBox_IOUsingWaterDIFlow.Text = "[DI(Pulse Input)] Volume FLow";
-            this.checkBox_IOUsingWaterDIFlow.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_IOUsingWaterAIFlow
-            // 
-            this.checkBox_IOUsingWaterAIFlow.AutoSize = true;
-            this.checkBox_IOUsingWaterAIFlow.Location = new System.Drawing.Point(17, 69);
-            this.checkBox_IOUsingWaterAIFlow.Name = "checkBox_IOUsingWaterAIFlow";
-            this.checkBox_IOUsingWaterAIFlow.Size = new System.Drawing.Size(150, 17);
-            this.checkBox_IOUsingWaterAIFlow.TabIndex = 48;
-            this.checkBox_IOUsingWaterAIFlow.Text = "[AI (4-20mA)] Volume Flow";
-            this.checkBox_IOUsingWaterAIFlow.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(14, 22);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(78, 13);
-            this.label39.TabIndex = 47;
-            this.label39.Text = "Choose Model:";
-            // 
-            // checkBox_IOUsingWaterCOMMFlow
-            // 
-            this.checkBox_IOUsingWaterCOMMFlow.AutoSize = true;
-            this.checkBox_IOUsingWaterCOMMFlow.Checked = true;
-            this.checkBox_IOUsingWaterCOMMFlow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_IOUsingWaterCOMMFlow.Location = new System.Drawing.Point(17, 46);
-            this.checkBox_IOUsingWaterCOMMFlow.Name = "checkBox_IOUsingWaterCOMMFlow";
-            this.checkBox_IOUsingWaterCOMMFlow.Size = new System.Drawing.Size(128, 17);
-            this.checkBox_IOUsingWaterCOMMFlow.TabIndex = 44;
-            this.checkBox_IOUsingWaterCOMMFlow.Text = "[RS485] Volume Flow";
-            this.checkBox_IOUsingWaterCOMMFlow.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_ModelWaterFlow
-            // 
-            this.comboBox_ModelWaterFlow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox_ModelWaterFlow.FormattingEnabled = true;
-            this.comboBox_ModelWaterFlow.Location = new System.Drawing.Point(98, 19);
-            this.comboBox_ModelWaterFlow.Name = "comboBox_ModelWaterFlow";
-            this.comboBox_ModelWaterFlow.Size = new System.Drawing.Size(453, 21);
-            this.comboBox_ModelWaterFlow.TabIndex = 34;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(110, 196);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 20);
-            this.textBox1.TabIndex = 49;
-            this.textBox1.Text = "Oil 08";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(18, 196);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(68, 13);
-            this.label40.TabIndex = 48;
-            this.label40.Text = "Oil 08 Name:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(110, 170);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(265, 20);
-            this.textBox2.TabIndex = 47;
-            this.textBox2.Text = "Oil 07";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(18, 170);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(68, 13);
-            this.label41.TabIndex = 46;
-            this.label41.Text = "Oil 07 Name:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(110, 144);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(265, 20);
-            this.textBox3.TabIndex = 45;
-            this.textBox3.Text = "Oil 06";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(18, 144);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(68, 13);
-            this.label42.TabIndex = 44;
-            this.label42.Text = "Oil 06 Name:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(110, 118);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(265, 20);
-            this.textBox4.TabIndex = 43;
-            this.textBox4.Text = "Oil 05";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(18, 118);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(68, 13);
-            this.label43.TabIndex = 42;
-            this.label43.Text = "Oil 05 Name:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(110, 92);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(265, 20);
-            this.textBox5.TabIndex = 41;
-            this.textBox5.Text = "Oil 04";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(18, 92);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(68, 13);
-            this.label44.TabIndex = 40;
-            this.label44.Text = "Oil 04 Name:";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(110, 66);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(265, 20);
-            this.textBox6.TabIndex = 39;
-            this.textBox6.Text = "Oil 03";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(18, 66);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(68, 13);
-            this.label45.TabIndex = 38;
-            this.label45.Text = "Oil 03 Name:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(110, 40);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(265, 20);
-            this.textBox7.TabIndex = 37;
-            this.textBox7.Text = "Oil 02";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(18, 40);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(68, 13);
-            this.label46.TabIndex = 36;
-            this.label46.Text = "Oil 02 Name:";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(110, 14);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(265, 20);
-            this.textBox8.TabIndex = 35;
-            this.textBox8.Text = "Oil 01";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(18, 14);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(68, 13);
-            this.label47.TabIndex = 34;
-            this.label47.Text = "Oil 01 Name:";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(509, 196);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(265, 20);
-            this.textBox9.TabIndex = 65;
-            this.textBox9.Text = "Oil 16";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(417, 196);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(68, 13);
-            this.label48.TabIndex = 64;
-            this.label48.Text = "Oil 16 Name:";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(509, 170);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(265, 20);
-            this.textBox10.TabIndex = 63;
-            this.textBox10.Text = "Oil 15";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(417, 170);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(68, 13);
-            this.label49.TabIndex = 62;
-            this.label49.Text = "Oil 15 Name:";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(509, 144);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(265, 20);
-            this.textBox11.TabIndex = 61;
-            this.textBox11.Text = "Oil 14";
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(417, 144);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(68, 13);
-            this.label50.TabIndex = 60;
-            this.label50.Text = "Oil 14 Name:";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(509, 118);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(265, 20);
-            this.textBox12.TabIndex = 59;
-            this.textBox12.Text = "Oil 13";
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(417, 118);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(68, 13);
-            this.label51.TabIndex = 58;
-            this.label51.Text = "Oil 13 Name:";
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(509, 92);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(265, 20);
-            this.textBox13.TabIndex = 57;
-            this.textBox13.Text = "Oil 12";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(417, 92);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(68, 13);
-            this.label52.TabIndex = 56;
-            this.label52.Text = "Oil 12 Name:";
-            // 
-            // textBox14
-            // 
-            this.textBox14.Location = new System.Drawing.Point(509, 66);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(265, 20);
-            this.textBox14.TabIndex = 55;
-            this.textBox14.Text = "Oil 11";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(417, 66);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(68, 13);
-            this.label53.TabIndex = 54;
-            this.label53.Text = "Oil 11 Name:";
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(509, 40);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(265, 20);
-            this.textBox15.TabIndex = 53;
-            this.textBox15.Text = "Oil 10";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(417, 40);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(68, 13);
-            this.label54.TabIndex = 52;
-            this.label54.Text = "Oil 10 Name:";
-            // 
-            // textBox16
-            // 
-            this.textBox16.Location = new System.Drawing.Point(509, 14);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(265, 20);
-            this.textBox16.TabIndex = 51;
-            this.textBox16.Text = "Oil 09";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(417, 14);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(68, 13);
-            this.label55.TabIndex = 50;
-            this.label55.Text = "Oil 09 Name:";
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(509, 419);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(265, 20);
-            this.textBox17.TabIndex = 97;
-            this.textBox17.Text = "SW 16";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(417, 419);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(74, 13);
-            this.label56.TabIndex = 96;
-            this.label56.Text = "SW 16 Name:";
-            // 
-            // textBox18
-            // 
-            this.textBox18.Location = new System.Drawing.Point(509, 393);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(265, 20);
-            this.textBox18.TabIndex = 95;
-            this.textBox18.Text = "SW 15";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(417, 393);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(74, 13);
-            this.label57.TabIndex = 94;
-            this.label57.Text = "SW 15 Name:";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(509, 367);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(265, 20);
-            this.textBox19.TabIndex = 93;
-            this.textBox19.Text = "SW 14";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(417, 367);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(74, 13);
-            this.label58.TabIndex = 92;
-            this.label58.Text = "SW 14 Name:";
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(509, 341);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(265, 20);
-            this.textBox20.TabIndex = 91;
-            this.textBox20.Text = "SW 13";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(417, 341);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(74, 13);
-            this.label59.TabIndex = 90;
-            this.label59.Text = "SW 13 Name:";
-            // 
-            // textBox21
-            // 
-            this.textBox21.Location = new System.Drawing.Point(509, 315);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(265, 20);
-            this.textBox21.TabIndex = 89;
-            this.textBox21.Text = "SW 12";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(417, 315);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(74, 13);
-            this.label60.TabIndex = 88;
-            this.label60.Text = "SW 12 Name:";
-            // 
-            // textBox22
-            // 
-            this.textBox22.Location = new System.Drawing.Point(509, 289);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(265, 20);
-            this.textBox22.TabIndex = 87;
-            this.textBox22.Text = "SW 11";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(417, 289);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(74, 13);
-            this.label61.TabIndex = 86;
-            this.label61.Text = "SW 11 Name:";
-            // 
-            // textBox23
-            // 
-            this.textBox23.Location = new System.Drawing.Point(509, 263);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(265, 20);
-            this.textBox23.TabIndex = 85;
-            this.textBox23.Text = "SW 10";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(417, 263);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(74, 13);
-            this.label62.TabIndex = 84;
-            this.label62.Text = "SW 10 Name:";
-            // 
-            // textBox24
-            // 
-            this.textBox24.Location = new System.Drawing.Point(509, 237);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(265, 20);
-            this.textBox24.TabIndex = 83;
-            this.textBox24.Text = "SW 09";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(417, 237);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(74, 13);
-            this.label63.TabIndex = 82;
-            this.label63.Text = "SW 09 Name:";
-            // 
-            // textBox25
-            // 
-            this.textBox25.Location = new System.Drawing.Point(110, 419);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(265, 20);
-            this.textBox25.TabIndex = 81;
-            this.textBox25.Text = "SW 08";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(18, 419);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(74, 13);
-            this.label64.TabIndex = 80;
-            this.label64.Text = "SW 08 Name:";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new System.Drawing.Point(110, 393);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(265, 20);
-            this.textBox26.TabIndex = 79;
-            this.textBox26.Text = "SW 07";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(18, 393);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(74, 13);
-            this.label65.TabIndex = 78;
-            this.label65.Text = "SW 07 Name:";
-            // 
-            // textBox27
-            // 
-            this.textBox27.Location = new System.Drawing.Point(110, 367);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(265, 20);
-            this.textBox27.TabIndex = 77;
-            this.textBox27.Text = "SW 06";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(18, 367);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(74, 13);
-            this.label66.TabIndex = 76;
-            this.label66.Text = "SW 06 Name:";
-            // 
-            // textBox28
-            // 
-            this.textBox28.Location = new System.Drawing.Point(110, 341);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(265, 20);
-            this.textBox28.TabIndex = 75;
-            this.textBox28.Text = "SW 05";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(18, 341);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(74, 13);
-            this.label67.TabIndex = 74;
-            this.label67.Text = "SW 05 Name:";
-            // 
-            // textBox29
-            // 
-            this.textBox29.Location = new System.Drawing.Point(110, 315);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(265, 20);
-            this.textBox29.TabIndex = 73;
-            this.textBox29.Text = "SW 04";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(18, 315);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(74, 13);
-            this.label68.TabIndex = 72;
-            this.label68.Text = "SW 04 Name:";
-            // 
-            // textBox30
-            // 
-            this.textBox30.Location = new System.Drawing.Point(110, 289);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(265, 20);
-            this.textBox30.TabIndex = 71;
-            this.textBox30.Text = "SW 03";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(18, 289);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(74, 13);
-            this.label69.TabIndex = 70;
-            this.label69.Text = "SW 03 Name:";
-            // 
-            // textBox31
-            // 
-            this.textBox31.Location = new System.Drawing.Point(110, 263);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(265, 20);
-            this.textBox31.TabIndex = 69;
-            this.textBox31.Text = "SW 02";
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(18, 263);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(74, 13);
-            this.label70.TabIndex = 68;
-            this.label70.Text = "SW 02 Name:";
-            // 
-            // textBox32
-            // 
-            this.textBox32.Location = new System.Drawing.Point(110, 237);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(265, 20);
-            this.textBox32.TabIndex = 67;
-            this.textBox32.Text = "SW 01";
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(18, 237);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(74, 13);
-            this.label71.TabIndex = 66;
-            this.label71.Text = "SW 01 Name:";
-            // 
-            // textBox33
-            // 
-            this.textBox33.Location = new System.Drawing.Point(509, 467);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(265, 20);
-            this.textBox33.TabIndex = 101;
-            this.textBox33.Text = "FW 02";
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(417, 467);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(73, 13);
-            this.label72.TabIndex = 100;
-            this.label72.Text = "FW 02 Name:";
-            // 
-            // textBox34
-            // 
-            this.textBox34.Location = new System.Drawing.Point(110, 467);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.Size = new System.Drawing.Size(265, 20);
-            this.textBox34.TabIndex = 99;
-            this.textBox34.Text = "FW 01";
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(18, 467);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(73, 13);
-            this.label73.TabIndex = 98;
-            this.label73.Text = "FW 01 Name:";
+            // tabPage4
+            // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.Controls.Add(this.groupBox31);
+            this.tabPage4.Controls.Add(this.groupBox14);
+            this.tabPage4.Controls.Add(this.textBox33);
+            this.tabPage4.Controls.Add(this.label72);
+            this.tabPage4.Controls.Add(this.textBox34);
+            this.tabPage4.Controls.Add(this.label73);
+            this.tabPage4.Controls.Add(this.textBox17);
+            this.tabPage4.Controls.Add(this.label56);
+            this.tabPage4.Controls.Add(this.textBox18);
+            this.tabPage4.Controls.Add(this.label57);
+            this.tabPage4.Controls.Add(this.textBox19);
+            this.tabPage4.Controls.Add(this.label58);
+            this.tabPage4.Controls.Add(this.textBox20);
+            this.tabPage4.Controls.Add(this.label59);
+            this.tabPage4.Controls.Add(this.textBox21);
+            this.tabPage4.Controls.Add(this.label60);
+            this.tabPage4.Controls.Add(this.textBox22);
+            this.tabPage4.Controls.Add(this.label61);
+            this.tabPage4.Controls.Add(this.textBox23);
+            this.tabPage4.Controls.Add(this.label62);
+            this.tabPage4.Controls.Add(this.textBox24);
+            this.tabPage4.Controls.Add(this.label63);
+            this.tabPage4.Controls.Add(this.textBox25);
+            this.tabPage4.Controls.Add(this.label64);
+            this.tabPage4.Controls.Add(this.textBox26);
+            this.tabPage4.Controls.Add(this.label65);
+            this.tabPage4.Controls.Add(this.textBox27);
+            this.tabPage4.Controls.Add(this.label66);
+            this.tabPage4.Controls.Add(this.textBox28);
+            this.tabPage4.Controls.Add(this.label67);
+            this.tabPage4.Controls.Add(this.textBox29);
+            this.tabPage4.Controls.Add(this.label68);
+            this.tabPage4.Controls.Add(this.textBox30);
+            this.tabPage4.Controls.Add(this.label69);
+            this.tabPage4.Controls.Add(this.textBox31);
+            this.tabPage4.Controls.Add(this.label70);
+            this.tabPage4.Controls.Add(this.textBox32);
+            this.tabPage4.Controls.Add(this.label71);
+            this.tabPage4.Controls.Add(this.textBox9);
+            this.tabPage4.Controls.Add(this.label48);
+            this.tabPage4.Controls.Add(this.textBox10);
+            this.tabPage4.Controls.Add(this.label49);
+            this.tabPage4.Controls.Add(this.textBox11);
+            this.tabPage4.Controls.Add(this.label50);
+            this.tabPage4.Controls.Add(this.textBox12);
+            this.tabPage4.Controls.Add(this.label51);
+            this.tabPage4.Controls.Add(this.textBox13);
+            this.tabPage4.Controls.Add(this.label52);
+            this.tabPage4.Controls.Add(this.textBox14);
+            this.tabPage4.Controls.Add(this.label53);
+            this.tabPage4.Controls.Add(this.textBox15);
+            this.tabPage4.Controls.Add(this.label54);
+            this.tabPage4.Controls.Add(this.textBox16);
+            this.tabPage4.Controls.Add(this.label55);
+            this.tabPage4.Controls.Add(this.textBox1);
+            this.tabPage4.Controls.Add(this.label40);
+            this.tabPage4.Controls.Add(this.textBox2);
+            this.tabPage4.Controls.Add(this.label41);
+            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.label42);
+            this.tabPage4.Controls.Add(this.textBox4);
+            this.tabPage4.Controls.Add(this.label43);
+            this.tabPage4.Controls.Add(this.textBox5);
+            this.tabPage4.Controls.Add(this.label44);
+            this.tabPage4.Controls.Add(this.textBox6);
+            this.tabPage4.Controls.Add(this.label45);
+            this.tabPage4.Controls.Add(this.textBox7);
+            this.tabPage4.Controls.Add(this.label46);
+            this.tabPage4.Controls.Add(this.textBox8);
+            this.tabPage4.Controls.Add(this.label47);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(988, 585);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Tank Devices";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox14
             // 
@@ -2798,6 +2178,18 @@ namespace ExcelPaster
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Tank Level - Pressure";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(560, 69);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(108, 17);
+            this.checkBox4.TabIndex = 61;
+            this.checkBox4.Text = "[Alarm] High High";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
@@ -2810,6 +2202,18 @@ namespace ExcelPaster
             this.checkBox11.Text = "[CALC]Level";
             this.checkBox11.UseVisualStyleBackColor = true;
             // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Checked = true;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.Location = new System.Drawing.Point(457, 69);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(83, 17);
+            this.checkBox5.TabIndex = 60;
+            this.checkBox5.Text = "[Alarm] High";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
             // label75
             // 
             this.label75.AutoSize = true;
@@ -2818,6 +2222,18 @@ namespace ExcelPaster
             this.label75.Size = new System.Drawing.Size(78, 13);
             this.label75.TabIndex = 47;
             this.label75.Text = "Choose Model:";
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Checked = true;
+            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox6.Location = new System.Drawing.Point(359, 69);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(81, 17);
+            this.checkBox6.TabIndex = 59;
+            this.checkBox6.Text = "[Alarm] Low";
+            this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox12
             // 
@@ -2830,6 +2246,18 @@ namespace ExcelPaster
             this.checkBox12.TabIndex = 44;
             this.checkBox12.Text = "[AI(4-20mA)] Pressure";
             this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Checked = true;
+            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox7.Location = new System.Drawing.Point(249, 69);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(104, 17);
+            this.checkBox7.TabIndex = 58;
+            this.checkBox7.Text = "[Alarm] Low Low";
+            this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // comboBox2
             // 
@@ -3113,70 +2541,596 @@ namespace ExcelPaster
             this.comboBox6.Size = new System.Drawing.Size(121, 21);
             this.comboBox6.TabIndex = 31;
             // 
-            // checkBox4
+            // textBox33
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(560, 69);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(108, 17);
-            this.checkBox4.TabIndex = 61;
-            this.checkBox4.Text = "[Alarm] High High";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.textBox33.Location = new System.Drawing.Point(509, 467);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(265, 20);
+            this.textBox33.TabIndex = 101;
+            this.textBox33.Text = "FW 02";
             // 
-            // checkBox5
+            // label72
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Checked = true;
-            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox5.Location = new System.Drawing.Point(457, 69);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(83, 17);
-            this.checkBox5.TabIndex = 60;
-            this.checkBox5.Text = "[Alarm] High";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(417, 467);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(73, 13);
+            this.label72.TabIndex = 100;
+            this.label72.Text = "FW 02 Name:";
             // 
-            // checkBox6
+            // textBox34
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Checked = true;
-            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(359, 69);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(81, 17);
-            this.checkBox6.TabIndex = 59;
-            this.checkBox6.Text = "[Alarm] Low";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.textBox34.Location = new System.Drawing.Point(110, 467);
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(265, 20);
+            this.textBox34.TabIndex = 99;
+            this.textBox34.Text = "FW 01";
             // 
-            // checkBox7
+            // label73
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Checked = true;
-            this.checkBox7.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox7.Location = new System.Drawing.Point(249, 69);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(104, 17);
-            this.checkBox7.TabIndex = 58;
-            this.checkBox7.Text = "[Alarm] Low Low";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(18, 467);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(73, 13);
+            this.label73.TabIndex = 98;
+            this.label73.Text = "FW 01 Name:";
             // 
-            // textBox35
+            // textBox17
             // 
-            this.textBox35.Location = new System.Drawing.Point(141, 13);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(265, 20);
-            this.textBox35.TabIndex = 37;
-            this.textBox35.Text = "SW Disposal";
+            this.textBox17.Location = new System.Drawing.Point(509, 419);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(265, 20);
+            this.textBox17.TabIndex = 97;
+            this.textBox17.Text = "SW 16";
             // 
-            // label74
+            // label56
             // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(24, 16);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(111, 13);
-            this.label74.TabIndex = 36;
-            this.label74.Text = "SW Disposal 1 Name:";
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(417, 419);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(74, 13);
+            this.label56.TabIndex = 96;
+            this.label56.Text = "SW 16 Name:";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(509, 393);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(265, 20);
+            this.textBox18.TabIndex = 95;
+            this.textBox18.Text = "SW 15";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(417, 393);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(74, 13);
+            this.label57.TabIndex = 94;
+            this.label57.Text = "SW 15 Name:";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(509, 367);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(265, 20);
+            this.textBox19.TabIndex = 93;
+            this.textBox19.Text = "SW 14";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(417, 367);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(74, 13);
+            this.label58.TabIndex = 92;
+            this.label58.Text = "SW 14 Name:";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(509, 341);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(265, 20);
+            this.textBox20.TabIndex = 91;
+            this.textBox20.Text = "SW 13";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(417, 341);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(74, 13);
+            this.label59.TabIndex = 90;
+            this.label59.Text = "SW 13 Name:";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Location = new System.Drawing.Point(509, 315);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(265, 20);
+            this.textBox21.TabIndex = 89;
+            this.textBox21.Text = "SW 12";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(417, 315);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(74, 13);
+            this.label60.TabIndex = 88;
+            this.label60.Text = "SW 12 Name:";
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new System.Drawing.Point(509, 289);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(265, 20);
+            this.textBox22.TabIndex = 87;
+            this.textBox22.Text = "SW 11";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(417, 289);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(74, 13);
+            this.label61.TabIndex = 86;
+            this.label61.Text = "SW 11 Name:";
+            // 
+            // textBox23
+            // 
+            this.textBox23.Location = new System.Drawing.Point(509, 263);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.Size = new System.Drawing.Size(265, 20);
+            this.textBox23.TabIndex = 85;
+            this.textBox23.Text = "SW 10";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(417, 263);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(74, 13);
+            this.label62.TabIndex = 84;
+            this.label62.Text = "SW 10 Name:";
+            // 
+            // textBox24
+            // 
+            this.textBox24.Location = new System.Drawing.Point(509, 237);
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new System.Drawing.Size(265, 20);
+            this.textBox24.TabIndex = 83;
+            this.textBox24.Text = "SW 09";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(417, 237);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(74, 13);
+            this.label63.TabIndex = 82;
+            this.label63.Text = "SW 09 Name:";
+            // 
+            // textBox25
+            // 
+            this.textBox25.Location = new System.Drawing.Point(110, 419);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(265, 20);
+            this.textBox25.TabIndex = 81;
+            this.textBox25.Text = "SW 08";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(18, 419);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(74, 13);
+            this.label64.TabIndex = 80;
+            this.label64.Text = "SW 08 Name:";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Location = new System.Drawing.Point(110, 393);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(265, 20);
+            this.textBox26.TabIndex = 79;
+            this.textBox26.Text = "SW 07";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(18, 393);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(74, 13);
+            this.label65.TabIndex = 78;
+            this.label65.Text = "SW 07 Name:";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Location = new System.Drawing.Point(110, 367);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(265, 20);
+            this.textBox27.TabIndex = 77;
+            this.textBox27.Text = "SW 06";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(18, 367);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(74, 13);
+            this.label66.TabIndex = 76;
+            this.label66.Text = "SW 06 Name:";
+            // 
+            // textBox28
+            // 
+            this.textBox28.Location = new System.Drawing.Point(110, 341);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(265, 20);
+            this.textBox28.TabIndex = 75;
+            this.textBox28.Text = "SW 05";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(18, 341);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(74, 13);
+            this.label67.TabIndex = 74;
+            this.label67.Text = "SW 05 Name:";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Location = new System.Drawing.Point(110, 315);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(265, 20);
+            this.textBox29.TabIndex = 73;
+            this.textBox29.Text = "SW 04";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(18, 315);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(74, 13);
+            this.label68.TabIndex = 72;
+            this.label68.Text = "SW 04 Name:";
+            // 
+            // textBox30
+            // 
+            this.textBox30.Location = new System.Drawing.Point(110, 289);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(265, 20);
+            this.textBox30.TabIndex = 71;
+            this.textBox30.Text = "SW 03";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(18, 289);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(74, 13);
+            this.label69.TabIndex = 70;
+            this.label69.Text = "SW 03 Name:";
+            // 
+            // textBox31
+            // 
+            this.textBox31.Location = new System.Drawing.Point(110, 263);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(265, 20);
+            this.textBox31.TabIndex = 69;
+            this.textBox31.Text = "SW 02";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(18, 263);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(74, 13);
+            this.label70.TabIndex = 68;
+            this.label70.Text = "SW 02 Name:";
+            // 
+            // textBox32
+            // 
+            this.textBox32.Location = new System.Drawing.Point(110, 237);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(265, 20);
+            this.textBox32.TabIndex = 67;
+            this.textBox32.Text = "SW 01";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(18, 237);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(74, 13);
+            this.label71.TabIndex = 66;
+            this.label71.Text = "SW 01 Name:";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(509, 196);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(265, 20);
+            this.textBox9.TabIndex = 65;
+            this.textBox9.Text = "Oil 16";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(417, 196);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(68, 13);
+            this.label48.TabIndex = 64;
+            this.label48.Text = "Oil 16 Name:";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(509, 170);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(265, 20);
+            this.textBox10.TabIndex = 63;
+            this.textBox10.Text = "Oil 15";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(417, 170);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(68, 13);
+            this.label49.TabIndex = 62;
+            this.label49.Text = "Oil 15 Name:";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(509, 144);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(265, 20);
+            this.textBox11.TabIndex = 61;
+            this.textBox11.Text = "Oil 14";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(417, 144);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(68, 13);
+            this.label50.TabIndex = 60;
+            this.label50.Text = "Oil 14 Name:";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(509, 118);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(265, 20);
+            this.textBox12.TabIndex = 59;
+            this.textBox12.Text = "Oil 13";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(417, 118);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(68, 13);
+            this.label51.TabIndex = 58;
+            this.label51.Text = "Oil 13 Name:";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(509, 92);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(265, 20);
+            this.textBox13.TabIndex = 57;
+            this.textBox13.Text = "Oil 12";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(417, 92);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(68, 13);
+            this.label52.TabIndex = 56;
+            this.label52.Text = "Oil 12 Name:";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(509, 66);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(265, 20);
+            this.textBox14.TabIndex = 55;
+            this.textBox14.Text = "Oil 11";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(417, 66);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(68, 13);
+            this.label53.TabIndex = 54;
+            this.label53.Text = "Oil 11 Name:";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(509, 40);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(265, 20);
+            this.textBox15.TabIndex = 53;
+            this.textBox15.Text = "Oil 10";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(417, 40);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(68, 13);
+            this.label54.TabIndex = 52;
+            this.label54.Text = "Oil 10 Name:";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(509, 14);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(265, 20);
+            this.textBox16.TabIndex = 51;
+            this.textBox16.Text = "Oil 09";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(417, 14);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(68, 13);
+            this.label55.TabIndex = 50;
+            this.label55.Text = "Oil 09 Name:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(110, 196);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(265, 20);
+            this.textBox1.TabIndex = 49;
+            this.textBox1.Text = "Oil 08";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(18, 196);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(68, 13);
+            this.label40.TabIndex = 48;
+            this.label40.Text = "Oil 08 Name:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(110, 170);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(265, 20);
+            this.textBox2.TabIndex = 47;
+            this.textBox2.Text = "Oil 07";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(18, 170);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(68, 13);
+            this.label41.TabIndex = 46;
+            this.label41.Text = "Oil 07 Name:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(110, 144);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(265, 20);
+            this.textBox3.TabIndex = 45;
+            this.textBox3.Text = "Oil 06";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(18, 144);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(68, 13);
+            this.label42.TabIndex = 44;
+            this.label42.Text = "Oil 06 Name:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(110, 118);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(265, 20);
+            this.textBox4.TabIndex = 43;
+            this.textBox4.Text = "Oil 05";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(18, 118);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(68, 13);
+            this.label43.TabIndex = 42;
+            this.label43.Text = "Oil 05 Name:";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(110, 92);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(265, 20);
+            this.textBox5.TabIndex = 41;
+            this.textBox5.Text = "Oil 04";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(18, 92);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(68, 13);
+            this.label44.TabIndex = 40;
+            this.label44.Text = "Oil 04 Name:";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(110, 66);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(265, 20);
+            this.textBox6.TabIndex = 39;
+            this.textBox6.Text = "Oil 03";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(18, 66);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(68, 13);
+            this.label45.TabIndex = 38;
+            this.label45.Text = "Oil 03 Name:";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(110, 40);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(265, 20);
+            this.textBox7.TabIndex = 37;
+            this.textBox7.Text = "Oil 02";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(18, 40);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(68, 13);
+            this.label46.TabIndex = 36;
+            this.label46.Text = "Oil 02 Name:";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(110, 14);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(265, 20);
+            this.textBox8.TabIndex = 35;
+            this.textBox8.Text = "Oil 01";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(18, 14);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(68, 13);
+            this.label47.TabIndex = 34;
+            this.label47.Text = "Oil 01 Name:";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.AutoScroll = true;
+            this.tabPage5.Controls.Add(this.groupBox15);
+            this.tabPage5.Controls.Add(this.textBox35);
+            this.tabPage5.Controls.Add(this.label74);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(988, 558);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "SW Disposal Devices";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // groupBox15
             // 
@@ -3192,125 +3146,137 @@ namespace ExcelPaster
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "SW Disposal Devices";
             // 
-            // groupBox20
+            // groupBox23
             // 
-            this.groupBox20.Controls.Add(this.checkBox8);
-            this.groupBox20.Controls.Add(this.checkBox3);
-            this.groupBox20.Controls.Add(this.checkBox2);
-            this.groupBox20.Controls.Add(this.checkBox1);
-            this.groupBox20.Controls.Add(this.checkBox35);
-            this.groupBox20.Controls.Add(this.checkBox36);
-            this.groupBox20.Controls.Add(this.label81);
-            this.groupBox20.Controls.Add(this.checkBox37);
-            this.groupBox20.Controls.Add(this.comboBox4);
-            this.groupBox20.Location = new System.Drawing.Point(13, 39);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(743, 187);
-            this.groupBox20.TabIndex = 46;
-            this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "SW Drive";
+            this.groupBox23.Controls.Add(this.label84);
+            this.groupBox23.Controls.Add(this.checkBox47);
+            this.groupBox23.Controls.Add(this.comboBox9);
+            this.groupBox23.Location = new System.Drawing.Point(13, 558);
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.Size = new System.Drawing.Size(743, 100);
+            this.groupBox23.TabIndex = 57;
+            this.groupBox23.TabStop = false;
+            this.groupBox23.Text = "Fan";
             // 
-            // checkBox35
+            // label84
             // 
-            this.checkBox35.AutoSize = true;
-            this.checkBox35.Checked = true;
-            this.checkBox35.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox35.Location = new System.Drawing.Point(17, 92);
-            this.checkBox35.Name = "checkBox35";
-            this.checkBox35.Size = new System.Drawing.Size(148, 17);
-            this.checkBox35.TabIndex = 49;
-            this.checkBox35.Text = "[RS485] Suction Pressure";
-            this.checkBox35.UseVisualStyleBackColor = true;
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(3, 22);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(78, 13);
+            this.label84.TabIndex = 47;
+            this.label84.Text = "Choose Model:";
             // 
-            // checkBox36
+            // checkBox47
             // 
-            this.checkBox36.AutoSize = true;
-            this.checkBox36.Checked = true;
-            this.checkBox36.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox36.Location = new System.Drawing.Point(17, 69);
-            this.checkBox36.Name = "checkBox36";
-            this.checkBox36.Size = new System.Drawing.Size(189, 17);
-            this.checkBox36.TabIndex = 48;
-            this.checkBox36.Text = "[DI(Dry Contact)] Drive Run Status";
-            this.checkBox36.UseVisualStyleBackColor = true;
+            this.checkBox47.AutoSize = true;
+            this.checkBox47.Checked = true;
+            this.checkBox47.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox47.Location = new System.Drawing.Point(14, 61);
+            this.checkBox47.Name = "checkBox47";
+            this.checkBox47.Size = new System.Drawing.Size(128, 17);
+            this.checkBox47.TabIndex = 35;
+            this.checkBox47.Text = "[DO(Relay))] Run Fan";
+            this.checkBox47.UseVisualStyleBackColor = true;
             // 
-            // label81
+            // comboBox9
             // 
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(14, 22);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(78, 13);
-            this.label81.TabIndex = 47;
-            this.label81.Text = "Choose Model:";
+            this.comboBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Location = new System.Drawing.Point(87, 19);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(464, 21);
+            this.comboBox9.TabIndex = 34;
             // 
-            // checkBox37
+            // groupBox22
             // 
-            this.checkBox37.AutoSize = true;
-            this.checkBox37.Checked = true;
-            this.checkBox37.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox37.Location = new System.Drawing.Point(17, 46);
-            this.checkBox37.Name = "checkBox37";
-            this.checkBox37.Size = new System.Drawing.Size(185, 17);
-            this.checkBox37.TabIndex = 44;
-            this.checkBox37.Text = "[DO(Relay)] Drive Run Permissive";
-            this.checkBox37.UseVisualStyleBackColor = true;
+            this.groupBox22.Controls.Add(this.label83);
+            this.groupBox22.Controls.Add(this.checkBox31);
+            this.groupBox22.Controls.Add(this.checkBox32);
+            this.groupBox22.Controls.Add(this.checkBox33);
+            this.groupBox22.Controls.Add(this.checkBox34);
+            this.groupBox22.Controls.Add(this.checkBox42);
+            this.groupBox22.Controls.Add(this.comboBox8);
+            this.groupBox22.Location = new System.Drawing.Point(13, 452);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Size = new System.Drawing.Size(743, 100);
+            this.groupBox22.TabIndex = 56;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "H2S Levels";
             // 
-            // comboBox4
+            // label83
             // 
-            this.comboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(98, 19);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(453, 21);
-            this.comboBox4.TabIndex = 34;
+            this.label83.AutoSize = true;
+            this.label83.Location = new System.Drawing.Point(3, 22);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(78, 13);
+            this.label83.TabIndex = 47;
+            this.label83.Text = "Choose Model:";
             // 
-            // checkBox1
+            // checkBox31
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(220, 69);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(114, 17);
-            this.checkBox1.TabIndex = 54;
-            this.checkBox1.Text = "[Alarm] Fail to Start";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox31.AutoSize = true;
+            this.checkBox31.Checked = true;
+            this.checkBox31.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox31.Location = new System.Drawing.Point(601, 61);
+            this.checkBox31.Name = "checkBox31";
+            this.checkBox31.Size = new System.Drawing.Size(108, 17);
+            this.checkBox31.TabIndex = 42;
+            this.checkBox31.Text = "[Alarm] High High";
+            this.checkBox31.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // checkBox32
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(17, 115);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(160, 17);
-            this.checkBox2.TabIndex = 55;
-            this.checkBox2.Text = "[RS485] Discharge Pressure";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox32.AutoSize = true;
+            this.checkBox32.Checked = true;
+            this.checkBox32.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox32.Location = new System.Drawing.Point(496, 61);
+            this.checkBox32.Name = "checkBox32";
+            this.checkBox32.Size = new System.Drawing.Size(83, 17);
+            this.checkBox32.TabIndex = 41;
+            this.checkBox32.Text = "[Alarm] High";
+            this.checkBox32.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // checkBox33
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(17, 138);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(116, 17);
-            this.checkBox3.TabIndex = 56;
-            this.checkBox3.Text = "[RS485] Flow Rate";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox33.AutoSize = true;
+            this.checkBox33.Location = new System.Drawing.Point(396, 61);
+            this.checkBox33.Name = "checkBox33";
+            this.checkBox33.Size = new System.Drawing.Size(81, 17);
+            this.checkBox33.TabIndex = 40;
+            this.checkBox33.Text = "[Alarm] Low";
+            this.checkBox33.UseVisualStyleBackColor = true;
             // 
-            // checkBox8
+            // checkBox34
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Checked = true;
-            this.checkBox8.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox8.Location = new System.Drawing.Point(17, 161);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(118, 17);
-            this.checkBox8.TabIndex = 57;
-            this.checkBox8.Text = "[RS485] Frequency";
-            this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox34.AutoSize = true;
+            this.checkBox34.Location = new System.Drawing.Point(249, 61);
+            this.checkBox34.Name = "checkBox34";
+            this.checkBox34.Size = new System.Drawing.Size(101, 17);
+            this.checkBox34.TabIndex = 39;
+            this.checkBox34.Text = "[Alarm]Low Low";
+            this.checkBox34.UseVisualStyleBackColor = true;
+            // 
+            // checkBox42
+            // 
+            this.checkBox42.AutoSize = true;
+            this.checkBox42.Checked = true;
+            this.checkBox42.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox42.Location = new System.Drawing.Point(14, 61);
+            this.checkBox42.Name = "checkBox42";
+            this.checkBox42.Size = new System.Drawing.Size(137, 17);
+            this.checkBox42.TabIndex = 35;
+            this.checkBox42.Text = "[AI(4-20mA)] Read H2S";
+            this.checkBox42.UseVisualStyleBackColor = true;
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Location = new System.Drawing.Point(87, 19);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(464, 21);
+            this.comboBox8.TabIndex = 34;
             // 
             // groupBox18
             // 
@@ -3500,278 +3466,313 @@ namespace ExcelPaster
             this.comboBox7.Size = new System.Drawing.Size(464, 21);
             this.comboBox7.TabIndex = 34;
             // 
-            // groupBox22
+            // groupBox20
             // 
-            this.groupBox22.Controls.Add(this.label83);
-            this.groupBox22.Controls.Add(this.checkBox31);
-            this.groupBox22.Controls.Add(this.checkBox32);
-            this.groupBox22.Controls.Add(this.checkBox33);
-            this.groupBox22.Controls.Add(this.checkBox34);
-            this.groupBox22.Controls.Add(this.checkBox42);
-            this.groupBox22.Controls.Add(this.comboBox8);
-            this.groupBox22.Location = new System.Drawing.Point(13, 452);
-            this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(743, 100);
-            this.groupBox22.TabIndex = 56;
-            this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "H2S Levels";
+            this.groupBox20.Controls.Add(this.checkBox8);
+            this.groupBox20.Controls.Add(this.checkBox3);
+            this.groupBox20.Controls.Add(this.checkBox2);
+            this.groupBox20.Controls.Add(this.checkBox1);
+            this.groupBox20.Controls.Add(this.checkBox35);
+            this.groupBox20.Controls.Add(this.checkBox36);
+            this.groupBox20.Controls.Add(this.label81);
+            this.groupBox20.Controls.Add(this.checkBox37);
+            this.groupBox20.Controls.Add(this.comboBox4);
+            this.groupBox20.Location = new System.Drawing.Point(13, 39);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(743, 187);
+            this.groupBox20.TabIndex = 46;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "SW Drive";
             // 
-            // label83
+            // checkBox8
             // 
-            this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(3, 22);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(78, 13);
-            this.label83.TabIndex = 47;
-            this.label83.Text = "Choose Model:";
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Checked = true;
+            this.checkBox8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox8.Location = new System.Drawing.Point(17, 161);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(118, 17);
+            this.checkBox8.TabIndex = 57;
+            this.checkBox8.Text = "[RS485] Frequency";
+            this.checkBox8.UseVisualStyleBackColor = true;
             // 
-            // checkBox31
+            // checkBox3
             // 
-            this.checkBox31.AutoSize = true;
-            this.checkBox31.Checked = true;
-            this.checkBox31.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox31.Location = new System.Drawing.Point(601, 61);
-            this.checkBox31.Name = "checkBox31";
-            this.checkBox31.Size = new System.Drawing.Size(108, 17);
-            this.checkBox31.TabIndex = 42;
-            this.checkBox31.Text = "[Alarm] High High";
-            this.checkBox31.UseVisualStyleBackColor = true;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(17, 138);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(116, 17);
+            this.checkBox3.TabIndex = 56;
+            this.checkBox3.Text = "[RS485] Flow Rate";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
-            // checkBox32
+            // checkBox2
             // 
-            this.checkBox32.AutoSize = true;
-            this.checkBox32.Checked = true;
-            this.checkBox32.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox32.Location = new System.Drawing.Point(496, 61);
-            this.checkBox32.Name = "checkBox32";
-            this.checkBox32.Size = new System.Drawing.Size(83, 17);
-            this.checkBox32.TabIndex = 41;
-            this.checkBox32.Text = "[Alarm] High";
-            this.checkBox32.UseVisualStyleBackColor = true;
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(17, 115);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(160, 17);
+            this.checkBox2.TabIndex = 55;
+            this.checkBox2.Text = "[RS485] Discharge Pressure";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // checkBox33
+            // checkBox1
             // 
-            this.checkBox33.AutoSize = true;
-            this.checkBox33.Location = new System.Drawing.Point(396, 61);
-            this.checkBox33.Name = "checkBox33";
-            this.checkBox33.Size = new System.Drawing.Size(81, 17);
-            this.checkBox33.TabIndex = 40;
-            this.checkBox33.Text = "[Alarm] Low";
-            this.checkBox33.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(220, 69);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(114, 17);
+            this.checkBox1.TabIndex = 54;
+            this.checkBox1.Text = "[Alarm] Fail to Start";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // checkBox34
+            // checkBox35
             // 
-            this.checkBox34.AutoSize = true;
-            this.checkBox34.Location = new System.Drawing.Point(249, 61);
-            this.checkBox34.Name = "checkBox34";
-            this.checkBox34.Size = new System.Drawing.Size(101, 17);
-            this.checkBox34.TabIndex = 39;
-            this.checkBox34.Text = "[Alarm]Low Low";
-            this.checkBox34.UseVisualStyleBackColor = true;
+            this.checkBox35.AutoSize = true;
+            this.checkBox35.Checked = true;
+            this.checkBox35.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox35.Location = new System.Drawing.Point(17, 92);
+            this.checkBox35.Name = "checkBox35";
+            this.checkBox35.Size = new System.Drawing.Size(148, 17);
+            this.checkBox35.TabIndex = 49;
+            this.checkBox35.Text = "[RS485] Suction Pressure";
+            this.checkBox35.UseVisualStyleBackColor = true;
             // 
-            // checkBox42
+            // checkBox36
             // 
-            this.checkBox42.AutoSize = true;
-            this.checkBox42.Checked = true;
-            this.checkBox42.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox42.Location = new System.Drawing.Point(14, 61);
-            this.checkBox42.Name = "checkBox42";
-            this.checkBox42.Size = new System.Drawing.Size(137, 17);
-            this.checkBox42.TabIndex = 35;
-            this.checkBox42.Text = "[AI(4-20mA)] Read H2S";
-            this.checkBox42.UseVisualStyleBackColor = true;
+            this.checkBox36.AutoSize = true;
+            this.checkBox36.Checked = true;
+            this.checkBox36.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox36.Location = new System.Drawing.Point(17, 69);
+            this.checkBox36.Name = "checkBox36";
+            this.checkBox36.Size = new System.Drawing.Size(189, 17);
+            this.checkBox36.TabIndex = 48;
+            this.checkBox36.Text = "[DI(Dry Contact)] Drive Run Status";
+            this.checkBox36.UseVisualStyleBackColor = true;
             // 
-            // comboBox8
+            // label81
             // 
-            this.comboBox8.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(87, 19);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(464, 21);
-            this.comboBox8.TabIndex = 34;
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(14, 22);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(78, 13);
+            this.label81.TabIndex = 47;
+            this.label81.Text = "Choose Model:";
             // 
-            // groupBox23
+            // checkBox37
             // 
-            this.groupBox23.Controls.Add(this.label84);
-            this.groupBox23.Controls.Add(this.checkBox47);
-            this.groupBox23.Controls.Add(this.comboBox9);
-            this.groupBox23.Location = new System.Drawing.Point(13, 558);
-            this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(743, 100);
-            this.groupBox23.TabIndex = 57;
-            this.groupBox23.TabStop = false;
-            this.groupBox23.Text = "Fan";
+            this.checkBox37.AutoSize = true;
+            this.checkBox37.Checked = true;
+            this.checkBox37.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox37.Location = new System.Drawing.Point(17, 46);
+            this.checkBox37.Name = "checkBox37";
+            this.checkBox37.Size = new System.Drawing.Size(185, 17);
+            this.checkBox37.TabIndex = 44;
+            this.checkBox37.Text = "[DO(Relay)] Drive Run Permissive";
+            this.checkBox37.UseVisualStyleBackColor = true;
             // 
-            // label84
+            // comboBox4
             // 
-            this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(3, 22);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(78, 13);
-            this.label84.TabIndex = 47;
-            this.label84.Text = "Choose Model:";
+            this.comboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(98, 19);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(453, 21);
+            this.comboBox4.TabIndex = 34;
             // 
-            // checkBox47
+            // textBox35
             // 
-            this.checkBox47.AutoSize = true;
-            this.checkBox47.Checked = true;
-            this.checkBox47.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox47.Location = new System.Drawing.Point(14, 61);
-            this.checkBox47.Name = "checkBox47";
-            this.checkBox47.Size = new System.Drawing.Size(128, 17);
-            this.checkBox47.TabIndex = 35;
-            this.checkBox47.Text = "[DO(Relay))] Run Fan";
-            this.checkBox47.UseVisualStyleBackColor = true;
+            this.textBox35.Location = new System.Drawing.Point(141, 13);
+            this.textBox35.Name = "textBox35";
+            this.textBox35.Size = new System.Drawing.Size(265, 20);
+            this.textBox35.TabIndex = 37;
+            this.textBox35.Text = "SW Disposal";
             // 
-            // comboBox9
+            // label74
             // 
-            this.comboBox9.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(87, 19);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(464, 21);
-            this.comboBox9.TabIndex = 34;
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(24, 16);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(111, 13);
+            this.label74.TabIndex = 36;
+            this.label74.Text = "SW Disposal 1 Name:";
             // 
-            // textBox36
+            // tabPage6
             // 
-            this.textBox36.Location = new System.Drawing.Point(139, 21);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(265, 20);
-            this.textBox36.TabIndex = 39;
-            this.textBox36.Text = "Flare 1";
+            this.tabPage6.AutoScroll = true;
+            this.tabPage6.Controls.Add(this.groupBox25);
+            this.tabPage6.Controls.Add(this.groupBox24);
+            this.tabPage6.Controls.Add(this.textBox40);
+            this.tabPage6.Controls.Add(this.label89);
+            this.tabPage6.Controls.Add(this.textBox41);
+            this.tabPage6.Controls.Add(this.label90);
+            this.tabPage6.Controls.Add(this.textBox42);
+            this.tabPage6.Controls.Add(this.label91);
+            this.tabPage6.Controls.Add(this.textBox43);
+            this.tabPage6.Controls.Add(this.label92);
+            this.tabPage6.Controls.Add(this.textBox39);
+            this.tabPage6.Controls.Add(this.label88);
+            this.tabPage6.Controls.Add(this.textBox38);
+            this.tabPage6.Controls.Add(this.label87);
+            this.tabPage6.Controls.Add(this.textBox37);
+            this.tabPage6.Controls.Add(this.label86);
+            this.tabPage6.Controls.Add(this.textBox36);
+            this.tabPage6.Controls.Add(this.label85);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(988, 585);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Gas Disposal Devices";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // label85
+            // groupBox25
             // 
-            this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(22, 24);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(73, 13);
-            this.label85.TabIndex = 38;
-            this.label85.Text = "Flare 1 Name:";
+            this.groupBox25.Controls.Add(this.groupBox26);
+            this.groupBox25.Controls.Add(this.groupBox30);
+            this.groupBox25.Location = new System.Drawing.Point(25, 626);
+            this.groupBox25.Name = "groupBox25";
+            this.groupBox25.Size = new System.Drawing.Size(937, 368);
+            this.groupBox25.TabIndex = 55;
+            this.groupBox25.TabStop = false;
+            this.groupBox25.Text = "Flare Devices";
             // 
-            // textBox37
+            // groupBox26
             // 
-            this.textBox37.Location = new System.Drawing.Point(139, 47);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(265, 20);
-            this.textBox37.TabIndex = 41;
-            this.textBox37.Text = "Flare 1";
-            this.textBox37.TextChanged += new System.EventHandler(this.textBox37_TextChanged);
+            this.groupBox26.Controls.Add(this.label93);
+            this.groupBox26.Controls.Add(this.checkBox43);
+            this.groupBox26.Controls.Add(this.comboBox10);
+            this.groupBox26.Location = new System.Drawing.Point(13, 154);
+            this.groupBox26.Name = "groupBox26";
+            this.groupBox26.Size = new System.Drawing.Size(743, 100);
+            this.groupBox26.TabIndex = 59;
+            this.groupBox26.TabStop = false;
+            this.groupBox26.Text = "Fan";
             // 
-            // label86
+            // label93
             // 
-            this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(22, 50);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(73, 13);
-            this.label86.TabIndex = 40;
-            this.label86.Text = "Flare 2 Name:";
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(3, 22);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(78, 13);
+            this.label93.TabIndex = 47;
+            this.label93.Text = "Choose Model:";
             // 
-            // textBox38
+            // checkBox43
             // 
-            this.textBox38.Location = new System.Drawing.Point(139, 73);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(265, 20);
-            this.textBox38.TabIndex = 43;
-            this.textBox38.Text = "Flare 1";
-            this.textBox38.TextChanged += new System.EventHandler(this.textBox38_TextChanged);
+            this.checkBox43.AutoSize = true;
+            this.checkBox43.Checked = true;
+            this.checkBox43.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox43.Location = new System.Drawing.Point(14, 61);
+            this.checkBox43.Name = "checkBox43";
+            this.checkBox43.Size = new System.Drawing.Size(128, 17);
+            this.checkBox43.TabIndex = 35;
+            this.checkBox43.Text = "[DO(Relay))] Run Fan";
+            this.checkBox43.UseVisualStyleBackColor = true;
             // 
-            // label87
+            // comboBox10
             // 
-            this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(22, 76);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(73, 13);
-            this.label87.TabIndex = 42;
-            this.label87.Text = "Flare 3 Name:";
-            this.label87.Click += new System.EventHandler(this.label87_Click);
+            this.comboBox10.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Location = new System.Drawing.Point(87, 19);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(464, 21);
+            this.comboBox10.TabIndex = 34;
             // 
-            // textBox39
+            // groupBox30
             // 
-            this.textBox39.Location = new System.Drawing.Point(139, 99);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.Size = new System.Drawing.Size(265, 20);
-            this.textBox39.TabIndex = 45;
-            this.textBox39.Text = "Flare 1";
-            this.textBox39.TextChanged += new System.EventHandler(this.textBox39_TextChanged);
+            this.groupBox30.Controls.Add(this.label94);
+            this.groupBox30.Controls.Add(this.checkBox44);
+            this.groupBox30.Controls.Add(this.checkBox45);
+            this.groupBox30.Controls.Add(this.checkBox46);
+            this.groupBox30.Controls.Add(this.checkBox48);
+            this.groupBox30.Controls.Add(this.checkBox49);
+            this.groupBox30.Controls.Add(this.comboBox11);
+            this.groupBox30.Location = new System.Drawing.Point(13, 48);
+            this.groupBox30.Name = "groupBox30";
+            this.groupBox30.Size = new System.Drawing.Size(743, 100);
+            this.groupBox30.TabIndex = 58;
+            this.groupBox30.TabStop = false;
+            this.groupBox30.Text = "H2S Levels";
             // 
-            // label88
+            // label94
             // 
-            this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(22, 102);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(73, 13);
-            this.label88.TabIndex = 44;
-            this.label88.Text = "Flare 4 Name:";
-            this.label88.Click += new System.EventHandler(this.label88_Click);
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(3, 22);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(78, 13);
+            this.label94.TabIndex = 47;
+            this.label94.Text = "Choose Model:";
             // 
-            // textBox40
+            // checkBox44
             // 
-            this.textBox40.Location = new System.Drawing.Point(139, 203);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(265, 20);
-            this.textBox40.TabIndex = 53;
-            this.textBox40.Text = "Flare 1";
+            this.checkBox44.AutoSize = true;
+            this.checkBox44.Checked = true;
+            this.checkBox44.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox44.Location = new System.Drawing.Point(601, 61);
+            this.checkBox44.Name = "checkBox44";
+            this.checkBox44.Size = new System.Drawing.Size(108, 17);
+            this.checkBox44.TabIndex = 42;
+            this.checkBox44.Text = "[Alarm] High High";
+            this.checkBox44.UseVisualStyleBackColor = true;
             // 
-            // label89
+            // checkBox45
             // 
-            this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(22, 206);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(73, 13);
-            this.label89.TabIndex = 52;
-            this.label89.Text = "Flare 8 Name:";
+            this.checkBox45.AutoSize = true;
+            this.checkBox45.Checked = true;
+            this.checkBox45.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox45.Location = new System.Drawing.Point(496, 61);
+            this.checkBox45.Name = "checkBox45";
+            this.checkBox45.Size = new System.Drawing.Size(83, 17);
+            this.checkBox45.TabIndex = 41;
+            this.checkBox45.Text = "[Alarm] High";
+            this.checkBox45.UseVisualStyleBackColor = true;
             // 
-            // textBox41
+            // checkBox46
             // 
-            this.textBox41.Location = new System.Drawing.Point(139, 177);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(265, 20);
-            this.textBox41.TabIndex = 51;
-            this.textBox41.Text = "Flare 1";
+            this.checkBox46.AutoSize = true;
+            this.checkBox46.Location = new System.Drawing.Point(396, 61);
+            this.checkBox46.Name = "checkBox46";
+            this.checkBox46.Size = new System.Drawing.Size(81, 17);
+            this.checkBox46.TabIndex = 40;
+            this.checkBox46.Text = "[Alarm] Low";
+            this.checkBox46.UseVisualStyleBackColor = true;
             // 
-            // label90
+            // checkBox48
             // 
-            this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(22, 180);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(73, 13);
-            this.label90.TabIndex = 50;
-            this.label90.Text = "Flare 7 Name:";
+            this.checkBox48.AutoSize = true;
+            this.checkBox48.Location = new System.Drawing.Point(249, 61);
+            this.checkBox48.Name = "checkBox48";
+            this.checkBox48.Size = new System.Drawing.Size(101, 17);
+            this.checkBox48.TabIndex = 39;
+            this.checkBox48.Text = "[Alarm]Low Low";
+            this.checkBox48.UseVisualStyleBackColor = true;
             // 
-            // textBox42
+            // checkBox49
             // 
-            this.textBox42.Location = new System.Drawing.Point(139, 151);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.Size = new System.Drawing.Size(265, 20);
-            this.textBox42.TabIndex = 49;
-            this.textBox42.Text = "Flare 1";
+            this.checkBox49.AutoSize = true;
+            this.checkBox49.Checked = true;
+            this.checkBox49.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox49.Location = new System.Drawing.Point(14, 61);
+            this.checkBox49.Name = "checkBox49";
+            this.checkBox49.Size = new System.Drawing.Size(137, 17);
+            this.checkBox49.TabIndex = 35;
+            this.checkBox49.Text = "[AI(4-20mA)] Read H2S";
+            this.checkBox49.UseVisualStyleBackColor = true;
             // 
-            // label91
+            // comboBox11
             // 
-            this.label91.AutoSize = true;
-            this.label91.Location = new System.Drawing.Point(22, 154);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(73, 13);
-            this.label91.TabIndex = 48;
-            this.label91.Text = "Flare 6 Name:";
-            // 
-            // textBox43
-            // 
-            this.textBox43.Location = new System.Drawing.Point(139, 125);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.Size = new System.Drawing.Size(265, 20);
-            this.textBox43.TabIndex = 47;
-            this.textBox43.Text = "Flare 1";
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(22, 128);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(73, 13);
-            this.label92.TabIndex = 46;
-            this.label92.Text = "Flare 5 Name:";
+            this.comboBox11.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Location = new System.Drawing.Point(87, 19);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(464, 21);
+            this.comboBox11.TabIndex = 34;
             // 
             // groupBox24
             // 
@@ -4074,7 +4075,7 @@ namespace ExcelPaster
             // checkBox71
             // 
             this.checkBox71.AutoSize = true;
-            this.checkBox71.Location = new System.Drawing.Point(265, 27);
+            this.checkBox71.Location = new System.Drawing.Point(277, 27);
             this.checkBox71.Name = "checkBox71";
             this.checkBox71.Size = new System.Drawing.Size(179, 17);
             this.checkBox71.TabIndex = 33;
@@ -4117,148 +4118,351 @@ namespace ExcelPaster
             this.comboBox15.Size = new System.Drawing.Size(121, 21);
             this.comboBox15.TabIndex = 31;
             // 
-            // groupBox25
+            // textBox40
             // 
-            this.groupBox25.Controls.Add(this.groupBox26);
-            this.groupBox25.Controls.Add(this.groupBox30);
-            this.groupBox25.Location = new System.Drawing.Point(25, 626);
-            this.groupBox25.Name = "groupBox25";
-            this.groupBox25.Size = new System.Drawing.Size(937, 368);
-            this.groupBox25.TabIndex = 55;
-            this.groupBox25.TabStop = false;
-            this.groupBox25.Text = "Flare Devices";
+            this.textBox40.Location = new System.Drawing.Point(139, 203);
+            this.textBox40.Name = "textBox40";
+            this.textBox40.Size = new System.Drawing.Size(265, 20);
+            this.textBox40.TabIndex = 53;
+            this.textBox40.Text = "Flare 8";
             // 
-            // groupBox26
+            // label89
             // 
-            this.groupBox26.Controls.Add(this.label93);
-            this.groupBox26.Controls.Add(this.checkBox43);
-            this.groupBox26.Controls.Add(this.comboBox10);
-            this.groupBox26.Location = new System.Drawing.Point(13, 154);
-            this.groupBox26.Name = "groupBox26";
-            this.groupBox26.Size = new System.Drawing.Size(743, 100);
-            this.groupBox26.TabIndex = 59;
-            this.groupBox26.TabStop = false;
-            this.groupBox26.Text = "Fan";
+            this.label89.AutoSize = true;
+            this.label89.Location = new System.Drawing.Point(22, 206);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(73, 13);
+            this.label89.TabIndex = 52;
+            this.label89.Text = "Flare 8 Name:";
             // 
-            // label93
+            // textBox41
             // 
-            this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(3, 22);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(78, 13);
-            this.label93.TabIndex = 47;
-            this.label93.Text = "Choose Model:";
+            this.textBox41.Location = new System.Drawing.Point(139, 177);
+            this.textBox41.Name = "textBox41";
+            this.textBox41.Size = new System.Drawing.Size(265, 20);
+            this.textBox41.TabIndex = 51;
+            this.textBox41.Text = "Flare 7";
             // 
-            // checkBox43
+            // label90
             // 
-            this.checkBox43.AutoSize = true;
-            this.checkBox43.Checked = true;
-            this.checkBox43.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox43.Location = new System.Drawing.Point(14, 61);
-            this.checkBox43.Name = "checkBox43";
-            this.checkBox43.Size = new System.Drawing.Size(128, 17);
-            this.checkBox43.TabIndex = 35;
-            this.checkBox43.Text = "[DO(Relay))] Run Fan";
-            this.checkBox43.UseVisualStyleBackColor = true;
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(22, 180);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(73, 13);
+            this.label90.TabIndex = 50;
+            this.label90.Text = "Flare 7 Name:";
             // 
-            // comboBox10
+            // textBox42
             // 
-            this.comboBox10.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(87, 19);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(464, 21);
-            this.comboBox10.TabIndex = 34;
+            this.textBox42.Location = new System.Drawing.Point(139, 151);
+            this.textBox42.Name = "textBox42";
+            this.textBox42.Size = new System.Drawing.Size(265, 20);
+            this.textBox42.TabIndex = 49;
+            this.textBox42.Text = "Flare 6";
             // 
-            // groupBox30
+            // label91
             // 
-            this.groupBox30.Controls.Add(this.label94);
-            this.groupBox30.Controls.Add(this.checkBox44);
-            this.groupBox30.Controls.Add(this.checkBox45);
-            this.groupBox30.Controls.Add(this.checkBox46);
-            this.groupBox30.Controls.Add(this.checkBox48);
-            this.groupBox30.Controls.Add(this.checkBox49);
-            this.groupBox30.Controls.Add(this.comboBox11);
-            this.groupBox30.Location = new System.Drawing.Point(13, 48);
-            this.groupBox30.Name = "groupBox30";
-            this.groupBox30.Size = new System.Drawing.Size(743, 100);
-            this.groupBox30.TabIndex = 58;
-            this.groupBox30.TabStop = false;
-            this.groupBox30.Text = "H2S Levels";
+            this.label91.AutoSize = true;
+            this.label91.Location = new System.Drawing.Point(22, 154);
+            this.label91.Name = "label91";
+            this.label91.Size = new System.Drawing.Size(73, 13);
+            this.label91.TabIndex = 48;
+            this.label91.Text = "Flare 6 Name:";
             // 
-            // label94
+            // textBox43
             // 
-            this.label94.AutoSize = true;
-            this.label94.Location = new System.Drawing.Point(3, 22);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(78, 13);
-            this.label94.TabIndex = 47;
-            this.label94.Text = "Choose Model:";
+            this.textBox43.Location = new System.Drawing.Point(139, 125);
+            this.textBox43.Name = "textBox43";
+            this.textBox43.Size = new System.Drawing.Size(265, 20);
+            this.textBox43.TabIndex = 47;
+            this.textBox43.Text = "Flare 5";
             // 
-            // checkBox44
+            // label92
             // 
-            this.checkBox44.AutoSize = true;
-            this.checkBox44.Checked = true;
-            this.checkBox44.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox44.Location = new System.Drawing.Point(601, 61);
-            this.checkBox44.Name = "checkBox44";
-            this.checkBox44.Size = new System.Drawing.Size(108, 17);
-            this.checkBox44.TabIndex = 42;
-            this.checkBox44.Text = "[Alarm] High High";
-            this.checkBox44.UseVisualStyleBackColor = true;
+            this.label92.AutoSize = true;
+            this.label92.Location = new System.Drawing.Point(22, 128);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(73, 13);
+            this.label92.TabIndex = 46;
+            this.label92.Text = "Flare 5 Name:";
             // 
-            // checkBox45
+            // textBox39
             // 
-            this.checkBox45.AutoSize = true;
-            this.checkBox45.Checked = true;
-            this.checkBox45.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox45.Location = new System.Drawing.Point(496, 61);
-            this.checkBox45.Name = "checkBox45";
-            this.checkBox45.Size = new System.Drawing.Size(83, 17);
-            this.checkBox45.TabIndex = 41;
-            this.checkBox45.Text = "[Alarm] High";
-            this.checkBox45.UseVisualStyleBackColor = true;
+            this.textBox39.Location = new System.Drawing.Point(139, 99);
+            this.textBox39.Name = "textBox39";
+            this.textBox39.Size = new System.Drawing.Size(265, 20);
+            this.textBox39.TabIndex = 45;
+            this.textBox39.Text = "Flare 4";
+            this.textBox39.TextChanged += new System.EventHandler(this.textBox39_TextChanged);
             // 
-            // checkBox46
+            // label88
             // 
-            this.checkBox46.AutoSize = true;
-            this.checkBox46.Location = new System.Drawing.Point(396, 61);
-            this.checkBox46.Name = "checkBox46";
-            this.checkBox46.Size = new System.Drawing.Size(81, 17);
-            this.checkBox46.TabIndex = 40;
-            this.checkBox46.Text = "[Alarm] Low";
-            this.checkBox46.UseVisualStyleBackColor = true;
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(22, 102);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(73, 13);
+            this.label88.TabIndex = 44;
+            this.label88.Text = "Flare 4 Name:";
+            this.label88.Click += new System.EventHandler(this.label88_Click);
             // 
-            // checkBox48
+            // textBox38
             // 
-            this.checkBox48.AutoSize = true;
-            this.checkBox48.Location = new System.Drawing.Point(249, 61);
-            this.checkBox48.Name = "checkBox48";
-            this.checkBox48.Size = new System.Drawing.Size(101, 17);
-            this.checkBox48.TabIndex = 39;
-            this.checkBox48.Text = "[Alarm]Low Low";
-            this.checkBox48.UseVisualStyleBackColor = true;
+            this.textBox38.Location = new System.Drawing.Point(139, 73);
+            this.textBox38.Name = "textBox38";
+            this.textBox38.Size = new System.Drawing.Size(265, 20);
+            this.textBox38.TabIndex = 43;
+            this.textBox38.Text = "Flare 3";
+            this.textBox38.TextChanged += new System.EventHandler(this.textBox38_TextChanged);
             // 
-            // checkBox49
+            // label87
             // 
-            this.checkBox49.AutoSize = true;
-            this.checkBox49.Checked = true;
-            this.checkBox49.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox49.Location = new System.Drawing.Point(14, 61);
-            this.checkBox49.Name = "checkBox49";
-            this.checkBox49.Size = new System.Drawing.Size(137, 17);
-            this.checkBox49.TabIndex = 35;
-            this.checkBox49.Text = "[AI(4-20mA)] Read H2S";
-            this.checkBox49.UseVisualStyleBackColor = true;
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(22, 76);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(73, 13);
+            this.label87.TabIndex = 42;
+            this.label87.Text = "Flare 3 Name:";
+            this.label87.Click += new System.EventHandler(this.label87_Click);
             // 
-            // comboBox11
+            // textBox37
             // 
-            this.comboBox11.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(87, 19);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(464, 21);
-            this.comboBox11.TabIndex = 34;
+            this.textBox37.Location = new System.Drawing.Point(139, 47);
+            this.textBox37.Name = "textBox37";
+            this.textBox37.Size = new System.Drawing.Size(265, 20);
+            this.textBox37.TabIndex = 41;
+            this.textBox37.Text = "Flare 2";
+            this.textBox37.TextChanged += new System.EventHandler(this.textBox37_TextChanged);
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Location = new System.Drawing.Point(22, 50);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(73, 13);
+            this.label86.TabIndex = 40;
+            this.label86.Text = "Flare 2 Name:";
+            // 
+            // textBox36
+            // 
+            this.textBox36.Location = new System.Drawing.Point(139, 21);
+            this.textBox36.Name = "textBox36";
+            this.textBox36.Size = new System.Drawing.Size(265, 20);
+            this.textBox36.TabIndex = 39;
+            this.textBox36.Text = "Flare 1";
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(22, 24);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(73, 13);
+            this.label85.TabIndex = 38;
+            this.label85.Text = "Flare 1 Name:";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(988, 585);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Misc Devices";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tblModelBindingSource
+            // 
+            this.tblModelBindingSource.DataMember = "tblModel";
+            this.tblModelBindingSource.DataSource = this.dbDevicesDataSet;
+            // 
+            // dbDevicesDataSet
+            // 
+            this.dbDevicesDataSet.DataSetName = "dbDevicesDataSet";
+            this.dbDevicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblModelTableAdapter
+            // 
+            this.tblModelTableAdapter.ClearBeforeFill = true;
+            // 
+            // groupBox31
+            // 
+            this.groupBox31.Controls.Add(this.groupBox33);
+            this.groupBox31.Controls.Add(this.groupBox32);
+            this.groupBox31.Controls.Add(this.groupBox34);
+            this.groupBox31.Controls.Add(this.checkBox85);
+            this.groupBox31.Controls.Add(this.label103);
+            this.groupBox31.Controls.Add(this.label104);
+            this.groupBox31.Controls.Add(this.comboBox19);
+            this.groupBox31.Location = new System.Drawing.Point(21, 931);
+            this.groupBox31.Name = "groupBox31";
+            this.groupBox31.Size = new System.Drawing.Size(937, 314);
+            this.groupBox31.TabIndex = 103;
+            this.groupBox31.TabStop = false;
+            this.groupBox31.Text = "Recycle Pump";
+            // 
+            // groupBox34
+            // 
+            this.groupBox34.Controls.Add(this.label102);
+            this.groupBox34.Controls.Add(this.checkBox83);
+            this.groupBox34.Controls.Add(this.comboBox18);
+            this.groupBox34.Location = new System.Drawing.Point(13, 62);
+            this.groupBox34.Name = "groupBox34";
+            this.groupBox34.Size = new System.Drawing.Size(743, 76);
+            this.groupBox34.TabIndex = 39;
+            this.groupBox34.TabStop = false;
+            this.groupBox34.Text = "Start Button";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(14, 22);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(78, 13);
+            this.label102.TabIndex = 48;
+            this.label102.Text = "Choose Model:";
+            // 
+            // checkBox83
+            // 
+            this.checkBox83.AutoSize = true;
+            this.checkBox83.Checked = true;
+            this.checkBox83.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox83.Location = new System.Drawing.Point(17, 46);
+            this.checkBox83.Name = "checkBox83";
+            this.checkBox83.Size = new System.Drawing.Size(196, 17);
+            this.checkBox83.TabIndex = 35;
+            this.checkBox83.Text = "[DI(Dry Contact)] Read Level Status";
+            this.checkBox83.UseVisualStyleBackColor = true;
+            // 
+            // comboBox18
+            // 
+            this.comboBox18.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox18.FormattingEnabled = true;
+            this.comboBox18.Location = new System.Drawing.Point(98, 19);
+            this.comboBox18.Name = "comboBox18";
+            this.comboBox18.Size = new System.Drawing.Size(453, 21);
+            this.comboBox18.TabIndex = 34;
+            // 
+            // checkBox85
+            // 
+            this.checkBox85.AutoSize = true;
+            this.checkBox85.Location = new System.Drawing.Point(262, 27);
+            this.checkBox85.Name = "checkBox85";
+            this.checkBox85.Size = new System.Drawing.Size(144, 17);
+            this.checkBox85.TabIndex = 33;
+            this.checkBox85.Text = "All Pumps Same Devices";
+            this.checkBox85.UseVisualStyleBackColor = true;
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(219, 30);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(26, 13);
+            this.label103.TabIndex = 32;
+            this.label103.Text = "OR ";
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(6, 30);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(70, 13);
+            this.label104.TabIndex = 19;
+            this.label104.Text = "Select Pump:";
+            // 
+            // comboBox19
+            // 
+            this.comboBox19.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox19.FormattingEnabled = true;
+            this.comboBox19.Items.AddRange(new object[] {
+            "Pump 1",
+            "Pump 2"});
+            this.comboBox19.Location = new System.Drawing.Point(89, 25);
+            this.comboBox19.Name = "comboBox19";
+            this.comboBox19.Size = new System.Drawing.Size(121, 21);
+            this.comboBox19.TabIndex = 31;
+            // 
+            // groupBox32
+            // 
+            this.groupBox32.Controls.Add(this.label100);
+            this.groupBox32.Controls.Add(this.checkBox50);
+            this.groupBox32.Controls.Add(this.comboBox16);
+            this.groupBox32.Location = new System.Drawing.Point(13, 144);
+            this.groupBox32.Name = "groupBox32";
+            this.groupBox32.Size = new System.Drawing.Size(743, 76);
+            this.groupBox32.TabIndex = 49;
+            this.groupBox32.TabStop = false;
+            this.groupBox32.Text = "HOA Switch";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(14, 22);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(78, 13);
+            this.label100.TabIndex = 48;
+            this.label100.Text = "Choose Model:";
+            // 
+            // checkBox50
+            // 
+            this.checkBox50.AutoSize = true;
+            this.checkBox50.Checked = true;
+            this.checkBox50.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox50.Location = new System.Drawing.Point(17, 46);
+            this.checkBox50.Name = "checkBox50";
+            this.checkBox50.Size = new System.Drawing.Size(196, 17);
+            this.checkBox50.TabIndex = 35;
+            this.checkBox50.Text = "[DI(Dry Contact)] Read Level Status";
+            this.checkBox50.UseVisualStyleBackColor = true;
+            // 
+            // comboBox16
+            // 
+            this.comboBox16.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Location = new System.Drawing.Point(98, 19);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(453, 21);
+            this.comboBox16.TabIndex = 34;
+            // 
+            // groupBox33
+            // 
+            this.groupBox33.Controls.Add(this.label101);
+            this.groupBox33.Controls.Add(this.checkBox51);
+            this.groupBox33.Controls.Add(this.comboBox17);
+            this.groupBox33.Location = new System.Drawing.Point(13, 226);
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.Size = new System.Drawing.Size(743, 76);
+            this.groupBox33.TabIndex = 50;
+            this.groupBox33.TabStop = false;
+            this.groupBox33.Text = "Pump";
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(14, 22);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(78, 13);
+            this.label101.TabIndex = 48;
+            this.label101.Text = "Choose Model:";
+            // 
+            // checkBox51
+            // 
+            this.checkBox51.AutoSize = true;
+            this.checkBox51.Checked = true;
+            this.checkBox51.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox51.Location = new System.Drawing.Point(17, 46);
+            this.checkBox51.Name = "checkBox51";
+            this.checkBox51.Size = new System.Drawing.Size(136, 17);
+            this.checkBox51.TabIndex = 35;
+            this.checkBox51.Text = "[DO(Relay)] Start Pump";
+            this.checkBox51.UseVisualStyleBackColor = true;
+            // 
+            // comboBox17
+            // 
+            this.comboBox17.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox17.FormattingEnabled = true;
+            this.comboBox17.Location = new System.Drawing.Point(98, 19);
+            this.comboBox17.Name = "comboBox17";
+            this.comboBox17.Size = new System.Drawing.Size(453, 21);
+            this.comboBox17.TabIndex = 34;
             // 
             // CESetupForm_KODAMultiwell
             // 
@@ -4280,36 +4484,30 @@ namespace ExcelPaster
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.groupBox16.ResumeLayout(false);
@@ -4318,17 +4516,26 @@ namespace ExcelPaster
             this.groupBox17.PerformLayout();
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.groupBox15.ResumeLayout(false);
-            this.groupBox20.ResumeLayout(false);
-            this.groupBox20.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
-            this.groupBox22.ResumeLayout(false);
-            this.groupBox22.PerformLayout();
-            this.groupBox23.ResumeLayout(false);
-            this.groupBox23.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.groupBox25.ResumeLayout(false);
+            this.groupBox26.ResumeLayout(false);
+            this.groupBox26.PerformLayout();
+            this.groupBox30.ResumeLayout(false);
+            this.groupBox30.PerformLayout();
             this.groupBox24.ResumeLayout(false);
             this.groupBox24.PerformLayout();
             this.groupBox27.ResumeLayout(false);
@@ -4337,11 +4544,16 @@ namespace ExcelPaster
             this.groupBox28.PerformLayout();
             this.groupBox29.ResumeLayout(false);
             this.groupBox29.PerformLayout();
-            this.groupBox25.ResumeLayout(false);
-            this.groupBox26.ResumeLayout(false);
-            this.groupBox26.PerformLayout();
-            this.groupBox30.ResumeLayout(false);
-            this.groupBox30.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbDevicesDataSet)).EndInit();
+            this.groupBox31.ResumeLayout(false);
+            this.groupBox31.PerformLayout();
+            this.groupBox34.ResumeLayout(false);
+            this.groupBox34.PerformLayout();
+            this.groupBox32.ResumeLayout(false);
+            this.groupBox32.PerformLayout();
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4696,5 +4908,22 @@ namespace ExcelPaster
         private System.Windows.Forms.Label label91;
         private System.Windows.Forms.TextBox textBox43;
         private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.GroupBox groupBox31;
+        private System.Windows.Forms.GroupBox groupBox33;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.CheckBox checkBox51;
+        private System.Windows.Forms.ComboBox comboBox17;
+        private System.Windows.Forms.GroupBox groupBox32;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.CheckBox checkBox50;
+        private System.Windows.Forms.ComboBox comboBox16;
+        private System.Windows.Forms.GroupBox groupBox34;
+        private System.Windows.Forms.Label label102;
+        private System.Windows.Forms.CheckBox checkBox83;
+        private System.Windows.Forms.ComboBox comboBox18;
+        private System.Windows.Forms.CheckBox checkBox85;
+        private System.Windows.Forms.Label label103;
+        private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.ComboBox comboBox19;
     }
 }

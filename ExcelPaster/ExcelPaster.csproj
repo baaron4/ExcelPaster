@@ -166,6 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CEFileGeneration.cs" />
     <Compile Include="CESetupForm_KODAMultiwell.cs">
       <SubType>Form</SubType>
     </Compile>
