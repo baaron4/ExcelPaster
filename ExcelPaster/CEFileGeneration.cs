@@ -102,7 +102,7 @@ namespace ExcelPaster
         //Objects-----------------------------------------------------------------------------------------------------------------------------
         private enum IOType
         { 
-            DI = 1, AI = 2, DO = 3, AO = 4, RS485 = 5, ETH = 6
+            UNKNOWN = 0,DI = 1, AI = 2, DO = 3, AO = 4, RS485 = 5, ETH = 6, VIRTUAL = 7
         }
         private enum IOAlarmType
         { 
@@ -112,9 +112,21 @@ namespace ExcelPaster
         {
             public string Description;
             public IOAlarmType type;
+            public bool constantSetpoint;
+            public float constantSetpointValue;
             public float setpoint;
             public float delay;
             public float resetdelay;
+
+            public IOAlarm(string description,IOAlarmType type,bool constantSetpoint,float constantSetpointvalue, float setpoint )
+            {
+                this.Description = description;
+                this.type = type;
+                this.constantSetpoint = constantSetpoint;
+                this.constantSetpointValue = constantSetpointvalue;
+                this.setpoint = setpoint;
+
+            }
         }
         private class IOPoint
         {
@@ -124,14 +136,45 @@ namespace ExcelPaster
             public float LRV;
             public float URV;
             public List<IOAlarm> alarmList;
-
+            public IOPoint(string Description, string type, string unit, float LRV, float URV) 
+            {
+                IOType pointtype = IOType.UNKNOWN;
+                switch (type)
+                {
+                    case "DI":
+                        pointtype = IOType.DI;
+                        break;
+                    case "AI":
+                        pointtype = IOType.AI;
+                        break;
+                    case "DO":
+                        pointtype = IOType.DO;
+                        break;
+                    case "AO":
+                        pointtype = IOType.AO;
+                        break;
+                    case "VAI":
+                        pointtype = IOType.VIRTUAL;
+                        break;
+                }
+                this.Description = Description;
+                this.type = pointtype;
+                this.unit = unit;
+                this.LRV = LRV;
+                this.URV = URV;
+                this.alarmList = new List<IOAlarm>();
+            }
         }
         private class Device
         {
             public string Name;
             public string PID;
             public List<IOPoint> IOPointList;
-
+            public Device(string name, string PID)
+            {
+                this.Name = name;
+                this.PID = PID;
+            }
         }
 
 
@@ -646,6 +689,7 @@ namespace ExcelPaster
 
             }
             //Go Over all rows
+            int firstRowofDevice = 0;
             for (int row = 4; row < xlRange.Rows.Count; row++)
             {
                 int cellColor = xlRange.Cells[row, CEDescriptionColmn].Interior.Color;
@@ -657,11 +701,63 @@ namespace ExcelPaster
                 }
                 else 
                 {
-
-                    string cellFunction = CellValueOrNull(xlRange, row, CEFunctionColmn);
+                    string pidName = CellValueOrNull(xlRange,row, CEPIDColumn);
+                    string function = CellValueOrNull(xlRange, row, CEFunctionColmn);
+                    string unit = CellValueOrNull(xlRange, row, CEUnitsColmn);
+                    string HMIAlarm = CellValueOrNull(xlRange, row, CEHMIAlarmsColmn);
+                    string[] range = CellValueOrNull(xlRange, row, CERangeColmn).Split('|');
+                    float LRV = 0; 
+                    float URV = 0;
+                    if (range != null)
+                    {
+                        LRV = float.Parse(range[0]);
+                        URV = float.Parse(range[1]);
+                    }
                     
-                    //if(cellFunction == )
+                    
 
+                    object mergedCells  = xlWorksheet.Range[xlWorksheet.Cells[row,CEPIDColumn]].MergeCells;
+                    // bool containsMergedCells = mergedCells == DBNull.Value || (bool)mergedCells;
+                    if (mergedCells == DBNull.Value && firstRowofDevice == 0)//First Line of larger device
+                    {
+                        Device newDevice = new Device(cellDesc, pidName);
+                        IOPoint newPoint = new IOPoint(cellDesc, function, unit, LRV, URV);
+                        string cellsetpoint = CellValueOrNull(xlRange, row, CESetpointColmn);
+                        if (HMIAlarm == "X" )
+                        {
+                            IOAlarmType operationType = IOAlarmType.NOOP;
+                            if (function.Contains("AH") || function.Contains("AHH"))
+                            {
+                                operationType = IOAlarmType.GT;
+                            }
+                            else if (function.Contains("FAULT") && cellsetpoint.Contains("COMM"))
+                            {
+                                operationType = IOAlarmType.GT;
+                            }
+                            newPoint.alarmList.Add(new IOAlarm(cellDesc,operationType,float.Parse(cellsetpoint)));
+                        }
+
+                        newDevice.IOPointList.Add(newPoint);
+                        SiteSystemList.Last().DeviceList.Add(newDevice);
+                        firstRowofDevice = row;
+                    }
+                    else if (mergedCells == DBNull.Value)//multline device, additional IO
+                    {
+                        
+                        SiteSystemList.Last().DeviceList.Last().IOPointList.Add(new IOPoint(cellDesc, function, unit,LRV,URV));
+                    }
+                    else if ((bool)mergedCells)//is a complete device with multiple lines
+                    {
+
+                        firstRowofDevice = 0;
+                    }
+                    else //is a 1 line device
+                    {
+                        Device newDevice = new Device(cellDesc, pidName);
+                        newDevice.IOPointList.Add(new IOPoint(cellDesc, function, unit, LRV, URV));
+                        SiteSystemList.Last().DeviceList.Add(newDevice);
+
+                    }
                 }
 
             }
