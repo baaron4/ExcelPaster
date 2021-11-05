@@ -20,6 +20,14 @@ namespace ExcelPaster
         List<PCCUHoldingRegister> AnalogOutputs = new List<PCCUHoldingRegister>();
         int DigitalOutput_ArrayNumber = 3;
         List<PCCUHoldingRegister> DigitalOutputs = new List<PCCUHoldingRegister>();
+
+        int Coriolis_ArrayNumber = 5;
+        List<PCCUHoldingRegister> Coriolises = new List<PCCUHoldingRegister>();
+        int Mag_ArrayNumber = 6;
+        List<PCCUHoldingRegister> MagMeters = new List<PCCUHoldingRegister>();
+        int Turbine_ArrayNumber = 7;
+        List<PCCUHoldingRegister> Turbine = new List<PCCUHoldingRegister>();
+
         int FacilityOperations_AppNumber = 244;
         int Setpoints_ArrayNumber = 208;
         List<PCCUHoldingRegister> Setpoints = new List<PCCUHoldingRegister>();
@@ -31,6 +39,7 @@ namespace ExcelPaster
         List<PCCUHoldingRegister> OILTanks = new List<PCCUHoldingRegister>();
         int FWTanks_ArrayNumber = 202;
         List<PCCUHoldingRegister> FWTanks = new List<PCCUHoldingRegister>();
+
         int Alarm_AppNumber = 94;
         List<PCCUAlarm> AlarmSystem = new List<PCCUAlarm>();
         int AlarmStatus_AppNumber = 242;
@@ -322,6 +331,9 @@ namespace ExcelPaster
             SaveHoldingRegisterAsCSV(DigitalInputs, outputLoc + "/IO_HoldingRegisters_DI_Paste.csv", true);
             SaveHoldingRegisterAsCSV(AnalogOutputs, outputLoc + "/IO_HoldingRegisters_AO_Paste.csv", true);
             SaveHoldingRegisterAsCSV(DigitalOutputs, outputLoc + "/IO_HoldingRegisters_DO_Paste.csv", true);
+            SaveHoldingRegisterAsCSV(Coriolises, outputLoc + "/IO_HoldingRegisters_Coriolises_Paste.csv", false);
+            SaveHoldingRegisterAsCSV(MagMeters, outputLoc + "/IO_HoldingRegisters_MagMeters_Paste.csv", false);
+            SaveHoldingRegisterAsCSV(Turbine, outputLoc + "/IO_HoldingRegisters_Turbine_Paste.csv", false);
             SaveHoldingRegisterAsCSV(Setpoints, outputLoc + "/Setpoints_Paste.csv", false);
             SaveHoldingRegisterAsCSV(SWTanks, outputLoc + "/SWTanks_Paste.csv", true);
             SaveHoldingRegisterAsCSV(OILTanks, outputLoc + "/OilTanks_Paste.csv", true);
@@ -330,346 +342,7 @@ namespace ExcelPaster
 
             return "Output files to :" + outputLoc;
         }
-       
-        private void ParseExistingCEBad(string sourceLoc)
-        {
-            //Open Excel and read file---------------------------------------------------------------------------------
-            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(sourceLoc);
-            Microsoft.Office.Interop.Excel._Worksheet xlWorksheet = xlWorkbook.Sheets["Cause and Effect"];
-            Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            //Aquire colmn desc
-            int CEDescriptionColmn = 3;
-            int CEFunctionColmn = 4;
-            int CERangeColmn = 5;
-            int CESetpointColmn = 6;
-            int CEUnitsColmn = 7;
-            int CESPChangeFromHMI = 8;
-            int CEHMIIndicatorColmn = 11;
-            int CEHMIAlarmsColmn = 12;
-
-            for (int col = 1; col < xlRange.Columns.Count; col++)
-            {
-                string value = CellValueOrNull(xlRange, 4, col);
-                if (value != "")
-                {
-                    switch (value.ToUpper())
-                    {
-                        case "DESCRIPTION":
-                            CEDescriptionColmn = col;
-                            break;
-                        case "FUNCTION":
-                            CEFunctionColmn = col;
-                            break;
-                        case "RANGE":
-                            CERangeColmn = col;
-                            break;
-                        case "SETPOINT":
-                            CESetpointColmn = col;
-                            break;
-                        case "UNITS":
-                            CEUnitsColmn = col;
-                            break;
-                        case "SETPOINT CHANGED FROM HMI":
-                            CESPChangeFromHMI = col;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                {
-                    value = CellValueOrNull(xlRange, 1, col);
-                    if (value != "")
-                    {
-                        switch (value.ToUpper())
-                        {
-                            case "HMI INDICATIONS":
-                                CEHMIIndicatorColmn = col;
-                                break;
-                            case "HMI ALARMS":
-                                CEHMIAlarmsColmn = col;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-                
-            }
-            //generate IO paste
-
-            bool lastrowhadsetpoint = false;
-
-            int SWTankCount = 0;
-            int OILTankCount = 0;
-            int FWTankCount = 0;
-            AnalogInputs.Add(new PCCUHoldingRegister("9.0." + (AnalogInputs.Count), "**Analog Inputs**", "", 0));
-            DigitalInputs.Add(new PCCUHoldingRegister("9.2." + (DigitalInputs.Count), "**Digital Inputs**", "", 0));
-            AnalogOutputs.Add(new PCCUHoldingRegister("9.1." + (AnalogOutputs.Count), "**Analog Outputs**", "", 0));
-            DigitalOutputs.Add(new PCCUHoldingRegister("9.3." + (DigitalOutputs.Count), "**Digital Outputs**", "", 0));
-            Setpoints.Add(new PCCUHoldingRegister("244.208." + (Setpoints.Count), "**Setpoints**", "", 0));
-            for (int row = 4; row < xlRange.Rows.Count; row++)
-            {
-                //AI 9.0.X
-                if (CellValueOrNull(xlRange, row, CEFunctionColmn) == "AI")
-                {
-
-                    string description =FindTitleCell(xlRange, row, CEDescriptionColmn) +" "+ CellValueOrNull(xlRange, row, CEDescriptionColmn);
-                    AnalogInputs.Add(new PCCUHoldingRegister("9.0."+ (AnalogInputs.Count), description , "",row));
-                }
-                //DI 9.2.X
-                if (CellValueOrNull(xlRange, row, CEFunctionColmn) == "DI")
-                {
-                    string description = FindTitleCell(xlRange, row, CEDescriptionColmn) + " " + CellValueOrNull(xlRange, row, CEDescriptionColmn);
-                    DigitalInputs.Add(new PCCUHoldingRegister("9.2." + (DigitalInputs.Count), description, "", row));
-                }
-                //Generate Setpoints paste 244.208.X
-                string value = CellValueOrNull(xlRange, row, CESetpointColmn);
-                float number;
-                if (float.TryParse(value, out number))
-                {
-
-                    string description = FindTitleCell(xlRange, row, CEDescriptionColmn) + " " + CellValueOrNull(xlRange, row, CEDescriptionColmn);
-                    Setpoints.Add(new PCCUHoldingRegister("244.208." + (Setpoints.Count ), description, CellValueOrNull(xlRange, row, CESetpointColmn), row));
-                    lastrowhadsetpoint = true;
-                }
-                else if (lastrowhadsetpoint)
-                {
-                    //Create gap between Setpoints
-                    Setpoints.Add(new PCCUHoldingRegister("244.208." + (Setpoints.Count + 1), "*", "", 0));
-                    lastrowhadsetpoint = false;
-                }
-                //Generate Tank IO Pastes 240.200.X 240.201.X 240.202.X
-                if (CellValueOrNull(xlRange, row, CEFunctionColmn) == "LI")
-                {
-                    //Look for an interface row
-                    int interfaceRow = 0; //0 if no interface
-                    int searchforInterface = 0;
-                    while (xlRange.Cells[row + searchforInterface, CEFunctionColmn].Interior.Color == 16777215)
-                    {
-                        if (CellValueOrNull(xlRange, row + searchforInterface, CEFunctionColmn) == "LI")
-                        {
-                            if (CellValueOrNull(xlRange, row + searchforInterface, CEDescriptionColmn).Contains("INTERFACE"))
-                            {
-                                interfaceRow = row + searchforInterface;
-                                break;
-                            }
-
-                        }
-                        searchforInterface++;
-                    }
-                    string description = FindTitleCell(xlRange, row, CEDescriptionColmn);
-                    if (description.Contains("SALT"))
-                    {
-                        SWTankCount++;
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "**" + description + "**", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Status", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " PV (Surface Level) Feet", "", row));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " SV (Interface Level) Feet", "", interfaceRow));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " TV", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " QV", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Comm Response", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Surface FT", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Surface IN", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Interface FT", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "SW" + SWTankCount + " Interface IN", "", 0));
-                        SWTanks.Add(new PCCUHoldingRegister("240.200." + (SWTanks.Count), "*", "", 0));
-                    }
-                    else if (description.Contains("OIL"))
-                    {
-                        OILTankCount++;
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "**" + description + "**", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Status", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " PV (Surface Level) Feet", "", row));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " SV (Interface Level) Feet", "", interfaceRow));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " TV", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " QV", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Comm Response", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Surface FT", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Surface IN", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Interface FT", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "OIL" + OILTankCount + " Interface IN", "", 0));
-                        OILTanks.Add(new PCCUHoldingRegister("240.201." + (OILTanks.Count), "*", "", 0));
-                    }
-                    else if (description.Contains("FRESH"))
-                    {
-                        FWTankCount++;
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "**" + description + "**", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Status", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " PV (Surface Level) PSI", "", row));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " SV ", "", interfaceRow));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " TV", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " QV", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Comm Response", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Surface FT", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Surface IN", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Interface FT", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "FW" + FWTankCount + " Interface IN", "", 0));
-                        FWTanks.Add(new PCCUHoldingRegister("240.202." + (FWTanks.Count), "*", "", 0));
-                    }
-
-
-                }
-
-                //Generate alarms paste
-                if (CellValueOrNull(xlRange, row, CEHMIAlarmsColmn) == "X")
-                {
-                    //Get alarm name
-                    string description = FindTitleCell(xlRange, row, CEDescriptionColmn) + " " + CellValueOrNull(xlRange, row, CEDescriptionColmn);
-                    //Get Operation for alarm
-                    string function = CellValueOrNull(xlRange, row, CEFunctionColmn).ToUpper();
-                    string operation = "";
-                    string thresType = "";
-                    string thresRegister = "";
-                    string thresConstant = "";
-                    string setpointvalue ="";
-                    int filterthres = 0;
-                    int resetthres = 0;
-                    int resetdb = 0;
-                    if (function.Contains("ALL") || function.Contains("AL"))
-                    {
-                        operation = "l";
-                        thresType = "r";
-                        thresRegister = Setpoints.FirstOrDefault(x => x.CERow == row).Register;
-                    }
-                    else
-                    if (function.Contains("AHH") || function.Contains("AH"))
-                    {
-                        operation = "g";
-                        thresType = "r";
-                        thresRegister = Setpoints.FirstOrDefault(x => x.CERow == row).Register;
-                    }
-                    else if (function.Contains("FAULT"))
-                    {
-                         setpointvalue = CellValueOrNull(xlRange, row, CESetpointColmn);
-                        if (setpointvalue == "COMM")
-                        {
-                            operation = "g";
-                            thresType = "c";
-                            thresConstant = "0";
-                        }
-                        else if (setpointvalue == "NO")
-                        {
-                            operation = "l";
-                            thresType = "c";
-                            thresConstant = "1";
-                        }else
-                        {
-                            operation = "l";
-                            thresType = "r";
-                            PCCUHoldingRegister sp = Setpoints.FirstOrDefault(x => x.CERow == row);
-                            if (sp != null)
-                            {
-                                thresRegister = sp.Register;
-                            }
-                            
-                        }
-                    }
-                    else if (function.Contains("DI"))
-                    {
-                         setpointvalue = CellValueOrNull(xlRange, row, CESetpointColmn);
-                        if (setpointvalue == "NC")
-                        {
-                            operation = "l";
-                            thresType = "c";
-                            thresConstant = "1";
-                        }
-                    }
-                    //Get alarm input register
-                    //Look for an AI row
-                    int airow = 0;
-                    int dirow = 0;
-                    if (setpointvalue != "COMM")
-                    {
-                        int searchforAI = 0;
-                        double color = xlRange.Cells[row - searchforAI, CEFunctionColmn].Interior.Color;
-                        while (color == 16777215)
-                        {
-                            if (CellValueOrNull(xlRange, row - searchforAI, CEFunctionColmn).Contains("AI"))
-                            {
-                                airow = row - searchforAI;
-                                break;
-                            }
-                            else if (CellValueOrNull(xlRange, row - searchforAI, CEFunctionColmn).Contains("DI"))
-                            {
-                                dirow = row - searchforAI;
-                                break;
-                            }
-                            if (searchforAI > xlRange.Rows.Count)
-                            {
-                                break;
-                            }
-                            color = xlRange.Cells[row - searchforAI, CEFunctionColmn].Interior.Color;
-                            searchforAI++;
-                        }
-                    }
-                   
-                    string inputRegister = "";
-                    if (airow != 0)
-                    {
-                        PCCUHoldingRegister aiHR = AnalogInputs.FirstOrDefault(x => x.CERow == airow);
-                        if (aiHR != null)
-                        {
-                            inputRegister = aiHR.Register;
-                        }
-                    }
-                    else if (dirow != 0)
-                    {
-                        PCCUHoldingRegister diHR = DigitalInputs.FirstOrDefault(x => x.CERow == dirow);
-                        if (diHR != null)
-                        {
-                            inputRegister = diHR.Register;
-                        }
-                    }
-
-                    //Specefeic alarms
-                    if (description.ToUpper().Contains("FAIL TO START"))
-                    {
-                        filterthres = 30;
-                    }
-                    if (function.ToUpper().Contains("FAULT"))
-                    {
-                        filterthres = 60;
-                    }
-                    AlarmSystem.Add(new PCCUAlarm("94.122." + (AlarmSystem.Count), description, operation, inputRegister, thresType, thresRegister, thresConstant, filterthres, resetdb));
-                }
-            }
-
-            for (int col = 15; col < xlRange.Columns.Count; col++)
-            {
-                //AO 9.1.X
-                if (CellValueOrNull(xlRange, 3, col) == "AO")
-                {
-                    AnalogOutputs.Add(new PCCUHoldingRegister("9.1." + (AnalogOutputs.Count ), CellValueOrNull(xlRange, 1, col), "", col));
-                }
-                //DO 9.3.X
-                if (CellValueOrNull(xlRange, 3, col) == "DO")
-                {
-                    DigitalOutputs.Add(new PCCUHoldingRegister("9.3." + (DigitalOutputs.Count), CellValueOrNull(xlRange, 1, col), "", col));
-                }
-            }
-
-            //Generate Select for alarms
-            int selectCount = 0;
-            int wordCount = 1;
-            int bitCount = 0;
-            foreach (PCCUAlarm alarm in AlarmSystem)
-            {
-                AlarmStatus_Selects.Add(new PCCUSelect("242.32." + selectCount,wordCount + "." + bitCount,alarm.Register,"","242.201."+ bitCount));
-                selectCount++;
-                bitCount++;
-                if (selectCount % 16 == 0)
-                {
-                    wordCount++;
-                    bitCount = 0;
-                }
-            }
-            xlWorkbook.Close();
-            xlApp.Quit();
-            
-        }
 
         private void ParseExistingCE(string sourceLoc)
         {
@@ -949,14 +622,16 @@ namespace ExcelPaster
             }
 
             //Go over all output columns
+            
             for (int col = 15; col < xlRange.Columns.Count; col++)
             {
                 string cellDescription = CellValueOrNull(xlRange, 1, col);
                 string cellPID = CellValueOrNull(xlRange, 2, col);
                 string cellType = CellValueOrNull(xlRange, 3, col);
-
+                bool  foundoutputsystem = false;
                 if (cellPID != "")
                 {
+                    //Look for existing system
                     foreach (SiteSystem system in SiteSystemList)
                     {
                         //Device device = system.DeviceList.FirstOrDefault(x => x.PID == cellPID);
@@ -967,6 +642,7 @@ namespace ExcelPaster
                                 if (device.PID == cellPID)
                                 {
                                     device.IOPointList.Add(new IOPoint(cellDescription, cellType, "Output", 0, 0));
+                                    foundoutputsystem = true;
                                     //Check for any Inputs that need a output to activate
                                     foreach (IOPoint p in device.IOPointList)
                                     {
@@ -982,6 +658,21 @@ namespace ExcelPaster
                                 }
                             }
                         }
+                        if (foundoutputsystem)
+                        {
+                            break;
+                        }
+                    }
+                    //If no system add as extra IO
+                    if (!foundoutputsystem)
+                    {
+                        SiteSystem doSystem = SiteSystemList.FirstOrDefault(x => x.Name == "Digital Outputs");
+                        if (doSystem == null)
+                        {
+                            SiteSystemList.Add(new SiteSystem("Digital Outputs", 0));
+                            SiteSystemList.FirstOrDefault(x => x.Name == "Digital Outputs").DeviceList.Add(new Device("Outputs", "Outputs"));
+                        }
+                        SiteSystemList.FirstOrDefault(x => x.Name == "Digital Outputs").DeviceList.FirstOrDefault(y => y.Name == "Outputs").IOPointList.Add(new IOPoint(cellDescription, cellType, "Output", 0, 0));
                     }
                 }
             }
@@ -1006,6 +697,9 @@ namespace ExcelPaster
             int SWTankCount = 0;
             int OILTankCount = 0;
             int FWTankCount = 0;
+            int CoriolisCount = 0;
+            int MagCount = 0;
+            int TurbineCount = 0;
             foreach (SiteSystem system in SiteSystemList)
             {
                 foreach (Device device in system.DeviceList)
@@ -1029,7 +723,7 @@ namespace ExcelPaster
                             {
                                 device.IOPointList.First(x => x.Description.Contains("SURFACE")).PCCUHoldingRegister = register;
                             }
-                            
+
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " SV ", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " TV", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " QV", ""));
@@ -1039,7 +733,7 @@ namespace ExcelPaster
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " Interface FT", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " Interface IN", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "*", "", 0));
-                           
+
                         }
                         else if (system.Name.Contains("OIL"))
                         {
@@ -1106,6 +800,47 @@ namespace ExcelPaster
                             SWTanks.Add(new PCCUHoldingRegister(registerArray + (SWTanks.Count), "*", ""));
                         }
                     }
+                    else if (device.PID.Contains("FIT"))
+                    {
+                        if (device.Name.Contains("OIL"))
+                        {
+                            //Note this is for Micromotion Modbus map order
+                            CoriolisCount++;
+                            string registerArray = IOHoldingRegister_AppNumber + "." + Coriolis_ArrayNumber + ".";
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "**" + system.Name + " Coriolis**", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Mass Flow Rate (kg/Sec)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Density (lb/ft3)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Temperature (DegF)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Volume Flow Rate (BBL/Day)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Pressure (PSI)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Comm Response Status (Data 1)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Drive Gain (%)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Comm Response Status (Data 2)", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", "", 0));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", "", 0));
+
+                        }
+                        else if (device.Name.Contains("WATER"))
+                        {
+                            MagCount++;
+                            string registerArray = IOHoldingRegister_AppNumber + "." + Mag_ArrayNumber + ".";
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "**" + system.Name + " Mag Meter**", ""));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "Volume Flow Rate (BBL/Day)", ""));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "Comm Response Status (Data 1)", ""));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", "", 0));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", "", 0));
+                        }
+                        else if (device.Name.Contains("TURBINE"))
+                        {
+                            TurbineCount++;
+                            string registerArray = IOHoldingRegister_AppNumber + "." + Turbine_ArrayNumber + ".";
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "**" + system.Name + " Turbine**", ""));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "Volume Flow Rate (BBL/Day)", ""));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "Comm Response Status (Data 1)", ""));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", "", 0));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", "", 0));
+                        }
+                    }
                     foreach (IOPoint point in device.IOPointList)
                     {
                         string pointName = system.Name +/* " " + device.Name +*/ " " + point.Description;
@@ -1127,6 +862,10 @@ namespace ExcelPaster
                         }
                         else if (point.type == IOType.DO)
                         {
+                            if (system.Name == "Digital Outputs")
+                            {
+                                pointName =  point.Description;
+                            }
                             PCCUHoldingRegister = IOHoldingRegister_AppNumber + "." + DigitalOutput_ArrayNumber + "." + (DigitalOutputs.Count);
                             DigitalOutputs.Add(new PCCUHoldingRegister(PCCUHoldingRegister, pointName, ""));
                             //Check for fail to start alarms
@@ -1140,8 +879,8 @@ namespace ExcelPaster
                                         if (a.Description.Contains("FAIL TO START"))
                                         {
                                            
-                                                a.triggerRegister = PCCUHoldingRegister;
-                                                break;
+                                            a.triggerRegister = PCCUHoldingRegister;
+                                            break;
                                             
                                         }
                                     }
@@ -1155,16 +894,15 @@ namespace ExcelPaster
                         {
                             //PCCU Setpoints Holding Register
                             string setpointRegister = "";
-                            if (alarm.setpoint != null)
+                            
+                            if (!alarm.constantSetpoint)
                             {
-                                if (!alarm.constantSetpoint)
-                                {
-                                    setpointRegister = FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count);
-                                    Setpoints.Add(new PCCUHoldingRegister(setpointRegister, alarm.Description, alarm.setpoint.ToString()));
-                                    alarm.PCCUSetpointRegister = setpointRegister;
-                                }
-                                
+                                setpointRegister = FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count);
+                                Setpoints.Add(new PCCUHoldingRegister(setpointRegister, alarm.Description, alarm.setpoint.ToString()));
+                                alarm.PCCUSetpointRegister = setpointRegister;
                             }
+                                
+                            
                             //PCCU alarm System
                             string thresType = "r";
                             if (alarm.constantSetpoint)
