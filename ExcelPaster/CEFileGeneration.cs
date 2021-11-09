@@ -10,7 +10,10 @@ namespace ExcelPaster
 {
     class CEFileGeneration
     {
+        
         List<SiteSystem> SiteSystemList = new List<SiteSystem>();
+
+        //Generic Devices
         int IOHoldingRegister_AppNumber = 9;
         int AnalogInput_ArrayNumber = 0;
         List<PCCUHoldingRegister> AnalogInputs = new List<PCCUHoldingRegister>();
@@ -20,18 +23,18 @@ namespace ExcelPaster
         List<PCCUHoldingRegister> AnalogOutputs = new List<PCCUHoldingRegister>();
         int DigitalOutput_ArrayNumber = 3;
         List<PCCUHoldingRegister> DigitalOutputs = new List<PCCUHoldingRegister>();
-
+        //Flow Devices
         int Coriolis_ArrayNumber = 5;
         List<PCCUHoldingRegister> Coriolises = new List<PCCUHoldingRegister>();
         int Mag_ArrayNumber = 6;
         List<PCCUHoldingRegister> MagMeters = new List<PCCUHoldingRegister>();
         int Turbine_ArrayNumber = 7;
         List<PCCUHoldingRegister> Turbine = new List<PCCUHoldingRegister>();
-
+        //Setpoints
         int FacilityOperations_AppNumber = 244;
         int Setpoints_ArrayNumber = 208;
         List<PCCUHoldingRegister> Setpoints = new List<PCCUHoldingRegister>();
-        //Reuse for 7AM values
+        //Tanks
         int TanksOperations_AppNumber = 240;
         int SWTanks_ArrayNumber = 200;
         List<PCCUHoldingRegister> SWTanks = new List<PCCUHoldingRegister>();
@@ -39,11 +42,13 @@ namespace ExcelPaster
         List<PCCUHoldingRegister> OILTanks = new List<PCCUHoldingRegister>();
         int FWTanks_ArrayNumber = 202;
         List<PCCUHoldingRegister> FWTanks = new List<PCCUHoldingRegister>();
-
+        //Alarm System
         int Alarm_AppNumber = 94;
         List<PCCUAlarm> AlarmSystem = new List<PCCUAlarm>();
         int AlarmStatus_AppNumber = 242;
         List<PCCUSelect> AlarmStatus_Selects = new List<PCCUSelect>();
+        //Shutdown Apps
+
 
         //Helper methods------------------------------------------------------------------------------------------------------------------------
         private string CellValueOrNull(Microsoft.Office.Interop.Excel.Range range, int Y, int X)
@@ -57,33 +62,6 @@ namespace ExcelPaster
                 }
             }
             return value;
-        }
-        private string CellDateOrNull(Microsoft.Office.Interop.Excel.Range range, int Y, int X)
-        {
-            string dvalue = "";
-            string value = CellValueOrNull(range, Y, X);
-            if (value != "")
-            {
-                dvalue = DateTime.FromOADate(double.Parse(value)).ToString();
-            }
-            return dvalue;
-        }
-        private string FindTitleCell(Microsoft.Office.Interop.Excel.Range range, int Y, int X)
-        {
-            int SearchUpwardsAmount = 40;
-            for (int v = 0; v < SearchUpwardsAmount; v++)
-            {
-                if (range.Cells[Y - v, X] != null)
-                {
-                    double thing = range.Cells[Y - v, X].Interior.Color;
-                    if (thing != 16777215)
-                    {
-                        string value = range.Cells[Y - v, X].Value2.ToString();
-                        return value.Split('(')[0];
-                    }
-                }
-            }
-            return "";
         }
         //Output Methods-----------------------------------------------------------------------------------------------------------------------
         private void SaveHoldingRegisterAsCSV(List<PCCUHoldingRegister> arrayToSave, string fileName, bool isIndirect)
@@ -125,196 +103,7 @@ namespace ExcelPaster
                 }
             }
         }
-        //Objects-----------------------------------------------------------------------------------------------------------------------------
-        private enum IOType
-        { 
-            UNKNOWN = 0,DI = 1, AI = 2, DO = 3, AO = 4, RS485 = 5, ETH = 6, VIRTUAL = 7, WIRED = 8
-        }
-        private enum IOAlarmType
-        { 
-           NOOP = 0, GT = 1, LT = 2, ON = 3, OFF= 4, AND=5, OR=6, GE=7, LE=8 , NAND=9, NOR=10
-        }
-        private class IOAlarm
-        {
-            public string Description;
-            public IOAlarmType type;
-            public bool constantSetpoint;
-            public float constantSetpointValue;
-            public float setpoint;
-            public float delay;
-            public float resetdelay;
-            public string triggerType;
-            public string triggerRegister;
-            public string PCCUAlarmRegister;
-            public string PCCUSetpointRegister;
-
-            public IOAlarm(string description,IOAlarmType type,bool constantSetpoint,float constantSetpointvalue, float setpoint , float delay)
-            {
-                this.Description = description;
-                this.type = type;
-                this.constantSetpoint = constantSetpoint;
-                this.constantSetpointValue = constantSetpointvalue;
-                this.setpoint = setpoint;
-                this.delay = delay;
-            }
-
-            public string IOAlarmToString()
-            {
-                switch (this.type)
-                {
-                    case IOAlarmType.GT:
-                        return "g";
-                    case IOAlarmType.LT:
-                        return "l";
-                    case IOAlarmType.GE:
-                        return "gg";
-                    case IOAlarmType.LE:
-                        return "ll";
-                    case IOAlarmType.AND:
-                        return "a";
-                    case IOAlarmType.OR:
-                        return "o";
-                    default:
-                        return "";
-                }
-            }
-        }
-        private class IOPoint
-        {
-            public string Description;
-            public IOType type;
-            public string unit;
-            public float LRV;
-            public float URV;
-            public List<IOAlarm> alarmList;
-            public string PCCUHoldingRegister;
-            public IOPoint(string Description, string type, string unit, float LRV, float URV) 
-            {
-                IOType pointtype = IOType.UNKNOWN;
-                switch (type)
-                {
-                    case "DI":
-                        pointtype = IOType.DI;
-                        break;
-                    case "AI":
-                        pointtype = IOType.AI;
-                        break;
-                    case "DO":
-                        pointtype = IOType.DO;
-                        break;
-                    case "AO":
-                        pointtype = IOType.AO;
-                        break;
-                    case "VAI":
-                        pointtype = IOType.VIRTUAL;
-                        break;
-                    case "RELAY":
-                        pointtype = IOType.WIRED;
-                        break;
-                }
-                this.Description = Description;
-                this.type = pointtype;
-                this.unit = unit;
-                this.LRV = LRV;
-                this.URV = URV;
-                this.alarmList = new List<IOAlarm>();
-            }
-        }
-        private class Device
-        {
-            public string Name;
-            public string PID;
-            public List<IOPoint> IOPointList;
-            public Device(string name, string PID)
-            {
-                this.Name = name;
-                this.PID = PID;
-                this.IOPointList = new List<IOPoint>();
-            }
-        }
-        private class SiteSystem
-        {
-            public string Name;
-            public int Number;
-            public List<Device> DeviceList;
-
-            public SiteSystem(string name, int number)
-            {
-                this.Name = name;
-                this.Number = number;
-                DeviceList = new List<Device>();
-            }
-        }
-        private class PCCUAlarm
-        {
-            public string Register;
-            public string Description;
-            public string Operator;
-            public string InputRegister;
-            public string ThresType;
-            public string ThresRegister;
-            public string ThresConstant;
-            public string TriggerType;
-            public string TriggerRegister;
-            public int FilterThres;
-            public int ResetDeadband;
-            public PCCUAlarm(string register, string desc, string op, string input, string thresType, string thresReg, string thresConstant, int filterThres, int resetDB)
-            {
-                this.Register = register;
-                this.Description = desc;
-                this.Operator = op;
-                this.InputRegister = input;
-                this.ThresType = thresType;
-                this.ThresRegister = thresReg;
-                this.ThresConstant = thresConstant;
-                this.FilterThres = filterThres;
-                this.ResetDeadband = resetDB;
-            }
-        }
-        private class PCCUHoldingRegister
-        {
-            public string Register;
-            public string Description;
-            public string Value;
-            public string Indirect;
-            public int CERow;
-
-            public PCCUHoldingRegister(string register, string description, string value)
-            {
-                this.Register = register;
-                this.Description = description;
-                this.Value = value;
-
-            }
-            public PCCUHoldingRegister(string register, string description, string value, int cerow)
-            {
-                this.Register = register;
-                this.Description = description;
-                this.Value = value;
-                this.CERow = cerow;
-
-            }
-
-        }
-        private class PCCUSelect
-        {
-            public string Register;
-            public string Description;
-            public string SelectRegister;
-            public string Register1;
-            public string Register2;
-
-            public PCCUSelect(string register, string desc, string selectregister, string reg1, string reg2)
-            {
-                this.Register = register;
-                this.Description = desc;
-                this.SelectRegister = selectregister;
-                this.Register1 = reg1;
-                this.Register2 = reg2;
-
-            }
-        }
-
+        //Main Methods-----------------------------------------------------------------------------------------------------------------------------
         public string GenerateFilesWithExistingCE(string sourceLoc, string outputLoc)
         {
             //Check strings are OK
@@ -342,8 +131,6 @@ namespace ExcelPaster
 
             return "Output files to :" + outputLoc;
         }
-
-
         private void ParseExistingCE(string sourceLoc)
         {
             //Open Excel and read file---------------------------------------------------------------------------------
@@ -680,16 +467,15 @@ namespace ExcelPaster
             xlApp.Quit();
             
         }
-
         private void GeneratePCCULists()
         {
             //Go over all systems and create PCCU Registers------------------------------------------------------------
             //Setup array titles
-            AnalogInputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + AnalogInput_ArrayNumber + "." + (AnalogInputs.Count), "**Analog Inputs**", "", 0));
-            DigitalInputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + DigitalInput_ArrayNumber + "." + (DigitalInputs.Count), "**Digital Inputs**", "", 0));
-            AnalogOutputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + AnalogOutput_ArrayNumber + "." + (AnalogOutputs.Count), "**Analog Outputs**", "", 0));
-            DigitalOutputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + DigitalOutput_ArrayNumber + "." + (DigitalOutputs.Count), "**Digital Outputs**", "", 0));
-            Setpoints.Add(new PCCUHoldingRegister(FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count), "**Setpoints**", "", 0));
+            AnalogInputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + AnalogInput_ArrayNumber + "." + (AnalogInputs.Count), "**Analog Inputs**", ""));
+            DigitalInputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + DigitalInput_ArrayNumber + "." + (DigitalInputs.Count), "**Digital Inputs**", ""));
+            AnalogOutputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + AnalogOutput_ArrayNumber + "." + (AnalogOutputs.Count), "**Analog Outputs**", ""));
+            DigitalOutputs.Add(new PCCUHoldingRegister(IOHoldingRegister_AppNumber + "." + DigitalOutput_ArrayNumber + "." + (DigitalOutputs.Count), "**Digital Outputs**", ""));
+            Setpoints.Add(new PCCUHoldingRegister(FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count), "**Setpoints**", ""));
 
             int selectCount = 0;
             int wordCount = 1;
@@ -705,7 +491,7 @@ namespace ExcelPaster
                 foreach (Device device in system.DeviceList)
                 {
                     //Setpoints
-                    Setpoints.Add(new PCCUHoldingRegister(FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count), "**" + device.Name + "**", "", 0));
+                    Setpoints.Add(new PCCUHoldingRegister(FacilityOperations_AppNumber + "." + Setpoints_ArrayNumber + "." + (Setpoints.Count), "**" + device.Name + "**", ""));
                     //Tanks
                     if (device.PID.Contains("LIT"))
                     {
@@ -732,7 +518,7 @@ namespace ExcelPaster
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " Surface IN", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " Interface FT", ""));
                             FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "FW" + FWTankCount + " Interface IN", ""));
-                            FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "*", "", 0));
+                            FWTanks.Add(new PCCUHoldingRegister(registerArray + (FWTanks.Count), "*", ""));
 
                         }
                         else if (system.Name.Contains("OIL"))
@@ -765,7 +551,7 @@ namespace ExcelPaster
                             OILTanks.Add(new PCCUHoldingRegister(registerArray + (OILTanks.Count), "OIL" + OILTankCount + " Surface IN", ""));
                             OILTanks.Add(new PCCUHoldingRegister(registerArray + (OILTanks.Count), "OIL" + OILTankCount + " Interface FT", ""));
                             OILTanks.Add(new PCCUHoldingRegister(registerArray + (OILTanks.Count), "OIL" + OILTankCount + " Interface IN", ""));
-                            OILTanks.Add(new PCCUHoldingRegister(registerArray + (OILTanks.Count), "*", "", 0));
+                            OILTanks.Add(new PCCUHoldingRegister(registerArray + (OILTanks.Count), "*", ""));
                         }
                         else if (system.Name.Contains("SALT WATER"))
                         {
@@ -816,8 +602,8 @@ namespace ExcelPaster
                             Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Comm Response Status (Data 1)", ""));
                             Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Drive Gain (%)", ""));
                             Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "Comm Response Status (Data 2)", ""));
-                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", "", 0));
-                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", "", 0));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", ""));
+                            Coriolises.Add(new PCCUHoldingRegister(registerArray + (Coriolises.Count), "*", ""));
 
                         }
                         else if (device.Name.Contains("WATER"))
@@ -827,8 +613,8 @@ namespace ExcelPaster
                             MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "**" + system.Name + " Mag Meter**", ""));
                             MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "Volume Flow Rate (BBL/Day)", ""));
                             MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "Comm Response Status (Data 1)", ""));
-                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", "", 0));
-                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", "", 0));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", ""));
+                            MagMeters.Add(new PCCUHoldingRegister(registerArray + (MagMeters.Count), "*", ""));
                         }
                         else if (device.Name.Contains("TURBINE"))
                         {
@@ -837,8 +623,8 @@ namespace ExcelPaster
                             Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "**" + system.Name + " Turbine**", ""));
                             Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "Volume Flow Rate (BBL/Day)", ""));
                             Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "Comm Response Status (Data 1)", ""));
-                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", "", 0));
-                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", "", 0));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", ""));
+                            Turbine.Add(new PCCUHoldingRegister(registerArray + (Turbine.Count), "*", ""));
                         }
                     }
                     foreach (IOPoint point in device.IOPointList)

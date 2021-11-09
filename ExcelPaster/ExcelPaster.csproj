@@ -192,10 +192,12 @@
     <Compile Include="modbusTCP.cs" />
     <Compile Include="ModemMap.cs" />
     <Compile Include="PadInfo.cs" />
+    <Compile Include="PCCUObjects.cs" />
     <Compile Include="PingLoggerObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportGenerator.cs" />
+    <Compile Include="SystemObjects.cs" />
     <Compile Include="Typer.cs" />
     <EmbeddedResource Include="CESetupForm_KODAMultiwell.resx">
       <DependentUpon>CESetupForm_KODAMultiwell.cs</DependentUpon>
