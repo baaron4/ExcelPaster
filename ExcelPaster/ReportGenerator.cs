@@ -595,7 +595,7 @@ namespace ExcelPaster
             }
         }
 
-        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc, bool showReport)
+       public bool GenerateLimerockReport(string sourceLoc, int hexaneCalcType, string outputLoc, bool showReport)
         {
             List<Gas> gasList = loadData(sourceLoc);
 
@@ -611,15 +611,15 @@ namespace ExcelPaster
                 XFont bfont = new XFont("Calibri", 11, XFontStyle.Bold);
                 XFont lbfont = new XFont("Calibri", 11.5, XFontStyle.Bold);
                 XPen greyPen = new XPen(XColors.LightGray, Math.PI);
-                
+
                 //Doc Start
-                DrawImage(gfx, @"Resources\winn-marion_graphic.PNG", 50,65,190,75);
-                
+                DrawImage(gfx, @"Resources\winn-marion_graphic.PNG", 50, 65, 190, 75);
+
                 gfx.DrawString("Sampled By", bfont, XBrushes.Black, new XRect(256, 80, 85, 20), XStringFormats.CenterLeft);
-                gfx.DrawString(analyzedBy, bfont, XBrushes.Black, new XRect(310, 80, 85, 20), XStringFormats.Center);
+                gfx.DrawString(analyzedBy.TrimStart(), bfont, XBrushes.Black, new XRect(341, 80, 200, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Date", bfont, XBrushes.Black, new XRect(256, 110, 85, 20), XStringFormats.CenterLeft);
-                gfx.DrawString(printDateTime, bfont, XBrushes.Black, new XRect(310, 110, 85, 20), XStringFormats.Center);
+                gfx.DrawString(printDateTime, bfont, XBrushes.Black, new XRect(341, 110, 200, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Meter ID", bfont, XBrushes.Black, new XRect(80, 140, 85, 20), XStringFormats.CenterLeft);
                 gfx.DrawRectangle(XBrushes.LightGray, 145, 140, 190, 18);
@@ -649,9 +649,10 @@ namespace ExcelPaster
                 int yDist = 200;
                 int ySteps = 20;
                 Gas pentanePlus = new Gas("Pentane+", 0, 0, 0, 0, 0);
-                Gas hexanes = new Gas("Hexanes",0,0,0,0,0);
+                Gas hexanes = new Gas("Hexane+", 0, 0, 0, 0, 0);
                 foreach (Gas substance in gasList)
                 {
+
                     if (substance.Name == "Propane" || substance.Name == "IsoButane" || substance.Name == "IsoPentane" ||
                         substance.Name == "Nitrogen" || substance.Name == "Methane" || substance.Name == "Carbon-Dioxide"
                         || substance.Name == "Ethane" || substance.Name == "Butane")
@@ -663,6 +664,7 @@ namespace ExcelPaster
                         gfx.DrawString(substance.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
                         gfx.DrawString(substance.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                     }
+
 
                     if (substance.Name == "NeoPentane" || substance.Name == "Pentane")
                     {
@@ -707,6 +709,7 @@ namespace ExcelPaster
                     }
                     else if (hexaneCalcType == 1)
                     {
+                        int finalFlag = 0;
                         if (substance.Name == "Hexanes" || substance.Name == "Heptanes" || substance.Name == "Octanes" || substance.Name == "Nonane+" || substance.Name == "Nonanes"
                         || substance.Name == "Decanes" || substance.Name == "Undecanes" /*|| substance.Name == "Pentane-" */|| substance.Name == "Hexane+" /*|| substance.Name == "Propane+" || substance.Name == "Ethane-"*/)
 
@@ -719,6 +722,7 @@ namespace ExcelPaster
                             hexanes.RelDensity += substance.RelDensity;
                             if (substance.Name == "Hexane+")//Final Gas!!
                             {
+                                finalFlag = 1;
                                 yDist = yDist + ySteps;
                                 gfx.DrawString(hexanes.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
                                 gfx.DrawString(hexanes.UnNorm.ToString(), font, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.CenterRight);
@@ -726,9 +730,18 @@ namespace ExcelPaster
                                 gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
                                 gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                             }
+                            if (finalFlag == 0)
+                            {
+                                yDist = yDist + ySteps;
+                                gfx.DrawString(substance.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(substance.UnNorm.ToString(), font, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(substance.Norm.ToString(), bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(substance.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
+                                gfx.DrawString(substance.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
+                            }
                         }
                     }
-                    
+
 
                     if (substance.Name == "Total")
                     {
@@ -742,42 +755,41 @@ namespace ExcelPaster
                         gfx.DrawString(substance.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                     }
                 }
-                gfx.DrawString("Compressibility", bfont, XBrushes.Black, new XRect(20, 440, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(compressibility.ToString(), bfont, XBrushes.Black, new XRect(100, 440, 85, 20), XStringFormats.Center);
-
-                gfx.DrawString("Wet CV", bfont, XBrushes.Black, new XRect(20, 460, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(wetCV.ToString(), bfont, XBrushes.Black, new XRect(100, 460, 85, 20), XStringFormats.Center);
-                gfx.DrawString("Btu/SCF", bfont, XBrushes.Black, new XRect(180, 460, 85, 20), XStringFormats.Center);
-
-                gfx.DrawString("Dry CV", bfont, XBrushes.Black, new XRect(20, 480, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(dryCV.ToString(), bfont, XBrushes.Black, new XRect(100, 480, 85, 20), XStringFormats.Center);
-                gfx.DrawString("Btu/SCF", bfont, XBrushes.Black, new XRect(180, 480, 85, 20), XStringFormats.Center);
-
-                gfx.DrawString("Real Rel. Density", font, XBrushes.Black, new XRect(320, 440, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(realRelDensity.ToString(), font, XBrushes.Black, new XRect(400, 440, 85, 20), XStringFormats.Center);
-
-                gfx.DrawString("Ideal CV", font, XBrushes.Black, new XRect(320, 460, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(idealCV.ToString(), font, XBrushes.Black, new XRect(400, 460, 85, 20), XStringFormats.Center);
-                gfx.DrawString("Btu/SCF", font, XBrushes.Black, new XRect(480, 460, 85, 20), XStringFormats.Center);
-
-                gfx.DrawString("Superior Wobbe", font, XBrushes.Black, new XRect(320, 480, 85, 20), XStringFormats.CenterRight);
-                gfx.DrawString(superiorWobbe.ToString(), font, XBrushes.Black, new XRect(400, 480, 85, 20), XStringFormats.Center);
-                gfx.DrawString("Btu/SCF", font, XBrushes.Black, new XRect(480, 480, 85, 20), XStringFormats.Center);
+                yDist += ySteps;
+                gfx.DrawString("Compressibility", bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(compressibility.ToString(), bfont, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Real Rel. Density", font, XBrushes.Black, new XRect(320, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(realRelDensity.ToString(), font, XBrushes.Black, new XRect(400, yDist, 85, 20), XStringFormats.Center);
+                yDist += ySteps;
+                gfx.DrawString("Wet CV", bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(wetCV.ToString(), bfont, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Btu/SCF", bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Ideal CV", font, XBrushes.Black, new XRect(320, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(idealCV.ToString(), font, XBrushes.Black, new XRect(400, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Btu/SCF", font, XBrushes.Black, new XRect(480, yDist, 85, 20), XStringFormats.Center);
+                yDist += ySteps;
+                gfx.DrawString("Dry CV", bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(dryCV.ToString(), bfont, XBrushes.Black, new XRect(100, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Btu/SCF", bfont, XBrushes.Black, new XRect(180, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Superior Wobbe", font, XBrushes.Black, new XRect(320, yDist, 85, 20), XStringFormats.CenterRight);
+                gfx.DrawString(superiorWobbe.ToString(), font, XBrushes.Black, new XRect(400, yDist, 85, 20), XStringFormats.Center);
+                gfx.DrawString("Btu/SCF", font, XBrushes.Black, new XRect(480, yDist, 85, 20), XStringFormats.Center);
 
                 //Save Doc
                 document.Save(outputLoc + "\\" + meterID + ".pdf");
 
                 //Debug view
-                if(showReport) Process.Start(outputLoc + "\\" + meterID + ".pdf");
+                if (showReport) Process.Start(outputLoc + "\\" + meterID + ".pdf");
             }
             else
             {
                 MessageBox.Show("Failed to read report data. Check formatting.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+
             return true;
         }
+
         public class CalData {
             public List<string> FoundTest = new List<string>();
             public List<string> FoundMeter = new List<string>();
