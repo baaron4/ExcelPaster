@@ -64,6 +64,10 @@ Development on Linux and MacOS is never expected.
 ```powershell
 .\install-interception.exe /install
 ```
+4.5 If at this point an error appears about being unable to access the System32/Drivers folder due to authentication. Run an uninstall and then Redo step 4.
+```powershell
+.\install-interception.exe /uninstall
+```
 5. Restart after install
 6. Download the .zip of the latest release of [ExcelPaster](https://github.com/joneslinger/ExcelPaster/releases/latest)
 7. Extract the .zip and place the extracted folder wherever you'd like to keep the program
