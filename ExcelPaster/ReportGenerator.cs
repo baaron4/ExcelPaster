@@ -595,7 +595,7 @@ namespace ExcelPaster
             }
         }
 
-        public bool GenerateLimerockReport(string sourceLoc,int hexaneCalcType, string outputLoc, bool showReport)
+       public bool GenerateLimerockReport(string sourceLoc, int hexaneCalcType, string outputLoc, bool showReport)
         {
             List<Gas> gasList = loadData(sourceLoc);
 
@@ -611,15 +611,15 @@ namespace ExcelPaster
                 XFont bfont = new XFont("Calibri", 11, XFontStyle.Bold);
                 XFont lbfont = new XFont("Calibri", 11.5, XFontStyle.Bold);
                 XPen greyPen = new XPen(XColors.LightGray, Math.PI);
-                
+
                 //Doc Start
-                DrawImage(gfx, @"Resources\winn-marion_graphic.PNG", 50,65,190,75);
-                
+                DrawImage(gfx, @"Resources\winn-marion_graphic.PNG", 50, 65, 190, 75);
+
                 gfx.DrawString("Sampled By", bfont, XBrushes.Black, new XRect(256, 80, 85, 20), XStringFormats.CenterLeft);
-                gfx.DrawString(analyzedBy, bfont, XBrushes.Black, new XRect(310, 80, 85, 20), XStringFormats.Center);
+                gfx.DrawString(analyzedBy.TrimStart(), bfont, XBrushes.Black, new XRect(341, 80, 200, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Date", bfont, XBrushes.Black, new XRect(256, 110, 85, 20), XStringFormats.CenterLeft);
-                gfx.DrawString(printDateTime, bfont, XBrushes.Black, new XRect(310, 110, 85, 20), XStringFormats.Center);
+                gfx.DrawString(printDateTime, bfont, XBrushes.Black, new XRect(341, 110, 200, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Meter ID", bfont, XBrushes.Black, new XRect(80, 140, 85, 20), XStringFormats.CenterLeft);
                 int grayLength = meterID.Length;
@@ -652,8 +652,10 @@ namespace ExcelPaster
                 Gas pentanePlus = new Gas("Pentane+", 0, 0, 0, 0, 0);
                 Gas hexanes = new Gas("Hexanes",0,0,0,0,0);
                 Gas nonanes = new Gas("Nonanes", 0, 0, 0, 0, 0);
+                Gas hexanes = new Gas("Hexane+", 0, 0, 0, 0, 0);
                 foreach (Gas substance in gasList)
                 {
+
                     if (substance.Name == "Propane" || substance.Name == "IsoButane" || substance.Name == "IsoPentane" ||
                         substance.Name == "Nitrogen" || substance.Name == "Methane" || substance.Name == "Carbon-Dioxide"
                         || substance.Name == "Ethane" || substance.Name == "Butane")
@@ -665,6 +667,7 @@ namespace ExcelPaster
                         gfx.DrawString(substance.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
                         gfx.DrawString(substance.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                     }
+
 
                     if (substance.Name == "NeoPentane" || substance.Name == "Pentane")
                     {
@@ -710,6 +713,7 @@ namespace ExcelPaster
                     else if (hexaneCalcType == 1)
                     {
                         int nonanePlus = 0;
+
                         int finalFlag = 0;
                         if (substance.Name == "Hexanes" || substance.Name == "Heptanes" || substance.Name == "Octanes" || substance.Name == "Nonane+" || substance.Name == "Nonanes"
                         || substance.Name == "Decanes" || substance.Name == "Undecanes" /*|| substance.Name == "Pentane-" */|| substance.Name == "Hexane+" /*|| substance.Name == "Propane+" || substance.Name == "Ethane-"*/)
@@ -741,6 +745,7 @@ namespace ExcelPaster
                                 gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
                                 gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                             }
+
                             if (finalFlag == 0 && nonanePlus != 1)
                             {
                                 yDist = yDist + ySteps;
@@ -790,16 +795,17 @@ namespace ExcelPaster
                 document.Save(outputLoc + "\\" + meterID + ".pdf");
 
                 //Debug view
-                if(showReport) Process.Start(outputLoc + "\\" + meterID + ".pdf");
+                if (showReport) Process.Start(outputLoc + "\\" + meterID + ".pdf");
             }
             else
             {
                 MessageBox.Show("Failed to read report data. Check formatting.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+
             return true;
         }
+
         public class CalData {
             public List<string> FoundTest = new List<string>();
             public List<string> FoundMeter = new List<string>();
