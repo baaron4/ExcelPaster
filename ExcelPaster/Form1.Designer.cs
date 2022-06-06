@@ -1371,7 +1371,7 @@
             this.comboBox_ReportType.FormattingEnabled = true;
             this.comboBox_ReportType.Items.AddRange(new object[] {
             "Exel Limerock Gas Report",
-            "Limerock Gas Report",
+            "RimRock Gas Report",
             "PCCU Spreadsheet Option 1",
             "Run Report Rename",
             "Ovintiv Send-out"});
