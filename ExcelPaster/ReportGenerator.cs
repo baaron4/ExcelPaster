@@ -622,12 +622,13 @@ namespace ExcelPaster
                 gfx.DrawString(printDateTime, bfont, XBrushes.Black, new XRect(341, 110, 200, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Meter ID", bfont, XBrushes.Black, new XRect(80, 140, 85, 20), XStringFormats.CenterLeft);
-                gfx.DrawRectangle(XBrushes.LightGray, 145, 140, 190, 18);
-                gfx.DrawString(meterID, lbfont, XBrushes.Black, new XRect(183, 140, 85, 20), XStringFormats.Center);
+                int grayLength = meterID.Length;
+                //gfx.DrawRectangle(XBrushes.LightGray, 145, 140, grayLength + 10, 18);
+                gfx.DrawString(meterID, lbfont, XBrushes.Black, new XRect(150, 140, 85, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Flowing Pressure", bfont, XBrushes.Black, new XRect(60, 165, 85, 20), XStringFormats.CenterLeft);
                 gfx.DrawRectangle(XBrushes.LightGray, 145, 165, 60, 18);
-                gfx.DrawString(flowingPressure.ToString(), lbfont, XBrushes.Black, new XRect(145, 165, 60, 15), XStringFormats.Center);
+                gfx.DrawString(flowingPressure.ToString(), lbfont, XBrushes.Black, new XRect(145, 165, 60, 20), XStringFormats.Center);
                 gfx.DrawString("PSIG", font, XBrushes.Black, new XRect(210, 165, 40, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawString("Sample type", bfont, XBrushes.Black, new XRect(250, 165, 85, 20), XStringFormats.CenterLeft);
@@ -636,7 +637,7 @@ namespace ExcelPaster
 
                 gfx.DrawString("Flowing Temp", bfont, XBrushes.Black, new XRect(380, 165, 85, 20), XStringFormats.CenterLeft);
                 gfx.DrawRectangle(XBrushes.LightGray, 450, 165, 60, 18);
-                gfx.DrawString(flowingTemp.ToString(), lbfont, XBrushes.Black, new XRect(450, 165, 60, 15), XStringFormats.Center);
+                gfx.DrawString(flowingTemp.ToString(), lbfont, XBrushes.Black, new XRect(450, 165, 60, 20), XStringFormats.Center);
                 gfx.DrawString("Deg F", font, XBrushes.Black, new XRect(510, 165, 85, 20), XStringFormats.CenterLeft);
 
                 gfx.DrawRectangle(XBrushes.LightGray, 20, 220, 85, 400);
@@ -649,6 +650,8 @@ namespace ExcelPaster
                 int yDist = 200;
                 int ySteps = 20;
                 Gas pentanePlus = new Gas("Pentane+", 0, 0, 0, 0, 0);
+                Gas hexanes = new Gas("Hexanes",0,0,0,0,0);
+                Gas nonanes = new Gas("Nonanes", 0, 0, 0, 0, 0);
                 Gas hexanes = new Gas("Hexane+", 0, 0, 0, 0, 0);
                 foreach (Gas substance in gasList)
                 {
@@ -709,6 +712,8 @@ namespace ExcelPaster
                     }
                     else if (hexaneCalcType == 1)
                     {
+                        int nonanePlus = 0;
+
                         int finalFlag = 0;
                         if (substance.Name == "Hexanes" || substance.Name == "Heptanes" || substance.Name == "Octanes" || substance.Name == "Nonane+" || substance.Name == "Nonanes"
                         || substance.Name == "Decanes" || substance.Name == "Undecanes" /*|| substance.Name == "Pentane-" */|| substance.Name == "Hexane+" /*|| substance.Name == "Propane+" || substance.Name == "Ethane-"*/)
@@ -720,6 +725,16 @@ namespace ExcelPaster
                             hexanes.Liquids += substance.Liquids;
                             hexanes.Ideal += substance.Ideal;
                             hexanes.RelDensity += substance.RelDensity;
+
+                            if (substance.Name == "Nonane+")
+                            {
+                                nonanes.UnNorm = substance.UnNorm;
+                                nonanePlus = 1;
+                            }
+                            if (substance.Name == "Nonanes")
+                            {
+                                substance.UnNorm = nonanes.UnNorm;
+                            }
                             if (substance.Name == "Hexane+")//Final Gas!!
                             {
                                 finalFlag = 1;
@@ -730,7 +745,8 @@ namespace ExcelPaster
                                 gfx.DrawString(hexanes.Liquids.ToString(), font, XBrushes.Black, new XRect(260, yDist, 85, 20), XStringFormats.CenterRight);
                                 gfx.DrawString(hexanes.Ideal.ToString(), bfont, XBrushes.Black, new XRect(340, yDist, 85, 20), XStringFormats.CenterRight);
                             }
-                            if (finalFlag == 0)
+
+                            if (finalFlag == 0 && nonanePlus != 1)
                             {
                                 yDist = yDist + ySteps;
                                 gfx.DrawString(substance.Name, bfont, XBrushes.Black, new XRect(20, yDist, 85, 20), XStringFormats.CenterRight);
