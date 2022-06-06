@@ -652,7 +652,7 @@ namespace ExcelPaster
                 Gas pentanePlus = new Gas("Pentane+", 0, 0, 0, 0, 0);
                 Gas hexanes = new Gas("Hexanes",0,0,0,0,0);
                 Gas nonanes = new Gas("Nonanes", 0, 0, 0, 0, 0);
-                Gas hexanes = new Gas("Hexane+", 0, 0, 0, 0, 0);
+                Gas hexanesPlus = new Gas("Hexane+", 0, 0, 0, 0, 0);
                 foreach (Gas substance in gasList)
                 {
 
