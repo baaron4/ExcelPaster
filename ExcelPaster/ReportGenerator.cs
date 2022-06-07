@@ -652,7 +652,7 @@ namespace ExcelPaster
                 Gas pentanePlus = new Gas("Pentane+", 0, 0, 0, 0, 0);
                 Gas hexanes = new Gas("Hexanes",0,0,0,0,0);
                 Gas nonanes = new Gas("Nonanes", 0, 0, 0, 0, 0);
-                Gas hexanes = new Gas("Hexane+", 0, 0, 0, 0, 0);
+                Gas hexanesPlus = new Gas("Hexane+", 0, 0, 0, 0, 0);
                 foreach (Gas substance in gasList)
                 {
 
@@ -1140,6 +1140,57 @@ namespace ExcelPaster
             //Debug view
             if(showReport) Process.Start(outputLoc + "\\" + Path.GetFileName(sourceLoc).Split('.')[0] + "_CalibrationReport.pdf");
             return true;
+        }
+
+        public bool excelToPDF(string sourceLoc, string outputLoc, bool showReport)
+        {
+            if (string.IsNullOrEmpty(sourceLoc) || string.IsNullOrEmpty(outputLoc))
+            {
+                return false;
+            }
+
+                //Open Excel
+            Microsoft.Office.Interop.Excel.Application excelApplication = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook excelWorkbook;
+
+            excelApplication.ScreenUpdating = false;
+            excelApplication.DisplayAlerts = false;
+            try
+            {
+                excelWorkbook = excelApplication.Workbooks.Open(sourceLoc);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(sourceLoc.ToString() + "\n\nInvalid file extension or type", caption: "Failed to Open");
+                return false;
+            }
+
+            if (excelWorkbook == null)
+            {
+                excelApplication.Quit();
+                excelApplication = null;
+                excelWorkbook = null;
+                return false;
+            }
+
+            var exportSuccess = true;
+
+            try
+            {
+                excelWorkbook.ExportAsFixedFormat(Type: XlFixedFormatType.xlTypePDF, outputLoc + "\\" + Path.GetFileName(sourceLoc).Split('.')[0] + ".pdf", Quality: XlFixedFormatQuality.xlQualityStandard, OpenAfterPublish: showReport);
+            }
+            catch (System.Exception ex)
+            {
+                exportSuccess = false;
+            }
+            finally
+            {
+                excelWorkbook.Close();
+                excelApplication.Quit();
+                excelApplication = null;
+                excelWorkbook = null;
+            }
+            return exportSuccess;
         }
     }
 }
