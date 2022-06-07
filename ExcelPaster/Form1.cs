@@ -1940,7 +1940,7 @@ namespace ExcelPaster
                         else if (comboBox_ReportType.SelectedIndex == 1)
                         {
                             success = rG.GenerateLimerockReport(comboBox_ReportSource.Text, comboBox_HexaneCalc.SelectedIndex, comboBox_ReportOutput.Text,checkBox_showReport.Checked);
-                            reportType = "Limerock PDF Report";
+                            reportType = "RimRock PDF Report";
                         }
                         else if (comboBox_ReportType.SelectedIndex == 2)
                         {
@@ -1952,6 +1952,11 @@ namespace ExcelPaster
                             success = rG.GenerateRunReportRename(comboBox_ReportSource.Text, comboBox_ReportOutput.Text, textBox_meterID.Text, textBox_meterDesc.Text, checkBox_doAll.Checked,checkBox_showReport.Checked);
                             if (checkBox_doAll.Checked) reportType = "Renamed Reports";
                             else reportType = "Renamed Report";
+                        }
+                        else if (comboBox_ReportType.SelectedIndex == 4)
+                        {
+                            success = rG.excelToPDF(comboBox_ReportSource.Text, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                            reportType = "Excel to PDF";
                         }
                         else
                         {
@@ -2063,6 +2068,11 @@ namespace ExcelPaster
                                     }
                                     else MessageBox.Show("Failed to generated " + reportType, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+                                else if (comboBox_ReportType.SelectedIndex == 5)
+                                {
+                                    success = rG.excelToPDF(file, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                                    reportType = "Excel to PDF";
+                                }
                                 else
                                 {
                                     MessageBox.Show("Directory generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2070,8 +2080,8 @@ namespace ExcelPaster
                                 }
                                 if (!success)
                                 {
-                                    MessageBox.Show("Failed to generate with" + file, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                  
+                                    MessageBox.Show("Failed to generate with " + file, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                                 }
                             }
                             else
