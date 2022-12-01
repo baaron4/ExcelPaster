@@ -176,6 +176,16 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.textbox_ModbusIP = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBox_DTFShowOutput = new System.Windows.Forms.CheckBox();
+            this.button_DTFChangeOutput = new System.Windows.Forms.Button();
+            this.label31 = new System.Windows.Forms.Label();
+            this.comboBox_DTFOutputLocation = new System.Windows.Forms.ComboBox();
+            this.button_DTFExtract = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button_DTFChangeSource = new System.Windows.Forms.Button();
+            this.comboBox_DTFSourceFile = new System.Windows.Forms.ComboBox();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -185,6 +195,8 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.button_DTFReplace = new System.Windows.Forms.Button();
+            this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,15 +219,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ReqData)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
             // 
             this.btn_StartCopyFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_StartCopyFile.Location = new System.Drawing.Point(297, 60);
-            this.btn_StartCopyFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_StartCopyFile.Location = new System.Drawing.Point(223, 49);
             this.btn_StartCopyFile.Name = "btn_StartCopyFile";
-            this.btn_StartCopyFile.Size = new System.Drawing.Size(260, 28);
+            this.btn_StartCopyFile.Size = new System.Drawing.Size(195, 23);
             this.btn_StartCopyFile.TabIndex = 0;
             this.btn_StartCopyFile.Text = "Start Copying File";
             this.btn_StartCopyFile.UseVisualStyleBackColor = true;
@@ -224,10 +237,9 @@
             // textBox_StartCopyDelayFile
             // 
             this.textBox_StartCopyDelayFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(368, 28);
-            this.textBox_StartCopyDelayFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_StartCopyDelayFile.Location = new System.Drawing.Point(276, 23);
             this.textBox_StartCopyDelayFile.Name = "textBox_StartCopyDelayFile";
-            this.textBox_StartCopyDelayFile.Size = new System.Drawing.Size(68, 22);
+            this.textBox_StartCopyDelayFile.Size = new System.Drawing.Size(52, 20);
             this.textBox_StartCopyDelayFile.TabIndex = 1;
             this.textBox_StartCopyDelayFile.Text = "5";
             this.textBox_StartCopyDelayFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -237,10 +249,9 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(373, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(280, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 17);
+            this.label1.Size = new System.Drawing.Size(90, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Delay Copying for\r\n";
             // 
@@ -248,10 +259,9 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(445, 32);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(334, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 17);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "seconds";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -263,10 +273,9 @@
             // 
             // btn_SelectFile
             // 
-            this.btn_SelectFile.Location = new System.Drawing.Point(137, 66);
-            this.btn_SelectFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_SelectFile.Location = new System.Drawing.Point(103, 54);
             this.btn_SelectFile.Name = "btn_SelectFile";
-            this.btn_SelectFile.Size = new System.Drawing.Size(148, 38);
+            this.btn_SelectFile.Size = new System.Drawing.Size(111, 31);
             this.btn_SelectFile.TabIndex = 5;
             this.btn_SelectFile.Text = "Change File";
             this.btn_SelectFile.UseVisualStyleBackColor = true;
@@ -281,11 +290,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(16, 15);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1376, 629);
+            this.tabControl1.Size = new System.Drawing.Size(1032, 511);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage3
@@ -297,10 +306,9 @@
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1368, 600);
+            this.tabPage3.Size = new System.Drawing.Size(1024, 485);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "IP Editor";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -309,10 +317,9 @@
             // 
             this.button_OpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_OpenFile.Location = new System.Drawing.Point(124, 546);
-            this.button_OpenFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_OpenFile.Location = new System.Drawing.Point(93, 444);
             this.button_OpenFile.Name = "button_OpenFile";
-            this.button_OpenFile.Size = new System.Drawing.Size(132, 28);
+            this.button_OpenFile.Size = new System.Drawing.Size(99, 23);
             this.button_OpenFile.TabIndex = 21;
             this.button_OpenFile.Text = "Open DB File";
             this.button_OpenFile.UseVisualStyleBackColor = true;
@@ -323,10 +330,9 @@
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(431, 528);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(323, 429);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(207, 17);
+            this.label10.Size = new System.Drawing.Size(156, 13);
             this.label10.TabIndex = 16;
             this.label10.Text = "Select Database File (.csv file): \r\n";
             // 
@@ -337,21 +343,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_DBFile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.comboBox_DBFile.FormattingEnabled = true;
-            this.comboBox_DBFile.Location = new System.Drawing.Point(435, 548);
-            this.comboBox_DBFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_DBFile.Location = new System.Drawing.Point(326, 445);
             this.comboBox_DBFile.MaxDropDownItems = 10;
             this.comboBox_DBFile.Name = "comboBox_DBFile";
-            this.comboBox_DBFile.Size = new System.Drawing.Size(925, 25);
+            this.comboBox_DBFile.Size = new System.Drawing.Size(695, 21);
             this.comboBox_DBFile.TabIndex = 23;
             // 
             // button_ChangeDBFile
             // 
             this.button_ChangeDBFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ChangeDBFile.Location = new System.Drawing.Point(264, 548);
-            this.button_ChangeDBFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ChangeDBFile.Location = new System.Drawing.Point(198, 445);
             this.button_ChangeDBFile.Name = "button_ChangeDBFile";
-            this.button_ChangeDBFile.Size = new System.Drawing.Size(163, 28);
+            this.button_ChangeDBFile.Size = new System.Drawing.Size(122, 23);
             this.button_ChangeDBFile.TabIndex = 22;
             this.button_ChangeDBFile.Text = "Change File";
             this.button_ChangeDBFile.UseVisualStyleBackColor = true;
@@ -366,21 +370,18 @@
             this.groupBox3.Controls.Add(this.comboBox_AddDBDevice);
             this.groupBox3.Controls.Add(this.comboBox_AddDBPad);
             this.groupBox3.Controls.Add(this.comboBox_AddDBCompany);
-            this.groupBox3.Location = new System.Drawing.Point(15, 402);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(11, 327);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(571, 122);
+            this.groupBox3.Size = new System.Drawing.Size(428, 99);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add IP to Database";
             // 
             // button_AddIPInfo
             // 
-            this.button_AddIPInfo.Location = new System.Drawing.Point(412, 86);
-            this.button_AddIPInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_AddIPInfo.Location = new System.Drawing.Point(309, 70);
             this.button_AddIPInfo.Name = "button_AddIPInfo";
-            this.button_AddIPInfo.Size = new System.Drawing.Size(132, 28);
+            this.button_AddIPInfo.Size = new System.Drawing.Size(99, 23);
             this.button_AddIPInfo.TabIndex = 20;
             this.button_AddIPInfo.Text = "Add to DB";
             this.button_AddIPInfo.UseVisualStyleBackColor = true;
@@ -389,56 +390,50 @@
             // textBox_AddDBGateway
             // 
             this.textBox_AddDBGateway.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_AddDBGateway.Location = new System.Drawing.Point(352, 59);
-            this.textBox_AddDBGateway.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_AddDBGateway.Location = new System.Drawing.Point(264, 48);
             this.textBox_AddDBGateway.Name = "textBox_AddDBGateway";
-            this.textBox_AddDBGateway.Size = new System.Drawing.Size(191, 22);
+            this.textBox_AddDBGateway.Size = new System.Drawing.Size(144, 20);
             this.textBox_AddDBGateway.TabIndex = 19;
             // 
             // textBox_AddDB_SubMask
             // 
             this.textBox_AddDB_SubMask.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_AddDB_SubMask.Location = new System.Drawing.Point(183, 59);
-            this.textBox_AddDB_SubMask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_AddDB_SubMask.Location = new System.Drawing.Point(137, 48);
             this.textBox_AddDB_SubMask.Name = "textBox_AddDB_SubMask";
-            this.textBox_AddDB_SubMask.Size = new System.Drawing.Size(160, 22);
+            this.textBox_AddDB_SubMask.Size = new System.Drawing.Size(121, 20);
             this.textBox_AddDB_SubMask.TabIndex = 18;
             // 
             // textBox_AddDBAddress
             // 
             this.textBox_AddDBAddress.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_AddDBAddress.Location = new System.Drawing.Point(13, 59);
-            this.textBox_AddDBAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_AddDBAddress.Location = new System.Drawing.Point(10, 48);
             this.textBox_AddDBAddress.Name = "textBox_AddDBAddress";
-            this.textBox_AddDBAddress.Size = new System.Drawing.Size(160, 22);
+            this.textBox_AddDBAddress.Size = new System.Drawing.Size(121, 20);
             this.textBox_AddDBAddress.TabIndex = 17;
             // 
             // comboBox_AddDBDevice
             // 
             this.comboBox_AddDBDevice.FormattingEnabled = true;
-            this.comboBox_AddDBDevice.Location = new System.Drawing.Point(352, 22);
-            this.comboBox_AddDBDevice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_AddDBDevice.Location = new System.Drawing.Point(264, 18);
             this.comboBox_AddDBDevice.Name = "comboBox_AddDBDevice";
-            this.comboBox_AddDBDevice.Size = new System.Drawing.Size(191, 24);
+            this.comboBox_AddDBDevice.Size = new System.Drawing.Size(144, 21);
             this.comboBox_AddDBDevice.TabIndex = 16;
             // 
             // comboBox_AddDBPad
             // 
             this.comboBox_AddDBPad.FormattingEnabled = true;
-            this.comboBox_AddDBPad.Location = new System.Drawing.Point(183, 22);
-            this.comboBox_AddDBPad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_AddDBPad.Location = new System.Drawing.Point(137, 18);
             this.comboBox_AddDBPad.Name = "comboBox_AddDBPad";
-            this.comboBox_AddDBPad.Size = new System.Drawing.Size(160, 24);
+            this.comboBox_AddDBPad.Size = new System.Drawing.Size(121, 21);
             this.comboBox_AddDBPad.TabIndex = 15;
             this.comboBox_AddDBPad.SelectedIndexChanged += new System.EventHandler(this.comboBox_AddDBPad_SelectedIndexChanged);
             // 
             // comboBox_AddDBCompany
             // 
             this.comboBox_AddDBCompany.FormattingEnabled = true;
-            this.comboBox_AddDBCompany.Location = new System.Drawing.Point(13, 22);
-            this.comboBox_AddDBCompany.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_AddDBCompany.Location = new System.Drawing.Point(10, 18);
             this.comboBox_AddDBCompany.Name = "comboBox_AddDBCompany";
-            this.comboBox_AddDBCompany.Size = new System.Drawing.Size(160, 24);
+            this.comboBox_AddDBCompany.Size = new System.Drawing.Size(121, 21);
             this.comboBox_AddDBCompany.TabIndex = 14;
             // 
             // groupBox2
@@ -458,11 +453,9 @@
             this.groupBox2.Controls.Add(this.comboBox_NewDevice);
             this.groupBox2.Controls.Add(this.comboBox_NewPad);
             this.groupBox2.Controls.Add(this.comboBox_NewCompany);
-            this.groupBox2.Location = new System.Drawing.Point(593, 4);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(445, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(768, 521);
+            this.groupBox2.Size = new System.Drawing.Size(576, 423);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lookup IP from Database";
@@ -470,10 +463,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 278);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(10, 226);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(199, 17);
+            this.label5.Size = new System.Drawing.Size(155, 13);
             this.label5.TabIndex = 34;
             this.label5.Text = "Lookup Site IP Known Devices";
             // 
@@ -485,10 +477,9 @@
             this.listView_DBAddresses.FullRowSelect = true;
             this.listView_DBAddresses.GridLines = true;
             this.listView_DBAddresses.HideSelection = false;
-            this.listView_DBAddresses.Location = new System.Drawing.Point(12, 298);
-            this.listView_DBAddresses.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_DBAddresses.Location = new System.Drawing.Point(9, 242);
             this.listView_DBAddresses.Name = "listView_DBAddresses";
-            this.listView_DBAddresses.Size = new System.Drawing.Size(372, 213);
+            this.listView_DBAddresses.Size = new System.Drawing.Size(280, 174);
             this.listView_DBAddresses.TabIndex = 33;
             this.listView_DBAddresses.UseCompatibleStateImageBehavior = false;
             this.listView_DBAddresses.View = System.Windows.Forms.View.Details;
@@ -514,11 +505,9 @@
             this.groupBox4.Controls.Add(this.button_ClearPings);
             this.groupBox4.Controls.Add(this.button_CancelPing);
             this.groupBox4.Controls.Add(this.button_Ping);
-            this.groupBox4.Location = new System.Drawing.Point(393, 20);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Location = new System.Drawing.Point(295, 16);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(373, 494);
+            this.groupBox4.Size = new System.Drawing.Size(280, 401);
             this.groupBox4.TabIndex = 31;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ping IP";
@@ -528,10 +517,9 @@
             // 
             this.textBox_IPScanStop.BackColor = System.Drawing.SystemColors.Window;
             this.textBox_IPScanStop.Enabled = false;
-            this.textBox_IPScanStop.Location = new System.Drawing.Point(252, 245);
-            this.textBox_IPScanStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_IPScanStop.Location = new System.Drawing.Point(189, 199);
             this.textBox_IPScanStop.Name = "textBox_IPScanStop";
-            this.textBox_IPScanStop.Size = new System.Drawing.Size(121, 22);
+            this.textBox_IPScanStop.Size = new System.Drawing.Size(92, 20);
             this.textBox_IPScanStop.TabIndex = 36;
             // 
             // panel1
@@ -539,20 +527,18 @@
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.label_PingResults);
-            this.panel1.Location = new System.Drawing.Point(8, 59);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(6, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 126);
+            this.panel1.Size = new System.Drawing.Size(257, 102);
             this.panel1.TabIndex = 25;
             // 
             // label_PingResults
             // 
             this.label_PingResults.AutoSize = true;
             this.label_PingResults.ForeColor = System.Drawing.Color.LightGreen;
-            this.label_PingResults.Location = new System.Drawing.Point(4, 15);
-            this.label_PingResults.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_PingResults.Location = new System.Drawing.Point(3, 12);
             this.label_PingResults.Name = "label_PingResults";
-            this.label_PingResults.Size = new System.Drawing.Size(87, 17);
+            this.label_PingResults.Size = new System.Drawing.Size(66, 13);
             this.label_PingResults.TabIndex = 30;
             this.label_PingResults.Text = "Ping Results";
             // 
@@ -560,20 +546,18 @@
             // 
             this.textBox_IPScanStart.BackColor = System.Drawing.SystemColors.Window;
             this.textBox_IPScanStart.Enabled = false;
-            this.textBox_IPScanStart.Location = new System.Drawing.Point(123, 245);
-            this.textBox_IPScanStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_IPScanStart.Location = new System.Drawing.Point(92, 199);
             this.textBox_IPScanStart.Name = "textBox_IPScanStart";
-            this.textBox_IPScanStart.Size = new System.Drawing.Size(121, 22);
+            this.textBox_IPScanStart.Size = new System.Drawing.Size(92, 20);
             this.textBox_IPScanStart.TabIndex = 35;
             this.textBox_IPScanStart.TextChanged += new System.EventHandler(this.textBox_IPScanStart_TextChanged);
             // 
             // textBox1_PingTrys
             // 
             this.textBox1_PingTrys.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1_PingTrys.Location = new System.Drawing.Point(208, 27);
-            this.textBox1_PingTrys.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1_PingTrys.Location = new System.Drawing.Point(156, 22);
             this.textBox1_PingTrys.Name = "textBox1_PingTrys";
-            this.textBox1_PingTrys.Size = new System.Drawing.Size(43, 22);
+            this.textBox1_PingTrys.Size = new System.Drawing.Size(33, 20);
             this.textBox1_PingTrys.TabIndex = 32;
             this.textBox1_PingTrys.Text = "4";
             this.textBox1_PingTrys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -581,10 +565,9 @@
             // button_ScanNetwork
             // 
             this.button_ScanNetwork.Enabled = false;
-            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 242);
-            this.button_ScanNetwork.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ScanNetwork.Location = new System.Drawing.Point(1, 197);
             this.button_ScanNetwork.Name = "button_ScanNetwork";
-            this.button_ScanNetwork.Size = new System.Drawing.Size(113, 28);
+            this.button_ScanNetwork.Size = new System.Drawing.Size(85, 23);
             this.button_ScanNetwork.TabIndex = 33;
             this.button_ScanNetwork.Text = "Scan Network";
             this.button_ScanNetwork.UseVisualStyleBackColor = true;
@@ -600,10 +583,9 @@
             this.listView_ScannedPadIPs.FullRowSelect = true;
             this.listView_ScannedPadIPs.GridLines = true;
             this.listView_ScannedPadIPs.HideSelection = false;
-            this.listView_ScannedPadIPs.Location = new System.Drawing.Point(1, 278);
-            this.listView_ScannedPadIPs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listView_ScannedPadIPs.Location = new System.Drawing.Point(1, 226);
             this.listView_ScannedPadIPs.Name = "listView_ScannedPadIPs";
-            this.listView_ScannedPadIPs.Size = new System.Drawing.Size(372, 213);
+            this.listView_ScannedPadIPs.Size = new System.Drawing.Size(280, 174);
             this.listView_ScannedPadIPs.TabIndex = 32;
             this.listView_ScannedPadIPs.UseCompatibleStateImageBehavior = false;
             this.listView_ScannedPadIPs.View = System.Windows.Forms.View.Details;
@@ -624,10 +606,9 @@
             // 
             // button_ClearPings
             // 
-            this.button_ClearPings.Location = new System.Drawing.Point(261, 192);
-            this.button_ClearPings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ClearPings.Location = new System.Drawing.Point(196, 156);
             this.button_ClearPings.Name = "button_ClearPings";
-            this.button_ClearPings.Size = new System.Drawing.Size(105, 28);
+            this.button_ClearPings.Size = new System.Drawing.Size(79, 23);
             this.button_ClearPings.TabIndex = 32;
             this.button_ClearPings.Text = "Clear";
             this.button_ClearPings.UseVisualStyleBackColor = true;
@@ -635,10 +616,9 @@
             // 
             // button_CancelPing
             // 
-            this.button_CancelPing.Location = new System.Drawing.Point(260, 27);
-            this.button_CancelPing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_CancelPing.Location = new System.Drawing.Point(195, 22);
             this.button_CancelPing.Name = "button_CancelPing";
-            this.button_CancelPing.Size = new System.Drawing.Size(105, 28);
+            this.button_CancelPing.Size = new System.Drawing.Size(79, 23);
             this.button_CancelPing.TabIndex = 31;
             this.button_CancelPing.Text = "Cancel";
             this.button_CancelPing.UseVisualStyleBackColor = true;
@@ -646,10 +626,9 @@
             // 
             // button_Ping
             // 
-            this.button_Ping.Location = new System.Drawing.Point(8, 27);
-            this.button_Ping.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Ping.Location = new System.Drawing.Point(6, 22);
             this.button_Ping.Name = "button_Ping";
-            this.button_Ping.Size = new System.Drawing.Size(192, 28);
+            this.button_Ping.Size = new System.Drawing.Size(144, 23);
             this.button_Ping.TabIndex = 14;
             this.button_Ping.Text = "Ping IP From DB Lookup";
             this.button_Ping.UseVisualStyleBackColor = true;
@@ -658,60 +637,54 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(15, 134);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(11, 109);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(80, 17);
+            this.label18.Size = new System.Drawing.Size(61, 13);
             this.label18.TabIndex = 27;
             this.label18.Text = "IP Address:";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(15, 162);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(11, 132);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(94, 17);
+            this.label19.Size = new System.Drawing.Size(73, 13);
             this.label19.TabIndex = 28;
             this.label19.Text = "Subnet Mask:";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(15, 192);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(11, 156);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(116, 17);
+            this.label20.Size = new System.Drawing.Size(89, 13);
             this.label20.TabIndex = 29;
             this.label20.Text = "Default Gateway:";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(17, 95);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(13, 77);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 17);
+            this.label17.Size = new System.Drawing.Size(77, 13);
             this.label17.TabIndex = 26;
             this.label17.Text = "Select Device:\r\n";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 59);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(13, 48);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(109, 17);
+            this.label16.Size = new System.Drawing.Size(84, 13);
             this.label16.TabIndex = 25;
             this.label16.Text = "Select Location:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(17, 25);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(13, 20);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(114, 17);
+            this.label15.Size = new System.Drawing.Size(87, 13);
             this.label15.TabIndex = 24;
             this.label15.Text = "Select Company:";
             this.label15.Click += new System.EventHandler(this.label15_Click);
@@ -719,28 +692,25 @@
             // textBox_DBGateway
             // 
             this.textBox_DBGateway.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_DBGateway.Location = new System.Drawing.Point(141, 188);
-            this.textBox_DBGateway.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_DBGateway.Location = new System.Drawing.Point(106, 153);
             this.textBox_DBGateway.Name = "textBox_DBGateway";
-            this.textBox_DBGateway.Size = new System.Drawing.Size(160, 22);
+            this.textBox_DBGateway.Size = new System.Drawing.Size(121, 20);
             this.textBox_DBGateway.TabIndex = 13;
             // 
             // textBox_DBSubMask
             // 
             this.textBox_DBSubMask.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_DBSubMask.Location = new System.Drawing.Point(141, 159);
-            this.textBox_DBSubMask.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_DBSubMask.Location = new System.Drawing.Point(106, 129);
             this.textBox_DBSubMask.Name = "textBox_DBSubMask";
-            this.textBox_DBSubMask.Size = new System.Drawing.Size(160, 22);
+            this.textBox_DBSubMask.Size = new System.Drawing.Size(121, 20);
             this.textBox_DBSubMask.TabIndex = 12;
             // 
             // textBox_DBAddress
             // 
             this.textBox_DBAddress.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_DBAddress.Location = new System.Drawing.Point(141, 127);
-            this.textBox_DBAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_DBAddress.Location = new System.Drawing.Point(106, 103);
             this.textBox_DBAddress.Name = "textBox_DBAddress";
-            this.textBox_DBAddress.Size = new System.Drawing.Size(160, 22);
+            this.textBox_DBAddress.Size = new System.Drawing.Size(121, 20);
             this.textBox_DBAddress.TabIndex = 11;
             // 
             // comboBox_NewDevice
@@ -748,10 +718,9 @@
             this.comboBox_NewDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_NewDevice.Enabled = false;
             this.comboBox_NewDevice.FormattingEnabled = true;
-            this.comboBox_NewDevice.Location = new System.Drawing.Point(141, 87);
-            this.comboBox_NewDevice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_NewDevice.Location = new System.Drawing.Point(106, 71);
             this.comboBox_NewDevice.Name = "comboBox_NewDevice";
-            this.comboBox_NewDevice.Size = new System.Drawing.Size(245, 24);
+            this.comboBox_NewDevice.Size = new System.Drawing.Size(185, 21);
             this.comboBox_NewDevice.TabIndex = 10;
             this.comboBox_NewDevice.SelectedIndexChanged += new System.EventHandler(this.comboBox_NewDevice_SelectedIndexChanged);
             // 
@@ -760,10 +729,9 @@
             this.comboBox_NewPad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_NewPad.Enabled = false;
             this.comboBox_NewPad.FormattingEnabled = true;
-            this.comboBox_NewPad.Location = new System.Drawing.Point(141, 54);
-            this.comboBox_NewPad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_NewPad.Location = new System.Drawing.Point(106, 44);
             this.comboBox_NewPad.Name = "comboBox_NewPad";
-            this.comboBox_NewPad.Size = new System.Drawing.Size(245, 24);
+            this.comboBox_NewPad.Size = new System.Drawing.Size(185, 21);
             this.comboBox_NewPad.TabIndex = 9;
             this.comboBox_NewPad.SelectedIndexChanged += new System.EventHandler(this.comboBox_NewPad_SelectedIndexChanged);
             // 
@@ -771,10 +739,9 @@
             // 
             this.comboBox_NewCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_NewCompany.FormattingEnabled = true;
-            this.comboBox_NewCompany.Location = new System.Drawing.Point(141, 23);
-            this.comboBox_NewCompany.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_NewCompany.Location = new System.Drawing.Point(106, 19);
             this.comboBox_NewCompany.Name = "comboBox_NewCompany";
-            this.comboBox_NewCompany.Size = new System.Drawing.Size(245, 24);
+            this.comboBox_NewCompany.Size = new System.Drawing.Size(185, 21);
             this.comboBox_NewCompany.TabIndex = 8;
             this.comboBox_NewCompany.SelectedIndexChanged += new System.EventHandler(this.comboBox_NewCompany_SelectedIndexChanged);
             // 
@@ -797,21 +764,18 @@
             this.groupBox1.Controls.Add(this.DefGate_Status);
             this.groupBox1.Controls.Add(this.SubMask_Status);
             this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(581, 252);
+            this.groupBox1.Size = new System.Drawing.Size(436, 205);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adapter Addresses";
             // 
             // button_AdapterOptionsControlPanel
             // 
-            this.button_AdapterOptionsControlPanel.Location = new System.Drawing.Point(159, 217);
-            this.button_AdapterOptionsControlPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_AdapterOptionsControlPanel.Location = new System.Drawing.Point(119, 176);
             this.button_AdapterOptionsControlPanel.Name = "button_AdapterOptionsControlPanel";
-            this.button_AdapterOptionsControlPanel.Size = new System.Drawing.Size(271, 28);
+            this.button_AdapterOptionsControlPanel.Size = new System.Drawing.Size(203, 23);
             this.button_AdapterOptionsControlPanel.TabIndex = 15;
             this.button_AdapterOptionsControlPanel.Text = "Open Adapter Options (Control Panel)";
             this.button_AdapterOptionsControlPanel.UseVisualStyleBackColor = true;
@@ -819,10 +783,9 @@
             // 
             // button_SetDynamic
             // 
-            this.button_SetDynamic.Location = new System.Drawing.Point(8, 217);
-            this.button_SetDynamic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_SetDynamic.Location = new System.Drawing.Point(6, 176);
             this.button_SetDynamic.Name = "button_SetDynamic";
-            this.button_SetDynamic.Size = new System.Drawing.Size(132, 28);
+            this.button_SetDynamic.Size = new System.Drawing.Size(99, 23);
             this.button_SetDynamic.TabIndex = 14;
             this.button_SetDynamic.Text = "Set to Dynamic";
             this.button_SetDynamic.UseVisualStyleBackColor = true;
@@ -830,10 +793,9 @@
             // 
             // button_ApplyIPChanges
             // 
-            this.button_ApplyIPChanges.Location = new System.Drawing.Point(441, 217);
-            this.button_ApplyIPChanges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ApplyIPChanges.Location = new System.Drawing.Point(331, 176);
             this.button_ApplyIPChanges.Name = "button_ApplyIPChanges";
-            this.button_ApplyIPChanges.Size = new System.Drawing.Size(132, 28);
+            this.button_ApplyIPChanges.Size = new System.Drawing.Size(99, 23);
             this.button_ApplyIPChanges.TabIndex = 7;
             this.button_ApplyIPChanges.Text = "Apply IP Changes";
             this.button_ApplyIPChanges.UseVisualStyleBackColor = true;
@@ -841,10 +803,9 @@
             // 
             // button_RefreshAdapter
             // 
-            this.button_RefreshAdapter.Location = new System.Drawing.Point(464, 20);
-            this.button_RefreshAdapter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_RefreshAdapter.Location = new System.Drawing.Point(348, 16);
             this.button_RefreshAdapter.Name = "button_RefreshAdapter";
-            this.button_RefreshAdapter.Size = new System.Drawing.Size(100, 28);
+            this.button_RefreshAdapter.Size = new System.Drawing.Size(75, 23);
             this.button_RefreshAdapter.TabIndex = 3;
             this.button_RefreshAdapter.Text = "Refresh";
             this.button_RefreshAdapter.UseVisualStyleBackColor = true;
@@ -853,60 +814,54 @@
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox2.Location = new System.Drawing.Point(137, 126);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(103, 102);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(131, 22);
+            this.textBox2.Size = new System.Drawing.Size(99, 20);
             this.textBox2.TabIndex = 5;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox_IPAdress
             // 
             this.textBox_IPAdress.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_IPAdress.Location = new System.Drawing.Point(137, 94);
-            this.textBox_IPAdress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_IPAdress.Location = new System.Drawing.Point(103, 76);
             this.textBox_IPAdress.Name = "textBox_IPAdress";
-            this.textBox_IPAdress.Size = new System.Drawing.Size(131, 22);
+            this.textBox_IPAdress.Size = new System.Drawing.Size(99, 20);
             this.textBox_IPAdress.TabIndex = 4;
             this.textBox_IPAdress.TextChanged += new System.EventHandler(this.textBox_IPAdress_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 26);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(12, 21);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 17);
+            this.label9.Size = new System.Drawing.Size(126, 13);
             this.label9.TabIndex = 13;
             this.label9.Text = "Select Network Adapter: ";
             // 
             // label_IPAddress
             // 
             this.label_IPAddress.AutoSize = true;
-            this.label_IPAddress.Location = new System.Drawing.Point(11, 102);
-            this.label_IPAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_IPAddress.Location = new System.Drawing.Point(8, 83);
             this.label_IPAddress.Name = "label_IPAddress";
-            this.label_IPAddress.Size = new System.Drawing.Size(80, 17);
+            this.label_IPAddress.Size = new System.Drawing.Size(61, 13);
             this.label_IPAddress.TabIndex = 1;
             this.label_IPAddress.Text = "IP Address:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(133, 63);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(100, 51);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 17);
+            this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 12;
             this.label8.Text = "New IP:";
             // 
             // label_SubnetMask
             // 
             this.label_SubnetMask.AutoSize = true;
-            this.label_SubnetMask.Location = new System.Drawing.Point(11, 130);
-            this.label_SubnetMask.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_SubnetMask.Location = new System.Drawing.Point(8, 106);
             this.label_SubnetMask.Name = "label_SubnetMask";
-            this.label_SubnetMask.Size = new System.Drawing.Size(94, 17);
+            this.label_SubnetMask.Size = new System.Drawing.Size(73, 13);
             this.label_SubnetMask.TabIndex = 2;
             this.label_SubnetMask.Text = "Subnet Mask:";
             // 
@@ -916,70 +871,63 @@
             this.comboBox_NetworkAdapter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_NetworkAdapter.ForeColor = System.Drawing.SystemColors.WindowText;
             this.comboBox_NetworkAdapter.FormattingEnabled = true;
-            this.comboBox_NetworkAdapter.Location = new System.Drawing.Point(192, 22);
-            this.comboBox_NetworkAdapter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_NetworkAdapter.Location = new System.Drawing.Point(144, 18);
             this.comboBox_NetworkAdapter.Name = "comboBox_NetworkAdapter";
-            this.comboBox_NetworkAdapter.Size = new System.Drawing.Size(260, 24);
+            this.comboBox_NetworkAdapter.Size = new System.Drawing.Size(196, 21);
             this.comboBox_NetworkAdapter.TabIndex = 2;
             this.comboBox_NetworkAdapter.SelectedIndexChanged += new System.EventHandler(this.comboBox_NetworkAdapter_SelectedIndexChanged);
             // 
             // label_DefaultGateway
             // 
             this.label_DefaultGateway.AutoSize = true;
-            this.label_DefaultGateway.Location = new System.Drawing.Point(11, 160);
-            this.label_DefaultGateway.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_DefaultGateway.Location = new System.Drawing.Point(8, 130);
             this.label_DefaultGateway.Name = "label_DefaultGateway";
-            this.label_DefaultGateway.Size = new System.Drawing.Size(116, 17);
+            this.label_DefaultGateway.Size = new System.Drawing.Size(89, 13);
             this.label_DefaultGateway.TabIndex = 3;
             this.label_DefaultGateway.Text = "Default Gateway:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(292, 63);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(219, 51);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 17);
+            this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 10;
             this.label7.Text = "Current:";
             // 
             // IPAdress_Status
             // 
             this.IPAdress_Status.AutoSize = true;
-            this.IPAdress_Status.Location = new System.Drawing.Point(292, 97);
-            this.IPAdress_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.IPAdress_Status.Location = new System.Drawing.Point(219, 79);
             this.IPAdress_Status.Name = "IPAdress_Status";
-            this.IPAdress_Status.Size = new System.Drawing.Size(71, 17);
+            this.IPAdress_Status.Size = new System.Drawing.Size(54, 13);
             this.IPAdress_Status.TabIndex = 5;
             this.IPAdress_Status.Text = "Current IP";
             // 
             // DefGate_Status
             // 
             this.DefGate_Status.AutoSize = true;
-            this.DefGate_Status.Location = new System.Drawing.Point(292, 160);
-            this.DefGate_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DefGate_Status.Location = new System.Drawing.Point(219, 130);
             this.DefGate_Status.Name = "DefGate_Status";
-            this.DefGate_Status.Size = new System.Drawing.Size(136, 17);
+            this.DefGate_Status.Size = new System.Drawing.Size(103, 13);
             this.DefGate_Status.TabIndex = 9;
             this.DefGate_Status.Text = "Current DefGateway";
             // 
             // SubMask_Status
             // 
             this.SubMask_Status.AutoSize = true;
-            this.SubMask_Status.Location = new System.Drawing.Point(292, 129);
-            this.SubMask_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.SubMask_Status.Location = new System.Drawing.Point(219, 105);
             this.SubMask_Status.Name = "SubMask_Status";
-            this.SubMask_Status.Size = new System.Drawing.Size(137, 17);
+            this.SubMask_Status.Size = new System.Drawing.Size(104, 13);
             this.SubMask_Status.TabIndex = 7;
             this.SubMask_Status.Text = "Current SubnetMask";
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox3.Location = new System.Drawing.Point(137, 156);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Location = new System.Drawing.Point(103, 127);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(131, 22);
+            this.textBox3.Size = new System.Drawing.Size(99, 20);
             this.textBox3.TabIndex = 6;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
@@ -993,11 +941,10 @@
             this.tabPage1.Controls.Add(this.comboBox_FileLocation);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.btn_SelectFile);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1368, 600);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1024, 485);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Copy & Paste";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1006,10 +953,9 @@
             // 
             this.label_Example2.AutoSize = true;
             this.label_Example2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Example2.Location = new System.Drawing.Point(40, 311);
-            this.label_Example2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Example2.Location = new System.Drawing.Point(30, 253);
             this.label_Example2.Name = "label_Example2";
-            this.label_Example2.Size = new System.Drawing.Size(104, 26);
+            this.label_Example2.Size = new System.Drawing.Size(84, 22);
             this.label_Example2.TabIndex = 20;
             this.label_Example2.Text = "Example:";
             // 
@@ -1017,8 +963,7 @@
             // 
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox2.Image = global::ExcelPaster.Properties.Resources.No_Photo;
-            this.pictureBox2.Location = new System.Drawing.Point(28, 351);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(21, 285);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(538, 121);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1040,20 +985,18 @@
             this.panel_CopyControls.Controls.Add(this.label14);
             this.panel_CopyControls.Controls.Add(this.textBox_KeyStateChange);
             this.panel_CopyControls.Controls.Add(this.btn_StartCopyFile);
-            this.panel_CopyControls.Location = new System.Drawing.Point(28, 124);
-            this.panel_CopyControls.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_CopyControls.Location = new System.Drawing.Point(21, 101);
             this.panel_CopyControls.Name = "panel_CopyControls";
-            this.panel_CopyControls.Size = new System.Drawing.Size(787, 164);
+            this.panel_CopyControls.Size = new System.Drawing.Size(590, 133);
             this.panel_CopyControls.TabIndex = 18;
             // 
             // label_StatusTitle
             // 
             this.label_StatusTitle.AutoSize = true;
             this.label_StatusTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_StatusTitle.Location = new System.Drawing.Point(12, 122);
-            this.label_StatusTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_StatusTitle.Location = new System.Drawing.Point(9, 99);
             this.label_StatusTitle.Name = "label_StatusTitle";
-            this.label_StatusTitle.Size = new System.Drawing.Size(80, 26);
+            this.label_StatusTitle.Size = new System.Drawing.Size(66, 22);
             this.label_StatusTitle.TabIndex = 18;
             this.label_StatusTitle.Text = "Status:";
             // 
@@ -1061,20 +1004,18 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(8, 9);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(6, 7);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(112, 17);
+            this.label12.Size = new System.Drawing.Size(84, 13);
             this.label12.TabIndex = 13;
             this.label12.Text = "Key Press Delay";
             // 
             // textBox_KeypressDelay
             // 
             this.textBox_KeypressDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeypressDelay.Location = new System.Drawing.Point(12, 28);
-            this.textBox_KeypressDelay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_KeypressDelay.Location = new System.Drawing.Point(9, 23);
             this.textBox_KeypressDelay.Name = "textBox_KeypressDelay";
-            this.textBox_KeypressDelay.Size = new System.Drawing.Size(68, 22);
+            this.textBox_KeypressDelay.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeypressDelay.TabIndex = 12;
             this.textBox_KeypressDelay.Text = "500";
             this.textBox_KeypressDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1084,10 +1025,9 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(261, 32);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(196, 26);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 17);
+            this.label13.Size = new System.Drawing.Size(64, 13);
             this.label13.TabIndex = 17;
             this.label13.Text = "Milliseconds";
             // 
@@ -1096,10 +1036,9 @@
             this.label_Status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_Status.AutoSize = true;
             this.label_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Status.Location = new System.Drawing.Point(108, 122);
-            this.label_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Status.Location = new System.Drawing.Point(81, 99);
             this.label_Status.Name = "label_Status";
-            this.label_Status.Size = new System.Drawing.Size(75, 26);
+            this.label_Status.Size = new System.Drawing.Size(62, 22);
             this.label_Status.TabIndex = 9;
             this.label_Status.Text = "Ready";
             // 
@@ -1107,10 +1046,9 @@
             // 
             this.btn_Cancel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Cancel1.Enabled = false;
-            this.btn_Cancel1.Location = new System.Drawing.Point(12, 60);
-            this.btn_Cancel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Cancel1.Location = new System.Drawing.Point(9, 49);
             this.btn_Cancel1.Name = "btn_Cancel1";
-            this.btn_Cancel1.Size = new System.Drawing.Size(277, 28);
+            this.btn_Cancel1.Size = new System.Drawing.Size(208, 23);
             this.btn_Cancel1.TabIndex = 8;
             this.btn_Cancel1.Text = "Cancel ";
             this.btn_Cancel1.UseVisualStyleBackColor = true;
@@ -1120,10 +1058,9 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(89, 32);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(67, 26);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 17);
+            this.label11.Size = new System.Drawing.Size(64, 13);
             this.label11.TabIndex = 14;
             this.label11.Text = "Milliseconds";
             // 
@@ -1131,20 +1068,18 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(180, 9);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(135, 7);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(162, 17);
+            this.label14.Size = new System.Drawing.Size(123, 13);
             this.label14.TabIndex = 16;
             this.label14.Text = "Key State Change Delay";
             // 
             // textBox_KeyStateChange
             // 
             this.textBox_KeyStateChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_KeyStateChange.Location = new System.Drawing.Point(184, 28);
-            this.textBox_KeyStateChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_KeyStateChange.Location = new System.Drawing.Point(138, 23);
             this.textBox_KeyStateChange.Name = "textBox_KeyStateChange";
-            this.textBox_KeyStateChange.Size = new System.Drawing.Size(68, 22);
+            this.textBox_KeyStateChange.Size = new System.Drawing.Size(52, 20);
             this.textBox_KeyStateChange.TabIndex = 15;
             this.textBox_KeyStateChange.Text = "5";
             this.textBox_KeyStateChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1152,10 +1087,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 25);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(18, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 17);
+            this.label6.Size = new System.Drawing.Size(81, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "Paste Location:";
             // 
@@ -1175,11 +1109,10 @@
             "Totalflow Old AGA3 (2101305-005)",
             "Ovintiv ModWorx Analysis",
             "Rimrock ModWorx Analysis"});
-            this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(140, 21);
-            this.comboBox_TargetProgramCSV.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_TargetProgramCSV.Location = new System.Drawing.Point(105, 17);
             this.comboBox_TargetProgramCSV.MaxDropDownItems = 10;
             this.comboBox_TargetProgramCSV.Name = "comboBox_TargetProgramCSV";
-            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(385, 24);
+            this.comboBox_TargetProgramCSV.Size = new System.Drawing.Size(290, 21);
             this.comboBox_TargetProgramCSV.TabIndex = 10;
             this.comboBox_TargetProgramCSV.SelectedIndexChanged += new System.EventHandler(this.comboBox_TargetProgramCSV_SelectedIndexChanged);
             // 
@@ -1189,20 +1122,18 @@
             this.comboBox_FileLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_FileLocation.FormattingEnabled = true;
-            this.comboBox_FileLocation.Location = new System.Drawing.Point(293, 74);
-            this.comboBox_FileLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_FileLocation.Location = new System.Drawing.Point(220, 60);
             this.comboBox_FileLocation.MaxDropDownItems = 10;
             this.comboBox_FileLocation.Name = "comboBox_FileLocation";
-            this.comboBox_FileLocation.Size = new System.Drawing.Size(520, 24);
+            this.comboBox_FileLocation.Size = new System.Drawing.Size(391, 21);
             this.comboBox_FileLocation.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 78);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(34, 63);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 17);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Source File:";
             // 
@@ -1224,10 +1155,9 @@
             this.tabPage7.Controls.Add(this.comboBox_ReportType);
             this.tabPage7.Controls.Add(this.panel_sourceFile);
             this.tabPage7.Controls.Add(this.panel_hexCalc);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1368, 600);
+            this.tabPage7.Size = new System.Drawing.Size(1024, 485);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "File Generator";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1236,30 +1166,27 @@
             // 
             this.label_Example1.AutoSize = true;
             this.label_Example1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Example1.Location = new System.Drawing.Point(5, 361);
-            this.label_Example1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Example1.Location = new System.Drawing.Point(4, 293);
             this.label_Example1.Name = "label_Example1";
-            this.label_Example1.Size = new System.Drawing.Size(104, 26);
+            this.label_Example1.Size = new System.Drawing.Size(84, 22);
             this.label_Example1.TabIndex = 37;
             this.label_Example1.Text = "Example:";
             // 
             // label_renameFileInfo
             // 
             this.label_renameFileInfo.AutoSize = true;
-            this.label_renameFileInfo.Location = new System.Drawing.Point(800, 64);
-            this.label_renameFileInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_renameFileInfo.Location = new System.Drawing.Point(600, 52);
             this.label_renameFileInfo.Name = "label_renameFileInfo";
-            this.label_renameFileInfo.Size = new System.Drawing.Size(216, 17);
+            this.label_renameFileInfo.Size = new System.Drawing.Size(161, 13);
             this.label_renameFileInfo.TabIndex = 29;
             this.label_renameFileInfo.Text = "Pick any of the three run reports.";
             // 
             // label_namingScheme
             // 
             this.label_namingScheme.AutoSize = true;
-            this.label_namingScheme.Location = new System.Drawing.Point(509, 9);
-            this.label_namingScheme.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_namingScheme.Location = new System.Drawing.Point(382, 7);
             this.label_namingScheme.Name = "label_namingScheme";
-            this.label_namingScheme.Size = new System.Drawing.Size(328, 51);
+            this.label_namingScheme.Size = new System.Drawing.Size(245, 39);
             this.label_namingScheme.TabIndex = 33;
             this.label_namingScheme.Text = "Naming Scheme:\r\nRun Report: meterID..meterDescription.runNumber\r\nSpreadsheet: met" +
     "erID..3\r\n";
@@ -1268,37 +1195,33 @@
             // 
             this.panel_ovintivDirectory.Controls.Add(this.textBox_ovintivDirectory);
             this.panel_ovintivDirectory.Controls.Add(this.label_ovintivDirectory);
-            this.panel_ovintivDirectory.Location = new System.Drawing.Point(31, 144);
-            this.panel_ovintivDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_ovintivDirectory.Location = new System.Drawing.Point(23, 117);
             this.panel_ovintivDirectory.Name = "panel_ovintivDirectory";
-            this.panel_ovintivDirectory.Size = new System.Drawing.Size(519, 55);
+            this.panel_ovintivDirectory.Size = new System.Drawing.Size(389, 45);
             this.panel_ovintivDirectory.TabIndex = 36;
             // 
             // textBox_ovintivDirectory
             // 
-            this.textBox_ovintivDirectory.Location = new System.Drawing.Point(120, 15);
-            this.textBox_ovintivDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ovintivDirectory.Location = new System.Drawing.Point(90, 12);
             this.textBox_ovintivDirectory.Name = "textBox_ovintivDirectory";
-            this.textBox_ovintivDirectory.Size = new System.Drawing.Size(288, 22);
+            this.textBox_ovintivDirectory.Size = new System.Drawing.Size(217, 20);
             this.textBox_ovintivDirectory.TabIndex = 36;
             // 
             // label_ovintivDirectory
             // 
             this.label_ovintivDirectory.AutoSize = true;
-            this.label_ovintivDirectory.Location = new System.Drawing.Point(19, 18);
-            this.label_ovintivDirectory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_ovintivDirectory.Location = new System.Drawing.Point(14, 15);
             this.label_ovintivDirectory.Name = "label_ovintivDirectory";
-            this.label_ovintivDirectory.Size = new System.Drawing.Size(93, 17);
+            this.label_ovintivDirectory.Size = new System.Drawing.Size(70, 13);
             this.label_ovintivDirectory.TabIndex = 35;
             this.label_ovintivDirectory.Text = "Folder Name:";
             // 
             // checkBox_showReport
             // 
             this.checkBox_showReport.AutoSize = true;
-            this.checkBox_showReport.Location = new System.Drawing.Point(5, 316);
-            this.checkBox_showReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_showReport.Location = new System.Drawing.Point(4, 257);
             this.checkBox_showReport.Name = "checkBox_showReport";
-            this.checkBox_showReport.Size = new System.Drawing.Size(209, 21);
+            this.checkBox_showReport.Size = new System.Drawing.Size(162, 17);
             this.checkBox_showReport.TabIndex = 32;
             this.checkBox_showReport.Text = "Show Report When Finished";
             this.checkBox_showReport.UseVisualStyleBackColor = true;
@@ -1308,18 +1231,16 @@
             this.panel_sourceFolder.Controls.Add(this.button1);
             this.panel_sourceFolder.Controls.Add(this.comboBox_SourceFolder);
             this.panel_sourceFolder.Controls.Add(this.label_sourceFolder);
-            this.panel_sourceFolder.Location = new System.Drawing.Point(4, 96);
-            this.panel_sourceFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_sourceFolder.Location = new System.Drawing.Point(3, 78);
             this.panel_sourceFolder.Name = "panel_sourceFolder";
-            this.panel_sourceFolder.Size = new System.Drawing.Size(799, 47);
+            this.panel_sourceFolder.Size = new System.Drawing.Size(599, 38);
             this.panel_sourceFolder.TabIndex = 31;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(113, 6);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(85, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 38);
+            this.button1.Size = new System.Drawing.Size(111, 31);
             this.button1.TabIndex = 13;
             this.button1.Text = "Change Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -1329,20 +1250,18 @@
             // 
             this.comboBox_SourceFolder.AllowDrop = true;
             this.comboBox_SourceFolder.FormattingEnabled = true;
-            this.comboBox_SourceFolder.Location = new System.Drawing.Point(269, 14);
-            this.comboBox_SourceFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_SourceFolder.Location = new System.Drawing.Point(202, 11);
             this.comboBox_SourceFolder.Name = "comboBox_SourceFolder";
-            this.comboBox_SourceFolder.Size = new System.Drawing.Size(520, 24);
+            this.comboBox_SourceFolder.Size = new System.Drawing.Size(391, 21);
             this.comboBox_SourceFolder.TabIndex = 11;
             this.comboBox_SourceFolder.TextChanged += new System.EventHandler(this.comboBox_SourceFolder_TextChanged);
             // 
             // label_sourceFolder
             // 
             this.label_sourceFolder.AutoSize = true;
-            this.label_sourceFolder.Location = new System.Drawing.Point(4, 17);
-            this.label_sourceFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_sourceFolder.Location = new System.Drawing.Point(3, 14);
             this.label_sourceFolder.Name = "label_sourceFolder";
-            this.label_sourceFolder.Size = new System.Drawing.Size(101, 17);
+            this.label_sourceFolder.Size = new System.Drawing.Size(76, 13);
             this.label_sourceFolder.TabIndex = 12;
             this.label_sourceFolder.Text = "Source Folder:";
             // 
@@ -1353,10 +1272,9 @@
             this.panel_renameOptions.Controls.Add(this.textBox_meterDesc);
             this.panel_renameOptions.Controls.Add(this.label_meterID);
             this.panel_renameOptions.Controls.Add(this.label_meterDesc);
-            this.panel_renameOptions.Location = new System.Drawing.Point(23, 148);
-            this.panel_renameOptions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_renameOptions.Location = new System.Drawing.Point(17, 120);
             this.panel_renameOptions.Name = "panel_renameOptions";
-            this.panel_renameOptions.Size = new System.Drawing.Size(585, 106);
+            this.panel_renameOptions.Size = new System.Drawing.Size(439, 86);
             this.panel_renameOptions.TabIndex = 28;
             // 
             // checkBox_doAll
@@ -1364,10 +1282,9 @@
             this.checkBox_doAll.AutoSize = true;
             this.checkBox_doAll.Checked = true;
             this.checkBox_doAll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_doAll.Location = new System.Drawing.Point(129, 69);
-            this.checkBox_doAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_doAll.Location = new System.Drawing.Point(97, 56);
             this.checkBox_doAll.Name = "checkBox_doAll";
-            this.checkBox_doAll.Size = new System.Drawing.Size(344, 21);
+            this.checkBox_doAll.Size = new System.Drawing.Size(256, 17);
             this.checkBox_doAll.TabIndex = 28;
             this.checkBox_doAll.Text = "Rename all 3 run reports and spreadsheet report.";
             this.checkBox_doAll.UseVisualStyleBackColor = true;
@@ -1375,37 +1292,33 @@
             // 
             // textBox_meterID
             // 
-            this.textBox_meterID.Location = new System.Drawing.Point(129, 4);
-            this.textBox_meterID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_meterID.Location = new System.Drawing.Point(97, 3);
             this.textBox_meterID.Name = "textBox_meterID";
-            this.textBox_meterID.Size = new System.Drawing.Size(181, 22);
+            this.textBox_meterID.Size = new System.Drawing.Size(137, 20);
             this.textBox_meterID.TabIndex = 26;
             // 
             // textBox_meterDesc
             // 
-            this.textBox_meterDesc.Location = new System.Drawing.Point(129, 37);
-            this.textBox_meterDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_meterDesc.Location = new System.Drawing.Point(97, 30);
             this.textBox_meterDesc.Name = "textBox_meterDesc";
-            this.textBox_meterDesc.Size = new System.Drawing.Size(389, 22);
+            this.textBox_meterDesc.Size = new System.Drawing.Size(293, 20);
             this.textBox_meterDesc.TabIndex = 27;
             // 
             // label_meterID
             // 
             this.label_meterID.AutoSize = true;
-            this.label_meterID.Location = new System.Drawing.Point(60, 7);
-            this.label_meterID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_meterID.Location = new System.Drawing.Point(45, 6);
             this.label_meterID.Name = "label_meterID";
-            this.label_meterID.Size = new System.Drawing.Size(65, 17);
+            this.label_meterID.Size = new System.Drawing.Size(51, 13);
             this.label_meterID.TabIndex = 24;
             this.label_meterID.Text = "Meter ID:";
             // 
             // label_meterDesc
             // 
             this.label_meterDesc.AutoSize = true;
-            this.label_meterDesc.Location = new System.Drawing.Point(4, 41);
-            this.label_meterDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_meterDesc.Location = new System.Drawing.Point(3, 33);
             this.label_meterDesc.Name = "label_meterDesc";
-            this.label_meterDesc.Size = new System.Drawing.Size(123, 17);
+            this.label_meterDesc.Size = new System.Drawing.Size(93, 13);
             this.label_meterDesc.TabIndex = 25;
             this.label_meterDesc.Text = "Meter Description:";
             // 
@@ -1414,8 +1327,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Image = global::ExcelPaster.Properties.Resources.LimerockPDF;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 391);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 318);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(731, 643);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1424,10 +1336,9 @@
             // 
             // button_ReportChooseLoc
             // 
-            this.button_ReportChooseLoc.Location = new System.Drawing.Point(124, 261);
-            this.button_ReportChooseLoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ReportChooseLoc.Location = new System.Drawing.Point(93, 212);
             this.button_ReportChooseLoc.Name = "button_ReportChooseLoc";
-            this.button_ReportChooseLoc.Size = new System.Drawing.Size(148, 38);
+            this.button_ReportChooseLoc.Size = new System.Drawing.Size(111, 31);
             this.button_ReportChooseLoc.TabIndex = 9;
             this.button_ReportChooseLoc.Text = "Change Location";
             this.button_ReportChooseLoc.UseVisualStyleBackColor = true;
@@ -1436,28 +1347,25 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(1, 272);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Location = new System.Drawing.Point(1, 221);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(113, 17);
+            this.label36.Size = new System.Drawing.Size(86, 13);
             this.label36.TabIndex = 6;
             this.label36.Text = "Output Location:";
             // 
             // comboBox_ReportOutput
             // 
             this.comboBox_ReportOutput.FormattingEnabled = true;
-            this.comboBox_ReportOutput.Location = new System.Drawing.Point(280, 268);
-            this.comboBox_ReportOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReportOutput.Location = new System.Drawing.Point(210, 218);
             this.comboBox_ReportOutput.Name = "comboBox_ReportOutput";
-            this.comboBox_ReportOutput.Size = new System.Drawing.Size(475, 24);
+            this.comboBox_ReportOutput.Size = new System.Drawing.Size(357, 21);
             this.comboBox_ReportOutput.TabIndex = 5;
             // 
             // button_ReportGenerate
             // 
-            this.button_ReportGenerate.Location = new System.Drawing.Point(229, 306);
-            this.button_ReportGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ReportGenerate.Location = new System.Drawing.Point(172, 249);
             this.button_ReportGenerate.Name = "button_ReportGenerate";
-            this.button_ReportGenerate.Size = new System.Drawing.Size(480, 38);
+            this.button_ReportGenerate.Size = new System.Drawing.Size(360, 31);
             this.button_ReportGenerate.TabIndex = 4;
             this.button_ReportGenerate.Text = "Generate";
             this.button_ReportGenerate.UseVisualStyleBackColor = true;
@@ -1466,10 +1374,9 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(15, 25);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Location = new System.Drawing.Point(11, 20);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(91, 17);
+            this.label35.Size = new System.Drawing.Size(69, 13);
             this.label35.TabIndex = 3;
             this.label35.Text = "Report Type:";
             // 
@@ -1484,10 +1391,9 @@
             "Run Report Rename",
             "Ovintiv Send-out",
             "Excel to PDF"});
-            this.comboBox_ReportType.Location = new System.Drawing.Point(115, 21);
-            this.comboBox_ReportType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReportType.Location = new System.Drawing.Point(86, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
-            this.comboBox_ReportType.Size = new System.Drawing.Size(385, 24);
+            this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
             this.comboBox_ReportType.TabIndex = 2;
             this.comboBox_ReportType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReportType_SelectedIndexChanged);
             // 
@@ -1496,28 +1402,25 @@
             this.panel_sourceFile.Controls.Add(this.label_sourceFile);
             this.panel_sourceFile.Controls.Add(this.button_ReportChooseFile);
             this.panel_sourceFile.Controls.Add(this.comboBox_ReportSource);
-            this.panel_sourceFile.Location = new System.Drawing.Point(23, 50);
-            this.panel_sourceFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_sourceFile.Location = new System.Drawing.Point(17, 41);
             this.panel_sourceFile.Name = "panel_sourceFile";
-            this.panel_sourceFile.Size = new System.Drawing.Size(775, 44);
+            this.panel_sourceFile.Size = new System.Drawing.Size(581, 36);
             this.panel_sourceFile.TabIndex = 33;
             // 
             // label_sourceFile
             // 
             this.label_sourceFile.AutoSize = true;
-            this.label_sourceFile.Location = new System.Drawing.Point(0, 14);
-            this.label_sourceFile.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_sourceFile.Location = new System.Drawing.Point(0, 11);
             this.label_sourceFile.Name = "label_sourceFile";
-            this.label_sourceFile.Size = new System.Drawing.Size(83, 17);
+            this.label_sourceFile.Size = new System.Drawing.Size(63, 13);
             this.label_sourceFile.TabIndex = 1;
             this.label_sourceFile.Text = "Source File:";
             // 
             // button_ReportChooseFile
             // 
-            this.button_ReportChooseFile.Location = new System.Drawing.Point(92, 2);
-            this.button_ReportChooseFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ReportChooseFile.Location = new System.Drawing.Point(69, 2);
             this.button_ReportChooseFile.Name = "button_ReportChooseFile";
-            this.button_ReportChooseFile.Size = new System.Drawing.Size(148, 38);
+            this.button_ReportChooseFile.Size = new System.Drawing.Size(111, 31);
             this.button_ReportChooseFile.TabIndex = 8;
             this.button_ReportChooseFile.Text = "Change File";
             this.button_ReportChooseFile.UseVisualStyleBackColor = true;
@@ -1527,10 +1430,9 @@
             // 
             this.comboBox_ReportSource.AllowDrop = true;
             this.comboBox_ReportSource.FormattingEnabled = true;
-            this.comboBox_ReportSource.Location = new System.Drawing.Point(248, 10);
-            this.comboBox_ReportSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReportSource.Location = new System.Drawing.Point(186, 8);
             this.comboBox_ReportSource.Name = "comboBox_ReportSource";
-            this.comboBox_ReportSource.Size = new System.Drawing.Size(520, 24);
+            this.comboBox_ReportSource.Size = new System.Drawing.Size(391, 21);
             this.comboBox_ReportSource.TabIndex = 0;
             this.comboBox_ReportSource.TextChanged += new System.EventHandler(this.comboBox_ReportSource_TextChanged);
             this.comboBox_ReportSource.DragDrop += new System.Windows.Forms.DragEventHandler(this.comboBox_ReportSource_DragDrop);
@@ -1540,19 +1442,17 @@
             // 
             this.panel_hexCalc.Controls.Add(this.label39);
             this.panel_hexCalc.Controls.Add(this.comboBox_HexaneCalc);
-            this.panel_hexCalc.Location = new System.Drawing.Point(43, 144);
-            this.panel_hexCalc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_hexCalc.Location = new System.Drawing.Point(32, 117);
             this.panel_hexCalc.Name = "panel_hexCalc";
-            this.panel_hexCalc.Size = new System.Drawing.Size(520, 52);
+            this.panel_hexCalc.Size = new System.Drawing.Size(390, 42);
             this.panel_hexCalc.TabIndex = 34;
             // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(4, 16);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Location = new System.Drawing.Point(3, 13);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(106, 17);
+            this.label39.Size = new System.Drawing.Size(82, 13);
             this.label39.TabIndex = 23;
             this.label39.Text = "Hexanes+ Calc:";
             // 
@@ -1563,10 +1463,9 @@
             this.comboBox_HexaneCalc.Items.AddRange(new object[] {
             "C6",
             "C9"});
-            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(120, 12);
-            this.comboBox_HexaneCalc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_HexaneCalc.Location = new System.Drawing.Point(90, 10);
             this.comboBox_HexaneCalc.Name = "comboBox_HexaneCalc";
-            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(385, 24);
+            this.comboBox_HexaneCalc.Size = new System.Drawing.Size(290, 21);
             this.comboBox_HexaneCalc.TabIndex = 22;
             // 
             // tabPage2
@@ -1574,10 +1473,9 @@
             this.tabPage2.Controls.Add(this.group_Data);
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.grpStart);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1368, 600);
+            this.tabPage2.Size = new System.Drawing.Size(1024, 485);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1594,21 +1492,18 @@
             this.group_Data.Controls.Add(this.dataGridView_ReqData);
             this.group_Data.Controls.Add(this.textBox_ReqData);
             this.group_Data.Controls.Add(this.comboBox_ReqDataType);
-            this.group_Data.Location = new System.Drawing.Point(4, 246);
-            this.group_Data.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.group_Data.Location = new System.Drawing.Point(3, 200);
             this.group_Data.Name = "group_Data";
-            this.group_Data.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.group_Data.Size = new System.Drawing.Size(1357, 343);
+            this.group_Data.Size = new System.Drawing.Size(1018, 279);
             this.group_Data.TabIndex = 14;
             this.group_Data.TabStop = false;
             this.group_Data.Text = "Data";
             // 
             // label29
             // 
-            this.label29.Location = new System.Drawing.Point(8, 102);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Location = new System.Drawing.Point(6, 83);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(141, 17);
+            this.label29.Size = new System.Drawing.Size(106, 14);
             this.label29.TabIndex = 37;
             this.label29.Text = "Data Format";
             // 
@@ -1620,19 +1515,17 @@
             "32-Bit",
             "16-Bit Modicon",
             "16-Bit Word Swapped"});
-            this.comboBox_ReqFormat.Location = new System.Drawing.Point(8, 123);
-            this.comboBox_ReqFormat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReqFormat.Location = new System.Drawing.Point(6, 100);
             this.comboBox_ReqFormat.Name = "comboBox_ReqFormat";
-            this.comboBox_ReqFormat.Size = new System.Drawing.Size(136, 24);
+            this.comboBox_ReqFormat.Size = new System.Drawing.Size(103, 21);
             this.comboBox_ReqFormat.TabIndex = 36;
             this.comboBox_ReqFormat.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqFormat_SelectedIndexChanged);
             // 
             // label28
             // 
-            this.label28.Location = new System.Drawing.Point(4, 34);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label28.Location = new System.Drawing.Point(3, 28);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(141, 17);
+            this.label28.Size = new System.Drawing.Size(106, 14);
             this.label28.TabIndex = 30;
             this.label28.Text = "Data Type";
             // 
@@ -1646,11 +1539,10 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView_ReqData.Location = new System.Drawing.Point(171, 23);
-            this.dataGridView_ReqData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView_ReqData.Location = new System.Drawing.Point(128, 19);
             this.dataGridView_ReqData.Name = "dataGridView_ReqData";
             this.dataGridView_ReqData.RowHeadersWidth = 51;
-            this.dataGridView_ReqData.Size = new System.Drawing.Size(395, 308);
+            this.dataGridView_ReqData.Size = new System.Drawing.Size(296, 250);
             this.dataGridView_ReqData.TabIndex = 35;
             // 
             // Column1
@@ -1683,13 +1575,12 @@
             this.textBox_ReqData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_ReqData.Location = new System.Drawing.Point(573, 23);
-            this.textBox_ReqData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ReqData.Location = new System.Drawing.Point(430, 19);
             this.textBox_ReqData.Multiline = true;
             this.textBox_ReqData.Name = "textBox_ReqData";
             this.textBox_ReqData.ReadOnly = true;
             this.textBox_ReqData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_ReqData.Size = new System.Drawing.Size(759, 309);
+            this.textBox_ReqData.Size = new System.Drawing.Size(570, 252);
             this.textBox_ReqData.TabIndex = 30;
             // 
             // comboBox_ReqDataType
@@ -1701,10 +1592,9 @@
             "32-Bit",
             "Float",
             "Bool"});
-            this.comboBox_ReqDataType.Location = new System.Drawing.Point(8, 55);
-            this.comboBox_ReqDataType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReqDataType.Location = new System.Drawing.Point(6, 45);
             this.comboBox_ReqDataType.Name = "comboBox_ReqDataType";
-            this.comboBox_ReqDataType.Size = new System.Drawing.Size(136, 24);
+            this.comboBox_ReqDataType.Size = new System.Drawing.Size(103, 21);
             this.comboBox_ReqDataType.TabIndex = 29;
             this.comboBox_ReqDataType.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqDataType_SelectedIndexChanged);
             // 
@@ -1723,59 +1613,52 @@
             this.groupBox5.Controls.Add(this.comboBox_ReqMBFunc);
             this.groupBox5.Controls.Add(this.textBox_ReqStrAddress);
             this.groupBox5.Controls.Add(this.textBox_ReqID);
-            this.groupBox5.Location = new System.Drawing.Point(4, 96);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Location = new System.Drawing.Point(3, 78);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox5.Size = new System.Drawing.Size(1357, 143);
+            this.groupBox5.Size = new System.Drawing.Size(1018, 116);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Data Exchange";
             // 
             // label27
             // 
-            this.label27.Location = new System.Drawing.Point(19, 79);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Location = new System.Drawing.Point(14, 64);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(171, 23);
+            this.label27.Size = new System.Drawing.Size(128, 19);
             this.label27.TabIndex = 28;
             this.label27.Text = "Request Packet to Send";
             // 
             // textBox_MBRequestStructure
             // 
-            this.textBox_MBRequestStructure.Location = new System.Drawing.Point(23, 106);
-            this.textBox_MBRequestStructure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_MBRequestStructure.Location = new System.Drawing.Point(17, 86);
             this.textBox_MBRequestStructure.Name = "textBox_MBRequestStructure";
             this.textBox_MBRequestStructure.ReadOnly = true;
-            this.textBox_MBRequestStructure.Size = new System.Drawing.Size(603, 22);
+            this.textBox_MBRequestStructure.Size = new System.Drawing.Size(453, 20);
             this.textBox_MBRequestStructure.TabIndex = 27;
             this.textBox_MBRequestStructure.Text = "01-03-1B-58-00-05";
             // 
             // button_ReqSend
             // 
-            this.button_ReqSend.Location = new System.Drawing.Point(655, 96);
-            this.button_ReqSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ReqSend.Location = new System.Drawing.Point(491, 78);
             this.button_ReqSend.Name = "button_ReqSend";
-            this.button_ReqSend.Size = new System.Drawing.Size(115, 34);
+            this.button_ReqSend.Size = new System.Drawing.Size(86, 28);
             this.button_ReqSend.TabIndex = 10;
             this.button_ReqSend.Text = "Send";
             this.button_ReqSend.Click += new System.EventHandler(this.button_ReqSend_Click);
             // 
             // label26
             // 
-            this.label26.Location = new System.Drawing.Point(511, 28);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(383, 23);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(116, 17);
+            this.label26.Size = new System.Drawing.Size(87, 14);
             this.label26.TabIndex = 26;
             this.label26.Text = "Size";
             // 
             // textBox_ReqSize
             // 
-            this.textBox_ReqSize.Location = new System.Drawing.Point(515, 49);
-            this.textBox_ReqSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ReqSize.Location = new System.Drawing.Point(386, 40);
             this.textBox_ReqSize.Name = "textBox_ReqSize";
-            this.textBox_ReqSize.Size = new System.Drawing.Size(115, 22);
+            this.textBox_ReqSize.Size = new System.Drawing.Size(87, 20);
             this.textBox_ReqSize.TabIndex = 25;
             this.textBox_ReqSize.Text = "5";
             this.textBox_ReqSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1783,28 +1666,25 @@
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(387, 28);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(290, 23);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(116, 17);
+            this.label25.Size = new System.Drawing.Size(87, 14);
             this.label25.TabIndex = 24;
             this.label25.Text = "Start Address";
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(141, 30);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(106, 24);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(141, 17);
+            this.label24.Size = new System.Drawing.Size(106, 14);
             this.label24.TabIndex = 23;
             this.label24.Text = "Modbus Function";
             // 
             // label23
             // 
-            this.label23.Location = new System.Drawing.Point(17, 30);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(13, 24);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 17);
+            this.label23.Size = new System.Drawing.Size(74, 14);
             this.label23.TabIndex = 10;
             this.label23.Text = "Unit ID";
             // 
@@ -1821,19 +1701,17 @@
             "6 - Write Single Register",
             "15 - Write Multiple Coils",
             "16 - Write Multiple Registers"});
-            this.comboBox_ReqMBFunc.Location = new System.Drawing.Point(141, 49);
-            this.comboBox_ReqMBFunc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_ReqMBFunc.Location = new System.Drawing.Point(106, 40);
             this.comboBox_ReqMBFunc.Name = "comboBox_ReqMBFunc";
-            this.comboBox_ReqMBFunc.Size = new System.Drawing.Size(240, 24);
+            this.comboBox_ReqMBFunc.Size = new System.Drawing.Size(181, 21);
             this.comboBox_ReqMBFunc.TabIndex = 22;
             this.comboBox_ReqMBFunc.SelectedIndexChanged += new System.EventHandler(this.comboBox_ReqMBFunc_SelectedIndexChanged);
             // 
             // textBox_ReqStrAddress
             // 
-            this.textBox_ReqStrAddress.Location = new System.Drawing.Point(391, 49);
-            this.textBox_ReqStrAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ReqStrAddress.Location = new System.Drawing.Point(293, 40);
             this.textBox_ReqStrAddress.Name = "textBox_ReqStrAddress";
-            this.textBox_ReqStrAddress.Size = new System.Drawing.Size(115, 22);
+            this.textBox_ReqStrAddress.Size = new System.Drawing.Size(87, 20);
             this.textBox_ReqStrAddress.TabIndex = 21;
             this.textBox_ReqStrAddress.Text = "7000";
             this.textBox_ReqStrAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1841,10 +1719,9 @@
             // 
             // textBox_ReqID
             // 
-            this.textBox_ReqID.Location = new System.Drawing.Point(21, 50);
-            this.textBox_ReqID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ReqID.Location = new System.Drawing.Point(16, 41);
             this.textBox_ReqID.Name = "textBox_ReqID";
-            this.textBox_ReqID.Size = new System.Drawing.Size(115, 22);
+            this.textBox_ReqID.Size = new System.Drawing.Size(87, 20);
             this.textBox_ReqID.TabIndex = 20;
             this.textBox_ReqID.Text = "1";
             this.textBox_ReqID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -1859,62 +1736,157 @@
             this.grpStart.Controls.Add(this.label21);
             this.grpStart.Controls.Add(this.btnConnect);
             this.grpStart.Controls.Add(this.textbox_ModbusIP);
-            this.grpStart.Location = new System.Drawing.Point(4, 17);
-            this.grpStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpStart.Location = new System.Drawing.Point(3, 14);
             this.grpStart.Name = "grpStart";
-            this.grpStart.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpStart.Size = new System.Drawing.Size(1357, 68);
+            this.grpStart.Size = new System.Drawing.Size(1018, 55);
             this.grpStart.TabIndex = 12;
             this.grpStart.TabStop = false;
             this.grpStart.Text = "Start communication";
             // 
             // label22
             // 
-            this.label22.Location = new System.Drawing.Point(248, 34);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(186, 28);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 17);
+            this.label22.Size = new System.Drawing.Size(41, 14);
             this.label22.TabIndex = 9;
             this.label22.Text = "Port";
             // 
             // textBox_Port
             // 
-            this.textBox_Port.Location = new System.Drawing.Point(311, 30);
-            this.textBox_Port.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Port.Location = new System.Drawing.Point(233, 24);
             this.textBox_Port.Name = "textBox_Port";
-            this.textBox_Port.Size = new System.Drawing.Size(115, 22);
+            this.textBox_Port.Size = new System.Drawing.Size(87, 20);
             this.textBox_Port.TabIndex = 8;
             this.textBox_Port.Text = "502";
             this.textBox_Port.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(17, 34);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(13, 28);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(99, 17);
+            this.label21.Size = new System.Drawing.Size(74, 14);
             this.label21.TabIndex = 7;
             this.label21.Text = "IP Address";
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(655, 25);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConnect.Location = new System.Drawing.Point(491, 20);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(115, 34);
+            this.btnConnect.Size = new System.Drawing.Size(86, 28);
             this.btnConnect.TabIndex = 6;
             this.btnConnect.Text = "Connect";
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // textbox_ModbusIP
             // 
-            this.textbox_ModbusIP.Location = new System.Drawing.Point(124, 31);
-            this.textbox_ModbusIP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textbox_ModbusIP.Location = new System.Drawing.Point(93, 25);
             this.textbox_ModbusIP.Name = "textbox_ModbusIP";
-            this.textbox_ModbusIP.Size = new System.Drawing.Size(115, 22);
+            this.textbox_ModbusIP.Size = new System.Drawing.Size(87, 20);
             this.textbox_ModbusIP.TabIndex = 5;
             this.textbox_ModbusIP.Text = "169.254.0.12";
             this.textbox_ModbusIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button_DTFReplace);
+            this.tabPage4.Controls.Add(this.checkBox_DTFShowOutput);
+            this.tabPage4.Controls.Add(this.button_DTFChangeOutput);
+            this.tabPage4.Controls.Add(this.label31);
+            this.tabPage4.Controls.Add(this.comboBox_DTFOutputLocation);
+            this.tabPage4.Controls.Add(this.button_DTFExtract);
+            this.tabPage4.Controls.Add(this.panel2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1024, 485);
+            this.tabPage4.TabIndex = 8;
+            this.tabPage4.Text = "DTF Editor";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_DTFShowOutput
+            // 
+            this.checkBox_DTFShowOutput.AutoSize = true;
+            this.checkBox_DTFShowOutput.Location = new System.Drawing.Point(224, 277);
+            this.checkBox_DTFShowOutput.Name = "checkBox_DTFShowOutput";
+            this.checkBox_DTFShowOutput.Size = new System.Drawing.Size(162, 17);
+            this.checkBox_DTFShowOutput.TabIndex = 42;
+            this.checkBox_DTFShowOutput.Text = "Show Output When Finished";
+            this.checkBox_DTFShowOutput.UseVisualStyleBackColor = true;
+            // 
+            // button_DTFChangeOutput
+            // 
+            this.button_DTFChangeOutput.Location = new System.Drawing.Point(320, 232);
+            this.button_DTFChangeOutput.Name = "button_DTFChangeOutput";
+            this.button_DTFChangeOutput.Size = new System.Drawing.Size(111, 31);
+            this.button_DTFChangeOutput.TabIndex = 41;
+            this.button_DTFChangeOutput.Text = "Change Location";
+            this.button_DTFChangeOutput.UseVisualStyleBackColor = true;
+            this.button_DTFChangeOutput.Click += new System.EventHandler(this.button_DTFChangeOutput_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(228, 241);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(86, 13);
+            this.label31.TabIndex = 40;
+            this.label31.Text = "Output Location:";
+            // 
+            // comboBox_DTFOutputLocation
+            // 
+            this.comboBox_DTFOutputLocation.FormattingEnabled = true;
+            this.comboBox_DTFOutputLocation.Location = new System.Drawing.Point(437, 238);
+            this.comboBox_DTFOutputLocation.Name = "comboBox_DTFOutputLocation";
+            this.comboBox_DTFOutputLocation.Size = new System.Drawing.Size(357, 21);
+            this.comboBox_DTFOutputLocation.TabIndex = 39;
+            // 
+            // button_DTFExtract
+            // 
+            this.button_DTFExtract.Location = new System.Drawing.Point(392, 269);
+            this.button_DTFExtract.Name = "button_DTFExtract";
+            this.button_DTFExtract.Size = new System.Drawing.Size(162, 31);
+            this.button_DTFExtract.TabIndex = 38;
+            this.button_DTFExtract.Text = "Extract Data";
+            this.button_DTFExtract.UseVisualStyleBackColor = true;
+            this.button_DTFExtract.Click += new System.EventHandler(this.button_DTFExtract_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.button_DTFChangeSource);
+            this.panel2.Controls.Add(this.comboBox_DTFSourceFile);
+            this.panel2.Location = new System.Drawing.Point(184, 144);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(614, 36);
+            this.panel2.TabIndex = 34;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Source DTF File:";
+            // 
+            // button_DTFChangeSource
+            // 
+            this.button_DTFChangeSource.Location = new System.Drawing.Point(102, 3);
+            this.button_DTFChangeSource.Name = "button_DTFChangeSource";
+            this.button_DTFChangeSource.Size = new System.Drawing.Size(111, 31);
+            this.button_DTFChangeSource.TabIndex = 8;
+            this.button_DTFChangeSource.Text = "Change File";
+            this.button_DTFChangeSource.UseVisualStyleBackColor = true;
+            this.button_DTFChangeSource.Click += new System.EventHandler(this.button_DTFChangeSource_Click);
+            // 
+            // comboBox_DTFSourceFile
+            // 
+            this.comboBox_DTFSourceFile.AllowDrop = true;
+            this.comboBox_DTFSourceFile.FormattingEnabled = true;
+            this.comboBox_DTFSourceFile.Location = new System.Drawing.Point(219, 9);
+            this.comboBox_DTFSourceFile.Name = "comboBox_DTFSourceFile";
+            this.comboBox_DTFSourceFile.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_DTFSourceFile.TabIndex = 0;
+            this.comboBox_DTFSourceFile.SelectedIndexChanged += new System.EventHandler(this.comboBox_DTFSourceFile_SelectedIndexChanged);
             // 
             // BgWorker
             // 
@@ -1928,10 +1900,9 @@
             // 
             this.label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_Version.AutoSize = true;
-            this.label_Version.Location = new System.Drawing.Point(1320, 11);
-            this.label_Version.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Version.Location = new System.Drawing.Point(990, 9);
             this.label_Version.Name = "label_Version";
-            this.label_Version.Size = new System.Drawing.Size(37, 17);
+            this.label_Version.Size = new System.Drawing.Size(29, 13);
             this.label_Version.TabIndex = 10;
             this.label_Version.Text = "V1.0";
             // 
@@ -1957,17 +1928,30 @@
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
             // 
+            // button_DTFReplace
+            // 
+            this.button_DTFReplace.Location = new System.Drawing.Point(580, 269);
+            this.button_DTFReplace.Name = "button_DTFReplace";
+            this.button_DTFReplace.Size = new System.Drawing.Size(162, 31);
+            this.button_DTFReplace.TabIndex = 43;
+            this.button_DTFReplace.Text = "Replace Data";
+            this.button_DTFReplace.UseVisualStyleBackColor = true;
+            this.button_DTFReplace.Click += new System.EventHandler(this.button_DTFReplace_Click);
+            // 
+            // openFileDialog5
+            // 
+            this.openFileDialog5.FileName = "openFileDialog5";
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1408, 658);
+            this.ClientSize = new System.Drawing.Size(1056, 535);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "Excel Paster";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -2010,6 +1994,10 @@
             this.groupBox5.PerformLayout();
             this.grpStart.ResumeLayout(false);
             this.grpStart.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2173,6 +2161,18 @@
         private System.Windows.Forms.Label label_Example2;
         private System.Windows.Forms.Label label_StatusTitle;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.CheckBox checkBox_DTFShowOutput;
+        private System.Windows.Forms.Button button_DTFChangeOutput;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox comboBox_DTFOutputLocation;
+        private System.Windows.Forms.Button button_DTFExtract;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_DTFChangeSource;
+        private System.Windows.Forms.ComboBox comboBox_DTFSourceFile;
+        private System.Windows.Forms.Button button_DTFReplace;
+        private System.Windows.Forms.OpenFileDialog openFileDialog5;
     }
 }
 

@@ -168,6 +168,7 @@
   <ItemGroup>
     <Compile Include="CSVReader.cs" />
     <Compile Include="DBSearchCopy.cs" />
+    <Compile Include="DTFReader.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

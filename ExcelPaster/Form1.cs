@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModbusTCP;
+using Syncfusion.XPS;
 
 namespace ExcelPaster
 {
@@ -2250,6 +2251,84 @@ namespace ExcelPaster
                 comboBox_ReportOutput.Text = comboBox_SourceFolder.Text; 
             }
         }
+
+        private void comboBox_DTFSourceFile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_DTFChangeSource_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog5.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog5.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_DTFSourceFile.Text = result;
+    
+                }
+            }
+        }
+
+        private void button_DTFChangeOutput_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_DTFOutputLocation.Text = result;
+                    
+                }
+            }
+        }
+
+        private void button_DTFExtract_Click(object sender, EventArgs e)
+        {
+            if (comboBox_DTFSourceFile.Text != null)
+            {
+                if (File.Exists(comboBox_DTFSourceFile.Text))
+                {
+                    if (comboBox_DTFOutputLocation.Text != null)
+                    {
+                        if (Directory.Exists(comboBox_DTFOutputLocation.Text))
+                        {
+                            DTFReader reader = new DTFReader();
+                            reader.ExtractRegisters( comboBox_DTFSourceFile.Text);
+                            reader.SaveRegisters( comboBox_DTFOutputLocation.Text, checkBox_DTFShowOutput.Checked);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select a output folder that exists!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a output folder location!");
+                        return;
+                    }
+                    
+                }
+                else 
+                {
+                    MessageBox.Show("Please select a DTF file that exists!");
+                    return;
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Please select a DTF file source!");
+                return;
+            }
+        }
+
+        private void button_DTFReplace_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         //---------------------------------------------------------------------------------------------------
         //                                        Time Tracker
