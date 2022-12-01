@@ -70,11 +70,7 @@ namespace ExcelPaster
                             curPointReadOnly = ReadPropValue(curline, "readOnly");
                             curPointUDC = ReadPropValue(curline, "udc");
 
-                            if (lineCount == 1209)
-                            {
-                                int stop = 1;
-
-                            }
+ 
                             dtfPoints.Add(new DTFPoint(curGroupElement, curGroupNiceName, curPointElement, curPointDesc, curPointRegNum, curPointType, curPointReadOnly, curPointUDC, lineCount));
                         }
                         //End of doc detected
