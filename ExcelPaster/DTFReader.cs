@@ -117,6 +117,12 @@ namespace ExcelPaster
                 
             }
         }
+
+        public void MassFindReplace(string sourceFile, string tansFile, string outputFolderLoc, bool displayOutput)
+        {
+            FileInfo f = new FileInfo(sourceFile);
+            string outputFileName = f.Name;
+        }
     }
     public class DTFPoint
     {
@@ -143,5 +149,6 @@ namespace ExcelPaster
         }
     }
 
+   
    
 }

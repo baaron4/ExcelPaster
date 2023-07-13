@@ -2329,6 +2329,82 @@ namespace ExcelPaster
         }
 
 
+        private void button_DTFChangeTransFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog5.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog5.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_DTFTransFile.Text = result;
+
+                }
+            }
+        }
+
+        private void label32_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ChangeSourceMRBs_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_MRBSourceFolder.Text = result;
+
+                }
+            }
+        }
+
+        private void btn_ChangeMRBOutput_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_MRBOutput.Text = result;
+
+                }
+            }
+        }
+
+        private void btn_MRBFindAndReplace_Click(object sender, EventArgs e)
+        {
+            if (comboBox_MRBSourceFolder.Text != null)
+            {
+               
+                    if (comboBox_MRBOutput.Text != null)
+                    {
+                        if (Directory.Exists(comboBox_MRBOutput.Text))
+                        {
+                            MRBEditor editor = new MRBEditor();
+                        editor.ProcessFiles(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, byte.Parse(comboBox_MRBFind.Text), byte.Parse(comboBox_MRBReplace.Text));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select a output folder that exists!");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a output folder location!");
+                        return;
+                    }
+            }
+            else
+            {
+                MessageBox.Show("Please select a MRB folder source!");
+                return;
+            }
+        }
+
+
 
         //---------------------------------------------------------------------------------------------------
         //                                        Time Tracker

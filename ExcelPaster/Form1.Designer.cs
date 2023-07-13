@@ -177,6 +177,11 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.textbox_ModbusIP = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button_DTFChangeTransFile = new System.Windows.Forms.Button();
+            this.comboBox_DTFTransFile = new System.Windows.Forms.ComboBox();
+            this.button_DTFReplace = new System.Windows.Forms.Button();
             this.checkBox_DTFShowOutput = new System.Windows.Forms.CheckBox();
             this.button_DTFChangeOutput = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
@@ -195,8 +200,20 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.button_DTFReplace = new System.Windows.Forms.Button();
             this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btn_MRBFindAndReplace = new System.Windows.Forms.Button();
+            this.btn_ChangeMRBOutput = new System.Windows.Forms.Button();
+            this.label33 = new System.Windows.Forms.Label();
+            this.comboBox_MRBOutput = new System.Windows.Forms.ComboBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label34 = new System.Windows.Forms.Label();
+            this.btn_ChangeSourceMRBs = new System.Windows.Forms.Button();
+            this.comboBox_MRBSourceFolder = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.comboBox_MRBFind = new System.Windows.Forms.ComboBox();
+            this.comboBox_MRBReplace = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -220,7 +237,10 @@
             this.groupBox5.SuspendLayout();
             this.grpStart.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -291,6 +311,7 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1788,6 +1809,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel3);
             this.tabPage4.Controls.Add(this.button_DTFReplace);
             this.tabPage4.Controls.Add(this.checkBox_DTFShowOutput);
             this.tabPage4.Controls.Add(this.button_DTFChangeOutput);
@@ -1801,6 +1823,54 @@
             this.tabPage4.TabIndex = 8;
             this.tabPage4.Text = "DTF Editor";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label30);
+            this.panel3.Controls.Add(this.button_DTFChangeTransFile);
+            this.panel3.Controls.Add(this.comboBox_DTFTransFile);
+            this.panel3.Location = new System.Drawing.Point(184, 186);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(614, 36);
+            this.panel3.TabIndex = 35;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(3, 12);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(81, 13);
+            this.label30.TabIndex = 1;
+            this.label30.Text = "Translation File:";
+            // 
+            // button_DTFChangeTransFile
+            // 
+            this.button_DTFChangeTransFile.Location = new System.Drawing.Point(102, 3);
+            this.button_DTFChangeTransFile.Name = "button_DTFChangeTransFile";
+            this.button_DTFChangeTransFile.Size = new System.Drawing.Size(111, 31);
+            this.button_DTFChangeTransFile.TabIndex = 8;
+            this.button_DTFChangeTransFile.Text = "Change File";
+            this.button_DTFChangeTransFile.UseVisualStyleBackColor = true;
+            this.button_DTFChangeTransFile.Click += new System.EventHandler(this.button_DTFChangeTransFile_Click);
+            // 
+            // comboBox_DTFTransFile
+            // 
+            this.comboBox_DTFTransFile.AllowDrop = true;
+            this.comboBox_DTFTransFile.FormattingEnabled = true;
+            this.comboBox_DTFTransFile.Location = new System.Drawing.Point(219, 9);
+            this.comboBox_DTFTransFile.Name = "comboBox_DTFTransFile";
+            this.comboBox_DTFTransFile.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_DTFTransFile.TabIndex = 0;
+            // 
+            // button_DTFReplace
+            // 
+            this.button_DTFReplace.Location = new System.Drawing.Point(580, 269);
+            this.button_DTFReplace.Name = "button_DTFReplace";
+            this.button_DTFReplace.Size = new System.Drawing.Size(162, 31);
+            this.button_DTFReplace.TabIndex = 43;
+            this.button_DTFReplace.Text = "Replace Data";
+            this.button_DTFReplace.UseVisualStyleBackColor = true;
+            this.button_DTFReplace.Click += new System.EventHandler(this.button_DTFReplace_Click);
             // 
             // checkBox_DTFShowOutput
             // 
@@ -1928,19 +1998,141 @@
             this.openFileDialog4.FileName = "*.txt";
             this.openFileDialog4.Filter = "Notepad Files | *.txt";
             // 
-            // button_DTFReplace
-            // 
-            this.button_DTFReplace.Location = new System.Drawing.Point(580, 269);
-            this.button_DTFReplace.Name = "button_DTFReplace";
-            this.button_DTFReplace.Size = new System.Drawing.Size(162, 31);
-            this.button_DTFReplace.TabIndex = 43;
-            this.button_DTFReplace.Text = "Replace Data";
-            this.button_DTFReplace.UseVisualStyleBackColor = true;
-            this.button_DTFReplace.Click += new System.EventHandler(this.button_DTFReplace_Click);
-            // 
             // openFileDialog5
             // 
             this.openFileDialog5.FileName = "openFileDialog5";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.comboBox_MRBReplace);
+            this.tabPage5.Controls.Add(this.comboBox_MRBFind);
+            this.tabPage5.Controls.Add(this.label37);
+            this.tabPage5.Controls.Add(this.label32);
+            this.tabPage5.Controls.Add(this.btn_MRBFindAndReplace);
+            this.tabPage5.Controls.Add(this.btn_ChangeMRBOutput);
+            this.tabPage5.Controls.Add(this.label33);
+            this.tabPage5.Controls.Add(this.comboBox_MRBOutput);
+            this.tabPage5.Controls.Add(this.panel5);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1024, 485);
+            this.tabPage5.TabIndex = 9;
+            this.tabPage5.Text = "MRB FindReplace";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btn_MRBFindAndReplace
+            // 
+            this.btn_MRBFindAndReplace.Location = new System.Drawing.Point(260, 323);
+            this.btn_MRBFindAndReplace.Name = "btn_MRBFindAndReplace";
+            this.btn_MRBFindAndReplace.Size = new System.Drawing.Size(559, 31);
+            this.btn_MRBFindAndReplace.TabIndex = 6;
+            this.btn_MRBFindAndReplace.Text = "Find and Replace Data";
+            this.btn_MRBFindAndReplace.UseVisualStyleBackColor = true;
+            this.btn_MRBFindAndReplace.Click += new System.EventHandler(this.btn_MRBFindAndReplace_Click);
+            // 
+            // btn_ChangeMRBOutput
+            // 
+            this.btn_ChangeMRBOutput.Location = new System.Drawing.Point(342, 286);
+            this.btn_ChangeMRBOutput.Name = "btn_ChangeMRBOutput";
+            this.btn_ChangeMRBOutput.Size = new System.Drawing.Size(111, 31);
+            this.btn_ChangeMRBOutput.TabIndex = 4;
+            this.btn_ChangeMRBOutput.Text = "Change Location";
+            this.btn_ChangeMRBOutput.UseVisualStyleBackColor = true;
+            this.btn_ChangeMRBOutput.Click += new System.EventHandler(this.btn_ChangeMRBOutput_Click);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(250, 295);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(86, 13);
+            this.label33.TabIndex = 48;
+            this.label33.Text = "Output Location:";
+            // 
+            // comboBox_MRBOutput
+            // 
+            this.comboBox_MRBOutput.FormattingEnabled = true;
+            this.comboBox_MRBOutput.Location = new System.Drawing.Point(459, 292);
+            this.comboBox_MRBOutput.Name = "comboBox_MRBOutput";
+            this.comboBox_MRBOutput.Size = new System.Drawing.Size(357, 21);
+            this.comboBox_MRBOutput.TabIndex = 5;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label34);
+            this.panel5.Controls.Add(this.btn_ChangeSourceMRBs);
+            this.panel5.Controls.Add(this.comboBox_MRBSourceFolder);
+            this.panel5.Location = new System.Drawing.Point(188, 164);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(631, 36);
+            this.panel5.TabIndex = 44;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(9, 12);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(103, 13);
+            this.label34.TabIndex = 1;
+            this.label34.Text = "Source MRB Folder:";
+            // 
+            // btn_ChangeSourceMRBs
+            // 
+            this.btn_ChangeSourceMRBs.Location = new System.Drawing.Point(123, 3);
+            this.btn_ChangeSourceMRBs.Name = "btn_ChangeSourceMRBs";
+            this.btn_ChangeSourceMRBs.Size = new System.Drawing.Size(111, 31);
+            this.btn_ChangeSourceMRBs.TabIndex = 0;
+            this.btn_ChangeSourceMRBs.Text = "Change Folder";
+            this.btn_ChangeSourceMRBs.UseVisualStyleBackColor = true;
+            this.btn_ChangeSourceMRBs.Click += new System.EventHandler(this.btn_ChangeSourceMRBs_Click);
+            // 
+            // comboBox_MRBSourceFolder
+            // 
+            this.comboBox_MRBSourceFolder.AllowDrop = true;
+            this.comboBox_MRBSourceFolder.FormattingEnabled = true;
+            this.comboBox_MRBSourceFolder.Location = new System.Drawing.Point(240, 9);
+            this.comboBox_MRBSourceFolder.Name = "comboBox_MRBSourceFolder";
+            this.comboBox_MRBSourceFolder.Size = new System.Drawing.Size(391, 21);
+            this.comboBox_MRBSourceFolder.TabIndex = 1;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(250, 217);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(57, 13);
+            this.label32.TabIndex = 52;
+            this.label32.Text = "Find Int16:";
+            this.label32.Click += new System.EventHandler(this.label32_Click);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(230, 242);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(77, 13);
+            this.label37.TabIndex = 53;
+            this.label37.Text = "Replace Int16:";
+            // 
+            // comboBox_MRBFind
+            // 
+            this.comboBox_MRBFind.AllowDrop = true;
+            this.comboBox_MRBFind.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.comboBox_MRBFind.FormattingEnabled = true;
+            this.comboBox_MRBFind.Location = new System.Drawing.Point(311, 214);
+            this.comboBox_MRBFind.Name = "comboBox_MRBFind";
+            this.comboBox_MRBFind.Size = new System.Drawing.Size(111, 21);
+            this.comboBox_MRBFind.TabIndex = 2;
+            // 
+            // comboBox_MRBReplace
+            // 
+            this.comboBox_MRBReplace.AllowDrop = true;
+            this.comboBox_MRBReplace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.comboBox_MRBReplace.FormattingEnabled = true;
+            this.comboBox_MRBReplace.Location = new System.Drawing.Point(311, 239);
+            this.comboBox_MRBReplace.Name = "comboBox_MRBReplace";
+            this.comboBox_MRBReplace.Size = new System.Drawing.Size(111, 21);
+            this.comboBox_MRBReplace.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -1996,8 +2188,14 @@
             this.grpStart.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2173,6 +2371,23 @@
         private System.Windows.Forms.ComboBox comboBox_DTFSourceFile;
         private System.Windows.Forms.Button button_DTFReplace;
         private System.Windows.Forms.OpenFileDialog openFileDialog5;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button button_DTFChangeTransFile;
+        private System.Windows.Forms.ComboBox comboBox_DTFTransFile;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Button btn_MRBFindAndReplace;
+        private System.Windows.Forms.Button btn_ChangeMRBOutput;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox comboBox_MRBOutput;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button btn_ChangeSourceMRBs;
+        private System.Windows.Forms.ComboBox comboBox_MRBSourceFolder;
+        private System.Windows.Forms.ComboBox comboBox_MRBReplace;
+        private System.Windows.Forms.ComboBox comboBox_MRBFind;
+        private System.Windows.Forms.Label label37;
     }
 }
 
