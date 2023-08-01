@@ -59,7 +59,8 @@ Development on Linux and MacOS is never expected.
 ---
 1. Download the .zip of the latest release of [Interception.](https://github.com/oblitum/Interception/releases/latest)
 2. Extract the .zip, and navigate to the "command line installer" folder within the extracted folder.
-3. Open the Command Prompt and change to that director by typeing ```cmd prompt
+3. Open the Command Prompt and change to that director by typeing
+```cmd prompt
 cd (Replace This With The Path To The command line installer folder)
 ```
 4. Run the following command
