@@ -111,6 +111,10 @@ namespace ExcelPaster
                 for (int j = 0; j < line.Count(); j++)
                 {
                     string cell = line[j];
+                    //Is this a time cell?
+                    if(cell.Count(x => x == ':') == 2)
+                            InTimeCell = true;
+
                     for (int k = 0; k < cell.Count(); k++)
                     {
                         if (bg.CancellationPending)
@@ -123,10 +127,14 @@ namespace ExcelPaster
                             ih.SendKey(Interceptor.Keys.Space);
 
                         }
-                        else if (c == ':')
+                        else if (c == '=')
                         {
-                            ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);
-                            InTimeCell = true;
+                            ih.SendKey(Interceptor.Keys.PlusEquals);
+                        }
+                        else if (c == ':' & InTimeCell)
+                        {
+                            //PCCU auto nexts in time cells
+                            //ih.SendModKey(Interceptor.Keys.LeftShift, Interceptor.Keys.Right);  
                         }
                         else
                         {

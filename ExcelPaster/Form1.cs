@@ -415,7 +415,7 @@ namespace ExcelPaster
                     break;
                 case (int)TargetProgram.PCCU:
                     openFileDialog1.Filter = "excel files | *.csv; *.xlsx";
-                    pictureBox2.Image = ExcelPaster.Properties.Resources.No_Photo;
+                    pictureBox2.Image = ExcelPaster.Properties.Resources.ExcelToPCCU;
                     break;
                 case (int)TargetProgram.Realflo:
                     openFileDialog1.Filter = "Run Reports | *.3.txt";
@@ -2375,32 +2375,127 @@ namespace ExcelPaster
 
         private void btn_MRBFindAndReplace_Click(object sender, EventArgs e)
         {
-            if (comboBox_MRBSourceFolder.Text != null)
-            {
-               
-                    if (comboBox_MRBOutput.Text != null)
-                    {
-                        if (Directory.Exists(comboBox_MRBOutput.Text))
-                        {
-                            MRBEditor editor = new MRBEditor();
-                        editor.ProcessFiles(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, byte.Parse(comboBox_MRBFind.Text), byte.Parse(comboBox_MRBReplace.Text));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Please select a output folder that exists!");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select a output folder location!");
-                        return;
-                    }
-            }
-            else
+            if (comboBox_MRBSourceFolder.Text == null)
             {
                 MessageBox.Show("Please select a MRB folder source!");
                 return;
+
+            }
+
+            if (comboBox_MRBOutput.Text == null)
+            {
+                MessageBox.Show("Please select a output folder location!");
+                return;
+            }
+
+            if (!Directory.Exists(comboBox_MRBOutput.Text))
+            {
+                MessageBox.Show("Please select a output folder that exists!");
+                return;
+            }
+                        
+            FileDataReplacor editor = new FileDataReplacor();
+            if (radioButton_ReplaceInt16.Checked)
+            {
+                if (comboBox_MRBFind.Text == null)
+                {
+                    MessageBox.Show("Please Enter a Int16 to Find!");
+                    return;
+                }
+
+                if (comboBox_MRBReplace.Text == null)
+                {
+                    MessageBox.Show("Please Enter a Int16 to Reaplace!");
+                    return;
+                }
+                editor.ReplaceInt16(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, byte.Parse(comboBox_MRBFind.Text), byte.Parse(comboBox_MRBReplace.Text));
+            }
+
+            if (radioButton_replaceReg.Checked)
+            {
+                if (comboBox_MRBFindReg.Text == null)
+                {
+                    MessageBox.Show("Please Enter a Register to Find!");
+                    return;
+                }
+
+                if (comboBox_MRBReplaceReg.Text == null)
+                {
+                    MessageBox.Show("Please Enter a Register to Reaplace!");
+                    return;
+                }
+                editor.ReplaceRegister(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_MRBFindReg.Text,comboBox_MRBReplaceReg.Text);
+            }
+
+            if (radioButton_ReplaceMultReg.Checked)
+            {
+                if (comboBox_FindReplaceTemplate.Text == null)
+                {
+                    MessageBox.Show("Please select a .CSV file!");
+                    return;
+                }
+
+                editor.ReplaceMultipleRegister(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_FindReplaceTemplate.Text);
+            }
+
+            if (radioButton_ReplaceMultStrings.Checked)
+            {
+                if (comboBox_FindReplaceStringsLocations.Text == null)
+                {
+                    MessageBox.Show("Please select a .CSV file!");
+                    return;
+                }
+
+                editor.ReplaceMultipleRegister(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_FindReplaceTemplate.Text);
+            }
+
+
+        }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label43_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label33_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_MRBOutput_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void button_ChooseFindReplaceTemplate_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog5.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog5.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_FindReplaceTemplate.Text = result;
+
+                }
+            }
+        }
+
+        private void button_ChooseFindReplaceStrings_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog5.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = openFileDialog5.FileName;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    comboBox_FindReplaceStringsLocations.Text = result;
+
+                }
             }
         }
 

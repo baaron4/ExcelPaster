@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ExcelPaster")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Winn-Marion")]
 [assembly: AssemblyProduct("ExcelPaster")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
@@ -34,5 +34,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 
 //Using Major.minor.patch
-[assembly: AssemblyVersion("3.2.0")]
-[assembly: AssemblyFileVersion("3.2.0")]
+[assembly: AssemblyVersion("3.2.1")]
+[assembly: AssemblyFileVersion("3.2.1")]

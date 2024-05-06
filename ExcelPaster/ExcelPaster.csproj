@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>3.1.1.%2a</ApplicationVersion>
+    <ApplicationVersion>3.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -180,7 +180,7 @@
     <Compile Include="Keyboard.cs" />
     <Compile Include="modbusTCP.cs" />
     <Compile Include="ModemMap.cs" />
-    <Compile Include="MRBEditor.cs" />
+    <Compile Include="FileDataReplacor.cs" />
     <Compile Include="PadInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,6 +230,7 @@
     <None Include="Resources\winn-marion-barber-ball_hires%281%29.ico" />
     <None Include="Resources\No_Report.PNG" />
     <None Include="Resources\Excel_Report.bmp" />
+    <None Include="Resources\ExcelToPCCU.png" />
     <Content Include="Resources\Excel_Report.PNG" />
     <None Include="Resources\spread1.PNG" />
     <None Include="Resources\Run Report.PNG" />
