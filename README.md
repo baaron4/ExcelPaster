@@ -59,14 +59,17 @@ Development on Linux and MacOS is never expected.
 ---
 1. Download the .zip of the latest release of [Interception.](https://github.com/oblitum/Interception/releases/latest)
 2. Extract the .zip, and navigate to the "command line installer" folder within the extracted folder.
-3. Shift + Right Click in the folder and click "Open Powershell window here"
-4. Run the following command in Powershell
-```powershell
-.\install-interception.exe /install
+3. Open the Command Prompt and change to that director by typeing
+```cmd prompt
+cd (Replace This With The Path To The command line installer folder)
+```
+4. Run the following command
+```cmd prompt
+install-interception.exe /install
 ```
 4.5 If at this point an error appears about being unable to access the System32/Drivers folder due to authentication. Run an uninstall and then Redo step 4.
-```powershell
-.\install-interception.exe /uninstall
+```cmd prompt
+install-interception.exe /uninstall
 ```
 5. Restart after install
 6. Download the .zip of the latest release of [ExcelPaster](https://github.com/joneslinger/ExcelPaster/releases/latest)
