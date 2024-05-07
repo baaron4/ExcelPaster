@@ -192,6 +192,11 @@
             this.button_DTFChangeSource = new System.Windows.Forms.Button();
             this.comboBox_DTFSourceFile = new System.Windows.Forms.ComboBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.radioButton_ReplaceMultStrings = new System.Windows.Forms.RadioButton();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.button_ChooseFindReplaceStrings = new System.Windows.Forms.Button();
+            this.comboBox_FindReplaceStringsLocations = new System.Windows.Forms.ComboBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.radioButton_replaceReg = new System.Windows.Forms.RadioButton();
             this.radioButton_ReplaceMultReg = new System.Windows.Forms.RadioButton();
             this.radioButton_ReplaceInt16 = new System.Windows.Forms.RadioButton();
@@ -230,11 +235,6 @@
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
-            this.radioButton_ReplaceMultStrings = new System.Windows.Forms.RadioButton();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.button_ChooseFindReplaceStrings = new System.Windows.Forms.Button();
-            this.comboBox_FindReplaceStringsLocations = new System.Windows.Forms.ComboBox();
-            this.label45 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -261,11 +261,11 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -1205,7 +1205,7 @@
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(1024, 485);
             this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "File Generator";
+            this.tabPage7.Text = "Report Generator";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // label_Example1
@@ -1436,7 +1436,8 @@
             "PCCU Spreadsheet Option 1",
             "Run Report Rename",
             "Ovintiv Send-out",
-            "Excel to PDF"});
+            "Excel to PDF",
+            "Drivers Licence Fillout"});
             this.comboBox_ReportType.Location = new System.Drawing.Point(86, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
@@ -2009,6 +2010,56 @@
             this.tabPage5.UseVisualStyleBackColor = true;
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
             // 
+            // radioButton_ReplaceMultStrings
+            // 
+            this.radioButton_ReplaceMultStrings.AutoSize = true;
+            this.radioButton_ReplaceMultStrings.Location = new System.Drawing.Point(679, 253);
+            this.radioButton_ReplaceMultStrings.Name = "radioButton_ReplaceMultStrings";
+            this.radioButton_ReplaceMultStrings.Size = new System.Drawing.Size(139, 17);
+            this.radioButton_ReplaceMultStrings.TabIndex = 64;
+            this.radioButton_ReplaceMultStrings.Text = "Replace Multiple Strings";
+            this.radioButton_ReplaceMultStrings.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.button_ChooseFindReplaceStrings);
+            this.groupBox9.Controls.Add(this.comboBox_FindReplaceStringsLocations);
+            this.groupBox9.Controls.Add(this.label45);
+            this.groupBox9.Location = new System.Drawing.Point(668, 276);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(329, 83);
+            this.groupBox9.TabIndex = 65;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Replace Multiple Strings";
+            // 
+            // button_ChooseFindReplaceStrings
+            // 
+            this.button_ChooseFindReplaceStrings.Location = new System.Drawing.Point(11, 44);
+            this.button_ChooseFindReplaceStrings.Name = "button_ChooseFindReplaceStrings";
+            this.button_ChooseFindReplaceStrings.Size = new System.Drawing.Size(109, 31);
+            this.button_ChooseFindReplaceStrings.TabIndex = 2;
+            this.button_ChooseFindReplaceStrings.Text = "Choose File";
+            this.button_ChooseFindReplaceStrings.UseVisualStyleBackColor = true;
+            this.button_ChooseFindReplaceStrings.Click += new System.EventHandler(this.button_ChooseFindReplaceStrings_Click);
+            // 
+            // comboBox_FindReplaceStringsLocations
+            // 
+            this.comboBox_FindReplaceStringsLocations.AllowDrop = true;
+            this.comboBox_FindReplaceStringsLocations.FormattingEnabled = true;
+            this.comboBox_FindReplaceStringsLocations.Location = new System.Drawing.Point(131, 50);
+            this.comboBox_FindReplaceStringsLocations.Name = "comboBox_FindReplaceStringsLocations";
+            this.comboBox_FindReplaceStringsLocations.Size = new System.Drawing.Size(192, 21);
+            this.comboBox_FindReplaceStringsLocations.TabIndex = 3;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(24, 25);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(219, 13);
+            this.label45.TabIndex = 58;
+            this.label45.Text = "Choose .csv file (col 1 = find, col 2 = replace)";
+            // 
             // radioButton_replaceReg
             // 
             this.radioButton_replaceReg.AutoSize = true;
@@ -2336,56 +2387,6 @@
             // 
             this.openFileDialog5.FileName = "openFileDialog5";
             // 
-            // radioButton_ReplaceMultStrings
-            // 
-            this.radioButton_ReplaceMultStrings.AutoSize = true;
-            this.radioButton_ReplaceMultStrings.Location = new System.Drawing.Point(679, 253);
-            this.radioButton_ReplaceMultStrings.Name = "radioButton_ReplaceMultStrings";
-            this.radioButton_ReplaceMultStrings.Size = new System.Drawing.Size(139, 17);
-            this.radioButton_ReplaceMultStrings.TabIndex = 64;
-            this.radioButton_ReplaceMultStrings.Text = "Replace Multiple Strings";
-            this.radioButton_ReplaceMultStrings.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.button_ChooseFindReplaceStrings);
-            this.groupBox9.Controls.Add(this.comboBox_FindReplaceStringsLocations);
-            this.groupBox9.Controls.Add(this.label45);
-            this.groupBox9.Location = new System.Drawing.Point(668, 276);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(329, 83);
-            this.groupBox9.TabIndex = 65;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Replace Multiple Strings";
-            // 
-            // button_ChooseFindReplaceStrings
-            // 
-            this.button_ChooseFindReplaceStrings.Location = new System.Drawing.Point(11, 44);
-            this.button_ChooseFindReplaceStrings.Name = "button_ChooseFindReplaceStrings";
-            this.button_ChooseFindReplaceStrings.Size = new System.Drawing.Size(109, 31);
-            this.button_ChooseFindReplaceStrings.TabIndex = 2;
-            this.button_ChooseFindReplaceStrings.Text = "Choose File";
-            this.button_ChooseFindReplaceStrings.UseVisualStyleBackColor = true;
-            this.button_ChooseFindReplaceStrings.Click += new System.EventHandler(this.button_ChooseFindReplaceStrings_Click);
-            // 
-            // comboBox_FindReplaceStringsLocations
-            // 
-            this.comboBox_FindReplaceStringsLocations.AllowDrop = true;
-            this.comboBox_FindReplaceStringsLocations.FormattingEnabled = true;
-            this.comboBox_FindReplaceStringsLocations.Location = new System.Drawing.Point(131, 50);
-            this.comboBox_FindReplaceStringsLocations.Name = "comboBox_FindReplaceStringsLocations";
-            this.comboBox_FindReplaceStringsLocations.Size = new System.Drawing.Size(192, 21);
-            this.comboBox_FindReplaceStringsLocations.TabIndex = 3;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(24, 25);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(219, 13);
-            this.label45.TabIndex = 58;
-            this.label45.Text = "Choose .csv file (col 1 = find, col 2 = replace)";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2446,6 +2447,8 @@
             this.panel2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -2454,8 +2457,6 @@
             this.groupBox6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

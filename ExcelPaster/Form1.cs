@@ -1959,6 +1959,11 @@ namespace ExcelPaster
                             success = rG.excelToPDF(comboBox_ReportSource.Text, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
                             reportType = "Excel to PDF";
                         }
+                        else if (comboBox_ReportType.SelectedIndex == 6)
+                        {
+                            success = rG.DriversLicencePDFFillout(comboBox_ReportSource.Text, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
+                            reportType = "Drivers Licence PDF Fill Out";
+                        }
                         else
                         {
                             MessageBox.Show("Single file generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2074,6 +2079,7 @@ namespace ExcelPaster
                                     success = rG.excelToPDF(file, comboBox_ReportOutput.Text, checkBox_showReport.Checked);
                                     reportType = "Excel to PDF";
                                 }
+                               
                                 else
                                 {
                                     MessageBox.Show("Directory generation not supported.", "Sorry", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -2174,6 +2180,19 @@ namespace ExcelPaster
                     panel_hexCalc.Visible = false;
                     panel_ovintivDirectory.Visible = true;
                     label_namingScheme.Visible = true;
+                    break;
+                case 6:
+                    //Drivers Licences fill out
+                    pictureBox1.Image = ExcelPaster.Properties.Resources.DriversLicPic;
+                    openFileDialog4.Filter = "Excel Files | *.xlsx";
+                    openFileDialog4.FileName = "*.xlsx";
+                    panel_renameOptions.Visible = false;
+                    panel_sourceFolder.Visible = false;
+                    panel_sourceFile.Visible = true;
+                    label_renameFileInfo.Visible = false;
+                    panel_hexCalc.Visible = false;
+                    panel_ovintivDirectory.Visible = false;
+                    label_namingScheme.Visible = false;
                     break;
                 default:
                     pictureBox1.Image = ExcelPaster.Properties.Resources.No_Report;

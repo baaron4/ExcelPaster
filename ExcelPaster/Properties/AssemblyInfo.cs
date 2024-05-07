@@ -34,5 +34,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 
 //Using Major.minor.patch
-[assembly: AssemblyVersion("3.2.1")]
-[assembly: AssemblyFileVersion("3.2.1")]
+[assembly: AssemblyVersion("3.2.2")]
+[assembly: AssemblyFileVersion("3.2.2")]

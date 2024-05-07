@@ -224,6 +224,9 @@
     <None Include="Resources\Calibration Doc 250 1000 PSI.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\DFP.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\FreeSans.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -231,6 +234,9 @@
     <None Include="Resources\No_Report.PNG" />
     <None Include="Resources\Excel_Report.bmp" />
     <None Include="Resources\ExcelToPCCU.png" />
+    <None Include="Resources\DriversLicPic.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\Excel_Report.PNG" />
     <None Include="Resources\spread1.PNG" />
     <None Include="Resources\Run Report.PNG" />
