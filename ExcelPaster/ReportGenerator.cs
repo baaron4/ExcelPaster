@@ -1248,7 +1248,7 @@ namespace ExcelPaster
                 employeeForDL.employeeFirstName = CellValueOrNull(xlRange, rows, 3);
                 employeeForDL.employeeNumber = CellValueOrNull(xlRange, rows, 4);
                 employeeForDL.hireDate = CellDateOrNull(xlRange, rows, 5);
-                employeeForDL.yearsOfService = CellDateOrNull(xlRange, rows, 6);
+                employeeForDL.yearsOfService = CellValueOrNull(xlRange, rows, 6);
                 employeeForDL.cDL = CellValueOrNull(xlRange, rows, 7);//?
                 employeeForDL.employeeDLState = CellValueOrNull(xlRange, rows, 8);
                 employeeForDL.dLNumber = CellValueOrNull(xlRange, rows, 9);
@@ -1277,8 +1277,9 @@ namespace ExcelPaster
             foreach (EmployeeForDL person in employeeList)
             {
                 iText.Kernel.Pdf.PdfDocument pdfDoc =
-                    new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\DFP.pdf"),//Template PDF
-                    new iText.Kernel.Pdf.PdfWriter(outputLoc + "\\" + person.employeeFirstName + "_" + person.employeeLastName + "_DLForm.pdf"));//New PDF
+                     //new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\DFP.pdf"),//Template PDF V1
+                     new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\Driver_File_Packet.pdf"),//Template PDF V2
+                    new iText.Kernel.Pdf.PdfWriter(outputLoc + "\\" + person.employeeFirstName + "_" + person.employeeLastName + "_DFP.pdf"));//New PDF
                 PdfAcroForm form = PdfAcroForm.GetAcroForm(pdfDoc, true);
                 form.SetGenerateAppearance(true);
                 PdfFont font = PdfFontFactory.CreateFont(FONT, PdfEncodings.IDENTITY_H);
@@ -1299,7 +1300,7 @@ namespace ExcelPaster
                     //Page 3
                     if (baseText == "Last Name") form.GetField(field.Key).SetValue(person.employeeLastName, font, fontSize);
                     if (baseText == "First Name") form.GetField(field.Key).SetValue(person.employeeFirstName, font, fontSize);
-                    if (baseText == "Company Name") form.GetField(field.Key).SetValue("Winn Marion Companies", font, fontSize);
+                    if (baseText == "Company Name") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
                     if (baseText == "Location RegionDistrictBranch") form.GetField(field.Key).SetValue(person.reportLoc, font, fontSize);
                     if (baseText == "Company Address") form.GetField(field.Key).SetValue(person.locationPhysAddress, font, fontSize);
                     if (baseText == "Name") form.GetField(field.Key).SetValue(person.employeeLastName, font, fontSize);
@@ -1344,10 +1345,10 @@ namespace ExcelPaster
                     if (baseText == "Employee Name") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
 
                     //Page 13
-                    if (baseText == "COMPANY NAME") form.GetField(field.Key).SetValue("Winn Marion Companies", font, fontSize);
+                    if (baseText == "COMPANY NAME") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
 
                     //Page 14
-                    if (field.Key == "Text1") form.GetField(field.Key).SetValue("Winn Marion Companies", font, fontSize);
+                    if (field.Key == "Text1") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
                 }
 
                 pdfDoc.Close();

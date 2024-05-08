@@ -1437,7 +1437,7 @@
             "Run Report Rename",
             "Ovintiv Send-out",
             "Excel to PDF",
-            "Drivers Licence Fillout"});
+            "Drivers License Fillout"});
             this.comboBox_ReportType.Location = new System.Drawing.Point(86, 17);
             this.comboBox_ReportType.Name = "comboBox_ReportType";
             this.comboBox_ReportType.Size = new System.Drawing.Size(290, 21);
