@@ -234,7 +234,30 @@
             this.btn_ChangeSourceMRBs = new System.Windows.Forms.Button();
             this.comboBox_MRBSourceFolder = new System.Windows.Forms.ComboBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBox_AutoPCCULog = new System.Windows.Forms.TextBox();
+            this.checkBox_CloseOnComplete = new System.Windows.Forms.CheckBox();
+            this.button_ChangePCCUInstallLocation = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label_CollectCountdown = new System.Windows.Forms.Label();
+            this.dateTimePicker_ScheduleStartTime = new System.Windows.Forms.DateTimePicker();
+            this.checkBox_ScheduleEnable = new System.Windows.Forms.CheckBox();
+            this.textBox_ScheduleInterval = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
             this.button_PCCUCollect = new System.Windows.Forms.Button();
+            this.label52 = new System.Windows.Forms.Label();
+            this.dateTimePicker_ScheduleStartDate = new System.Windows.Forms.DateTimePicker();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.textBox_SendCollectToEmail = new System.Windows.Forms.TextBox();
+            this.checkBox_SendEmailEnable = new System.Windows.Forms.CheckBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.button_ChangeCollectFolder = new System.Windows.Forms.Button();
+            this.textBox_CollectSource = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBox_MaxConnectionTimeCollect = new System.Windows.Forms.TextBox();
+            this.textBox_PCCUInstallLocation = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.BgWorker = new System.ComponentModel.BackgroundWorker();
             this.label_Version = new System.Windows.Forms.Label();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
@@ -245,30 +268,11 @@
             this.openFileDialog4 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.textBox_MaxConnectionTimeCollect = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.textBox_PCCUInstallLocation = new System.Windows.Forms.TextBox();
-            this.button_ChangePCCUInstallLocation = new System.Windows.Forms.Button();
-            this.checkBox_CloseOnComplete = new System.Windows.Forms.CheckBox();
-            this.button_ChangeCollectFolder = new System.Windows.Forms.Button();
-            this.textBox_CollectSource = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.checkBox_SendEmailEnable = new System.Windows.Forms.CheckBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.textBox_SendCollectToEmail = new System.Windows.Forms.TextBox();
-            this.textBox_AutoPCCULog = new System.Windows.Forms.TextBox();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker_ScheduleStartDate = new System.Windows.Forms.DateTimePicker();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.textBox_ScheduleInterval = new System.Windows.Forms.TextBox();
-            this.checkBox_ScheduleEnable = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker_ScheduleStartTime = new System.Windows.Forms.DateTimePicker();
             this.timer_AutoCollectTimer = new System.Windows.Forms.Timer(this.components);
-            this.label_CollectCountdown = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.textBox_FromEmail = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.textBox_FromEmailPass = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -303,8 +307,8 @@
             this.panel5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_StartCopyFile
@@ -380,7 +384,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1032, 551);
+            this.tabControl1.Size = new System.Drawing.Size(1032, 573);
             this.tabControl1.TabIndex = 6;
             // 
             // tabPage3
@@ -394,7 +398,7 @@
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage3.Size = new System.Drawing.Size(1024, 525);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "IP Editor";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1030,7 +1034,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage1.Size = new System.Drawing.Size(1024, 525);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Copy & Paste";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1243,7 +1247,7 @@
             this.tabPage7.Controls.Add(this.panel_hexCalc);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage7.Size = new System.Drawing.Size(1024, 525);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Report Generator";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1562,7 +1566,7 @@
             this.tabPage2.Controls.Add(this.grpStart);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage2.Size = new System.Drawing.Size(1024, 525);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1885,7 +1889,7 @@
             this.tabPage4.Controls.Add(this.panel2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage4.Size = new System.Drawing.Size(1024, 525);
             this.tabPage4.TabIndex = 8;
             this.tabPage4.Text = "DTF Editor";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2046,7 +2050,7 @@
             this.tabPage5.Controls.Add(this.panel5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1024, 632);
+            this.tabPage5.Size = new System.Drawing.Size(1024, 525);
             this.tabPage5.TabIndex = 9;
             this.tabPage5.Text = "File FindReplace";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2465,10 +2469,121 @@
             this.tabPage6.Controls.Add(this.label49);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage6.Size = new System.Drawing.Size(1024, 547);
             this.tabPage6.TabIndex = 10;
             this.tabPage6.Text = "Automate PCCU";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // textBox_AutoPCCULog
+            // 
+            this.textBox_AutoPCCULog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_AutoPCCULog.Location = new System.Drawing.Point(3, 373);
+            this.textBox_AutoPCCULog.Multiline = true;
+            this.textBox_AutoPCCULog.Name = "textBox_AutoPCCULog";
+            this.textBox_AutoPCCULog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_AutoPCCULog.Size = new System.Drawing.Size(1018, 172);
+            this.textBox_AutoPCCULog.TabIndex = 15;
+            // 
+            // checkBox_CloseOnComplete
+            // 
+            this.checkBox_CloseOnComplete.AutoSize = true;
+            this.checkBox_CloseOnComplete.Checked = true;
+            this.checkBox_CloseOnComplete.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_CloseOnComplete.Location = new System.Drawing.Point(15, 44);
+            this.checkBox_CloseOnComplete.Name = "checkBox_CloseOnComplete";
+            this.checkBox_CloseOnComplete.Size = new System.Drawing.Size(145, 17);
+            this.checkBox_CloseOnComplete.TabIndex = 10;
+            this.checkBox_CloseOnComplete.Text = "Close PCCU When Done";
+            this.checkBox_CloseOnComplete.UseVisualStyleBackColor = true;
+            // 
+            // button_ChangePCCUInstallLocation
+            // 
+            this.button_ChangePCCUInstallLocation.Location = new System.Drawing.Point(900, 9);
+            this.button_ChangePCCUInstallLocation.Name = "button_ChangePCCUInstallLocation";
+            this.button_ChangePCCUInstallLocation.Size = new System.Drawing.Size(111, 31);
+            this.button_ChangePCCUInstallLocation.TabIndex = 14;
+            this.button_ChangePCCUInstallLocation.Text = "Change Folder";
+            this.button_ChangePCCUInstallLocation.UseVisualStyleBackColor = true;
+            this.button_ChangePCCUInstallLocation.Click += new System.EventHandler(this.button_ChangePCCUInstallLocation_Click);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox11.Controls.Add(this.groupBox14);
+            this.groupBox11.Controls.Add(this.groupBox12);
+            this.groupBox11.Controls.Add(this.label48);
+            this.groupBox11.Controls.Add(this.textBox_MaxConnectionTimeCollect);
+            this.groupBox11.Location = new System.Drawing.Point(3, 67);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(1018, 300);
+            this.groupBox11.TabIndex = 13;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Auto Collect";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox14.Controls.Add(this.label_CollectCountdown);
+            this.groupBox14.Controls.Add(this.dateTimePicker_ScheduleStartTime);
+            this.groupBox14.Controls.Add(this.checkBox_ScheduleEnable);
+            this.groupBox14.Controls.Add(this.textBox_ScheduleInterval);
+            this.groupBox14.Controls.Add(this.label53);
+            this.groupBox14.Controls.Add(this.button_PCCUCollect);
+            this.groupBox14.Controls.Add(this.label52);
+            this.groupBox14.Controls.Add(this.dateTimePicker_ScheduleStartDate);
+            this.groupBox14.Location = new System.Drawing.Point(12, 193);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(988, 92);
+            this.groupBox14.TabIndex = 20;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Schedule";
+            // 
+            // label_CollectCountdown
+            // 
+            this.label_CollectCountdown.Location = new System.Drawing.Point(797, 26);
+            this.label_CollectCountdown.Name = "label_CollectCountdown";
+            this.label_CollectCountdown.Size = new System.Drawing.Size(185, 19);
+            this.label_CollectCountdown.TabIndex = 24;
+            this.label_CollectCountdown.Text = "Next Collect in: Disabled";
+            // 
+            // dateTimePicker_ScheduleStartTime
+            // 
+            this.dateTimePicker_ScheduleStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePicker_ScheduleStartTime.Location = new System.Drawing.Point(215, 51);
+            this.dateTimePicker_ScheduleStartTime.Name = "dateTimePicker_ScheduleStartTime";
+            this.dateTimePicker_ScheduleStartTime.Size = new System.Drawing.Size(103, 20);
+            this.dateTimePicker_ScheduleStartTime.TabIndex = 23;
+            // 
+            // checkBox_ScheduleEnable
+            // 
+            this.checkBox_ScheduleEnable.AutoSize = true;
+            this.checkBox_ScheduleEnable.Location = new System.Drawing.Point(581, 25);
+            this.checkBox_ScheduleEnable.Name = "checkBox_ScheduleEnable";
+            this.checkBox_ScheduleEnable.Size = new System.Drawing.Size(182, 17);
+            this.checkBox_ScheduleEnable.TabIndex = 22;
+            this.checkBox_ScheduleEnable.Text = "Enable Auto Collect on Schedule";
+            this.checkBox_ScheduleEnable.UseVisualStyleBackColor = true;
+            this.checkBox_ScheduleEnable.CheckedChanged += new System.EventHandler(this.checkBox_ScheduleEnable_CheckedChanged);
+            // 
+            // textBox_ScheduleInterval
+            // 
+            this.textBox_ScheduleInterval.Location = new System.Drawing.Point(112, 27);
+            this.textBox_ScheduleInterval.Name = "textBox_ScheduleInterval";
+            this.textBox_ScheduleInterval.Size = new System.Drawing.Size(87, 20);
+            this.textBox_ScheduleInterval.TabIndex = 21;
+            this.textBox_ScheduleInterval.Text = "12";
+            this.textBox_ScheduleInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label53
+            // 
+            this.label53.Location = new System.Drawing.Point(6, 28);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(103, 19);
+            this.label53.TabIndex = 21;
+            this.label53.Text = "Run Every (hours): ";
             // 
             // button_PCCUCollect
             // 
@@ -2479,6 +2594,127 @@
             this.button_PCCUCollect.Text = "Test Auto Collect Now";
             this.button_PCCUCollect.UseVisualStyleBackColor = true;
             this.button_PCCUCollect.Click += new System.EventHandler(this.button_PCCUCollect_Click);
+            // 
+            // label52
+            // 
+            this.label52.Location = new System.Drawing.Point(6, 57);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(70, 19);
+            this.label52.TabIndex = 20;
+            this.label52.Text = "Starting At: ";
+            // 
+            // dateTimePicker_ScheduleStartDate
+            // 
+            this.dateTimePicker_ScheduleStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_ScheduleStartDate.Location = new System.Drawing.Point(112, 51);
+            this.dateTimePicker_ScheduleStartDate.Name = "dateTimePicker_ScheduleStartDate";
+            this.dateTimePicker_ScheduleStartDate.Size = new System.Drawing.Size(97, 20);
+            this.dateTimePicker_ScheduleStartDate.TabIndex = 0;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox12.Controls.Add(this.label55);
+            this.groupBox12.Controls.Add(this.textBox_FromEmailPass);
+            this.groupBox12.Controls.Add(this.label54);
+            this.groupBox12.Controls.Add(this.textBox_FromEmail);
+            this.groupBox12.Controls.Add(this.label51);
+            this.groupBox12.Controls.Add(this.textBox_SendCollectToEmail);
+            this.groupBox12.Controls.Add(this.checkBox_SendEmailEnable);
+            this.groupBox12.Controls.Add(this.label50);
+            this.groupBox12.Controls.Add(this.button_ChangeCollectFolder);
+            this.groupBox12.Controls.Add(this.textBox_CollectSource);
+            this.groupBox12.Location = new System.Drawing.Point(12, 59);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(988, 128);
+            this.groupBox12.TabIndex = 18;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Send Collected Data";
+            // 
+            // label51
+            // 
+            this.label51.Location = new System.Drawing.Point(6, 99);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(169, 14);
+            this.label51.TabIndex = 19;
+            this.label51.Text = "Email to Send Data To: ";
+            // 
+            // textBox_SendCollectToEmail
+            // 
+            this.textBox_SendCollectToEmail.Location = new System.Drawing.Point(181, 96);
+            this.textBox_SendCollectToEmail.Name = "textBox_SendCollectToEmail";
+            this.textBox_SendCollectToEmail.Size = new System.Drawing.Size(684, 20);
+            this.textBox_SendCollectToEmail.TabIndex = 18;
+            // 
+            // checkBox_SendEmailEnable
+            // 
+            this.checkBox_SendEmailEnable.AutoSize = true;
+            this.checkBox_SendEmailEnable.Location = new System.Drawing.Point(6, 49);
+            this.checkBox_SendEmailEnable.Name = "checkBox_SendEmailEnable";
+            this.checkBox_SendEmailEnable.Size = new System.Drawing.Size(163, 17);
+            this.checkBox_SendEmailEnable.TabIndex = 15;
+            this.checkBox_SendEmailEnable.Text = "Send Email with Attachments";
+            this.checkBox_SendEmailEnable.UseVisualStyleBackColor = true;
+            // 
+            // label50
+            // 
+            this.label50.Location = new System.Drawing.Point(6, 22);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(169, 14);
+            this.label50.TabIndex = 16;
+            this.label50.Text = "Collected Data Source Folder: ";
+            // 
+            // button_ChangeCollectFolder
+            // 
+            this.button_ChangeCollectFolder.Location = new System.Drawing.Point(871, 13);
+            this.button_ChangeCollectFolder.Name = "button_ChangeCollectFolder";
+            this.button_ChangeCollectFolder.Size = new System.Drawing.Size(111, 31);
+            this.button_ChangeCollectFolder.TabIndex = 17;
+            this.button_ChangeCollectFolder.Text = "Change Folder";
+            this.button_ChangeCollectFolder.UseVisualStyleBackColor = true;
+            this.button_ChangeCollectFolder.Click += new System.EventHandler(this.button_ChangeCollectFolder_Click);
+            // 
+            // textBox_CollectSource
+            // 
+            this.textBox_CollectSource.Location = new System.Drawing.Point(181, 19);
+            this.textBox_CollectSource.Name = "textBox_CollectSource";
+            this.textBox_CollectSource.Size = new System.Drawing.Size(684, 20);
+            this.textBox_CollectSource.TabIndex = 15;
+            this.textBox_CollectSource.Text = "C:\\Program Files\\ABB Totalflow\\PCCU7\\spreadsh\\archive";
+            // 
+            // label48
+            // 
+            this.label48.Location = new System.Drawing.Point(9, 26);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(287, 17);
+            this.label48.TabIndex = 9;
+            this.label48.Text = "Max Time Limit to Connect to Collection Screen (seconds):";
+            // 
+            // textBox_MaxConnectionTimeCollect
+            // 
+            this.textBox_MaxConnectionTimeCollect.Location = new System.Drawing.Point(302, 23);
+            this.textBox_MaxConnectionTimeCollect.Name = "textBox_MaxConnectionTimeCollect";
+            this.textBox_MaxConnectionTimeCollect.Size = new System.Drawing.Size(87, 20);
+            this.textBox_MaxConnectionTimeCollect.TabIndex = 8;
+            this.textBox_MaxConnectionTimeCollect.Text = "20";
+            this.textBox_MaxConnectionTimeCollect.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox_PCCUInstallLocation
+            // 
+            this.textBox_PCCUInstallLocation.Location = new System.Drawing.Point(196, 15);
+            this.textBox_PCCUInstallLocation.Name = "textBox_PCCUInstallLocation";
+            this.textBox_PCCUInstallLocation.Size = new System.Drawing.Size(698, 20);
+            this.textBox_PCCUInstallLocation.TabIndex = 5;
+            this.textBox_PCCUInstallLocation.Text = "C:\\Program Files\\ABB Totalflow\\PCCU7";
+            // 
+            // label49
+            // 
+            this.label49.Location = new System.Drawing.Point(12, 18);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(178, 14);
+            this.label49.TabIndex = 7;
+            this.label49.Text = "PCCU Installation Folder Location:";
             // 
             // BgWorker
             // 
@@ -2524,241 +2760,43 @@
             // 
             this.openFileDialog5.FileName = "openFileDialog5";
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox11.Controls.Add(this.groupBox14);
-            this.groupBox11.Controls.Add(this.groupBox12);
-            this.groupBox11.Controls.Add(this.label48);
-            this.groupBox11.Controls.Add(this.textBox_MaxConnectionTimeCollect);
-            this.groupBox11.Location = new System.Drawing.Point(3, 67);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(1018, 278);
-            this.groupBox11.TabIndex = 13;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Auto Collect";
-            // 
-            // label48
-            // 
-            this.label48.Location = new System.Drawing.Point(9, 26);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(287, 17);
-            this.label48.TabIndex = 9;
-            this.label48.Text = "Max Time Limit to Connect to Collection Screen (seconds):";
-            // 
-            // textBox_MaxConnectionTimeCollect
-            // 
-            this.textBox_MaxConnectionTimeCollect.Location = new System.Drawing.Point(302, 23);
-            this.textBox_MaxConnectionTimeCollect.Name = "textBox_MaxConnectionTimeCollect";
-            this.textBox_MaxConnectionTimeCollect.Size = new System.Drawing.Size(87, 20);
-            this.textBox_MaxConnectionTimeCollect.TabIndex = 8;
-            this.textBox_MaxConnectionTimeCollect.Text = "20";
-            this.textBox_MaxConnectionTimeCollect.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label49
-            // 
-            this.label49.Location = new System.Drawing.Point(12, 18);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(178, 14);
-            this.label49.TabIndex = 7;
-            this.label49.Text = "PCCU Installation Folder Location:";
-            // 
-            // textBox_PCCUInstallLocation
-            // 
-            this.textBox_PCCUInstallLocation.Location = new System.Drawing.Point(196, 15);
-            this.textBox_PCCUInstallLocation.Name = "textBox_PCCUInstallLocation";
-            this.textBox_PCCUInstallLocation.Size = new System.Drawing.Size(698, 20);
-            this.textBox_PCCUInstallLocation.TabIndex = 5;
-            this.textBox_PCCUInstallLocation.Text = "C:\\Program Files\\ABB Totalflow\\PCCU7";
-            // 
-            // button_ChangePCCUInstallLocation
-            // 
-            this.button_ChangePCCUInstallLocation.Location = new System.Drawing.Point(900, 9);
-            this.button_ChangePCCUInstallLocation.Name = "button_ChangePCCUInstallLocation";
-            this.button_ChangePCCUInstallLocation.Size = new System.Drawing.Size(111, 31);
-            this.button_ChangePCCUInstallLocation.TabIndex = 14;
-            this.button_ChangePCCUInstallLocation.Text = "Change Folder";
-            this.button_ChangePCCUInstallLocation.UseVisualStyleBackColor = true;
-            this.button_ChangePCCUInstallLocation.Click += new System.EventHandler(this.button_ChangePCCUInstallLocation_Click);
-            // 
-            // checkBox_CloseOnComplete
-            // 
-            this.checkBox_CloseOnComplete.AutoSize = true;
-            this.checkBox_CloseOnComplete.Checked = true;
-            this.checkBox_CloseOnComplete.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_CloseOnComplete.Location = new System.Drawing.Point(15, 44);
-            this.checkBox_CloseOnComplete.Name = "checkBox_CloseOnComplete";
-            this.checkBox_CloseOnComplete.Size = new System.Drawing.Size(145, 17);
-            this.checkBox_CloseOnComplete.TabIndex = 10;
-            this.checkBox_CloseOnComplete.Text = "Close PCCU When Done";
-            this.checkBox_CloseOnComplete.UseVisualStyleBackColor = true;
-            // 
-            // button_ChangeCollectFolder
-            // 
-            this.button_ChangeCollectFolder.Location = new System.Drawing.Point(871, 13);
-            this.button_ChangeCollectFolder.Name = "button_ChangeCollectFolder";
-            this.button_ChangeCollectFolder.Size = new System.Drawing.Size(111, 31);
-            this.button_ChangeCollectFolder.TabIndex = 17;
-            this.button_ChangeCollectFolder.Text = "Change Folder";
-            this.button_ChangeCollectFolder.UseVisualStyleBackColor = true;
-            this.button_ChangeCollectFolder.Click += new System.EventHandler(this.button_ChangeCollectFolder_Click);
-            // 
-            // textBox_CollectSource
-            // 
-            this.textBox_CollectSource.Location = new System.Drawing.Point(181, 19);
-            this.textBox_CollectSource.Name = "textBox_CollectSource";
-            this.textBox_CollectSource.Size = new System.Drawing.Size(684, 20);
-            this.textBox_CollectSource.TabIndex = 15;
-            this.textBox_CollectSource.Text = "C:\\Program Files\\ABB Totalflow\\PCCU7\\spreadsh\\archive";
-            // 
-            // label50
-            // 
-            this.label50.Location = new System.Drawing.Point(6, 22);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(169, 14);
-            this.label50.TabIndex = 16;
-            this.label50.Text = "Collected Data Source Folder: ";
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox12.Controls.Add(this.label51);
-            this.groupBox12.Controls.Add(this.textBox_SendCollectToEmail);
-            this.groupBox12.Controls.Add(this.checkBox_SendEmailEnable);
-            this.groupBox12.Controls.Add(this.label50);
-            this.groupBox12.Controls.Add(this.button_ChangeCollectFolder);
-            this.groupBox12.Controls.Add(this.textBox_CollectSource);
-            this.groupBox12.Location = new System.Drawing.Point(12, 59);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(988, 108);
-            this.groupBox12.TabIndex = 18;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Send Collected Data";
-            // 
-            // checkBox_SendEmailEnable
-            // 
-            this.checkBox_SendEmailEnable.AutoSize = true;
-            this.checkBox_SendEmailEnable.Checked = true;
-            this.checkBox_SendEmailEnable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_SendEmailEnable.Location = new System.Drawing.Point(6, 49);
-            this.checkBox_SendEmailEnable.Name = "checkBox_SendEmailEnable";
-            this.checkBox_SendEmailEnable.Size = new System.Drawing.Size(163, 17);
-            this.checkBox_SendEmailEnable.TabIndex = 15;
-            this.checkBox_SendEmailEnable.Text = "Send Email with Attachments";
-            this.checkBox_SendEmailEnable.UseVisualStyleBackColor = true;
-            // 
-            // label51
-            // 
-            this.label51.Location = new System.Drawing.Point(6, 77);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(169, 14);
-            this.label51.TabIndex = 19;
-            this.label51.Text = "Email to Send Data To: ";
-            // 
-            // textBox_SendCollectToEmail
-            // 
-            this.textBox_SendCollectToEmail.Location = new System.Drawing.Point(181, 74);
-            this.textBox_SendCollectToEmail.Name = "textBox_SendCollectToEmail";
-            this.textBox_SendCollectToEmail.Size = new System.Drawing.Size(684, 20);
-            this.textBox_SendCollectToEmail.TabIndex = 18;
-            this.textBox_SendCollectToEmail.Text = "aaronbradfordwork@gmail.com";
-            // 
-            // textBox_AutoPCCULog
-            // 
-            this.textBox_AutoPCCULog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_AutoPCCULog.Location = new System.Drawing.Point(3, 351);
-            this.textBox_AutoPCCULog.Multiline = true;
-            this.textBox_AutoPCCULog.Name = "textBox_AutoPCCULog";
-            this.textBox_AutoPCCULog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_AutoPCCULog.Size = new System.Drawing.Size(1018, 172);
-            this.textBox_AutoPCCULog.TabIndex = 15;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox14.Controls.Add(this.label_CollectCountdown);
-            this.groupBox14.Controls.Add(this.dateTimePicker_ScheduleStartTime);
-            this.groupBox14.Controls.Add(this.checkBox_ScheduleEnable);
-            this.groupBox14.Controls.Add(this.textBox_ScheduleInterval);
-            this.groupBox14.Controls.Add(this.label53);
-            this.groupBox14.Controls.Add(this.button_PCCUCollect);
-            this.groupBox14.Controls.Add(this.label52);
-            this.groupBox14.Controls.Add(this.dateTimePicker_ScheduleStartDate);
-            this.groupBox14.Location = new System.Drawing.Point(12, 173);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(988, 92);
-            this.groupBox14.TabIndex = 20;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Schedule";
-            // 
-            // dateTimePicker_ScheduleStartDate
-            // 
-            this.dateTimePicker_ScheduleStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker_ScheduleStartDate.Location = new System.Drawing.Point(112, 51);
-            this.dateTimePicker_ScheduleStartDate.Name = "dateTimePicker_ScheduleStartDate";
-            this.dateTimePicker_ScheduleStartDate.Size = new System.Drawing.Size(97, 20);
-            this.dateTimePicker_ScheduleStartDate.TabIndex = 0;
-            // 
-            // label52
-            // 
-            this.label52.Location = new System.Drawing.Point(6, 57);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(70, 19);
-            this.label52.TabIndex = 20;
-            this.label52.Text = "Starting At: ";
-            // 
-            // label53
-            // 
-            this.label53.Location = new System.Drawing.Point(6, 28);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(103, 19);
-            this.label53.TabIndex = 21;
-            this.label53.Text = "Run Every (hours): ";
-            // 
-            // textBox_ScheduleInterval
-            // 
-            this.textBox_ScheduleInterval.Location = new System.Drawing.Point(112, 27);
-            this.textBox_ScheduleInterval.Name = "textBox_ScheduleInterval";
-            this.textBox_ScheduleInterval.Size = new System.Drawing.Size(87, 20);
-            this.textBox_ScheduleInterval.TabIndex = 21;
-            this.textBox_ScheduleInterval.Text = "12";
-            this.textBox_ScheduleInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // checkBox_ScheduleEnable
-            // 
-            this.checkBox_ScheduleEnable.AutoSize = true;
-            this.checkBox_ScheduleEnable.Location = new System.Drawing.Point(581, 25);
-            this.checkBox_ScheduleEnable.Name = "checkBox_ScheduleEnable";
-            this.checkBox_ScheduleEnable.Size = new System.Drawing.Size(182, 17);
-            this.checkBox_ScheduleEnable.TabIndex = 22;
-            this.checkBox_ScheduleEnable.Text = "Enable Auto Collect on Schedule";
-            this.checkBox_ScheduleEnable.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker_ScheduleStartTime
-            // 
-            this.dateTimePicker_ScheduleStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker_ScheduleStartTime.Location = new System.Drawing.Point(215, 51);
-            this.dateTimePicker_ScheduleStartTime.Name = "dateTimePicker_ScheduleStartTime";
-            this.dateTimePicker_ScheduleStartTime.Size = new System.Drawing.Size(103, 20);
-            this.dateTimePicker_ScheduleStartTime.TabIndex = 23;
-            // 
             // timer_AutoCollectTimer
             // 
             this.timer_AutoCollectTimer.Enabled = true;
             this.timer_AutoCollectTimer.Interval = 60000;
             this.timer_AutoCollectTimer.Tick += new System.EventHandler(this.timer_AutoCollectTimer_Tick);
             // 
-            // label_CollectCountdown
+            // label54
             // 
-            this.label_CollectCountdown.Location = new System.Drawing.Point(797, 26);
-            this.label_CollectCountdown.Name = "label_CollectCountdown";
-            this.label_CollectCountdown.Size = new System.Drawing.Size(185, 19);
-            this.label_CollectCountdown.TabIndex = 24;
-            this.label_CollectCountdown.Text = "Starting At: ";
+            this.label54.Location = new System.Drawing.Point(6, 73);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(169, 14);
+            this.label54.TabIndex = 21;
+            this.label54.Text = "Email to Send From: ";
+            // 
+            // textBox_FromEmail
+            // 
+            this.textBox_FromEmail.Location = new System.Drawing.Point(181, 70);
+            this.textBox_FromEmail.Name = "textBox_FromEmail";
+            this.textBox_FromEmail.Size = new System.Drawing.Size(179, 20);
+            this.textBox_FromEmail.TabIndex = 20;
+            this.textBox_FromEmail.Text = "autopccu@gmail.com";
+            // 
+            // label55
+            // 
+            this.label55.Location = new System.Drawing.Point(381, 73);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(197, 14);
+            this.label55.TabIndex = 23;
+            this.label55.Text = "Email to Send From App Password: ";
+            // 
+            // textBox_FromEmailPass
+            // 
+            this.textBox_FromEmailPass.Location = new System.Drawing.Point(584, 70);
+            this.textBox_FromEmailPass.Name = "textBox_FromEmailPass";
+            this.textBox_FromEmailPass.Size = new System.Drawing.Size(281, 20);
+            this.textBox_FromEmailPass.TabIndex = 22;
+            this.textBox_FromEmailPass.UseSystemPasswordChar = true;
             // 
             // MainForm
             // 
@@ -2766,7 +2804,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1056, 575);
+            this.ClientSize = new System.Drawing.Size(1056, 597);
             this.Controls.Add(this.label_Version);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2836,10 +2874,10 @@
             this.tabPage6.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3086,6 +3124,10 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_ScheduleStartTime;
         private System.Windows.Forms.Timer timer_AutoCollectTimer;
         private System.Windows.Forms.Label label_CollectCountdown;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox textBox_FromEmailPass;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox textBox_FromEmail;
     }
 }
 

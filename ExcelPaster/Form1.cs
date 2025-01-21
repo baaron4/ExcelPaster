@@ -24,6 +24,7 @@ using System.Net.Http.Headers;
 using System.Linq.Expressions;
 using System.Net.Mail;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Net.Http;
 
 namespace ExcelPaster
 {
@@ -2558,7 +2559,7 @@ namespace ExcelPaster
                 this.Invoke(new Action<string>(AppendLog), new object[] { value });
                 return;
             }
-            textBox_AutoPCCULog.Text += value;
+            textBox_AutoPCCULog.AppendText(value) ;
         }
         public void PostToLogs(string line)
         {
@@ -2781,7 +2782,8 @@ namespace ExcelPaster
                 PostToLogs("Sending to "+ textBox_SendCollectToEmail.Text + " Email with Attachment(s)...");
                 await Task.Run(() => EmailResults(textBox_SendCollectToEmail.Text,
                     "AutoCollect Results: " + DateTime.Now,
-                    "Data Auto Collected from PCCU is attached.",
+                    "Data Auto Collected from PCCU is attached." + Environment.NewLine +
+                    "This is an Automated email. Please do not Reply.",
                     Files));
             }
             return 1;
@@ -2791,7 +2793,7 @@ namespace ExcelPaster
         {
             try
             {
-                MailMessage mail = new MailMessage("from@email.com", email);
+                MailMessage mail = new MailMessage(textBox_FromEmail.Text, email);
                 mail.Subject = subject;
                 mail.Body = body;
                 foreach (FileInfo attachment in attachments)
@@ -2803,15 +2805,17 @@ namespace ExcelPaster
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("user@name.com", "password");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(textBox_FromEmail.Text, textBox_FromEmailPass.Text); 
                 //SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                PostToLogs("Error Sending: " + ex.Message);
                 return 0;
             }
+            PostToLogs("Sucessfully Sent!");
             return 1;
         }
 
@@ -2854,13 +2858,24 @@ namespace ExcelPaster
                     dateTimePicker_ScheduleStartTime.Value.Hour,
                     dateTimePicker_ScheduleStartTime.Value.Minute,
                     0);
-                float countdown = DateTime.Now.Subtract(startTime).Hours % float.Parse(textBox_ScheduleInterval.Text);
-                label_CollectCountdown.Text = "Next Collect in: " + countdown + " hours";
-                if (countdown == 0)
+                float time = (float)DateTime.Now.Subtract(startTime).Minutes / 60f;
+                float countup = time % float.Parse(textBox_ScheduleInterval.Text);
+                float countdown = float.Parse(textBox_ScheduleInterval.Text) - countup;
+                label_CollectCountdown.Text = "Next Collect in: " + Math.Round(countdown,2) + " hours";
+                if (countup < 0.015)//If within the minute
                 {
                     Task.Run(() => RunAutoCollect(textBox_PCCUInstallLocation.Text, checkBox_CloseOnComplete.Checked));
                 }
             }
+        }
+
+        private void checkBox_ScheduleEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox_ScheduleEnable.Checked)
+                label_CollectCountdown.Text = "Next Collect in: Soon...";
+            else
+                label_CollectCountdown.Text = "Next Collect in: Disabled";
+            
         }
     }
 }
