@@ -13,6 +13,7 @@ namespace ExcelPaster
         private List<String> CurLineList; 
         private String CurCell = "";
 
+
         public List<List<String>> GetArrayStorage()
         {
             return ArrayStorage;

@@ -1210,6 +1210,7 @@ namespace ExcelPaster
         {
             public string reportLoc;
             public string employeeLastName;
+            public string employeeMiddleName;
             public string employeeFirstName;
             public string employeeNumber;
             public string hireDate;
@@ -1220,8 +1221,18 @@ namespace ExcelPaster
             public string locationPhysAddress;
             // public string locationContactName;
             //public string locationcontactEmail;
+            public string jobTitle;
             public string dateOfBirth;
             public string phoneNumber;
+            public string emailAddress;
+            public string socialSecNumber;
+            public string personalAddress;
+            public string personalCity;
+            public string personalState;
+            public string personalZip;
+            public string hQAddress;
+
+
         }
         public bool DriversLicencePDFFillout(string sourceLoc, string outputLoc, bool showReport)
         {
@@ -1235,29 +1246,56 @@ namespace ExcelPaster
 
             //Setup Data-----------------------------------------------------------------------------------------------
             List<EmployeeForDL> employeeList = new List<EmployeeForDL>();
-            
-            for (int rows = 2; rows < xlRange.Rows.Count; rows++)
-            {
-                if (CellValueOrNull(xlRange, rows, 1) == null)
-                    break;
-                if (CellValueOrNull(xlRange, rows, 1) == "")
-                    break;
-                EmployeeForDL employeeForDL = new EmployeeForDL();
-                employeeForDL.reportLoc = CellValueOrNull(xlRange, rows, 1);
-                employeeForDL.employeeLastName = CellValueOrNull(xlRange, rows, 2);
-                employeeForDL.employeeFirstName = CellValueOrNull(xlRange, rows, 3);
-                employeeForDL.employeeNumber = CellValueOrNull(xlRange, rows, 4);
-                employeeForDL.hireDate = CellDateOrNull(xlRange, rows, 5);
-                employeeForDL.yearsOfService = CellValueOrNull(xlRange, rows, 6);
-                employeeForDL.cDL = CellValueOrNull(xlRange, rows, 7);//?
-                employeeForDL.employeeDLState = CellValueOrNull(xlRange, rows, 8);
-                employeeForDL.dLNumber = CellValueOrNull(xlRange, rows, 9);
-                employeeForDL.locationPhysAddress = CellValueOrNull(xlRange, rows, 10);
-                employeeForDL.dateOfBirth = CellDateOrNull(xlRange, rows, 11);
-                employeeForDL.phoneNumber = CellValueOrNull(xlRange, rows, 12);
-                //Truck/Equipment?
-                employeeList.Add(employeeForDL);
+            try {
+                for (int rows = 1; rows <= xlRange.Rows.Count; rows++)
+                {
+                    if (CellValueOrNull(xlRange, rows, 1) == null)
+                        break;
+                    if (CellValueOrNull(xlRange, rows, 1) == "")
+                        break;
+                    EmployeeForDL employeeForDL = new EmployeeForDL();
+                    employeeForDL.reportLoc = CellValueOrNull(xlRange, rows, 1);
+                    employeeForDL.employeeLastName = CellValueOrNull(xlRange, rows, 2);
+                    //employeeForDL.employeeMiddleName = CellValueOrNull(xlRange, rows, 3);
+                    employeeForDL.employeeFirstName = CellValueOrNull(xlRange, rows, 3);
+                    employeeForDL.employeeNumber = CellValueOrNull(xlRange, rows, 4);
+                    employeeForDL.hireDate = CellDateOrNull(xlRange, rows, 5);
+                    employeeForDL.yearsOfService = CellValueOrNull(xlRange, rows, 6);
+                    employeeForDL.cDL = CellValueOrNull(xlRange, rows, 7);//?
+                    employeeForDL.employeeDLState = CellValueOrNull(xlRange, rows, 8);
+                    employeeForDL.dLNumber = CellValueOrNull(xlRange, rows, 9);
+                    employeeForDL.locationPhysAddress = CellValueOrNull(xlRange, rows, 10);
+                    //employeeForDL.jobTitle = CellDateOrNull(xlRange, rows, 12);
+                    employeeForDL.dateOfBirth = CellDateOrNull(xlRange, rows, 11);
+                    employeeForDL.phoneNumber = CellValueOrNull(xlRange, rows, 12);
+                    employeeForDL.emailAddress = CellValueOrNull(xlRange, rows, 14);
+                    employeeForDL.socialSecNumber = CellValueOrNull(xlRange, rows, 15);
+                    employeeForDL.personalAddress =  CellValueOrNull(xlRange, rows, 16);
+                    employeeForDL.personalCity = CellValueOrNull(xlRange, rows, 17);
+                    employeeForDL.personalState = CellValueOrNull(xlRange, rows, 18);
+                    employeeForDL.personalZip = CellValueOrNull(xlRange, rows, 19);
+                    
+                    //Truck/Equipment?
+                    employeeList.Add(employeeForDL);
+                }
+            } catch(Exception ex) {
+                Debug.WriteLine(ex);
+                //close Excel
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                //Release Excel
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+                //close
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlApp);
+
+                //quit
+                //xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
             }
+
             //close Excel
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -1278,7 +1316,9 @@ namespace ExcelPaster
             {
                 iText.Kernel.Pdf.PdfDocument pdfDoc =
                      //new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\DFP.pdf"),//Template PDF V1
-                     new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\Driver_File_Packet.pdf"),//Template PDF V2
+                     // new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\Driver_File_Packet.pdf"),//Template PDF V2
+                     // new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\Source_Driver_File_Packet.pdf"),//Template PDF V3
+                     new iText.Kernel.Pdf.PdfDocument(new iText.Kernel.Pdf.PdfReader(System.AppDomain.CurrentDomain.BaseDirectory + "Resources\\Driver File Packet_Final2.pdf"),//Template PDF V4
                     new iText.Kernel.Pdf.PdfWriter(outputLoc + "\\" + person.employeeFirstName + "_" + person.employeeLastName + "_DFP.pdf"));//New PDF
                 PdfAcroForm form = PdfAcroForm.GetAcroForm(pdfDoc, true);
                 form.SetGenerateAppearance(true);
@@ -1289,8 +1329,35 @@ namespace ExcelPaster
 
                 foreach (KeyValuePair<string, iText.Forms.Fields.PdfFormField> field in fields)
                 {
+                    
                     //Debug.WriteLine(field.Key);
                     string baseText = field.Key.Split('.')[0];
+
+                    if (baseText == "Branch") form.GetField(field.Key).SetValue(person.reportLoc, font, fontSize);
+                    
+                    if (baseText == "Name_Last") form.GetField(field.Key).SetValue(person.employeeLastName, font, fontSize);
+                    if (baseText == "Name_First") form.GetField(field.Key).SetValue(person.employeeFirstName, font, fontSize);
+                    if (baseText == "Employee_Number") form.GetField(field.Key).SetValue(person.employeeNumber, font, fontSize);
+                    if (baseText == "Hire_Date") form.GetField(field.Key).SetValue(person.hireDate, font, fontSize);
+                    if (baseText == "Years_of_Service") form.GetField(field.Key).SetValue(person.yearsOfService, font, fontSize);
+                    if (baseText == "DL_State") form.GetField(field.Key).SetValue(person.employeeDLState, font, fontSize);
+                    if (baseText == "DL_#") form.GetField(field.Key).SetValue(person.dLNumber, font, fontSize);
+                    if (baseText == "Branch_Address") form.GetField(field.Key).SetValue(person.locationPhysAddress, font, fontSize);
+                    if (baseText == "DOB") form.GetField(field.Key).SetValue(person.dateOfBirth, font, fontSize);
+                    if (baseText == "Phone_Number") form.GetField(field.Key).SetValue(person.phoneNumber, font, fontSize);
+                    if (baseText == "Email_Address") form.GetField(field.Key).SetValue(person.emailAddress, font, fontSize);
+                    if (baseText == "SS#") form.GetField(field.Key).SetValue(person.socialSecNumber, font, fontSize);
+                    if (baseText == "Personal_Address") form.GetField(field.Key).SetValue(person.personalAddress, font, fontSize);
+                    if (baseText == "Personal_City") form.GetField(field.Key).SetValue(person.personalCity, font, fontSize);
+                    if (baseText == "Personal_State") form.GetField(field.Key).SetValue(person.personalState, font, fontSize);
+                    if (baseText == "Personal_Zip") form.GetField(field.Key).SetValue(person.personalZip, font, fontSize);
+
+                    if (field.Key == "Name_Full_Large") { form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, 20f); continue; }
+                    if (baseText == "Name_Full") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
+                    if (baseText == "HQ_Address") form.GetField(field.Key).SetValue("7151 S Blackhawk St, Centennial CO 80112", font, fontSize);
+                    if (baseText == "Company_Name") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
+                    if (baseText == "Full_Personal_Address") form.GetField(field.Key).SetValue(person.personalAddress + ", " + person.personalCity +", " + person.personalState + ", " + person.personalZip, font, fontSize);
+                    /**
                     //Page 1
                     if (baseText == "Text18") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize); 
                     if (baseText == "Text19") form.GetField(field.Key).SetValue(person.reportLoc, font, fontSize);
@@ -1305,7 +1372,7 @@ namespace ExcelPaster
                     if (baseText == "Company Address") form.GetField(field.Key).SetValue(person.locationPhysAddress, font, fontSize);
                     if (baseText == "Name") form.GetField(field.Key).SetValue(person.employeeLastName, font, fontSize);
                     if (baseText == "First") form.GetField(field.Key).SetValue(person.employeeFirstName, font, fontSize);
-                    //if (baseText == "Middle") form.GetField(field.Key).SetValue(person.employeeFirstName, font, fontSize);
+                    if (baseText == "Middle") form.GetField(field.Key).SetValue(person.employeeMiddleName, font, fontSize);
                     if (baseText == "Phone Number") form.GetField(field.Key).SetValue(person.phoneNumber, font, fontSize);
                     if (baseText == "Date of Birth") form.GetField(field.Key).SetValue(person.dateOfBirth, font, fontSize);
                     if (baseText == "Hire Date") form.GetField(field.Key).SetValue(person.hireDate, font, fontSize);
@@ -1319,17 +1386,21 @@ namespace ExcelPaster
                     if (baseText == "Location Name") form.GetField(field.Key).SetValue(person.reportLoc, font, fontSize);
                     if (baseText == "Employee Name 1") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
                     if (baseText == "Employee Code") form.GetField(field.Key).SetValue(person.employeeNumber, font, fontSize);
-                    //if (baseText == "Middle Name") form.GetField(field.Key).SetValue(person.employeeFirstName, font, fontSize);
+                    if (baseText == "Middle Name") form.GetField(field.Key).SetValue(person.employeeMiddleName, font, fontSize);
+                    if (baseText == "Date of Birth") form.GetField(field.Key).SetValue(person.dateOfBirth, font, fontSize);
+                    if (baseText == "Drivers License Number") form.GetField(field.Key).SetValue(person.dLNumber, font, fontSize);
+                    if (baseText == "State of LicenseProvince") form.GetField(field.Key).SetValue(person.employeeDLState, font, fontSize);
 
                     //Page 7
                     if (baseText == "ANNUAL REVIEW OF DRIVING RECORD") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
                     if (baseText == "NAME OF DRIVER") form.GetField(field.Key).SetValue(person.employeeNumber, font, fontSize);
                     if (baseText == "Name and Address") form.GetField(field.Key).SetValue(person.locationPhysAddress, font, fontSize);
-                    if (baseText == "Reviewed by") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
+                    if (baseText == "Reviewed by") form.GetField(field.Key).SetValue("Tim Matney", font, fontSize);
 
                     //Page 8
                     if (baseText == "Employer Name") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
-                    //if (baseText == "Email Address") form.GetField(field.Key).SetValue(person., font, fontSize);
+                    if (baseText == "Email Address") form.GetField(field.Key).SetValue(person.emailAddress, font, fontSize);
+                    if (baseText == "FullAddress") form.GetField(field.Key).SetValue(person.locationPhysAddress, font, fontSize);
 
                     //Page 9
                     if (baseText == "Drivers Name") form.GetField(field.Key).SetValue(person.employeeFirstName + " " + person.employeeLastName, font, fontSize);
@@ -1349,11 +1420,12 @@ namespace ExcelPaster
 
                     //Page 14
                     if (field.Key == "Text1") form.GetField(field.Key).SetValue("Winn-Marion Companies", font, fontSize);
+                    **/
                 }
 
                 pdfDoc.Close();
 
-                if (showReport) Process.Start(outputLoc + "\\" + person.employeeFirstName + "_" + person.employeeLastName + "_DLForm.pdf");
+                if (showReport) Process.Start(outputLoc + "\\" + person.employeeFirstName + "_" + person.employeeLastName + "_DFP.pdf");
             }
   
             return true;

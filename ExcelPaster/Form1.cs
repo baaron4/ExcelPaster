@@ -10,12 +10,20 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModbusTCP;
 using Syncfusion.XPS;
+using System.Windows.Automation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using System.Runtime.InteropServices.ComTypes;
+using System.Net.Http.Headers;
+using System.Linq.Expressions;
+using System.Net.Mail;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ExcelPaster
 {
@@ -2446,6 +2454,31 @@ namespace ExcelPaster
                 editor.ReplaceRegister(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_MRBFindReg.Text,comboBox_MRBReplaceReg.Text);
             }
 
+            if (radioButton_ReplaceApp.Checked)
+            {
+                if (comboBox_MRBFindApp.Text == null)
+                {
+                    MessageBox.Show("Please Enter a App to Find!");
+                    return;
+                }
+
+                if (checkBox_MRBReplaceAllApps.Checked == false)
+                {
+                    if (comboBox_MRBReplaceApp.Text == null)
+                    {
+                        MessageBox.Show("Please Enter a App to Reaplace!");
+                        return;
+                    }
+                    editor.ReplaceApp(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_MRBFindApp.Text, comboBox_MRBReplaceApp.Text);
+                }
+                else 
+                {
+                    editor.GenerateAllApps(comboBox_MRBSourceFolder.Text, comboBox_MRBOutput.Text, comboBox_MRBFindApp.Text);
+                }
+                
+                
+            }
+
             if (radioButton_ReplaceMultReg.Checked)
             {
                 if (comboBox_FindReplaceTemplate.Text == null)
@@ -2518,26 +2551,316 @@ namespace ExcelPaster
             }
         }
 
+        public void AppendLog(string value)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(AppendLog), new object[] { value });
+                return;
+            }
+            textBox_AutoPCCULog.Text += value;
+        }
+        public void PostToLogs(string line)
+        {
+            try
+            {
+                Debug.WriteLine(line);
+
+                AppendLog(DateTime.Now.ToString() + "> " + line + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+        private void button_PCCUCollect_Click(object sender, EventArgs e)
+        {
+            //Run Auto Collect Task
+            Task.Run(() => RunAutoCollect(textBox_PCCUInstallLocation.Text, checkBox_CloseOnComplete.Checked));
+
+           
+
+        }
+
+        private AutomationElement GetUIWindow(Process proc,int retrys)
+        {
+            AutomationElement element = null;
+            try 
+            {
+                element = AutomationElement.FromHandle(proc.MainWindowHandle);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+           
+            if (element != null) return element;
+            else 
+            {
+                // Retry X Times
+                int retrycount = retrys;
+                while (element == null)
+                {
+                    if (retrycount <= 0) return null;
+                    System.Threading.Thread.Sleep(1000);
+                    Debug.WriteLine("Retrying to find window: "+ proc.MainWindowHandle + " Attempt#: " + retrycount);
+                    try 
+                    {
+                        element = AutomationElement.FromHandle(proc.MainWindowHandle);
+                    } 
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                    
+                    retrycount--;
+                }
+                return element;
+            }
+        }
+        private AutomationElement GetUIElement(AutomationElement parent, TreeScope scope, Condition cond, int retrys)
+        {
+            AutomationElement element = null;
+            try
+            {
+                element = parent.FindFirst(scope, cond);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+           
+            if (element != null) return element;
+            else
+            {
+                // Retry X Times
+                int retrycount = retrys;
+                while (element == null)
+                {
+                    if (retrycount <= 0) return null;
+                    System.Threading.Thread.Sleep(1000);
+                    Debug.WriteLine("Retrying to find element: " + cond + " Attempt#: " + retrycount);
+                    try 
+                    {
+                        element = parent.FindFirst(scope, cond);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                    retrycount--;
+                }
+                return element;
+            }
+        }
+        private void WaitForStatusBar(AutomationElement parent, string waitUntilText)
+        {
+            AutomationElement statusbar = GetUIElement(parent, TreeScope.Descendants, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.StatusBar), 1);
+            int maxseconds = 20;
+            while (statusbar.Current.Name != waitUntilText)
+            {
+                if (maxseconds <= 0) break;
+                System.Threading.Thread.Sleep(1000);
+                statusbar = GetUIElement(parent, TreeScope.Descendants, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.StatusBar), 1);
+                maxseconds--;
+            }
+        }
+        private AutomationElement WaitForWindowName(Process proc, string waitUntilText, int maxSeconds)
+        {
+            AutomationElement collectionWindow = null ;
+           
+            while (true)
+            {
+                if (maxSeconds <= 0) return null ;
+                System.Threading.Thread.Sleep(1000);
+                collectionWindow = GetUIWindow(proc, 10);
+                if (collectionWindow != null) 
+                {
+                    if (collectionWindow.Current.Name == waitUntilText)
+                    {
+                        return collectionWindow;
+                    }
+                } 
+                maxSeconds--;
+            }
+        }
+        private async Task<int> RunAutoCollect(string exeLocation, bool closeOnComplete)
+        {
+            //Check for current open PCCUs
+            PostToLogs("Looking for PCCU...");
+            Process[] pccusOpen = Process.GetProcessesByName("PCCU32");
+            Process pccu = null;
+
+            if (pccusOpen.Count() == 0)
+            {
+                if (exeLocation == "")
+                {
+                    PostToLogs("No PCCU Location Specified! Ending Collect.");
+                    return 0;
+                }
+                //None Open. Open a new PCCU
+                PostToLogs("No Open PCCUs! Opening new PCCU...");
+
+                var process = new Process
+                {
+                    StartInfo = { FileName = exeLocation + "\\pccu32.exe", 
+                        UseShellExecute = true, 
+                        Verb = "runas", 
+                        WorkingDirectory = exeLocation,
+                        WindowStyle = ProcessWindowStyle.Normal
+                    },
+                    EnableRaisingEvents = true
+                };
+
+                process.Start();
+                pccu = process;
+            }
+            else
+            {
+                PostToLogs("Open PCCU Found!");
+                pccu = pccusOpen.First();
+            }
+
+            //Start hammering for window details
+            AutomationElement mainWindow = GetUIWindow(pccu,10);
+            //Find Collect button on toolbar and press it
+            PostToLogs("Opening Collect...");
+            AutomationElement toolbar = GetUIElement(mainWindow,TreeScope.Descendants, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.ToolBar),10);
+            AutomationElement entercollectionbutton = GetUIElement(toolbar,TreeScope.Children, new PropertyCondition(AutomationElement.NameProperty, "Collect"),3);
+            InvokePattern patentercollectionbutton = entercollectionbutton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+            patentercollectionbutton.Invoke();
+
+            //Check for 20 seconds if connection was made
+            AutomationElement collectionWindow = WaitForWindowName(pccu,"PCCU32 - [Collect]", Int32.Parse(textBox_MaxConnectionTimeCollect.Text));
+            if (collectionWindow != null)
+            {
+                PostToLogs("Starting Collection...");
+                //Start collection
+                AutomationElement collectwindow = GetUIElement(collectionWindow, TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "Collect"), 10);
+                AutomationElement collectpane = GetUIElement(collectwindow, TreeScope.Descendants, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Pane), 3);
+                AutomationElement collectbutton = GetUIElement(collectpane, TreeScope.Children, new PropertyCondition(AutomationElement.NameProperty, "Collect"), 3);
+                InvokePattern collectpatt = collectbutton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                collectpatt.Invoke();
+
+                //Wait for collection to complete
+                PostToLogs("Collecting...");
+                WaitForStatusBar(collectionWindow, "Collection Complete");
+
+                //close out
+                AutomationElement closebutton = GetUIElement(collectpane, TreeScope.Children, new PropertyCondition(AutomationElement.NameProperty, "Close"), 20);
+                InvokePattern closepatt = closebutton.GetCurrentPattern(InvokePattern.Pattern) as InvokePattern;
+                closepatt.Invoke();
+                PostToLogs("Closing Collect...");
+            }
+            else 
+            {
+                PostToLogs("Failed to Connect to Totalflow! Ending Collect.");
+                return 0;
+            }
+           
+
+            if (closeOnComplete)
+            {
+                PostToLogs("Closing PCCU...");
+                pccu.Kill();
+                pccu.WaitForExit();
+                pccu.Dispose();
+            }
+
+            PostToLogs("Looking for new files...");
+            //Find new files
+            List<FileInfo> Files = new DirectoryInfo(textBox_CollectSource.Text)
+                .GetFiles("*.csv")
+                .Where(x => x.LastWriteTime.AddMinutes(5) > DateTime.Now).ToList();
+            PostToLogs("Found " + Files.Count() + " new file(s)");
+
+            
+            //Send Emails
+            if (checkBox_SendEmailEnable.Checked && Files.Count() > 0)
+            {
+                PostToLogs("Sending to "+ textBox_SendCollectToEmail.Text + " Email with Attachment(s)...");
+                await Task.Run(() => EmailResults(textBox_SendCollectToEmail.Text,
+                    "AutoCollect Results: " + DateTime.Now,
+                    "Data Auto Collected from PCCU is attached.",
+                    Files));
+            }
+            return 1;
+        }
+
+        private async Task<int> EmailResults(string email, string subject, string body, List<FileInfo> attachments)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage("from@email.com", email);
+                mail.Subject = subject;
+                mail.Body = body;
+                foreach (FileInfo attachment in attachments)
+                {
+                    mail.Attachments.Add(new Attachment(attachment.FullName));
+                }
+                
+
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("user@name.com", "password");
+                //SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return 0;
+            }
+            return 1;
+        }
 
 
-        //---------------------------------------------------------------------------------------------------
-        //                                        Time Tracker
-        //---------------------------------------------------------------------------------------------------
 
+        private void button_ChangePCCUInstallLocation_Click(object sender, EventArgs e)
+        {
+           
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    textBox_PCCUInstallLocation.Text = result;
+                }
+            }
+        }
 
+        private void button_ChangeCollectFolder_Click(object sender, EventArgs e)
+        {
+           
+            if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string result = folderBrowserDialog1.SelectedPath;
+                if (!string.IsNullOrWhiteSpace(result))
+                {
+                    textBox_CollectSource.Text = result;
+                }
+            }
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private void timer_AutoCollectTimer_Tick(object sender, EventArgs e)
+        {
+            //Every Minute Check
+            if (checkBox_ScheduleEnable.Checked)
+            {
+                DateTime startTime = new DateTime(dateTimePicker_ScheduleStartDate.Value.Year,
+                    dateTimePicker_ScheduleStartDate.Value.Month,
+                    dateTimePicker_ScheduleStartDate.Value.Day,
+                    dateTimePicker_ScheduleStartTime.Value.Hour,
+                    dateTimePicker_ScheduleStartTime.Value.Minute,
+                    0);
+                float countdown = DateTime.Now.Subtract(startTime).Hours % float.Parse(textBox_ScheduleInterval.Text);
+                label_CollectCountdown.Text = "Next Collect in: " + countdown + " hours";
+                if (countdown == 0)
+                {
+                    Task.Run(() => RunAutoCollect(textBox_PCCUInstallLocation.Text, checkBox_CloseOnComplete.Checked));
+                }
+            }
+        }
     }
 }
