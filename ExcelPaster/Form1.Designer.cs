@@ -398,7 +398,7 @@
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage3.Size = new System.Drawing.Size(1024, 547);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "IP Editor";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1034,7 +1034,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage1.Size = new System.Drawing.Size(1024, 547);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Copy & Paste";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1247,7 +1247,7 @@
             this.tabPage7.Controls.Add(this.panel_hexCalc);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage7.Size = new System.Drawing.Size(1024, 547);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Report Generator";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1566,7 +1566,7 @@
             this.tabPage2.Controls.Add(this.grpStart);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage2.Size = new System.Drawing.Size(1024, 547);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Modbus Test";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1889,7 +1889,7 @@
             this.tabPage4.Controls.Add(this.panel2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage4.Size = new System.Drawing.Size(1024, 547);
             this.tabPage4.TabIndex = 8;
             this.tabPage4.Text = "DTF Editor";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -2050,7 +2050,7 @@
             this.tabPage5.Controls.Add(this.panel5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1024, 525);
+            this.tabPage5.Size = new System.Drawing.Size(1024, 547);
             this.tabPage5.TabIndex = 9;
             this.tabPage5.Text = "File FindReplace";
             this.tabPage5.UseVisualStyleBackColor = true;
